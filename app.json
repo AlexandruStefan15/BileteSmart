@@ -1,0 +1,48 @@
+{
+	"expo": {
+		"name": "Bilete Smart",
+		"slug": "bilete-smart",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/react-logo@3x.png",
+		"scheme": "myapp",
+		"userInterfaceStyle": "automatic",
+		"newArchEnabled": true,
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/react-logo.png",
+				"backgroundColor": "#ffffff"
+			}
+		},
+		"web": {
+			"bundler": "metro",
+			"favicon": "./assets/images/favicon.png"
+		},
+		"plugins": [
+			[
+				"expo-splash-screen",
+				{
+					"image": "./assets/images/react-logo.png",
+					"imageWidth": 200,
+					"resizeMode": "contain",
+					"backgroundColor": "#ffffff"
+				}
+			]
+		],
+		"extra": {
+			"eas": {
+				"projectId": "743c003d-b7e6-4ab5-a770-f1a001644851"
+			}
+		},
+		"owner": "pikolo1999",
+		"runtimeVersion": {
+			"policy": "appVersion"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/743c003d-b7e6-4ab5-a770-f1a001644851"
+		}
+	}
+}
