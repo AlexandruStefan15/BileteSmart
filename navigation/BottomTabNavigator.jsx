@@ -5,6 +5,8 @@ import ContactScreen_stack from "./stacks/ContactScreen_stack";
 import HomeScreen_stack from "./stacks/HomeScreen_stack";
 
 import Icon from "react-native-vector-icons/Feather";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,9 +15,9 @@ const BottomTabNavigator = () => (
 		screenOptions={{
 			headerShown: false,
 			tabBarShowLabel: true,
-			tabBarActiveTintColor: "rgb(224 74 132)",
+			tabBarActiveTintColor: "#3b6f98",
 			tabBarInactiveTintColor: "gray",
-			tabBarStyle: { minHeight: 60, paddingTop: 5 },
+			tabBarStyle: { minHeight: 62, paddingTop: 4 },
 		}}
 	>
 		<Tab.Screen
@@ -30,7 +32,7 @@ const BottomTabNavigator = () => (
 			name="Evenimente"
 			component={ContactScreen_stack}
 			options={{
-				tabBarIcon: ({ color, size }) => <Icon name="user" size={size} color={color} />,
+				tabBarIcon: ({ color, size }) => <MaterialIcon name="event" size={size} color={color} />,
 			}}
 		/>
 
@@ -38,7 +40,19 @@ const BottomTabNavigator = () => (
 			name="Ticketing"
 			component={ContactScreen_stack}
 			options={{
-				tabBarIcon: ({ color, size }) => <Icon name="user" size={size} color={color} />,
+				tabBarIcon: ({ color, size }) => (
+					<FontAwesomeIcon name="ticket" size={size} color={color} />
+				),
+			}}
+		/>
+
+		<Tab.Screen
+			name="Contact"
+			component={ContactScreen_stack}
+			options={{
+				tabBarIcon: ({ color, size }) => (
+					<MaterialIcon name="contact-mail" size={size} color={color} />
+				),
 			}}
 		/>
 	</Tab.Navigator>
