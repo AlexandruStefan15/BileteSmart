@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableWithoutFeedback } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ContactScreen_stack from "./stacks/ContactScreen_stack";
 import HomeScreen_stack from "./stacks/HomeScreen_stack";
@@ -27,6 +28,14 @@ const BottomTabNavigator = () => (
 
 		<Tab.Screen
 			name="Evenimente"
+			component={ContactScreen_stack}
+			options={{
+				tabBarIcon: ({ color, size }) => <Icon name="user" size={size} color={color} />,
+			}}
+		/>
+
+		<Tab.Screen
+			name="Ticketing"
 			component={ContactScreen_stack}
 			options={{
 				tabBarIcon: ({ color, size }) => <Icon name="user" size={size} color={color} />,
