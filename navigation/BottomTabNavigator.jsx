@@ -17,7 +17,7 @@ const BottomTabNavigator = () => (
 			tabBarShowLabel: true,
 			tabBarActiveTintColor: "#3b6f98",
 			tabBarInactiveTintColor: "gray",
-			tabBarStyle: { minHeight: 62, paddingTop: 4 },
+			tabBarStyle: { minHeight: 63, paddingTop: 5 },
 		}}
 	>
 		<Tab.Screen
@@ -32,12 +32,14 @@ const BottomTabNavigator = () => (
 			name="Evenimente"
 			component={ContactScreen_stack}
 			options={{
-				tabBarIcon: ({ color, size }) => <MaterialIcon name="event" size={size} color={color} />,
+				tabBarIcon: ({ color, size }) => (
+					<MaterialIcon name="event" size={size} color={color} />
+				),
 			}}
 		/>
 
 		<Tab.Screen
-			name="Ticketing"
+			name="Bilete"
 			component={ContactScreen_stack}
 			options={{
 				tabBarIcon: ({ color, size }) => (
@@ -47,11 +49,11 @@ const BottomTabNavigator = () => (
 		/>
 
 		<Tab.Screen
-			name="Contact"
+			name="Profil"
 			component={ContactScreen_stack}
 			options={{
 				tabBarIcon: ({ color, size }) => (
-					<MaterialIcon name="contact-mail" size={size} color={color} />
+					<FontAwesomeIcon name="user" size={size} color={color} />
 				),
 			}}
 		/>
