@@ -1,11 +1,13 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, SafeAreaView, ScrollView } from "react-native";
+import Header from "@/components/Header";
 
 export default function HomeMain({ navigation }) {
 	return (
-		<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Text>Home Screen</Text>
-			<Button title="Go to Contact" onPress={() => navigation.navigate("Evenimente")} />
-		</View>
+		<SafeAreaView>
+			<ScrollView>
+				<Header title="Home" />
+			</ScrollView>
+		</SafeAreaView>
 	);
 }
