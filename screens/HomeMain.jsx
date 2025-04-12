@@ -6,6 +6,7 @@ import { ThemeContext } from "@react-navigation/native";
 
 export default function HomeMain({ navigation }) {
 	const { theme } = React.useContext(ThemeContext);
+	const styles = getStyles(theme || "light");
 
 	return (
 		<SafeAreaView style={styles.screen}>
@@ -16,9 +17,10 @@ export default function HomeMain({ navigation }) {
 	);
 }
 
-const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		backgroundColor: Colors["light"].background.primary,
-	},
-});
+const getStyles = (theme) =>
+	StyleSheet.create({
+		screen: {
+			flex: 1,
+			backgroundColor: Colors[theme].background.primary,
+		},
+	});

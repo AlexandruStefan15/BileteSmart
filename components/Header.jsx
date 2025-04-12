@@ -4,7 +4,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
 
-const Header = ({ title, style }) => {
+const Header = ({ title = false, style }) => {
 	const navigation = useNavigation();
 
 	return (
@@ -16,7 +16,7 @@ const Header = ({ title, style }) => {
 					<FeatherIcon name="align-left" size={22} />
 				</View>
 			</TouchableOpacity>
-			<Text style={styles.title}>{title}</Text>
+			{title && <Text style={styles.title}>{title}</Text>}
 		</Animated.View>
 	);
 };
