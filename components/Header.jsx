@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		backgroundColor: "white",
 		position: "fixed",
+		width: "100%",
 
 		// (iOS + Web)
 		shadowColor: "#000",
