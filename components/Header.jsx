@@ -35,7 +35,7 @@ const Header = ({ title = false, logo = images.logo, style }) => {
 const styles = StyleSheet.create({
 	container: {
 		position: "fixed",
-		flexDirection: "row",
+		flexDirection: "row-reverse",
 		paddingHorizontal: 20,
 		paddingVertical: 14,
 		justifyContent: "space-between",

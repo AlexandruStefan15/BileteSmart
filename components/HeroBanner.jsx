@@ -14,12 +14,11 @@ const HeroBanner = () => {
 	const windowHeight = Dimensions.get("window").height;
 
 	return (
-		<View style={[styles.section, { height: windowHeight - 73 }]}>
+		<View style={[styles.section, { height: windowHeight - 136 }]}>
 			<Image source={images.heroBanner} style={styles.backgroundImage} />
 			<View style={[styles.container]}>
 				{/* <Text style={styles.caption}>Poți cumpăra bilete pentru</Text> */}
 				<Text style={styles.title}>
-					{" "}
 					Poți cumpăra bilete pentru sala ta Polivalentă preferată direct de aici!
 				</Text>
 				<Button title="Cumpără bilete" onPress={() => alert("Bilete cumpărate!")} />
@@ -50,19 +49,13 @@ const styles = StyleSheet.create({
 		gap: 25,
 	},
 
-	caption: {
-		color: "white",
-		fontSize: 20,
-		textTransform: "uppercase",
-		fontWeight: "bold",
-	},
-
 	title: {
 		color: "white",
-		fontSize: 29,
+		fontSize: 28,
 		textAlign: "center",
 		paddingInline: 20,
 		lineHeight: 37,
+		fontWeight: 300,
 	},
 });
 
