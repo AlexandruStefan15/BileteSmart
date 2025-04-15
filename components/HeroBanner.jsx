@@ -16,7 +16,7 @@ const HeroBanner = () => {
 	const windowHeight = Dimensions.get("window").height;
 
 	return (
-		<View style={[styles.section, { height: windowHeight - 136 }]}>
+		<View style={[styles.section, { height: windowHeight - 132 }]}>
 			<Image source={images.heroBanner} style={styles.backgroundImage} />
 			<LinearGradient
 				colors={["rgba(54,87,113,0.9)", "rgba(168,169,172,0.9)"]}

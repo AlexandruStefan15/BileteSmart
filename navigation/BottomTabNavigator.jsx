@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ContactScreen_stack from "./stacks/ContactScreen_stack";
 import HomeScreen_stack from "./stacks/HomeScreen_stack";
+import { Colors } from "@/constants";
 
 import Icon from "react-native-vector-icons/Feather";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -14,7 +15,7 @@ const BottomTabNavigator = () => (
 		screenOptions={{
 			headerShown: false,
 			tabBarShowLabel: true,
-			tabBarActiveTintColor: "#3b6f98",
+			tabBarActiveTintColor: Colors.primary,
 			tabBarInactiveTintColor: "gray",
 			tabBarStyle: { minHeight: 63, paddingTop: 5 },
 		}}
