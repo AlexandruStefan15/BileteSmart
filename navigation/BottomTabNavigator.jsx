@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableWithoutFeedback } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ContactScreen_stack from "./stacks/ContactScreen_stack";
 import HomeScreen_stack from "./stacks/HomeScreen_stack";

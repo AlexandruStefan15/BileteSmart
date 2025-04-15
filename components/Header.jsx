@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Image, Platform } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
@@ -11,18 +11,20 @@ const Header = ({ title = false, logo = images.logo, style }) => {
 
 	return (
 		<Animated.View style={[styles.container, style]}>
-			<TouchableOpacity
-				style={styles.burgerMenu} /* onPress={() => navigation.openDrawer()} */
-			>
+			<TouchableOpacity style={styles.burgerMenu}>
 				<View style={styles.burgerMenu_icon}>
-					<FeatherIcon name="align-left" size={24} />
+					<FeatherIcon name="align-left" size={25} />
 				</View>
 			</TouchableOpacity>
 			{logo && (
 				<View style={{ width: 120, height: 35 }}>
 					<Image
 						source={logo}
-						style={{ maxWidth: "100%", height: "100%", resizeMode: "contain" }}
+						style={{
+							width: "100%",
+							height: "100%",
+							resizeMode: "contain",
+						}}
 					/>
 				</View>
 			)}
@@ -32,28 +34,24 @@ const Header = ({ title = false, logo = images.logo, style }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		position: "relative",
+		position: "fixed",
 		flexDirection: "row",
-		paddingInline: 20,
-		paddingBlock: 14,
+		paddingHorizontal: 20,
+		paddingVertical: 14,
 		justifyContent: "space-between",
 		alignItems: "center",
 		backgroundColor: "white",
-		position: "fixed",
+		zIndex: 10,
 		width: "100%",
-
-		// (iOS + Web)
 		shadowColor: "#000",
 		shadowOffset: { width: 0, height: 3 },
 		shadowOpacity: 0.1,
 		shadowRadius: 6,
-
-		// (Android)
 		elevation: 3,
 	},
 
 	burgerMenu_icon: {
-		padding: 9,
+		padding: 8,
 		borderRadius: 10,
 		backgroundColor: Colors.light.background.primary,
 		left: 1,
@@ -62,7 +60,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 20,
 		fontWeight: "bold",
-		marginInline: "auto",
+		marginHorizontal: "auto",
 	},
 });
 

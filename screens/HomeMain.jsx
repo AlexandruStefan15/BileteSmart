@@ -4,14 +4,22 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants";
 import { ThemeContext } from "@react-navigation/native";
 
+import HeroBanner from "@/components/HeroBanner";
+
 export default function HomeMain({ navigation }) {
 	const { theme } = useContext(ThemeContext);
 	const styles = getStyles(theme || "light");
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<ScrollView>
-				<Header title="Home" />
+			<Header title="Home" />
+			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+				<HeroBanner />
+				<Text>asdasd asdasd</Text>
+				<Text>asdasd asdasd</Text>
+				<Text>asdasd asdasd</Text>
+				<Text>asdasd asdasd</Text>
+				<Text>asdasd asdasd</Text>
 			</ScrollView>
 		</SafeAreaView>
 	);
