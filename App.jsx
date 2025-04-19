@@ -1,7 +1,7 @@
 import React from "react";
 import RootNavigator from "./navigation/RootNavigator";
 import { useTheme } from "./hooks/useTheme";
-import { ThemeContext } from "./Context/ThemeContext";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
 	const { theme, setTheme } = useTheme();

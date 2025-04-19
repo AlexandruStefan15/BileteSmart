@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Colors, Fonts } from "@/constants";
-import { ThemeContext } from "@/Context/ThemeContext";
+import { ThemeContext } from "@/context/ThemeContext";
 
 export default function EventCard({ event, style, ...props }) {
 	const { isDark, theme, setTheme } = useContext(ThemeContext);
