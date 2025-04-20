@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { images } from "@/assets/images";
 import { useFetchLocations } from "@/hooks/useFetchLocations";
+import Ripple from "react-native-material-ripple";
+import * as Haptics from "expo-haptics";
 
 import Title from "../Title";
 import DelayedTouchable from "../DelayedTouchable";
@@ -74,7 +76,12 @@ const Locations = ({ navigation }) => {
 					scrollEnabled={false}
 					keyExtractor={(item) => item.id}
 					renderItem={({ item, index }) => (
-						<DelayedTouchable style={styles.listItem}>
+						<Ripple
+							style={styles.listItem}
+							rippleColor="white"
+							rippleDuration={400}
+							rippleCentered={false}
+						>
 							<LinearGradient
 								colors={item.linearGradient.colors}
 								start={item.linearGradient.start}
@@ -86,7 +93,7 @@ const Locations = ({ navigation }) => {
 								</View>
 								<Image source={item.image} style={{ width: "100%", height: 245, zIndex: -1 }} />
 							</LinearGradient>
-						</DelayedTouchable>
+						</Ripple>
 					)}
 					showsVerticalScrollIndicator={false}
 				/>
@@ -97,7 +104,8 @@ const Locations = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	section: {
-		marginTop: 30,
+		marginBlock: 30,
+		marginBottom: 70,
 	},
 
 	container: {

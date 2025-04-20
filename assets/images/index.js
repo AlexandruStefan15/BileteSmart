@@ -5,6 +5,7 @@ const images = {
 	salaPolivalentaAlbaBlaj: require("./salaPolivalentaAlbaBlaj.jpg"),
 	salaPolivalentaPitesti: require("./salaPolivalentaPitesti.jpg"),
 	salaPolivalentaTurda: require("./salaPolivalentaTurda.jpeg"),
+	drummer: require("./drummer.jpg"),
 };
 
 export { images };
