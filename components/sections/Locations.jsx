@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, FlatList, ActivityIndicator, Image } from "reac
 import { images } from "@/assets/images";
 import { useFetchLocations } from "@/hooks/useFetchLocations";
 import Ripple from "react-native-material-ripple";
+import { useNavigation } from "@react-navigation/native";
 
 import Title from "../Title";
 import { LinearGradient } from "expo-linear-gradient";
@@ -50,8 +51,9 @@ const eventLocations = [
 	},
 ];
 
-const Locations = ({ navigation }) => {
+const Locations = () => {
 	const { locations, loading, error } = useFetchLocations();
+	const navigation = useNavigation();
 
 	if (loading) return <ActivityIndicator />;
 	if (error) return <Text style={{ color: "red" }}>Error: {error.message}</Text>;
@@ -67,9 +69,10 @@ const Locations = ({ navigation }) => {
 					keyExtractor={(item) => item.id}
 					renderItem={({ item, index }) => (
 						<Ripple
+							onPress={() => navigation.navigate("LocationScreen", { locationId: item.id })}
 							style={styles.listItem}
 							rippleColor="white"
-							rippleDuration={400}
+							rippleDuration={320}
 							rippleCentered={false}
 						>
 							<LinearGradient

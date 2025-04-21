@@ -8,7 +8,7 @@ import HeroBanner from "@/components/sections/HeroBanner";
 import Locations from "@/components/sections/Locations";
 import EventCounters from "@/components/sections/EventCounters";
 
-export default function HomeMain({ navigation }) {
+export default function HomeScreen({ navigation }) {
 	const { theme } = useContext(ThemeContext);
 	const styles = getStyles(theme || "light");
 

@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Colors, Fonts } from "@/constants";
 import { ThemeContext } from "@/context/ThemeContext";
+import { useNavigation } from "@react-navigation/native";
 
 export default function EventCard({ event, style, ...props }) {
 	const { isDark, theme, setTheme } = useContext(ThemeContext);
 	const styles = getStyles(theme || "light");
-	const router = useRouter();
+	const navigation = useNavigation();
 
 	return (
 		<View style={[styles.container, style?.container]}>

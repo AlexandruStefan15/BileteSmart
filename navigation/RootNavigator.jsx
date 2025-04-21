@@ -5,6 +5,9 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import { StatusBar } from "react-native";
 import { useTheme } from "../hooks/useTheme";
 
+import EventScreen from "@/screens/EventScreen";
+import LocationScreen from "@/screens/LocationScreen";
+
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -21,6 +24,12 @@ const RootNavigator = () => {
 					name="Tabs"
 					component={BottomTabNavigator}
 					options={{ /* header: () => <Header />, */ headerShown: false }}
+				/>
+				<Stack.Screen name="EventScreen" component={EventScreen} options={{ headerShown: false }} />
+				<Stack.Screen
+					name="LocationScreen"
+					component={LocationScreen}
+					options={{ headerShown: false }}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

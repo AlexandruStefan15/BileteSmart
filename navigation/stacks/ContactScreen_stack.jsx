@@ -1,14 +1,13 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import ContactMain from "../../screens/ContactMain";
-/* import ContactScreen from '../screens/SettingsScreen'; */
+import ContactScreen from "../../screens/ContactScreen";
 
 const Stack = createStackNavigator();
 
 const ContactScreen_stack = () => (
 	<Stack.Navigator>
-		<Stack.Screen name="ContactMain" component={ContactMain} options={{ headerShown: false }} />
-		{/* <Stack.Screen name="ContactSettings" component={ContactSettings} /> */}
+		<Stack.Screen name="ContactScreen" component={ContactScreen} options={{ headerShown: false }} />
+		{/* <Stack.Screen name="ContactScreen_settings" component={ContactScreen_settings} /> */}
 	</Stack.Navigator>
 );
 
