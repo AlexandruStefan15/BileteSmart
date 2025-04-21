@@ -6,7 +6,8 @@ export default function NewsLetter() {
 		<View style={styles.section}>
 			<Text style={styles.title}>NewsLetter</Text>
 			<View styles={styles.container}>
-				<Text style={styles.innertitle}>NewsLetter</Text>
+				<Text style={styles.innerTitle}>NewsLetter</Text>
+				<Text style={styles.description}>description</Text>
 			</View>
 		</View>
 	);
