@@ -3,8 +3,11 @@ import React from "react";
 
 export default function NewsLetter() {
 	return (
-		<View>
-			<Text>NewsLetter</Text>
+		<View style={styles.section}>
+			<Text style={styles.title}>NewsLetter</Text>
+			<View styles={styles.container}>
+				<Text style={styles.innertitle}>NewsLetter</Text>
+			</View>
 		</View>
 	);
 }
