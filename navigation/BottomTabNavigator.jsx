@@ -1,7 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ContactScreen_stack from "./stacks/ContactScreen_stack";
-import HomeScreen_stack from "./stacks/HomeScreen_stack";
+import EventskNavigator from "./stacks/EventsStack/EventsNavigator";
+import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
+import ContactNavigator from "./stacks/ContactStack/ContactNavigator";
 import { Colors } from "@/constants";
 
 import Icon from "react-native-vector-icons/Feather";
@@ -22,7 +23,7 @@ const BottomTabNavigator = () => (
 	>
 		<Tab.Screen
 			name="Acasa"
-			component={HomeScreen_stack}
+			component={HomeNavigator}
 			options={{
 				tabBarIcon: ({ color, size }) => <Icon name="home" size={size} color={color} />,
 			}}
@@ -30,17 +31,15 @@ const BottomTabNavigator = () => (
 
 		<Tab.Screen
 			name="Evenimente"
-			component={ContactScreen_stack}
+			component={EventskNavigator}
 			options={{
-				tabBarIcon: ({ color, size }) => (
-					<MaterialIcon name="event" size={size} color={color} />
-				),
+				tabBarIcon: ({ color, size }) => <MaterialIcon name="event" size={size} color={color} />,
 			}}
 		/>
 
 		<Tab.Screen
 			name="Bilete"
-			component={ContactScreen_stack}
+			component={ContactNavigator}
 			options={{
 				tabBarIcon: ({ color, size }) => (
 					<FontAwesomeIcon name="ticket" size={size} color={color} />
@@ -50,11 +49,9 @@ const BottomTabNavigator = () => (
 
 		<Tab.Screen
 			name="Profil"
-			component={ContactScreen_stack}
+			component={ContactNavigator}
 			options={{
-				tabBarIcon: ({ color, size }) => (
-					<FontAwesomeIcon name="user" size={size} color={color} />
-				),
+				tabBarIcon: ({ color, size }) => <FontAwesomeIcon name="user" size={size} color={color} />,
 			}}
 		/>
 	</Tab.Navigator>
