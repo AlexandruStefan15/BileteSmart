@@ -1,20 +1,10 @@
 import React from "react";
-import {
-	StyleSheet,
-	View,
-	Text,
-	FlatList,
-	ActivityIndicator,
-	Image,
-	TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text, FlatList, ActivityIndicator, Image } from "react-native";
 import { images } from "@/assets/images";
 import { useFetchLocations } from "@/hooks/useFetchLocations";
 import Ripple from "react-native-material-ripple";
-import * as Haptics from "expo-haptics";
 
 import Title from "../Title";
-import DelayedTouchable from "../DelayedTouchable";
 import { LinearGradient } from "expo-linear-gradient";
 
 const eventLocations = [
