@@ -1,19 +1,15 @@
 import React from "react";
-import {
-	StyleSheet,
-	View,
-	Text,
-	Platform,
-	Dimensions,
-	Image,
-	TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text, Platform, Dimensions, Image } from "react-native";
 import { images } from "@/assets/images";
 import { Colors } from "@/constants";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
+
+import Button from "../Button";
 
 const HeroBanner = () => {
 	const windowHeight = Dimensions.get("window").height;
+	const { navigate } = useNavigation();
 
 	return (
 		<View style={[styles.section, { height: windowHeight - 132 }]}>
@@ -28,9 +24,7 @@ const HeroBanner = () => {
 					<Text style={styles.title}>
 						Poți cumpăra bilete pentru sala ta Polivalentă preferată direct de aici!
 					</Text>
-					<TouchableOpacity style={styles.button}>
-						<Text style={styles.buttonText}>Vezi evenimente</Text>
-					</TouchableOpacity>
+					<Button>Vezi evenimente</Button>
 				</View>
 			</LinearGradient>
 		</View>

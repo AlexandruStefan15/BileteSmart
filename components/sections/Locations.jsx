@@ -43,7 +43,7 @@ const eventLocations = [
 		name: "Sala Polivalenta Turda",
 		image: images.salaPolivalentaTurda,
 		linearGradient: {
-			colors: ["#d3540054", "#f89406e6"],
+			colors: ["#d3540033", "#f89406e6"],
 			start: { x: 0, y: 0 },
 			end: { x: 1, y: 0 },
 		},
