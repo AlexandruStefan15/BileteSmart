@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation }) {
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header title="Home" />
+			<Header />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<HeroBanner />
 				<Locations />

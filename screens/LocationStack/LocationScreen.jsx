@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 const LocationScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header title="Home" />
+			<Header variant="2" />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 					<Text>Location screen</Text>
