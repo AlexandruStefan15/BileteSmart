@@ -1,15 +1,22 @@
-import React, { useEffect } from "react";
-import { useFocusEffect } from "@react-navigation/native";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, Button } from "react-native";
+import React from "react";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, FlatList } from "react-native";
 import { Colors } from "@/constants";
 import { eventLocations } from "@/data/locations";
 
+//icons
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+//hooks
+import { useFetchEvents } from "@/hooks/useFetchEvents";
+
+//components
 import Header from "@/components/Header";
 import Title from "@/components/Title";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { locationId } = route.params;
 	const currentLocation = eventLocations.find((location) => location.id === locationId);
+	const { events, loading, error } = useFetchEvents(locationId);
 
 	/* useFocusEffect(
 		React.useCallback(() => {
@@ -23,7 +30,7 @@ const LocationScreen = ({ navigation, route }) => {
  */
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header backButtonColor="white" variant="2" />
+			<Header variant="2" />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<View style={styles.bannerImage}>
 					<Image
@@ -32,7 +39,7 @@ const LocationScreen = ({ navigation, route }) => {
 					/>
 				</View>
 				<View style={styles.content}>
-					<Title style={styles.title}>{currentLocation.name}</Title>
+					<Title style={styles.mainTitle}>{currentLocation.name}</Title>
 					{currentLocation.info && (
 						<View style={styles.info}>
 							{Object.entries(currentLocation.info).map(([key, value]) => (
@@ -42,8 +49,44 @@ const LocationScreen = ({ navigation, route }) => {
 							))}
 						</View>
 					)}
+					<View style={styles.events}>
+						<Title style={[styles.title]}>Evenimente</Title>
+						{loading && <Text style={styles.infoText}>Loading...</Text>}
+						{error && <Text style={styles.infoText}>Error: {error.message}</Text>}
+						{events.length > 0 ? (
+							<FlatList
+								contentContainerStyle={styles.eventList}
+								data={events}
+								scrollEnabled={false}
+								keyExtractor={(item) => item.id_event}
+								renderItem={({ item, index }) => (
+									<View style={styles.eventItem}>
+										<Text>{item.title}</Text>
+										<Image
+											source={{ uri: encodeURI(item.event_img) }}
+											style={{
+												width: "100%",
+												aspectRatio: 0.7,
+												resizeMode: "cover",
+												borderRadius: 8,
+											}}
+										></Image>
+									</View>
+								)}
+							></FlatList>
+						) : (
+							<Text style={styles.notFoundText}>
+								<FontAwesome name="calendar-o" size={18} color={Colors.primary} />
+								{"  "}
+								Nu au fost găsite evenimente disponibile pentru această locație.
+							</Text>
+						)}
+					</View>
 					{currentLocation.description && (
-						<Text style={styles.description}>{currentLocation.description}</Text>
+						<View style={styles.description}>
+							<Title style={[styles.title]}>Informatii suplimentare</Title>
+							<Text style={styles.descriptionText}>{currentLocation.description}</Text>
+						</View>
 					)}
 				</View>
 			</ScrollView>
@@ -72,27 +115,57 @@ const styles = StyleSheet.create({
 		padding: 20,
 	},
 
-	title: {
+	mainTitle: {
 		marginTop: 7,
 		paddingInline: 15,
 		borderBottomWidth: 1,
+		borderColor: "#d3d2d2bd",
 		paddingBottom: 25,
 		fontSize: 22,
+		fontWeight: 500,
+	},
+
+	title: {
+		padding: 0,
+		fontWeight: 500,
+		fontSize: 20,
 	},
 
 	info: {
 		marginTop: 5,
-
-		gap: 10,
+		gap: 15,
 	},
 
 	infoText: {
 		fontSize: 16,
+		lineHeight: 22,
+	},
+
+	events: {
+		marginBlock: 20,
+	},
+
+	eventList: {},
+
+	eventItem: {},
+
+	notFoundText: {
+		fontSize: 16,
+		backgroundColor: "white",
+		padding: 20,
+		borderRadius: 10,
+		lineHeight: 22,
 	},
 
 	description: {
-		marginTop: 20,
+		gap: 0,
+	},
+
+	descriptionText: {
 		fontSize: 16,
+		margin: 0,
+		padding: 0,
+		lineHeight: 22,
 	},
 });
 

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		color: "#000",
 		textAlign: "center",
-		marginVertical: 20,
+		marginBlock: 20,
 	},
 
 	title2: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		color: "#000",
 		textAlign: "center",
-		marginVertical: 10,
+		marginBlock: 10,
 	},
 });
 
