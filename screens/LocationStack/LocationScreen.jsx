@@ -49,7 +49,7 @@ const LocationScreen = ({ navigation, route }) => {
 							))}
 						</View>
 					)}
-					<View style={styles.events}>
+					<View style={styles.eventsSection}>
 						<Title style={[styles.title]}>Evenimente</Title>
 						{loading && <Text style={styles.infoText}>Loading...</Text>}
 						{error && <Text style={styles.infoText}>Error: {error.message}</Text>}
@@ -61,14 +61,15 @@ const LocationScreen = ({ navigation, route }) => {
 								keyExtractor={(item) => item.id_event}
 								renderItem={({ item, index }) => (
 									<View style={styles.eventItem}>
-										<Text>{item.title}</Text>
+										<Text style={styles.eventItem_title}>{item.title}</Text>
 										<Image
 											source={{ uri: encodeURI(item.event_img) }}
 											style={{
 												width: "100%",
 												aspectRatio: 0.7,
 												resizeMode: "cover",
-												borderRadius: 8,
+												borderBottomRightRadius: 8,
+												borderBottomLeftRadius: 8,
 											}}
 										></Image>
 									</View>
@@ -129,6 +130,7 @@ const styles = StyleSheet.create({
 		padding: 0,
 		fontWeight: 500,
 		fontSize: 20,
+		textAlign: "left",
 	},
 
 	info: {
@@ -141,13 +143,24 @@ const styles = StyleSheet.create({
 		lineHeight: 22,
 	},
 
-	events: {
+	eventsSection: {
 		marginBlock: 20,
+		gap: 0,
 	},
 
 	eventList: {},
 
 	eventItem: {},
+
+	eventItem_title: {
+		fontSize: 18,
+		fontWeight: 500,
+		backgroundColor: "white",
+		borderTopRightRadius: 10,
+		borderTopLeftRadius: 10,
+		padding: 10,
+		textAlign: "center",
+	},
 
 	notFoundText: {
 		fontSize: 16,
