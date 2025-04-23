@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image, Platform } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
@@ -20,7 +20,7 @@ const Header = ({
 			<Animated.View style={[styles.container2, style]}>
 				<View style={styles.backButton}>
 					<TouchableOpacity onPress={() => navigation.goBack()}>
-						<FeatherIcon name="arrow-left" size={25} color={Colors.light.text.primary} />
+						<FeatherIcon name="arrow-left" size={26} color={Colors.dark.text.primary} />
 					</TouchableOpacity>
 				</View>
 			</Animated.View>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 	// variant 2 styles
 
 	container2: {
-		position: "fixed",
+		position: "absolute",
 		flexDirection: "row-reverse",
 		paddingHorizontal: 20,
 		paddingVertical: 14,
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		zIndex: 10,
 		width: "100%",
+		backgroundColor: "transparent",
 	},
 
 	backButton: {

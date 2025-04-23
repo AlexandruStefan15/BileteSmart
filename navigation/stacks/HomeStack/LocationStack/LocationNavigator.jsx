@@ -11,7 +11,6 @@ const LocationNavigator = () => (
 			component={LocationScreen}
 			options={{ headerShown: false }}
 		/>
-		{/* <Stack.Screen name="SearchMain" component={SearchMain} /> */}
 	</Stack.Navigator>
 );
 
