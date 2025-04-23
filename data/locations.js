@@ -4,7 +4,7 @@ export const eventLocations = [
 	{
 		id: "1",
 		name: "Sala Polivalenta Bistrita",
-		image: images.salaPolivalentaBistrita,
+		images: [images.salaPolivalentaBistrita, images.salaPolivalentaBistrita2],
 		linearGradient: {
 			colors: ["#dc0f19d9", "#1111116b"],
 			start: { x: 0, y: 0 },
@@ -22,7 +22,7 @@ export const eventLocations = [
 	{
 		id: "2",
 		name: "Sala Polivalenta Pitesti",
-		image: images.salaPolivalentaPitesti,
+		images: [images.salaPolivalentaPitesti, images.salaPolivalentaPitesti2],
 		linearGradient: {
 			colors: ["#540682db", "#949494b3"],
 			start: { x: 0, y: 0 },
@@ -40,7 +40,7 @@ export const eventLocations = [
 	{
 		id: "3",
 		name: "Sala Polivalenta Alba Blaj",
-		image: images.salaPolivalentaAlbaBlaj,
+		images: [images.salaPolivalentaAlbaBlaj, images.salaPolivalentaAlbaBlaj2],
 		linearGradient: {
 			colors: ["#0675c4", "#337ab72e"],
 			start: { x: 0, y: 0 },
@@ -57,7 +57,7 @@ export const eventLocations = [
 	{
 		id: "4",
 		name: "Sala Polivalenta Turda",
-		image: images.salaPolivalentaTurda,
+		images: [images.salaPolivalentaTurda, images.salaPolivalentaTurda2],
 		linearGradient: {
 			colors: ["#d3540033", "#f89406e6"],
 			start: { x: 0, y: 0 },

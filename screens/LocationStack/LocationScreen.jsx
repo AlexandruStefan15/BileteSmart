@@ -27,12 +27,12 @@ const LocationScreen = ({ navigation, route }) => {
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<View style={styles.bannerImage}>
 					<Image
-						source={currentLocation.image}
+						source={currentLocation.images[1]}
 						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
 					/>
 				</View>
 				<View style={styles.content}>
-					<Title style={styles.title}>Complex Sportiv Polivalent TeraPlast Arena</Title>
+					<Title style={styles.title}>{currentLocation.name}</Title>
 					{currentLocation.info && (
 						<View style={styles.info}>
 							{Object.entries(currentLocation.info).map(([key, value]) => (
@@ -73,9 +73,11 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
+		marginTop: 7,
 		paddingInline: 15,
 		borderBottomWidth: 1,
-		paddingBottom: 20,
+		paddingBottom: 25,
+		fontSize: 22,
 	},
 
 	info: {

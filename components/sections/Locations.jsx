@@ -47,7 +47,7 @@ const Locations = () => {
 								<View style={styles.listItem_overlay}>
 									<Text style={styles.listItem_title}>{item.name}</Text>
 								</View>
-								<Image source={item.image} style={{ width: "100%", height: 245, zIndex: -1 }} />
+								<Image source={item.images[0]} style={{ width: "100%", height: 245, zIndex: -1 }} />
 							</LinearGradient>
 						</Ripple>
 					)}
