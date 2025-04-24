@@ -1,5 +1,14 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, FlatList } from "react-native";
+import {
+	StyleSheet,
+	View,
+	SafeAreaView,
+	ScrollView,
+	Text,
+	Image,
+	FlatList,
+	ActivityIndicator,
+} from "react-native";
 import { Colors } from "@/constants";
 import { eventLocations } from "@/data/locations";
 
@@ -12,6 +21,7 @@ import { useFetchEvents } from "@/hooks/useFetchEvents";
 //components
 import Header from "@/components/Header";
 import Title from "@/components/Title";
+import BoldText from "@/components/BoldText";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { locationId } = route.params;
@@ -51,7 +61,7 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.eventsSection}>
 						<Title style={[styles.title]}>Evenimente</Title>
-						{loading && <Text style={styles.infoText}>Loading...</Text>}
+						{/* {loading && <ActivityIndicator color="#007AFF" />} */}
 						{error && <Text style={styles.infoText}>Error: {error.message}</Text>}
 						{events.length > 0 ? (
 							<FlatList
@@ -81,6 +91,17 @@ const LocationScreen = ({ navigation, route }) => {
 						<View style={styles.description}>
 							<Title style={[styles.title]}>Informatii suplimentare</Title>
 							<Text style={styles.descriptionText}>{currentLocation.description}</Text>
+						</View>
+					)}
+					{currentLocation.contactInfo && (
+						<View style={styles.contactInfo}>
+							<Text style={styles.descriptionText}>
+								<BoldText>Date de contact:</BoldText> {currentLocation.contactInfo.name}
+								{"\n"}
+								<BoldText>Telefon:</BoldText> {currentLocation.contactInfo.phone}
+								{"\n"}
+								<BoldText>E-mail:</BoldText> {currentLocation.contactInfo.email}
+							</Text>
 						</View>
 					)}
 				</View>
@@ -181,6 +202,10 @@ const styles = StyleSheet.create({
 		margin: 0,
 		padding: 0,
 		lineHeight: 22,
+	},
+
+	contactInfo: {
+		marginTop: 20,
 	},
 });
 

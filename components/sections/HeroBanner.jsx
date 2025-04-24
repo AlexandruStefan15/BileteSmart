@@ -24,7 +24,7 @@ const HeroBanner = () => {
 					<Text style={styles.title}>
 						Poți cumpăra bilete pentru sala ta Polivalentă preferată direct de aici!
 					</Text>
-					<Button>Vezi evenimente</Button>
+					<Button onPress={() => navigate("Evenimente")}>Vezi evenimente</Button>
 				</View>
 			</LinearGradient>
 		</View>
