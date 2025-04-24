@@ -64,13 +64,7 @@ const LocationScreen = ({ navigation, route }) => {
 										<Text style={styles.eventItem_title}>{item.title}</Text>
 										<Image
 											source={{ uri: encodeURI(item.event_img) }}
-											style={{
-												width: "100%",
-												aspectRatio: 0.7,
-												resizeMode: "cover",
-												borderBottomRightRadius: 8,
-												borderBottomLeftRadius: 8,
-											}}
+											style={styles.eventItem_image}
 										></Image>
 									</View>
 								)}
@@ -160,6 +154,14 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 10,
 		padding: 10,
 		textAlign: "center",
+	},
+
+	eventItem_image: {
+		width: "100%",
+		aspectRatio: 0.7,
+		resizeMode: "cover",
+		borderBottomRightRadius: 8,
+		borderBottomLeftRadius: 8,
 	},
 
 	notFoundText: {
