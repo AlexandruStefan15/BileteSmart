@@ -10,6 +10,10 @@ const images = {
 	salaPolivalentaTurda: require("./salaPolivalentaTurda.jpeg"),
 	salaPolivalentaTurda2: require("./salaPolivalentaTurda2.jpg"),
 	drummer: require("./drummer.jpg"),
+	gloriaBistritaLogo: require("./CS_GloriaBistrita_Nasaud_logo.png"),
+	csmSlatinaLogo: require("./CSM_Slatina.png"),
+	fcArges: require("./FC_Arges.jpeg"),
+	csmGalati: require("CSM_Galati.jpeg"),
 };
 
 export { images };
