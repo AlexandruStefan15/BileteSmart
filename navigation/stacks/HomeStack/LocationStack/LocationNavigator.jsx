@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import LocationScreen from "@/screens/LocationStack/LocationScreen";
+import EventDetailsScreen from "@/screens/EventsStack/EventDetailsStack.jsx/EventDetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -9,6 +10,11 @@ const LocationNavigator = () => (
 		<Stack.Screen
 			name="LocationScreen"
 			component={LocationScreen}
+			options={{ headerShown: false }}
+		/>
+		<Stack.Screen
+			name="EventDetailsScreen"
+			component={EventDetailsScreen}
 			options={{ headerShown: false }}
 		/>
 	</Stack.Navigator>

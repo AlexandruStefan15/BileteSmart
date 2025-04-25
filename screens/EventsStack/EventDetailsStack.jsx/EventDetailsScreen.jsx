@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
 
 import Header from "@/components/Header";
 
-const EventsScreen = ({ navigation }) => {
+const EventDetailsScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header title="Home" />
+			<Header variant="2" />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+				<View style={styles.banner}>
 					<Text>Event details screen</Text>
 				</View>
 			</ScrollView>
@@ -18,4 +18,4 @@ const EventsScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({});
 
-export default EventsScreen;
+export default EventDetailsScreen;

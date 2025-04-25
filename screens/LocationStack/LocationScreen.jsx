@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Colors } from "@/constants";
 import { eventLocations } from "@/data/locations";
+import Ripple from "react-native-material-ripple";
 
 //icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -38,11 +39,12 @@ const LocationScreen = ({ navigation, route }) => {
 		}, [])
 	);
  */
+
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header variant="2" />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<View style={styles.bannerImage}>
+				<View style={styles.banner}>
 					<Image
 						source={currentLocation.images[1]}
 						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
@@ -61,22 +63,37 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.eventsSection}>
 						<Title style={[styles.title]}>Evenimente</Title>
-						{/* {loading && <ActivityIndicator color="#007AFF" />} */}
+
 						{error && <Text style={styles.infoText}>Error: {error.message}</Text>}
-						{events.length > 0 ? (
+						{loading ? (
+							<ActivityIndicator color="#007AFF" />
+						) : events.length > 0 ? (
 							<FlatList
 								contentContainerStyle={styles.eventList}
 								data={events}
 								scrollEnabled={false}
 								keyExtractor={(item) => item.id_event}
 								renderItem={({ item, index }) => (
-									<View style={styles.eventItem}>
+									<Ripple
+										onPress={() =>
+											navigation.navigate("EventDetailsScreen", {
+												params: {
+													locationId: locationId,
+													eventId: item.id_event,
+												},
+											})
+										}
+										style={styles.eventList_item}
+										rippleColor="white"
+										rippleDuration={320}
+										rippleCentered={false}
+									>
 										<Text style={styles.eventItem_title}>{item.title}</Text>
 										<Image
 											source={{ uri: encodeURI(item.event_img) }}
 											style={styles.eventItem_image}
 										></Image>
-									</View>
+									</Ripple>
 								)}
 							></FlatList>
 						) : (
@@ -117,7 +134,7 @@ const styles = StyleSheet.create({
 		position: "relative",
 	},
 
-	bannerImage: {
+	banner: {
 		position: "relative",
 		maxHeight: 340,
 	},
@@ -165,7 +182,14 @@ const styles = StyleSheet.create({
 
 	eventList: {},
 
-	eventItem: {},
+	eventList_item: {
+		aspectRatio: 100 / 120,
+		borderBottomRightRadius: 8,
+		borderBottomLeftRadius: 8,
+		overflow: "hidden",
+		width: "100%",
+		position: "relative",
+	},
 
 	eventItem_title: {
 		fontSize: 18,
@@ -179,10 +203,8 @@ const styles = StyleSheet.create({
 
 	eventItem_image: {
 		width: "100%",
-		aspectRatio: 0.7,
+		height: "100%",
 		resizeMode: "cover",
-		borderBottomRightRadius: 8,
-		borderBottomLeftRadius: 8,
 	},
 
 	notFoundText: {
