@@ -6,12 +6,16 @@ import {
 	ScrollView,
 	Text,
 	Image,
+	ImageBackground,
 	FlatList,
 	ActivityIndicator,
 } from "react-native";
 import { Colors } from "@/constants";
 import { eventLocations } from "@/data/locations";
 import Ripple from "react-native-material-ripple";
+
+//utils
+import { formatDateToRomanian } from "@/utils/helpers";
 
 //icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -88,11 +92,30 @@ const LocationScreen = ({ navigation, route }) => {
 										rippleDuration={320}
 										rippleCentered={false}
 									>
-										<Text style={styles.eventItem_title}>{item.title}</Text>
-										<Image
+										<ImageBackground
 											source={{ uri: encodeURI(item.event_img) }}
-											style={styles.eventItem_image}
-										></Image>
+											// resizeMethod={'auto'}
+											style={{
+												width: "100%",
+												height: "100%",
+												backgroundColor: "#000",
+
+												position: "absolute",
+												bottom: 0,
+											}}
+											imageStyle={{
+												resizeMode: "cover",
+												alignSelf: "flex-end",
+												position: "absolute",
+												top: 45,
+												height: 520,
+											}}
+										>
+											<Text style={styles.eventItem_title}>{item.title}</Text>
+											<Text style={styles.eventItem_badge}>
+												{formatDateToRomanian(item.date.split(" ")[0])}
+											</Text>
+										</ImageBackground>
 									</Ripple>
 								)}
 							></FlatList>
@@ -180,26 +203,23 @@ const styles = StyleSheet.create({
 		gap: 0,
 	},
 
-	eventList: {},
-
 	eventList_item: {
 		aspectRatio: 100 / 120,
-		borderBottomRightRadius: 8,
-		borderBottomLeftRadius: 8,
 		overflow: "hidden",
 		width: "100%",
 		position: "relative",
+		borderRadius: 10,
 	},
 
 	eventItem_title: {
 		fontSize: 18,
 		fontWeight: 500,
 		backgroundColor: "white",
-		borderTopRightRadius: 10,
-		borderTopLeftRadius: 10,
 		padding: 10,
 		textAlign: "center",
 	},
+
+	eventItem_badge: {},
 
 	eventItem_image: {
 		width: "100%",
