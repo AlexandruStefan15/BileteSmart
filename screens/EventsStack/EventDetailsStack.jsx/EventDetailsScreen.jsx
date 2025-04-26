@@ -1,9 +1,12 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
+import { eventsByLocation } from "@/data/events";
 
 import Header from "@/components/Header";
 
-const EventDetailsScreen = ({ navigation }) => {
+const EventDetailsScreen = ({ navigation, route }) => {
+	const { locationId, eventId } = route.params;
+
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header variant="2" />

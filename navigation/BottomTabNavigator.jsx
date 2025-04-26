@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import EventskNavigator from "./stacks/EventsStack/EventsNavigator";
+import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
 import ContactNavigator from "./stacks/ContactStack/ContactNavigator";
 import { StackActions, CommonActions } from "@react-navigation/native";
@@ -36,7 +36,7 @@ const BottomTabNavigator = () => {
 
 			<Tab.Screen
 				name="Evenimente"
-				component={EventskNavigator}
+				component={EventsNavigator}
 				options={{
 					tabBarIcon: ({ color, size }) => <MaterialIcon name="event" size={size} color={color} />,
 				}}
