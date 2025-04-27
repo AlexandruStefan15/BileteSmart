@@ -16,7 +16,7 @@ export const eventsByLocation = {
 	],
 
 	2: [
-		{
+		/* {
 			id_event: "123",
 			title: "FC ARGES - CSM GALATI",
 			event_img: "https://biletesmart.ro/poster/418617450564854125fc arges - csm galati v.jpg",
@@ -26,7 +26,7 @@ export const eventsByLocation = {
 			day: "Sâmbătă 26 Aprilie",
 			logo_images: [images.fcArges, images.csmGalati],
 			demo: "0",
-		},
+		}, */
 	],
 
 	3: [],

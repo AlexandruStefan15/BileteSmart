@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const API_BASE = "https://biletesmart.ro/api/stadium/getEvents";
 
@@ -6,6 +7,7 @@ export const useFetchEvents = (locationId) => {
 	const [events, setEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const navigation = useNavigation();
 
 	useEffect(() => {
 		if (!locationId) return;
@@ -31,7 +33,7 @@ export const useFetchEvents = (locationId) => {
 		};
 
 		fetchEvents();
-	}, [locationId]);
+	}, [locationId, navigation]);
 
 	return { events, loading, error };
 };

@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const { locationId, eventId } = route.params;
-	const currentEvent = eventsByLocation[locationId].find((event) => event.id_event == eventId);
-	console.log(currentEvent);
+	/* const currentEvent = eventsByLocation[locationId].find((event) => event.id_event == eventId); */
+	console.log(eventId);
 
 	return (
 		<SafeAreaView style={styles.screen}>

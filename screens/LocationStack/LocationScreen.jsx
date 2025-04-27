@@ -6,16 +6,11 @@ import {
 	ScrollView,
 	Text,
 	Image,
-	ImageBackground,
 	FlatList,
 	ActivityIndicator,
 } from "react-native";
 import { Colors } from "@/constants";
 import { eventLocations } from "@/data/locations";
-import Ripple from "react-native-material-ripple";
-
-//utils
-import { formatDateToRomanian } from "@/utils/helpers";
 
 //icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -27,11 +22,14 @@ import { useFetchEvents } from "@/hooks/useFetchEvents";
 import Header from "@/components/Header";
 import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
+import EventCard from "@/components/EventCard";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { locationId } = route.params;
 	const currentLocation = eventLocations.find((location) => location.id === locationId);
 	const { events, loading, error } = useFetchEvents(locationId);
+
+	console.log(events[0].date);
 
 	/* useFocusEffect(
 		React.useCallback(() => {
@@ -78,47 +76,9 @@ const LocationScreen = ({ navigation, route }) => {
 								scrollEnabled={false}
 								keyExtractor={(item) => item.id_event}
 								renderItem={({ item, index }) => (
-									<Ripple
-										onPress={() =>
-											navigation.navigate("EventDetailsScreen", {
-												params: {
-													locationId: locationId,
-													eventId: item.id_event,
-												},
-											})
-										}
-										style={styles.eventList_item}
-										rippleColor="white"
-										rippleDuration={320}
-										rippleCentered={false}
-									>
-										<ImageBackground
-											source={{ uri: encodeURI(item.event_img) }}
-											// resizeMethod={'auto'}
-											style={{
-												width: "100%",
-												height: "100%",
-												backgroundColor: "#000",
-
-												position: "absolute",
-												bottom: 0,
-											}}
-											imageStyle={{
-												resizeMode: "cover",
-												alignSelf: "flex-end",
-												position: "absolute",
-												top: 45,
-												height: 520,
-											}}
-										>
-											<Text style={styles.eventItem_title}>{item.title}</Text>
-											<Text style={styles.eventItem_badge}>
-												{formatDateToRomanian(item.date.split(" ")[0])}
-											</Text>
-										</ImageBackground>
-									</Ripple>
+									<EventCard eventData={item} locationId={locationId} />
 								)}
-							></FlatList>
+							/>
 						) : (
 							<Text style={styles.notFoundText}>
 								<FontAwesome name="calendar-o" size={18} color={Colors.primary} />
@@ -201,30 +161,6 @@ const styles = StyleSheet.create({
 	eventsSection: {
 		marginBlock: 20,
 		gap: 0,
-	},
-
-	eventList_item: {
-		aspectRatio: 100 / 120,
-		overflow: "hidden",
-		width: "100%",
-		position: "relative",
-		borderRadius: 10,
-	},
-
-	eventItem_title: {
-		fontSize: 18,
-		fontWeight: 500,
-		backgroundColor: "white",
-		padding: 10,
-		textAlign: "center",
-	},
-
-	eventItem_badge: {},
-
-	eventItem_image: {
-		width: "100%",
-		height: "100%",
-		resizeMode: "cover",
 	},
 
 	notFoundText: {
