@@ -29,7 +29,7 @@ const LocationScreen = ({ navigation, route }) => {
 	const currentLocation = eventLocations.find((location) => location.id === locationId);
 	const { events, loading, error } = useFetchEvents(locationId);
 
-	console.log(events[0].date);
+	if (events.length > 0) console.log(events[0].date);
 
 	/* useFocusEffect(
 		React.useCallback(() => {
@@ -44,8 +44,8 @@ const LocationScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header variant="2" />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+				<Header variant="2" />
 				<View style={styles.banner}>
 					<Image
 						source={currentLocation.images[1]}

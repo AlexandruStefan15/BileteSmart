@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import { Colors, Fonts } from "@/constants";
-import { ThemeContext } from "@/context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
 
 //utils
@@ -11,7 +10,6 @@ import { formatDateToRomanian } from "@/utils/helpers";
 import Ripple from "react-native-material-ripple";
 
 export default function EventCard({ eventData, locationId, style }) {
-	const { isDark, theme, setTheme } = useContext(ThemeContext);
 	const styles = getStyles("light");
 	const navigation = useNavigation();
 
@@ -19,10 +17,8 @@ export default function EventCard({ eventData, locationId, style }) {
 		<Ripple
 			onPress={() =>
 				navigation.navigate("EventDetailsScreen", {
-					params: {
-						locationId: locationId,
-						eventId: eventData.id_event,
-					},
+					locationId: locationId,
+					eventId: eventData.id_event,
 				})
 			}
 			style={[styles.event_container, style]}
@@ -64,7 +60,7 @@ const getStyles = (theme) => {
 		},
 
 		event_title: {
-			fontSize: 18,
+			fontSize: 17,
 			fontWeight: 500,
 			backgroundColor: "white",
 			padding: 10,
@@ -78,9 +74,9 @@ const getStyles = (theme) => {
 			paddingBottom: 12,
 			textAlign: "center",
 			position: "absolute",
-			top: 45.5,
-			left: 10,
-			minWidth: 77,
+			top: 46,
+			left: 11,
+			minWidth: 75,
 		},
 
 		event_badge_text: {
@@ -88,6 +84,7 @@ const getStyles = (theme) => {
 			fontWeight: 400,
 			color: "white",
 			textAlign: "center",
+			fontWeight: "500",
 		},
 
 		event_badge_text0: {
@@ -95,14 +92,6 @@ const getStyles = (theme) => {
 			fontWeight: "bold",
 			marginBottom: -3,
 		},
-
-		/* eventItem_imageBox: {
-			width: "100%",
-			height: "100%",
-			backgroundColor: "#000",
-			position: "absolute",
-			bottom: 0,
-		}, */
 
 		event_image: {
 			resizeMode: "cover",
