@@ -5,6 +5,8 @@ import { images } from "@/assets/images";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 
+//components
+import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 
 const EventDetailsScreen = ({ navigation, route }) => {
@@ -33,13 +35,11 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			scale.value = newScale;
 		})
 		.onEnd(() => {
-			// Save the last scale after pinch ends
 			savedScale.value = scale.value;
 		});
 
 	const panGesture = Gesture.Pan()
 		.onUpdate((event) => {
-			// Calculate the boundaries
 			const scaledWidth = SCREEN_WIDTH * scale.value;
 			const scaledHeight = SCREEN_HEIGHT * scale.value;
 
@@ -49,7 +49,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			let nextX = savedTranslateX.value + event.translationX;
 			let nextY = savedTranslateY.value + event.translationY;
 
-			// Clamp (limit) the values
 			if (nextX > boundX) nextX = boundX;
 			if (nextX < -boundX) nextX = -boundX;
 
@@ -90,6 +89,8 @@ const EventDetailsScreen = ({ navigation, route }) => {
 								<Image style={styles.banner_footer_image} source={images.csmSlatinaLogo} />
 							</View>
 						</View>
+						<SvgHallPlan /* locationId={locationId} eventId={eventId} */ />
+						<Text>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
 					</ScrollView>
 				</SafeAreaView>
 			</Animated.View>
