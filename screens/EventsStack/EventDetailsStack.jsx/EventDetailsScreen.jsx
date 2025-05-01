@@ -8,6 +8,13 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-na
 //components
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
+import TicketsInfo from "@/components/TicketsInfo";
+import Button from "@/components/Button";
+
+const selectedSeats = [
+	{ room: "A0", seat_number: 4, row: 7, price: 15 },
+	{ room: "A0", seat_number: 5, row: 7, price: 15 },
+];
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const { locationId, eventId } = route.params;
@@ -74,27 +81,44 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	}));
 
 	return (
-		<GestureDetector gesture={composedGesture}>
-			<Animated.View style={[styles.container, animatedStyle]}>
-				<SafeAreaView style={styles.screen}>
-					<ScrollView contentContainerStyle={{ flexGrow: 1, height: "100%" }}>
-						<Header variant="2" />
-						<View style={styles.banner}>
-							<Text style={styles.banner_title}>CS GLORIA 2018 BISTRITA NASAUD 39328462</Text>
-							<Text style={styles.banner_subtitle}>Complex Sportiv Polivalent TeraPlast Arena</Text>
-							<Text style={styles.banner_date}>Sâmbătă 3 Mai</Text>
-							<View style={styles.banner_footer}>
-								<Image style={styles.banner_footer_image} source={images.gloriaBistritaLogo} />
-								<Text style={styles.banner_footer_time}>17:00 (CET)</Text>
-								<Image style={styles.banner_footer_image} source={images.csmSlatinaLogo} />
-							</View>
+		<SafeAreaView style={styles.screen}>
+			<ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#242424" }}>
+				<Header variant="2" />
+				<View style={styles.banner}>
+					<Text style={styles.banner_title}>CS GLORIA 2018 BISTRITA NASAUD 39328462</Text>
+					<Text style={styles.banner_subtitle}>Complex Sportiv Polivalent TeraPlast Arena</Text>
+					<Text style={styles.banner_date}>Sâmbătă 3 Mai</Text>
+					<View style={styles.banner_footer}>
+						<Image style={styles.banner_footer_image} source={images.gloriaBistritaLogo} />
+						<Text style={styles.banner_footer_time}>17:00 (CET)</Text>
+						<Image style={styles.banner_footer_image} source={images.csmSlatinaLogo} />
+					</View>
+				</View>
+				<View style={{ backgroundColor: "#242424" }}>
+					<View style={styles.svgWrapper}>
+						{/* <GestureDetector gesture={composedGesture}>
+							<Animated.View style={[styles.svg_container, animatedStyle]}>
+								<SvgHallPlan locationId={locationId} eventId={eventId} />
+							</Animated.View>
+						</GestureDetector> */}
+
+						<SvgHallPlan locationId={locationId} eventId={eventId} />
+						<View
+							style={{
+								flexDirection: "column",
+								justifyContent: "space-between",
+								gap: 15,
+								marginBlock: 10,
+							}}
+						>
+							<Button style={styles.svgWrapper_button}>Vezi locuri disponibile</Button>
+							{/* <Button style={styles.svgWrapper_button}>Vezi locuri selectate</Button> */}
 						</View>
-						<SvgHallPlan /* locationId={locationId} eventId={eventId} */ />
-						<Text>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
-					</ScrollView>
-				</SafeAreaView>
-			</Animated.View>
-		</GestureDetector>
+					</View>
+				</View>
+				{/* <TicketsInfo selectedSeats={selectedSeats} /> */}
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 
@@ -144,6 +168,22 @@ const styles = StyleSheet.create({
 	banner_footer_image: {
 		width: 101,
 		aspectRatio: 1 / 1,
+	},
+
+	// SVG HALL PLAN
+
+	svgWrapper: {
+		overflow: "hidden",
+		backgroundColor: "#242424",
+		margin: 5,
+		marginBottom: 15,
+		marginTop: 5,
+		gap: 15,
+	},
+
+	svgWrapper_button: {
+		flex: 1,
+		borderRadius: 10,
 	},
 });
 

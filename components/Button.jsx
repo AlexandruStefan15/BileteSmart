@@ -16,10 +16,12 @@ const styles = StyleSheet.create({
 		paddingVertical: 15,
 		paddingHorizontal: 30,
 		borderRadius: 30,
+		alignSelf: "center",
 	},
 
 	buttonText: {
 		color: "white",
 		fontSize: 18,
+		textAlign: "center",
 	},
 });
