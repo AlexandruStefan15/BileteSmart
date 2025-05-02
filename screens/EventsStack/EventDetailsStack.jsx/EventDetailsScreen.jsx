@@ -48,7 +48,9 @@ const EventDetailsScreen = ({ navigation, route }) => {
 
 						<SvgHallPlan roomsWithSeatsData={roomsWithSeatsData} field_path={locationFieldPath} />
 						<View>
-							<Button style={styles.svgWrapper_button}>Selecteaza zona</Button>
+							<Button styleText={styles.svgWrapper_button_text} style={styles.svgWrapper_button}>
+								Selecteaza zona
+							</Button>
 							{/* <Button style={styles.svgWrapper_button}>Vezi locuri selectate</Button> */}
 						</View>
 					</View>
@@ -112,15 +114,20 @@ const styles = StyleSheet.create({
 	svgWrapper: {
 		overflow: "hidden",
 		backgroundColor: "#242424",
-		margin: 7,
+		margin: 8,
 		marginBottom: 40,
 		marginTop: 5,
-		gap: 20,
+		gap: 15,
 	},
 
 	svgWrapper_button: {
 		flex: 1,
 		borderRadius: 10,
+		width: "100%",
+	},
+
+	svgWrapper_button_text: {
+		fontWeight: "500",
 	},
 });
 

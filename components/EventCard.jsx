@@ -9,23 +9,17 @@ import { formatDateToRomanian } from "@/utils/helpers";
 //components
 import Ripple from "react-native-material-ripple";
 
-export default function EventCard({ eventData, locationId, locationFieldPath, style }) {
+export default function EventCard({ eventData, style, ...props }) {
 	const styles = getStyles("light");
 	const navigation = useNavigation();
 
 	return (
 		<Ripple
-			onPress={() =>
-				navigation.navigate("EventDetailsScreen", {
-					locationId: locationId,
-					locationFieldPath: locationFieldPath,
-					eventId: eventData.id_event,
-				})
-			}
 			style={[styles.event_container, style]}
 			rippleColor="white"
 			rippleDuration={320}
 			rippleCentered={false}
+			{...props}
 		>
 			<ImageBackground
 				source={{ uri: encodeURI(eventData.event_img) }}
@@ -61,23 +55,25 @@ const getStyles = (theme) => {
 		},
 
 		event_title: {
-			fontSize: 17,
+			fontSize: 16,
 			fontWeight: 500,
-			backgroundColor: "white",
-			padding: 10,
+			backgroundColor: "#242424",
+			padding: 11,
 			textAlign: "center",
+			color: "white",
 		},
 
 		event_badge: {
 			backgroundColor: "#242424cc",
 			paddingInline: 20,
-			paddingTop: 8,
+			paddingTop: 6,
 			paddingBottom: 12,
 			textAlign: "center",
-			position: "absolute",
-			top: 46,
+			position: "relative",
+			top: 0,
 			left: 11,
 			minWidth: 75,
+			width: 40,
 		},
 
 		event_badge_text: {
@@ -98,7 +94,7 @@ const getStyles = (theme) => {
 			resizeMode: "cover",
 			alignSelf: "flex-end",
 			position: "absolute",
-			top: 45,
+			top: 44,
 			height: 520,
 		},
 	});

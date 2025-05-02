@@ -1,12 +1,8 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import { Dimensions } from "react-native";
+import { Gesture } from "react-native-gesture-handler";
+import Animated, { useSharedValue, useAnimatedStyle } from "react-native-reanimated";
 
-//compoenents
-import SvgHallPlan from "@/components/SvgHallPlan";
-
-const HallPlanScreen = () => {
+export const useHandGestures = () => {
 	const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 	const scale = useSharedValue(1);
@@ -67,15 +63,8 @@ const HallPlanScreen = () => {
 		],
 	}));
 
-	return (
-		<GestureDetector gesture={composedGesture}>
-			<Animated.View style={[styles.svg_container, animatedStyle]}>
-				<SvgHallPlan locationId={locationId} eventId={eventId} />
-			</Animated.View>
-		</GestureDetector>
-	);
+	return {
+		gesture: composedGesture,
+		animatedStyle,
+	};
 };
-
-const styles = StyleSheet.create({});
-
-export default HallPlanScreen;

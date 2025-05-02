@@ -1,5 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+
+//screens
 import LocationScreen from "@/screens/LocationStack/LocationScreen";
 import EventDetailsScreen from "@/screens/EventsStack/EventDetailsStack.jsx/EventDetailsScreen";
 
