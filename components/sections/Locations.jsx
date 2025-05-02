@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import Title from "../Title";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { eventLocations } from "@/data/locations";
+import { eventLocations } from "@/data/locations"; // to fetch from API
 
 const Locations = () => {
 	const { locations, loading, error } = useFetchLocations();
@@ -30,7 +30,7 @@ const Locations = () => {
 							onPress={() =>
 								navigation.navigate("LocationStack", {
 									screen: "LocationScreen",
-									params: { locationId: item.id },
+									params: { currentLocation: item },
 								})
 							}
 							style={styles.listItem}

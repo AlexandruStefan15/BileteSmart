@@ -9,7 +9,7 @@ import { formatDateToRomanian } from "@/utils/helpers";
 //components
 import Ripple from "react-native-material-ripple";
 
-export default function EventCard({ eventData, locationId, style }) {
+export default function EventCard({ eventData, locationId, locationFieldPath, style }) {
 	const styles = getStyles("light");
 	const navigation = useNavigation();
 
@@ -18,6 +18,7 @@ export default function EventCard({ eventData, locationId, style }) {
 			onPress={() =>
 				navigation.navigate("EventDetailsScreen", {
 					locationId: locationId,
+					locationFieldPath: locationFieldPath,
 					eventId: eventData.id_event,
 				})
 			}

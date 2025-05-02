@@ -11,74 +11,18 @@ import Header from "@/components/Header";
 import TicketsInfo from "@/components/TicketsInfo";
 import Button from "@/components/Button";
 
+//data
+import { roomsWithSeats } from "@/data/hallPlans"; // to be fetched
+
 const selectedSeats = [
 	{ room: "A0", seat_number: 4, row: 7, price: 15 },
 	{ room: "A0", seat_number: 5, row: 7, price: 15 },
 ];
 
 const EventDetailsScreen = ({ navigation, route }) => {
-	const { locationId, eventId } = route.params;
-	/* const currentEvent = eventsByLocation[locationId].find((event) => event.id_event == eventId); */
-	/* console.log(eventId); */
-	const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
-	const scale = useSharedValue(1);
-	const savedScale = useSharedValue(1);
-
-	const translateX = useSharedValue(0);
-	const translateY = useSharedValue(0);
-
-	const savedTranslateX = useSharedValue(0);
-	const savedTranslateY = useSharedValue(0);
-
-	const MIN_SCALE = 1;
-	const MAX_SCALE = 3;
-
-	const pinchGesture = Gesture.Pinch()
-		.onUpdate((event) => {
-			let newScale = savedScale.value * event.scale;
-			if (newScale < MIN_SCALE) newScale = MIN_SCALE;
-			if (newScale > MAX_SCALE) newScale = MAX_SCALE;
-			scale.value = newScale;
-		})
-		.onEnd(() => {
-			savedScale.value = scale.value;
-		});
-
-	const panGesture = Gesture.Pan()
-		.onUpdate((event) => {
-			const scaledWidth = SCREEN_WIDTH * scale.value;
-			const scaledHeight = SCREEN_HEIGHT * scale.value;
-
-			const boundX = (scaledWidth - SCREEN_WIDTH) / 2;
-			const boundY = (scaledHeight - SCREEN_HEIGHT) / 2;
-
-			let nextX = savedTranslateX.value + event.translationX;
-			let nextY = savedTranslateY.value + event.translationY;
-
-			if (nextX > boundX) nextX = boundX;
-			if (nextX < -boundX) nextX = -boundX;
-
-			if (nextY > boundY) nextY = boundY;
-			if (nextY < -boundY) nextY = -boundY;
-
-			translateX.value = nextX;
-			translateY.value = nextY;
-		})
-		.onEnd(() => {
-			savedTranslateX.value = translateX.value;
-			savedTranslateY.value = translateY.value;
-		});
-
-	const composedGesture = Gesture.Simultaneous(pinchGesture, panGesture);
-
-	const animatedStyle = useAnimatedStyle(() => ({
-		transform: [
-			{ translateX: translateX.value },
-			{ translateY: translateY.value },
-			{ scale: scale.value },
-		],
-	}));
+	const { locationId, eventId, locationFieldPath } = route.params;
+	const roomsWithSeatsData = roomsWithSeats[locationId][eventId];
+	/* const currentEventDetails = eventsByLocation[locationId].find((event) => event.id_event == eventId); */
 
 	return (
 		<SafeAreaView style={styles.screen}>
@@ -102,16 +46,9 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							</Animated.View>
 						</GestureDetector> */}
 
-						<SvgHallPlan locationId={locationId} eventId={eventId} />
-						<View
-							style={{
-								flexDirection: "column",
-								justifyContent: "space-between",
-								gap: 15,
-								marginBlock: 10,
-							}}
-						>
-							<Button style={styles.svgWrapper_button}>Vezi locuri disponibile</Button>
+						<SvgHallPlan roomsWithSeatsData={roomsWithSeatsData} field_path={locationFieldPath} />
+						<View>
+							<Button style={styles.svgWrapper_button}>Selecteaza zona</Button>
 							{/* <Button style={styles.svgWrapper_button}>Vezi locuri selectate</Button> */}
 						</View>
 					</View>
@@ -175,10 +112,10 @@ const styles = StyleSheet.create({
 	svgWrapper: {
 		overflow: "hidden",
 		backgroundColor: "#242424",
-		margin: 5,
-		marginBottom: 15,
+		margin: 7,
+		marginBottom: 40,
 		marginTop: 5,
-		gap: 15,
+		gap: 20,
 	},
 
 	svgWrapper_button: {

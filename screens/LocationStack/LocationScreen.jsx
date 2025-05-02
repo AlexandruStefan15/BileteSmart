@@ -10,7 +10,6 @@ import {
 	ActivityIndicator,
 } from "react-native";
 import { Colors } from "@/constants";
-import { eventLocations } from "@/data/locations";
 
 //icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -25,9 +24,8 @@ import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
 
 const LocationScreen = ({ navigation, route }) => {
-	const { locationId } = route.params;
-	const currentLocation = eventLocations.find((location) => location.id === locationId);
-	const { events, loading, error } = useFetchEvents(locationId);
+	const { currentLocation } = route.params;
+	const { events, loading, error } = useFetchEvents(currentLocation.id);
 
 	if (events.length > 0) console.log(events[0].date);
 
@@ -76,7 +74,11 @@ const LocationScreen = ({ navigation, route }) => {
 								scrollEnabled={false}
 								keyExtractor={(item) => item.id_event}
 								renderItem={({ item, index }) => (
-									<EventCard eventData={item} locationId={locationId} />
+									<EventCard
+										eventData={item}
+										locationId={currentLocation.id}
+										locationFieldPath={currentLocation.field_path_d}
+									/>
 								)}
 							/>
 						) : (

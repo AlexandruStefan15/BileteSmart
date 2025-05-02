@@ -2,19 +2,9 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
-//data
-import { roomsWithSeatsByLocation } from "@/data/hallPlans";
-
-const SvgHallPlan = ({ locationId = 1 }) => {
-	const location = roomsWithSeatsByLocation[locationId];
-	const field_path = location.field_path_d;
-	const rooms = location.rooms;
-
-	if (!location) {
-		return null;
-	}
-
-	console.log(location.field_path_d);
+const SvgHallPlan = ({ roomsWithSeatsData, field_path }) => {
+	/* const location = roomsWithSeatsByLocation[locationId]; */
+	const rooms = roomsWithSeatsData.rooms;
 
 	return (
 		<View
