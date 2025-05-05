@@ -2,8 +2,6 @@ import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, Dimensions } from "react-native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
-import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 
 //components
 import SvgHallPlan from "@/components/SvgHallPlan";
@@ -20,8 +18,8 @@ const selectedSeats = [
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const { locationId, /* event, */ locationFieldPath } = route.params;
-	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event]; */
-	const roomsWithSeatsData = roomsWithSeats[1][129];
+	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
+	const roomsWithSeatsData = roomsWithSeats[1][129].rooms;
 	const event = eventsByLocation[1][0];
 
 	return (
@@ -40,18 +38,29 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				</View>
 				<View style={{ backgroundColor: "#242424" }}>
 					<View style={styles.svgWrapper}>
-						{/* <GestureDetector gesture={composedGesture}>
-							<Animated.View style={[styles.svg_container, animatedStyle]}>
-								<SvgHallPlan locationId={locationId} eventId={eventId} />
-							</Animated.View>
-						</GestureDetector> */}
-
-						<SvgHallPlan roomsWithSeatsData={roomsWithSeatsData} field_path={locationFieldPath} />
+						<SvgHallPlan
+							roomsWithSeatsData={roomsWithSeatsData}
+							field_path={locationFieldPath}
+							read_only={true}
+						/>
 						<View>
-							<Button styleText={styles.svgWrapper_button_text} style={styles.svgWrapper_button}>
-								Selecteaza zona
-							</Button>
-							{/* <Button style={styles.svgWrapper_button}>Vezi locuri selectate</Button> */}
+							{roomsWithSeatsData.find((room) => room.free_seats > 0) ? (
+								<Button
+									styleText={styles.svgWrapper_button_text}
+									style={styles.svgWrapper_button}
+									onPress={() =>
+										navigation.navigate("RoomsPlanScreen", {
+											eventId: event.id_event,
+											locationId: locationId,
+											locationFieldPath: locationFieldPath,
+										})
+									}
+								>
+									Selecteaza sectorul
+								</Button>
+							) : (
+								<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
+							)}
 						</View>
 					</View>
 				</View>
@@ -128,6 +137,13 @@ const styles = StyleSheet.create({
 
 	svgWrapper_button_text: {
 		fontWeight: "500",
+	},
+
+	noAvailableSeatsText: {
+		color: "red",
+		fontSize: 16,
+		textAlign: "center",
+		marginTop: 10,
 	},
 });
 

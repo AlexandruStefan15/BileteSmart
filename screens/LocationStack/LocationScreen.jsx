@@ -75,10 +75,13 @@ const LocationScreen = ({ navigation, route }) => {
 									<EventCard
 										eventData={item}
 										onPress={() =>
-											navigation.navigate("EventDetailsScreen", {
-												locationId: currentLocation.id,
-												event: item,
-												locationFieldPath: currentLocation.field_path_d,
+											navigation.navigate("EventDetailsStack", {
+												screen: "EventDetailsScreen",
+												params: {
+													locationId: currentLocation.id,
+													event: item,
+													locationFieldPath: currentLocation.field_path_d,
+												},
 											})
 										}
 									/>
