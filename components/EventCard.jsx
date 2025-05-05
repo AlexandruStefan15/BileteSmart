@@ -52,15 +52,16 @@ const getStyles = (theme) => {
 			width: "100%",
 			position: "relative",
 			borderRadius: 10,
+			borderWidth: 1,
+			borderColor: "#dadada57",
 		},
 
 		event_title: {
 			fontSize: 16,
 			fontWeight: 500,
-			backgroundColor: "#242424",
+			backgroundColor: "white",
 			padding: 11,
 			textAlign: "center",
-			color: "white",
 		},
 
 		event_badge: {

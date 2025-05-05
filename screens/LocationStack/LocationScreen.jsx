@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
 		margin: 0,
 		padding: 0,
 		lineHeight: 22,
+		marginTop: -1,
 	},
 
 	contactInfo: {
