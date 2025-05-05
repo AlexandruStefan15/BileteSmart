@@ -4,7 +4,7 @@ import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 
 //data
-import { roomsWithSeats } from "@/data/hallPlans"; // to be fetched
+import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched
 
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";

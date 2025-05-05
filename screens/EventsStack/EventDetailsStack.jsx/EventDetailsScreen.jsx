@@ -8,11 +8,10 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-na
 //components
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
-import TicketsInfo from "@/components/TicketsInfo";
 import Button from "@/components/Button";
 
 //data
-import { roomsWithSeats } from "@/data/hallPlans"; // to be fetched
+import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched by locationId and eventId
 
 const selectedSeats = [
 	{ room: "A0", seat_number: 4, row: 7, price: 15 },
@@ -20,9 +19,10 @@ const selectedSeats = [
 ];
 
 const EventDetailsScreen = ({ navigation, route }) => {
-	const { locationId, eventId, locationFieldPath } = route.params;
-	const roomsWithSeatsData = roomsWithSeats[locationId][eventId];
-	/* const currentEventDetails = eventsByLocation[locationId].find((event) => event.id_event == eventId); */
+	const { locationId, /* event, */ locationFieldPath } = route.params;
+	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event]; */
+	const roomsWithSeatsData = roomsWithSeats[1][129];
+	const event = eventsByLocation[1][0];
 
 	return (
 		<SafeAreaView style={styles.screen}>

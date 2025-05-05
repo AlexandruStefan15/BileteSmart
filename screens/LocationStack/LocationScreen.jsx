@@ -27,8 +27,6 @@ const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
 	const { events, loading, error } = useFetchEvents(currentLocation.id);
 
-	if (events.length > 0) console.log(events[0].date);
-
 	/* useFocusEffect(
 		React.useCallback(() => {
 			navigation.popToTop();
@@ -79,7 +77,7 @@ const LocationScreen = ({ navigation, route }) => {
 										onPress={() =>
 											navigation.navigate("EventDetailsScreen", {
 												locationId: currentLocation.id,
-												eventId: item.id_event,
+												event: item,
 												locationFieldPath: currentLocation.field_path_d,
 											})
 										}
