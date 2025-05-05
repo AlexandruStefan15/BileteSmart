@@ -6,16 +6,19 @@ import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched
 
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
+import Header from "@/components/Header";
 
 export default RoomsPlanScreen = ({ navigation, route }) => {
 	const { locationId, eventId, locationFieldPath } = route.params;
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
+			<Header variant="3" />
 			<SvgHallPlan
 				roomsWithSeatsData={roomsWithSeats[1][129].rooms}
 				field_path={locationFieldPath}
 				height="100%"
+				style={{ marginTop: 60 }}
 			/>
 		</SafeAreaView>
 	);

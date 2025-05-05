@@ -7,7 +7,7 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-na
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
 
-const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only }) => {
+const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only, style }) => {
 	/* const location = roomsWithSeatsByLocation[locationId]; */
 	const rooms = roomsWithSeatsData;
 	const { gesture, animatedStyle } = useHandGestures();
@@ -15,13 +15,16 @@ const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only }
 	if (read_only)
 		return (
 			<View
-				style={{
-					justifyContent: "center",
-					alignItems: "center",
-					paddingBlock: 40,
-					backgroundColor: "white",
-					borderRadius: 10,
-				}}
+				style={[
+					{
+						justifyContent: "center",
+						alignItems: "center",
+						paddingBlock: 40,
+						backgroundColor: "white",
+						borderRadius: 10,
+					},
+					style,
+				]}
 			>
 				<Svg
 					style={{ margin: "auto" }}
@@ -44,7 +47,7 @@ const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only }
 
 	return (
 		<GestureDetector gesture={gesture}>
-			<Animated.View style={{ flex: 1 }}>
+			<Animated.View style={[{ flex: 1 }, style]}>
 				<Animated.View style={[styles.svg_container, animatedStyle]}>
 					<Svg
 						style={{ margin: "auto" }}
@@ -56,6 +59,7 @@ const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only }
 						<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 						{rooms.map((room) => (
 							<Path
+								onPress={() => console.log("pressed")}
 								key={room.id_room}
 								d={room.path_d}
 								fill={room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF"}
@@ -64,23 +68,23 @@ const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only }
 					</Svg>
 				</Animated.View>
 
-				<View style={styles.textContainer}>
+				{/* <View style={styles.buttonsContainer}>
 					<Text style={{ fontSize: 20, fontWeight: "bold" }}>Butoane...</Text>
-				</View>
+				</View> */}
 			</Animated.View>
 		</GestureDetector>
 	);
 };
 
 const styles = StyleSheet.create({
-	textContainer: {
+	/* buttonsContainer: {
 		position: "absolute",
 		bottom: 20,
 		left: 0,
 		right: 0,
 		paddingHorizontal: 20,
 		gap: 10,
-	},
+	}, */
 });
 
 export default SvgHallPlan;
