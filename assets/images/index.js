@@ -14,6 +14,7 @@ const images = {
 	csmSlatinaLogo: require("./CSM_Slatina.png"),
 	fcArges: require("./FC_Arges.jpeg"),
 	csmGalati: require("./CSM_Galati.jpeg"),
+	newsletter: require("./newsletter.jpg"),
 };
 
 export { images };

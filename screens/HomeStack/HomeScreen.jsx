@@ -7,6 +7,7 @@ import { ThemeContext } from "@react-navigation/native";
 import HeroBanner from "@/components/sections/HeroBanner";
 import Locations from "@/components/sections/Locations";
 import EventCounters from "@/components/sections/EventCounters";
+import Newsletter from "@/components/sections/Newsletter";
 
 export default function HomeScreen({ navigation }) {
 	const { theme } = useContext(ThemeContext);
@@ -19,6 +20,7 @@ export default function HomeScreen({ navigation }) {
 				<HeroBanner />
 				<Locations />
 				<EventCounters />
+				<Newsletter />
 			</ScrollView>
 		</SafeAreaView>
 	);

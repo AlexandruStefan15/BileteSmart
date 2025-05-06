@@ -1,13 +1,49 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, TextInput, Image, StyleSheet, Dimensions } from "react-native";
+import React, { useState } from "react";
 
-export default function NewsLetter() {
+import Button from "../Button";
+import Title from "../Title";
+
+import { images } from "@/assets/images";
+
+const { height: windowHeight } = Dimensions.get("window");
+
+export default function Newsletter() {
+	const [inputValue, setInputValue] = useState("");
+
 	return (
 		<View style={styles.section}>
-			<Text style={styles.title}>NewsLetter</Text>
-			<View styles={styles.container}>
-				<Text style={styles.innerTitle}>NewsLetter</Text>
-				<Text style={styles.description}>description</Text>
+			{/* <Title style={[styles.title]}>Ultimele noutati</Title> */}
+			<View style={styles.container}>
+				<Image
+					style={{
+						position: "absolute",
+						width: "100%",
+						height: "100%",
+						resizeMode: "cover",
+						zIndex: -1,
+					}}
+					source={require("@/assets/images/newsletter.jpg")}
+				/>
+				<View style={styles.content}>
+					<Text style={styles.innerTitle}>Fii la curent cu ultimele noutăți</Text>
+					<Text style={styles.innerSubtitle}>
+						Abonează-te pentru a afla primul când apar evenimente noi
+					</Text>
+					<View style={styles.buttonsContainer}>
+						<Button style={styles.button} styleText={styles.buttonText}>
+							Aboneaza-te
+						</Button>
+						<TextInput
+							style={styles.input}
+							onChangeText={(text) => setInputValue(text)}
+							value={inputValue}
+							placeholder="Adresa de email"
+							keyboardType="text"
+							placeholderTextColor="white"
+						/>
+					</View>
+				</View>
 			</View>
 		</View>
 	);
@@ -16,16 +52,66 @@ export default function NewsLetter() {
 const styles = StyleSheet.create({
 	section: {
 		flex: 1,
-		backgroundColor: "#f9f9f9",
+		marginTop: 0,
+		gap: 10,
+	},
+
+	container: {
+		backgroundColor: "#365771e6",
+		position: "relative",
+		height: windowHeight - 132,
+	},
+
+	content: {
 		padding: 20,
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		gap: 20,
 	},
-	title: {
-		fontSize: 24,
+
+	innerTitle: {
+		fontSize: 25,
+		color: "white",
+		textAlign: "center",
 		fontWeight: "bold",
-		marginBottom: 10,
 	},
-	description: {
+
+	innerSubtitle: {
 		fontSize: 16,
-		color: "#555",
+		color: "white",
+		textAlign: "center",
+	},
+
+	buttonsContainer: {
+		gap: 20,
+		width: "100%",
+		alignItems: "center",
+		flexDirection: "column-reverse",
+	},
+
+	input: {
+		width: "98%",
+		color: "white",
+		borderWidth: 1,
+		borderRadius: 55,
+		height: 56,
+		fontWeight: 500,
+		borderColor: "white",
+		textAlign: "center",
+		fontSize: 17,
+		backgroundColor: "#00000059",
+	},
+
+	button: {
+		backgroundColor: "white",
+		width: "100%",
+		maxWidth: 190,
+		justifyContent: "center",
+	},
+
+	buttonText: {
+		color: "#365771",
+		fontWeight: "bold",
 	},
 });
