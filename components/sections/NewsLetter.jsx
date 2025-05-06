@@ -15,16 +15,7 @@ export default function Newsletter() {
 		<View style={styles.section}>
 			{/* <Title style={[styles.title]}>Ultimele noutati</Title> */}
 			<View style={styles.container}>
-				<Image
-					style={{
-						position: "absolute",
-						width: "100%",
-						height: "100%",
-						resizeMode: "cover",
-						zIndex: -1,
-					}}
-					source={require("@/assets/images/newsletter.jpg")}
-				/>
+				<Image style={styles.backgroundImage} source={require("@/assets/images/newsletter.jpg")} />
 				<View style={styles.content}>
 					<Text style={styles.innerTitle}>Fii la curent cu ultimele noutăți</Text>
 					<Text style={styles.innerSubtitle}>
@@ -62,12 +53,20 @@ const styles = StyleSheet.create({
 		height: windowHeight - 132,
 	},
 
+	backgroundImage: {
+		position: "absolute",
+		width: "100%",
+		height: "100%",
+		resizeMode: "cover",
+		zIndex: -1,
+	},
+
 	content: {
 		padding: 20,
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		gap: 20,
+		gap: 21,
 	},
 
 	innerTitle: {
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
 	},
 
 	buttonsContainer: {
-		gap: 20,
+		gap: 21,
 		width: "100%",
 		alignItems: "center",
 		flexDirection: "column-reverse",
