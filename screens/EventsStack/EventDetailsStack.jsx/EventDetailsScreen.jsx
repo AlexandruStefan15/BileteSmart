@@ -42,6 +42,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							roomsWithSeatsData={roomsWithSeatsData}
 							field_path={locationFieldPath}
 							read_only={true}
+							style={{}}
 						/>
 						<View>
 							{roomsWithSeatsData.find((room) => room.free_seats > 0) ? (

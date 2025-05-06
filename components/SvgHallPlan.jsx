@@ -8,6 +8,8 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-na
 import { useHandGestures } from "@/hooks/useHandGestures";
 
 const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only, style }) => {
+	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
+
 	/* const location = roomsWithSeatsByLocation[locationId]; */
 	const rooms = roomsWithSeatsData;
 	const { gesture, animatedStyle } = useHandGestures();
@@ -59,10 +61,17 @@ const SvgHallPlan = ({ roomsWithSeatsData, field_path, height = 355, read_only, 
 						<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 						{rooms.map((room) => (
 							<Path
-								onPress={() => console.log("pressed")}
+								onPress={() => setSelectedRoomId(room.id_room)}
+								onResponderMove={() => {}}
 								key={room.id_room}
 								d={room.path_d}
-								fill={room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF"}
+								fill={
+									selectedRoomId === room.id_room && room.free_seats > 0 && !room.read_only
+										? "blue"
+										: room.free_seats > 0 && !room.read_only
+										? "green"
+										: "#BFBFBF"
+								}
 							/>
 						))}
 					</Svg>

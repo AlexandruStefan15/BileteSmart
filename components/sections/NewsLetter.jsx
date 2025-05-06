@@ -42,8 +42,9 @@ export default function Newsletter() {
 
 const styles = StyleSheet.create({
 	section: {
+		marginTop: -1,
 		flex: 1,
-		marginTop: 0,
+
 		gap: 10,
 	},
 
