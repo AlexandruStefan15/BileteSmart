@@ -16,6 +16,7 @@ export default RoomsPlanScreen = ({ navigation, route }) => {
 			<Header variant="3" />
 			<SvgHallPlan
 				roomsWithSeatsData={roomsWithSeats[1][129].rooms}
+				selectRoom={true}
 				field_path={locationFieldPath}
 				height="100%"
 				style={{ marginTop: 60 }}

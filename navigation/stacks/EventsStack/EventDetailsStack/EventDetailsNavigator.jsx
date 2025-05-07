@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 //screens
 import EventDetailsScreen from "@/screens/EventsStack/EventDetailsStack.jsx/EventDetailsScreen";
-import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
+import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
 
 const Stack = createStackNavigator();
 
@@ -15,8 +15,8 @@ const EventsDetailsNavigator = () => (
 			options={{ headerShown: false }}
 		/>
 		<Stack.Screen
-			name="RoomsPlanScreen"
-			component={RoomsPlanScreen}
+			name="RoomsPlanStack"
+			component={RoomsPlanNavigator}
 			options={{ headerShown: false }}
 		/>
 	</Stack.Navigator>

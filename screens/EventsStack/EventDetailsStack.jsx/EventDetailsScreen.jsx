@@ -50,10 +50,13 @@ const EventDetailsScreen = ({ navigation, route }) => {
 									styleText={styles.svgWrapper_button_text}
 									style={styles.svgWrapper_button}
 									onPress={() =>
-										navigation.navigate("RoomsPlanScreen", {
-											eventId: event.id_event,
-											locationId: locationId,
-											locationFieldPath: locationFieldPath,
+										navigation.navigate("RoomsPlanStack", {
+											screen: "RoomsPlanScreen",
+											params: {
+												eventId: event.id_event,
+												locationId: locationId,
+												locationFieldPath: locationFieldPath,
+											},
 										})
 									}
 								>
@@ -65,7 +68,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 						</View>
 					</View>
 				</View>
-				{/* <TicketsInfo selectedSeats={selectedSeats} /> */}
 			</ScrollView>
 		</SafeAreaView>
 	);
