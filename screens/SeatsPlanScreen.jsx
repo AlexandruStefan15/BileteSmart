@@ -10,17 +10,20 @@ import Header from "@/components/Header";
 
 export default RoomsPlanScreen = ({ navigation, route }) => {
 	const { roomId } = route.params;
-	const currentRoom = roomsWithSeats[1][129].rooms.find((room) => room.id === roomId);
-	const seats = room.seats;
+	const currentRoom = roomsWithSeats[1][129].rooms.find((room) => room.id_room == roomId);
+	const seats = currentRoom.seats;
+	const currentRoom_fieldPosition = currentRoom.field_position;
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 			<Header variant="3" />
 			<SvgHallPlan
 				roomsWithSeatsData={roomsWithSeats[1][129].rooms}
+				seats={seats}
 				selectSeats={true}
 				height="100%"
 				style={{ marginTop: 60 }}
+				fieldPosition={currentRoom_fieldPosition}
 			/>
 		</SafeAreaView>
 	);
