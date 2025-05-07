@@ -19,8 +19,8 @@ const SvgHallPlan = ({
 	style,
 	selectRoom,
 	selectSeats,
-  seats,
-  fieldPosition, // only for seats screen
+	seats,
+	fieldPosition, // only for seats screen
 }) => {
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
 	/* const location = roomsWithSeatsByLocation[locationId]; */
@@ -111,8 +111,10 @@ const SvgHallPlan = ({
 							{ flex: 1, justifyContent: "center", alignItems: "center" },
 						]}
 					>
-						<StadiumMarkerSvg style={{ position: "absolute", fieldPosition=="top" ? top: 100 : bottom:100 }} />
-						<Svg width={310} height={"100%"} viewBox="0 0 115 100">
+						<StadiumMarkerSvg
+							style={{ position: "absolute", [fieldPosition === "top" ? "top" : "bottom"]: 120 }}
+						/>
+						<Svg width={340} height={"100%"} viewBox="0 0 115 100">
 							{seats.map((seat) => (
 								<Path
 									onPress={() => {}}
