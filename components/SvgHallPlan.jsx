@@ -114,7 +114,7 @@ const SvgHallPlan = ({
 						<StadiumMarkerSvg
 							style={{ position: "absolute", [fieldPosition === "top" ? "top" : "bottom"]: 120 }}
 						/>
-						<Svg width={340} height={"100%"} viewBox="0 0 115 100">
+						<Svg width={345} height={"100%"} viewBox="0 0 115 100">
 							{seats.map((seat) => (
 								<Path
 									onPress={() => {}}
