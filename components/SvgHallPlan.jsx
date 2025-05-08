@@ -13,7 +13,7 @@ import StadiumMarkerSvg from "./StadiumMarkerSvg";
 
 const SvgHallPlan = ({
 	rooms,
-	seats,
+	currentRoom,
 	field_path,
 	height = 355,
 	read_only,
@@ -25,8 +25,6 @@ const SvgHallPlan = ({
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
-
-	console.log(rooms);
 
 	if (read_only)
 		return (
@@ -102,7 +100,7 @@ const SvgHallPlan = ({
 	if (selectSeats)
 		return (
 			<GestureDetector gesture={gesture}>
-				<Animated.View style={[{ flex: 1 }, style]}>
+				<Animated.View style={[{ flex: 1, width: "100%" }, style]}>
 					<Animated.View
 						style={[
 							styles.svg_container,
@@ -111,10 +109,14 @@ const SvgHallPlan = ({
 						]}
 					>
 						<StadiumMarkerSvg
-							style={{ position: "absolute", [fieldPosition === "top" ? "top" : "bottom"]: 120 }}
+							width={"90%"}
+							style={{
+								position: "absolute",
+								[fieldPosition === "top" ? "top" : "bottom"]: 100,
+							}}
 						/>
-						<Svg width={350} height={"100%"} viewBox="0 0 115 100">
-							{seats.map((seat) => (
+						<Svg width={"90%"} height={"100%"} viewBox="0 0 108 100">
+							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {}}
 									onResponderMove={() => {}}
@@ -122,6 +124,9 @@ const SvgHallPlan = ({
 									d={seat.path_d}
 									fill="#85cb3c"
 								/>
+							))}
+							{currentRoom.rows_path_d?.map((row, index) => (
+								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />
 							))}
 						</Svg>
 					</Animated.View>

@@ -19,8 +19,9 @@ export default RoomsPlanScreen = ({ navigation, route }) => {
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 			<Header variant="3" />
 			<SvgHallPlan
-				seats={seats}
-				rows={rows}
+				/* seats={seats}
+				rows={rows} */
+				currentRoom={currentRoom}
 				selectSeats={true}
 				height="100%"
 				style={{ marginTop: 60 }}

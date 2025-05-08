@@ -1,9 +1,5 @@
 import { images } from "@/assets/images";
 
-//icons
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import FontistoIcon from "react-native-vector-icons/Fontisto";
-
 export const locations = [
 	{
 		id: "1",
@@ -20,7 +16,7 @@ export const locations = [
 				icon: {
 					name: "ticket",
 					type: "FontAwesome",
-					size: 19,
+					size: 20,
 					color: "#fff",
 				},
 			},
@@ -38,7 +34,7 @@ export const locations = [
 				icon: {
 					name: "child",
 					type: "FontAwesome",
-					size: 21,
+					size: 21.5,
 					color: "#fff",
 				},
 			},
@@ -65,15 +61,15 @@ export const locations = [
 				icon: {
 					name: "ticket",
 					type: "FontAwesome",
-					size: 19,
+					size: 20,
 					color: "#fff",
 				},
 			},
 			p2: {
 				text: "Accesul este gratuit persoanelor cu dizabilități (locomotor), prin prezentarea legitimației/documentelor justificative la casieria salii. Doar cu acest bilet gratuit se poate face accesul prin turniketi in sala.",
 				icon: {
-					name: "paralysis-disability", // icon name from the library
-					type: "Fontisto", // or "Fontisto"
+					name: "paralysis-disability",
+					type: "Fontisto",
 					size: 18,
 					color: "#fff",
 				},
@@ -83,7 +79,7 @@ export const locations = [
 				icon: {
 					name: "child",
 					type: "FontAwesome",
-					size: 21,
+					size: 21.5,
 					color: "#fff",
 				},
 			},
@@ -109,9 +105,33 @@ export const locations = [
 			end: { x: 0, y: 1 },
 		},
 		info: {
-			p1: "Biletele pot fi achiziționate online și după ora începerii meciului, timp de 45 minute.",
-			p2: "Accesul este gratuit persoanelor cu dizabilități (locomotor), prin prezentarea legitimației/documentelor justificative la casieria salii. Doar cu acest bilet gratuit se poate face accesul prin turniketi in sala.",
-			p3: "Copii sub 6 ani au acces gratuit, fără loc și vor fi ținuți în brațele apartinatorilor .",
+			p1: {
+				text: "Biletele pot fi achiziționate online și după ora începerii meciului, timp de 45 minute.",
+				icon: {
+					name: "ticket",
+					type: "FontAwesome",
+					size: 20,
+					color: "#fff",
+				},
+			},
+			p2: {
+				text: "Accesul este gratuit persoanelor cu dizabilități (locomotor), prin prezentarea legitimației/documentelor justificative la casieria salii. Doar cu acest bilet gratuit se poate face accesul prin turniketi in sala.",
+				icon: {
+					name: "paralysis-disability",
+					type: "Fontisto",
+					size: 18,
+					color: "#fff",
+				},
+			},
+			p3: {
+				text: "Copii sub 7 ani au acces gratuit, fără loc și vor fi ținuți în brațele apartinatorilor .",
+				icon: {
+					name: "child",
+					type: "FontAwesome",
+					size: 21.5,
+					color: "#fff",
+				},
+			},
 		},
 		description: "",
 		contactInfo: "",
@@ -129,9 +149,33 @@ export const locations = [
 			end: { x: 1, y: 0 },
 		},
 		info: {
-			p1: "Biletele pot fi achiziționate online și după ora începerii meciului, timp de 45 minute.",
-			p2: "Accesul este gratuit persoanelor cu dizabilități (locomotor), prin prezentarea legitimației/documentelor justificative la casieria salii. Doar cu acest bilet gratuit se poate face accesul prin turniketi in sala.",
-			p3: "Copii sub 6 ani au acces gratuit, fără loc și vor fi ținuți în brațele apartinatorilor .",
+			p1: {
+				text: "Biletele pot fi achiziționate online și după ora începerii meciului, timp de 45 minute.",
+				icon: {
+					name: "ticket",
+					type: "FontAwesome",
+					size: 20,
+					color: "#fff",
+				},
+			},
+			p2: {
+				text: "Accesul este gratuit persoanelor cu dizabilități (locomotor), prin prezentarea legitimației/documentelor justificative la casieria salii. Doar cu acest bilet gratuit se poate face accesul prin turniketi in sala.",
+				icon: {
+					name: "paralysis-disability",
+					type: "Fontisto",
+					size: 18,
+					color: "#fff",
+				},
+			},
+			p3: {
+				text: "Copii sub 7 ani au acces gratuit, fără loc și vor fi ținuți în brațele apartinatorilor .",
+				icon: {
+					name: "child",
+					type: "FontAwesome",
+					size: 21.5,
+					color: "#fff",
+				},
+			},
 		},
 		description: "",
 		contactInfo: "",
