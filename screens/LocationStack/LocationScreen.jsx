@@ -11,8 +11,13 @@ import {
 } from "react-native";
 import { Colors } from "@/constants";
 
+//data
+import { eventsByLocation } from "@/data/events"; // to be fetched
+
 //icons
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import FontistoIcon from "react-native-vector-icons/Fontisto";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //hooks
 import { useFetchEvents } from "@/hooks/useFetchEvents";
@@ -23,9 +28,23 @@ import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
 
+const renderIcon = (icon) => {
+	switch (icon.type) {
+		case "FontAwesome":
+			return <FontAwesomeIcon name={icon.name} size={icon.size} color={Colors.primary} />;
+		case "Fontisto":
+			return <FontistoIcon name={icon.name} size={icon.size} color={Colors.primary} />;
+		case "MaterialCommunity":
+			return <MaterialCommunityIcon name={icon.name} size={icon.size} color={Colors.primary} />;
+		default:
+			return null;
+	}
+};
+
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
-	const { events, loading, error } = useFetchEvents(currentLocation.id);
+	const { /* events, */ loading, error } = useFetchEvents(currentLocation.id);
+	const events = eventsByLocation[currentLocation.id]; // to be fetched from above
 
 	/* useFocusEffect(
 		React.useCallback(() => {
@@ -53,8 +72,10 @@ const LocationScreen = ({ navigation, route }) => {
 					{currentLocation.info && (
 						<View style={styles.info}>
 							{Object.entries(currentLocation.info).map(([key, value]) => (
-								<Text style={styles.infoText} key={key}>
-									{value}
+								<Text style={[styles.infoText]} key={key}>
+									{renderIcon(value.icon)}
+									{"  "}
+									{value.text}
 								</Text>
 							))}
 						</View>
@@ -89,7 +110,7 @@ const LocationScreen = ({ navigation, route }) => {
 							/>
 						) : (
 							<Text style={styles.notFoundText}>
-								<FontAwesome name="calendar-o" size={18} color={Colors.primary} />
+								<FontAwesomeIcon name="calendar-o" size={18} color={Colors.primary} />
 								{"  "}
 								Nu au fost găsite evenimente disponibile pentru această locație.
 							</Text>

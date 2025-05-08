@@ -15,7 +15,7 @@ export default RoomsPlanScreen = ({ navigation, route }) => {
 		<SafeAreaView style={{ flex: 1 }}>
 			<Header variant="3" />
 			<SvgHallPlan
-				roomsWithSeatsData={roomsWithSeats[1][129].rooms}
+				rooms={roomsWithSeats[1][129].rooms}
 				selectRoom={true}
 				field_path={locationFieldPath}
 				height="100%"

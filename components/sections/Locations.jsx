@@ -7,10 +7,10 @@ import { useNavigation } from "@react-navigation/native";
 import Title from "../Title";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { eventLocations } from "@/data/locations"; // to fetch from API
+import { locations } from "@/data/locations"; // to fetch from API
 
 const Locations = () => {
-	const { locations, loading, error } = useFetchLocations();
+	const { /* locations, */ loading, error } = useFetchLocations();
 	const navigation = useNavigation();
 
 	if (loading) return <ActivityIndicator />;
@@ -22,7 +22,7 @@ const Locations = () => {
 			<View style={styles.container}>
 				<FlatList
 					contentContainerStyle={styles.list}
-					data={eventLocations}
+					data={locations}
 					scrollEnabled={false}
 					keyExtractor={(item) => item.id}
 					renderItem={({ item, index }) => (

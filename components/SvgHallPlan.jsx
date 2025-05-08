@@ -12,21 +12,21 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
 
 const SvgHallPlan = ({
-	roomsWithSeatsData,
+	rooms,
+	seats,
 	field_path,
 	height = 355,
 	read_only,
 	style,
 	selectRoom,
 	selectSeats,
-	seats,
 	fieldPosition, // only for seats screen
 }) => {
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
-	/* const location = roomsWithSeatsByLocation[locationId]; */
-	const rooms = roomsWithSeatsData;
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
+
+	console.log(rooms);
 
 	if (read_only)
 		return (
@@ -100,7 +100,6 @@ const SvgHallPlan = ({
 		);
 
 	if (selectSeats)
-		//aici
 		return (
 			<GestureDetector gesture={gesture}>
 				<Animated.View style={[{ flex: 1 }, style]}>
@@ -114,7 +113,7 @@ const SvgHallPlan = ({
 						<StadiumMarkerSvg
 							style={{ position: "absolute", [fieldPosition === "top" ? "top" : "bottom"]: 120 }}
 						/>
-						<Svg width={345} height={"100%"} viewBox="0 0 115 100">
+						<Svg width={350} height={"100%"} viewBox="0 0 115 100">
 							{seats.map((seat) => (
 								<Path
 									onPress={() => {}}

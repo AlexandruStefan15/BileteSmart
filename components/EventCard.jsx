@@ -4,7 +4,7 @@ import { Colors, Fonts } from "@/constants";
 import { useNavigation } from "@react-navigation/native";
 
 //utils
-import { formatDateToRomanian } from "@/utils/helpers";
+import { formatDate } from "@/utils/helpers";
 
 //components
 import Ripple from "react-native-material-ripple";
@@ -27,7 +27,7 @@ export default function EventCard({ eventData, style, ...props }) {
 			>
 				<Text style={styles.event_title}>{eventData.title}</Text>
 				<View style={styles.event_badge}>
-					{formatDateToRomanian(eventData.date.split(" ")[0])
+					{formatDate(eventData.date)
 						.trim()
 						.split(" ")
 						.map((word, index) => (
@@ -65,16 +65,16 @@ const getStyles = (theme) => {
 		},
 
 		event_badge: {
-			backgroundColor: "#242424cc",
-			paddingInline: 20,
+			backgroundColor: "#242424d6",
+			paddingInline: 18,
 			paddingTop: 6,
 			paddingBottom: 12,
 			textAlign: "center",
 			position: "relative",
 			top: 0,
 			left: 11,
-			minWidth: 75,
-			width: 40,
+			minWidth: 70,
+			alignSelf: "flex-start",
 		},
 
 		event_badge_text: {

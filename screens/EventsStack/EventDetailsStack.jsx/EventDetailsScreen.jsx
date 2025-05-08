@@ -3,6 +3,9 @@ import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, Dimensions } f
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
 
+//utils
+import { formatRomanianDate } from "@/utils/helpers";
+
 //components
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
@@ -17,35 +20,29 @@ const selectedSeats = [
 ];
 
 const EventDetailsScreen = ({ navigation, route }) => {
-	const { locationId, /* event, */ locationFieldPath } = route.params;
+	const { locationId, event, locationFieldPath } = route.params;
 	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
-	const roomsWithSeatsData = roomsWithSeats[1][129].rooms;
-	const event = eventsByLocation[1][0];
+	const rooms = roomsWithSeats[1][129].rooms;
 
 	return (
 		<SafeAreaView style={styles.screen}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#242424" }}>
 				<Header variant="2" />
 				<View style={styles.banner}>
-					<Text style={styles.banner_title}>CS GLORIA 2018 BISTRITA NASAUD 39328462</Text>
-					<Text style={styles.banner_subtitle}>Complex Sportiv Polivalent TeraPlast Arena</Text>
-					<Text style={styles.banner_date}>Sâmbătă 3 Mai</Text>
+					<Text style={styles.banner_title}>{event.title}</Text>
+					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
+					<Text style={styles.banner_date}>{formatRomanianDate(event.date)}</Text>
 					<View style={styles.banner_footer}>
-						<Image style={styles.banner_footer_image} source={images.gloriaBistritaLogo} />
+						<Image style={styles.banner_footer_image} source={event.logo_images[0]} />
 						<Text style={styles.banner_footer_time}>17:00 (CET)</Text>
-						<Image style={styles.banner_footer_image} source={images.csmSlatinaLogo} />
+						<Image style={styles.banner_footer_image} source={event.logo_images[1]} />
 					</View>
 				</View>
 				<View style={{ backgroundColor: "#242424" }}>
 					<View style={styles.svgWrapper}>
-						<SvgHallPlan
-							roomsWithSeatsData={roomsWithSeatsData}
-							field_path={locationFieldPath}
-							read_only={true}
-							style={{}}
-						/>
+						<SvgHallPlan rooms={rooms} field_path={locationFieldPath} read_only={true} />
 						<View>
-							{roomsWithSeatsData.find((room) => room.free_seats > 0) ? (
+							{rooms.find((room) => room.free_seats > 0) ? (
 								<Button
 									styleText={styles.svgWrapper_button_text}
 									style={styles.svgWrapper_button}
@@ -75,6 +72,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
 	banner: {
+		marginTop: -3,
 		backgroundColor: "#242424",
 		paddingBlock: 30,
 		paddingTop: 66,
@@ -108,6 +106,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",
+		maxWidth: 380,
 	},
 
 	banner_footer_time: {
@@ -119,6 +118,7 @@ const styles = StyleSheet.create({
 	banner_footer_image: {
 		width: 101,
 		aspectRatio: 1 / 1,
+		resizeMode: "contain",
 	},
 
 	// SVG HALL PLAN

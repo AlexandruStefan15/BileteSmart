@@ -1,4 +1,31 @@
-export function formatDateToRomanian(dateString) {
+export function formatRomanianDate(dateStr) {
+	const date = new Date(dateStr);
+
+	const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+
+	const months = [
+		"ianuarie",
+		"februarie",
+		"martie",
+		"aprilie",
+		"mai",
+		"iunie",
+		"iulie",
+		"august",
+		"septembrie",
+		"octombrie",
+		"noiembrie",
+		"decembrie",
+	];
+
+	const dayOfWeek = days[date.getDay()];
+	const dayOfMonth = date.getDate();
+	const month = months[date.getMonth()];
+
+	return `${dayOfWeek} ${dayOfMonth} ${month}`;
+}
+
+export function formatDate(dateString) {
 	const date = new Date(dateString);
 
 	return date.toLocaleDateString("ro-RO", {
