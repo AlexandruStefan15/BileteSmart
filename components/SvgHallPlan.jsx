@@ -1,12 +1,16 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import Svg, { Path, Image as SvgImage } from "react-native-svg";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
+//colors
+import { Colors } from "@/constants";
+
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
+import { useSelectedSeats } from "@/store/store";
 
 //components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
@@ -23,6 +27,9 @@ const SvgHallPlan = ({
 	fieldPosition, // only for seats screen
 }) => {
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
+	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
+	const toggleSeats = useSelectedSeats((state) => state.toggleSeats);
+	const resetSeats = useSelectedSeats((state) => state.resetSeats);
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
 
@@ -118,11 +125,15 @@ const SvgHallPlan = ({
 						<Svg width={"90%"} height={"100%"} viewBox="0 0 108 100">
 							{currentRoom.seats?.map((seat) => (
 								<Path
-									onPress={() => {}}
+									onPress={() => {
+										if (!seat.occupied) toggleSeats(seat.id_seat);
+									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
 									d={seat.path_d}
-									fill="#85cb3c"
+									fill={
+										seat.occupied ? "gray" : selectedSeats.has(seat.id_seat) ? "#5fa0c4" : "#85cb3c"
+									}
 								/>
 							))}
 							{currentRoom.rows_path_d?.map((row, index) => (
@@ -130,23 +141,31 @@ const SvgHallPlan = ({
 							))}
 						</Svg>
 					</Animated.View>
-					{/* <View style={styles.buttonsContainer}>
-					<Text style={{ fontSize: 20, fontWeight: "bold" }}>Butoane...</Text>
-				</View> */}
+					{/* {selectedSeats.size > 0 && (
+						<View style={styles.buttonsContainer}>
+							<Button
+								color={Colors.primary}
+								title="Confirma"
+								onPress={() => console.log([...selectedSeats])}
+							/>
+							<Button color={Colors.primary} title="Reseteaza" onPress={() => resetSeats()} />
+						</View>
+					)} */}
 				</Animated.View>
 			</GestureDetector>
 		);
 };
 
 const styles = StyleSheet.create({
-	/* buttonsContainer: {
+	buttonsContainer: {
 		position: "absolute",
-		bottom: 20,
+		bottom: 0,
 		left: 0,
 		right: 0,
 		paddingHorizontal: 20,
+		paddingVertical: 20,
 		gap: 10,
-	}, */
+	},
 });
 
 export default SvgHallPlan;

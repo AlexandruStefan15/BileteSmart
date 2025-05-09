@@ -1,20 +1,27 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
-import AntDesignIcon from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
 import { images } from "@/assets/images";
 import { Colors } from "@/constants";
 
+//icons
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+//components
+import CartSidebar, { useCartSidebar } from "@/components/CartSideBar";
+
 const Header = ({
 	title = false,
 	logo = images.logo,
 	showBurgerMenu = true,
+	showCart = false,
 	variant = "",
 	style,
 }) => {
 	const navigation = useNavigation();
+	const { sidebarX, open, close } = useCartSidebar();
 
 	if (variant == 3)
 		return (
@@ -24,11 +31,19 @@ const Header = ({
 						<FeatherIcon name="arrow-left" size={26} color={"white"} />
 					</TouchableOpacity>
 				</View>
-				<TouchableOpacity style={styles.burgerMenu}>
-					<View style={{ padding: 5, right: -1 }}>
-						<AntDesignIcon name="bars" size={28} color={"white"} />
-					</View>
-				</TouchableOpacity>
+				{showCart && (
+					<TouchableOpacity onPress={open} style={styles.burgerMenu}>
+						<View style={{ padding: 5, right: -1 }}>
+							<Ionicons name="cart-outline" size={28} color={"white"} />
+						</View>
+					</TouchableOpacity>
+				)}
+				<CartSidebar sidebarX={sidebarX}>
+					<Text>Cart Items</Text>
+					<Text>Cart Items</Text>
+					<Text>Cart Items</Text>
+					<Text>Cart Items</Text>
+				</CartSidebar>
 			</Animated.View>
 		);
 

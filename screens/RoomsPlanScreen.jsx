@@ -13,7 +13,7 @@ export default RoomsPlanScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<Header variant="3" />
+			<Header variant="3" showCart={true} />
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}
 				selectRoom={true}

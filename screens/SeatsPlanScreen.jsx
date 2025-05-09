@@ -17,10 +17,8 @@ export default RoomsPlanScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Header variant="3" />
+			<Header variant="3" showCart={true} />
 			<SvgHallPlan
-				/* seats={seats}
-				rows={rows} */
 				currentRoom={currentRoom}
 				selectSeats={true}
 				height="100%"
