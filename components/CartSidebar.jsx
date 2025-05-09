@@ -30,9 +30,7 @@ export default function CartSideBar({ sidebarX, children }) {
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
 	}));
-
 	const styles = getStyles(windowHeight);
-	console.log(selectedSeats);
 
 	if (!sidebarX) return null;
 
@@ -61,10 +59,10 @@ const getStyles = (height) =>
 			top: 0,
 			left: 0,
 			width: SIDEBAR_WIDTH,
-			height: height,
+			height: height - 60,
 			backgroundColor: "#f8f8f8",
 			elevation: 10, // for Android
-			zIndex: 999, // for iOS/web
+			zIndex: 999, // for iOS
 			paddingBlock: 10,
 		},
 
