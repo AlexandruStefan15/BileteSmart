@@ -28,19 +28,6 @@ import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
 
-const renderIcon = (icon) => {
-	switch (icon.type) {
-		case "FontAwesome":
-			return <FontAwesomeIcon name={icon.name} size={icon.size} color={Colors.primary} />;
-		case "Fontisto":
-			return <FontistoIcon name={icon.name} size={icon.size} color={Colors.primary} />;
-		case "MaterialCommunity":
-			return <MaterialCommunityIcon name={icon.name} size={icon.size} color={Colors.primary} />;
-		default:
-			return null;
-	}
-};
-
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
 	const { /* events, */ loading, error } = useFetchEvents(currentLocation.id);
@@ -137,6 +124,19 @@ const LocationScreen = ({ navigation, route }) => {
 			</ScrollView>
 		</SafeAreaView>
 	);
+};
+
+const renderIcon = (icon) => {
+	switch (icon.type) {
+		case "FontAwesome":
+			return <FontAwesomeIcon name={icon.name} size={icon.size} color={Colors.primary} />;
+		case "Fontisto":
+			return <FontistoIcon name={icon.name} size={icon.size} color={Colors.primary} />;
+		case "MaterialCommunity":
+			return <MaterialCommunityIcon name={icon.name} size={icon.size} color={Colors.primary} />;
+		default:
+			return null;
+	}
 };
 
 const styles = StyleSheet.create({
