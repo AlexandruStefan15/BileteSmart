@@ -1,17 +1,23 @@
 import { create } from "zustand";
 
 export const useSelectedSeats = create((set) => ({
-	selectedSeats: new Set(),
-	toggleSeats: (seatId) =>
+	selectedSeats: [],
+
+	toggleSeats: (seat) =>
 		set((state) => {
-			const newSelection = new Set(state.selectedSeats);
-			if (newSelection.has(seatId)) {
-				newSelection.delete(seatId);
+			const exists = state.selectedSeats.find((s) => s.id_seat === seat.id_seat);
+			let newSelection;
+
+			if (exists) {
+				// remove the seat
+				newSelection = state.selectedSeats.filter((s) => s.id_seat !== seat.id_seat);
 			} else {
-				newSelection.add(seatId);
+				// add the seat
+				newSelection = [...state.selectedSeats, seat];
 			}
+
 			return { selectedSeats: newSelection };
 		}),
-	resetSeats: () => set({ selectedSeats: new Set() }),
-	/* setSeats: (seats) => set({ selectedSeats: new Set(seats) }), */
+
+	resetSeats: () => set({ selectedSeats: [] }),
 }));

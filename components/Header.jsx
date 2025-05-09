@@ -10,7 +10,7 @@ import { Colors } from "@/constants";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 //components
-import CartSidebar, { useCartSidebar } from "@/components/CartSideBar";
+import CartSideBar, { useCartSideBar } from "@/components/CartSideBar";
 
 const Header = ({
 	title = false,
@@ -21,7 +21,7 @@ const Header = ({
 	style,
 }) => {
 	const navigation = useNavigation();
-	const { sidebarX, open, close } = useCartSidebar();
+	const { sidebarX, open, close } = useCartSideBar();
 
 	if (variant == 3)
 		return (
@@ -38,12 +38,7 @@ const Header = ({
 						</View>
 					</TouchableOpacity>
 				)}
-				<CartSidebar sidebarX={sidebarX}>
-					<Text>Cart Items</Text>
-					<Text>Cart Items</Text>
-					<Text>Cart Items</Text>
-					<Text>Cart Items</Text>
-				</CartSidebar>
+				<CartSideBar sidebarX={sidebarX} />
 			</Animated.View>
 		);
 

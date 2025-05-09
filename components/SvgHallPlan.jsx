@@ -8,9 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 //colors
 import { Colors } from "@/constants";
 
+//store
+import { useSelectedSeats } from "@/store/store";
+
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
-import { useSelectedSeats } from "@/store/store";
 
 //components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
@@ -126,13 +128,17 @@ const SvgHallPlan = ({
 							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {
-										if (!seat.occupied) toggleSeats(seat.id_seat);
+										if (!seat.occupied) toggleSeats(seat);
 									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
 									d={seat.path_d}
 									fill={
-										seat.occupied ? "gray" : selectedSeats.has(seat.id_seat) ? "#5fa0c4" : "#85cb3c"
+										seat.occupied
+											? "gray"
+											: selectedSeats.some((s) => s.id_seat === seat.id_seat)
+											? "#5fa0c4"
+											: "#85cb3c"
 									}
 								/>
 							))}
