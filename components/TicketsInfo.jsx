@@ -9,9 +9,7 @@ const TicketsInfo = ({ selectedSeats }) => {
 		<View style={{ flex: 1 }}>
 			<ScrollView
 				contentContainerStyle={{
-					/* flexGrow: 1,
-					justifyContent: "space-between", */
-					paddingBottom: 100,
+					flexGrow: 1,
 				}}
 			>
 				<View style={styles.seatList}>
@@ -50,6 +48,12 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontWeight: "bold",
 		fontSize: 16,
+	},
+
+	footer: {
+		paddingTop: 5,
+		borderTopWidth: 0.5,
+		width: "100%",
 	},
 });
 
