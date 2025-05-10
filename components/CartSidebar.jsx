@@ -8,7 +8,7 @@ import { useSelectedSeats } from "@/store/store";
 import TicketsInfo from "./TicketsInfo";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SIDEBAR_WIDTH = SCREEN_WIDTH * 0.82;
+const SIDEBAR_WIDTH = SCREEN_WIDTH * 0.85;
 
 export const useCartSideBar = () => {
 	const sidebarX = useSharedValue(-SIDEBAR_WIDTH);
