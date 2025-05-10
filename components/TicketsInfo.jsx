@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 
 //colors
 import { Colors } from "@/constants";
@@ -7,24 +8,19 @@ import { Colors } from "@/constants";
 const TicketsInfo = ({ selectedSeats }) => {
 	return (
 		<View style={{ flex: 1 }}>
-			<ScrollView
-				contentContainerStyle={{
-					flexGrow: 1,
-				}}
-			>
-				<View style={styles.seatList}>
-					{selectedSeats.map((seat, index) => (
-						<View
-							key={index}
-							style={{ padding: 10, backgroundColor: "lightgray", marginVertical: 5 }}
-						>
-							<Text>Seat number: {seat.seat_no}</Text>
-							<Text>Price: {seat.price}</Text>
-							<Text>Row: {seat.row}</Text>
-						</View>
-					))}
-				</View>
-			</ScrollView>
+			<FlatList
+				style={{ paddingInline: 15 }}
+				data={selectedSeats}
+				keyExtractor={(item) => item.id_seat.toString()}
+				contentContainerStyle={{ gap: 10, marginBlock: 10, paddingBottom: 20 }}
+				renderItem={({ item }) => (
+					<View style={{ padding: 10, backgroundColor: "lightgray" }}>
+						<Text>Seat number: {item.seat_no}</Text>
+						<Text>Price: {item.price} RON</Text>
+						<Text>Row: {item.row_no}</Text>
+					</View>
+				)}
+			/>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
 					<Text>Total Price: {selectedSeats.reduce((total, seat) => total + seat.price, 0)}</Text>
@@ -38,6 +34,10 @@ const TicketsInfo = ({ selectedSeats }) => {
 };
 
 const styles = StyleSheet.create({
+	seatList: {
+		flex: 1,
+	},
+
 	checkoutButton: {
 		backgroundColor: Colors.tertiary,
 		padding: 15,
@@ -51,9 +51,12 @@ const styles = StyleSheet.create({
 	},
 
 	footer: {
-		paddingTop: 5,
+		paddingInline: 15,
+		paddingBlock: 11,
+		paddingTop: 8,
 		borderTopWidth: 0.5,
 		width: "100%",
+		gap: 5,
 	},
 });
 

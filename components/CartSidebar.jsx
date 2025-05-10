@@ -46,7 +46,7 @@ export default function CartSideBar({ sidebarX, children }) {
 				<Text style={styles.cartTitle}>Cart</Text>
 			</View>
 			<View style={styles.sidebar_content}>
-				<TicketsInfo selectedSeats={[...selectedSeats]} />
+				<TicketsInfo selectedSeats={selectedSeats} />
 			</View>
 		</Animated.View>
 	);
@@ -92,7 +92,5 @@ const getStyles = (height) =>
 
 		sidebar_content: {
 			flex: 1,
-			paddingBlock: 15,
-			paddingInline: 15,
 		},
 	});
