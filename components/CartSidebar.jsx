@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
 
+//colors
+import { Colors } from "@/constants/Colors";
+
 //store
 import { useSelectedSeats } from "@/store/store";
 
@@ -41,12 +44,22 @@ export default function CartSideBar({ sidebarX, children }) {
 					style={styles.closeBtn}
 					onPress={() => (sidebarX.value = withTiming(-SIDEBAR_WIDTH))}
 				>
-					<Text style={styles.closeText}>X</Text>
+					<Text style={styles.closeText}>Inchide</Text>
 				</TouchableOpacity>
 				<Text style={styles.cartTitle}>Cart</Text>
 			</View>
 			<View style={styles.sidebar_content}>
 				<TicketsInfo selectedSeats={selectedSeats} />
+			</View>
+			<View style={styles.footer}>
+				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
+					<Text>
+						Subtotal: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
+					</Text>
+				</View>
+				<TouchableOpacity style={styles.checkoutButton}>
+					<Text style={styles.checkoutButton_text}>Checkout</Text>
+				</TouchableOpacity>
 			</View>
 		</Animated.View>
 	);
@@ -63,7 +76,6 @@ const getStyles = (height) =>
 			backgroundColor: "#f8f8f8",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS
-			paddingBlock: 10,
 		},
 
 		//header
@@ -74,16 +86,24 @@ const getStyles = (height) =>
 			borderBottomWidth: 0.5,
 			alignItems: "center",
 			paddingInline: 15,
+			paddingBlock: 2,
 		},
 
 		closeBtn: {
 			padding: 15,
-			right: 5,
+			right: 12,
 		},
 
 		closeText: {
-			fontSize: 19,
+			textAlign: "center",
+			fontSize: 15,
+			backgroundColor: Colors.primary,
+			color: "white",
+			padding: 5,
+			paddingInline: 11,
+			borderRadius: 5,
 		},
+
 		cartTitle: {
 			fontSize: 22,
 		},
@@ -92,5 +112,28 @@ const getStyles = (height) =>
 
 		sidebar_content: {
 			flex: 1,
+		},
+
+		//footer
+
+		footer: {
+			paddingInline: 15,
+			paddingTop: 7,
+			paddingBottom: 20,
+			borderTopWidth: 0.2,
+			width: "100%",
+			gap: 5,
+		},
+
+		checkoutButton: {
+			backgroundColor: Colors.tertiary,
+			padding: 15,
+			borderRadius: 5,
+		},
+		checkoutButton_text: {
+			color: "white",
+			textAlign: "center",
+			fontWeight: "bold",
+			fontSize: 16,
 		},
 	});

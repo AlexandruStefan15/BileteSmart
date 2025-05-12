@@ -139,23 +139,21 @@ const SvgHallPlan = ({
 						/>
 						<Svg width={"90%"} height={"100%"} viewBox="0 0 108 100">
 							{currentRoom.seats?.map((seat) => (
-								<GestureDetector key={seat.id} gesture={seatTapGesture(seat)}>
-									<Path
-										/* onPress={() => {
+								<Path
+									onPress={() => {
 										if (!seat.occupied) toggleSeats(seat);
-									}} */
-										onResponderMove={() => {}}
-										key={seat.id_seat}
-										d={seat.path_d}
-										fill={
-											seat.occupied
-												? "gray"
-												: selectedSeats.some((s) => s.id_seat === seat.id_seat)
-												? "#5fa0c4"
-												: "#85cb3c"
-										}
-									/>
-								</GestureDetector>
+									}}
+									onResponderMove={() => {}}
+									key={seat.id_seat}
+									d={seat.path_d}
+									fill={
+										seat.occupied
+											? "gray"
+											: selectedSeats.some((s) => s.id_seat === seat.id_seat)
+											? "#5fa0c4"
+											: "#85cb3c"
+									}
+								/>
 							))}
 							{currentRoom.rows_path_d?.map((row, index) => (
 								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />

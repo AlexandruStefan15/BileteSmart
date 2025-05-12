@@ -20,4 +20,9 @@ export const useSelectedSeats = create((set) => ({
 		}),
 
 	resetSeats: () => set({ selectedSeats: [] }),
+
+	removeSeat: (id) =>
+		set((state) => ({
+			selectedSeats: state.selectedSeats.filter((s) => s.id_seat !== id),
+		})),
 }));

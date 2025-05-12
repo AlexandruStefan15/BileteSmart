@@ -5,58 +5,66 @@ import { FlatList } from "react-native-gesture-handler";
 //colors
 import { Colors } from "@/constants";
 
+//data
+import { useSelectedSeats } from "@/store/store";
+
 const TicketsInfo = ({ selectedSeats }) => {
+	const removeSeat = useSelectedSeats((state) => state.removeSeat);
+
 	return (
 		<View style={{ flex: 1 }}>
 			<FlatList
-				style={{ paddingInline: 15 }}
+				style={styles.ticketList}
 				data={selectedSeats}
 				keyExtractor={(item) => item.id_seat.toString()}
 				contentContainerStyle={{ gap: 10, marginBlock: 10, paddingBottom: 20 }}
 				renderItem={({ item }) => (
-					<View style={{ padding: 10, backgroundColor: "lightgray" }}>
-						<Text>Locul: {item.seat_no}</Text>
-						<Text>Pret: {item.price} RON</Text>
-						<Text>Randul: {item.row_no}</Text>
+					<View>
+						<View style={styles.ticketList_item}>
+							<Text>Locul: {item.seat_no}</Text>
+							<Text>Pret: {item.price} RON</Text>
+							<Text>Randul: {item.row_no}</Text>
+							<Text>Sectorul: {item.room_name}</Text>
+						</View>
+						<TouchableOpacity
+							onPress={() => removeSeat(item.id_seat)}
+							style={styles.ticketList_removeButton}
+						>
+							<Text style={styles.ticketList_removeButton_text}>X</Text>
+						</TouchableOpacity>
 					</View>
 				)}
 			/>
-			<View style={styles.footer}>
-				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
-					<Text>Subtotal: {selectedSeats.reduce((total, seat) => total + seat.price, 0)} RON</Text>
-				</View>
-				<TouchableOpacity style={styles.checkoutButton}>
-					<Text style={styles.checkoutButton_text}>Checkout</Text>
-				</TouchableOpacity>
-			</View>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	seatList: {
-		flex: 1,
-	},
-
-	checkoutButton: {
-		backgroundColor: Colors.tertiary,
-		padding: 15,
-		borderRadius: 5,
-	},
-	checkoutButton_text: {
-		color: "white",
-		textAlign: "center",
-		fontWeight: "bold",
-		fontSize: 16,
-	},
-
-	footer: {
+	ticketList: {
 		paddingInline: 15,
-		paddingBlock: 11,
-		paddingTop: 8,
-		borderTopWidth: 0.5,
-		width: "100%",
-		gap: 5,
+	},
+
+	ticketList_item: {
+		padding: 10,
+		backgroundColor: "lightgray",
+		gap: 2,
+		paddingInline: 15,
+	},
+
+	ticketList_removeButton: {
+		position: "absolute",
+		backgroundColor: "#a50a0a",
+		borderRadius: 5,
+		paddingVertical: 4,
+		paddingHorizontal: 10.5,
+		right: 21,
+		top: "50%",
+		transform: [{ translateY: -14 }],
+	},
+
+	ticketList_removeButton_text: {
+		fontSize: 16,
+		color: "white",
 	},
 });
 
