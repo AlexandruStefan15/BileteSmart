@@ -16,7 +16,7 @@ export const locations = [
 				icon: {
 					name: "ticket",
 					type: "FontAwesome",
-					size: 20,
+					size: 20.5,
 					color: "#fff",
 				},
 			},
@@ -25,7 +25,7 @@ export const locations = [
 				icon: {
 					name: "paralysis-disability",
 					type: "Fontisto",
-					size: 18,
+					size: 18.5,
 					color: "#fff",
 				},
 			},
@@ -34,7 +34,7 @@ export const locations = [
 				icon: {
 					name: "child",
 					type: "FontAwesome",
-					size: 21.5,
+					size: 22,
 					color: "#fff",
 				},
 			},
@@ -61,7 +61,7 @@ export const locations = [
 				icon: {
 					name: "ticket",
 					type: "FontAwesome",
-					size: 20,
+					size: 20.5,
 					color: "#fff",
 				},
 			},
@@ -70,7 +70,7 @@ export const locations = [
 				icon: {
 					name: "paralysis-disability",
 					type: "Fontisto",
-					size: 18,
+					size: 18.5,
 					color: "#fff",
 				},
 			},
@@ -79,7 +79,7 @@ export const locations = [
 				icon: {
 					name: "child",
 					type: "FontAwesome",
-					size: 21.5,
+					size: 22,
 					color: "#fff",
 				},
 			},

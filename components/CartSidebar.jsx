@@ -82,7 +82,7 @@ const getStyles = (height) =>
 		},
 
 		closeText: {
-			fontSize: 18,
+			fontSize: 19,
 		},
 		cartTitle: {
 			fontSize: 22,

@@ -2,7 +2,12 @@ import React from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import Svg, { Path, Image as SvgImage } from "react-native-svg";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import Animated, {
+	useSharedValue,
+	useAnimatedStyle,
+	withTiming,
+	runOnJS,
+} from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
 //colors
@@ -34,6 +39,14 @@ const SvgHallPlan = ({
 	const resetSeats = useSelectedSeats((state) => state.resetSeats);
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
+
+	const seatTapGesture = (seat) => {
+		return Gesture.Tap()
+			.maxDuration(250)
+			.onEnd(() => {
+				if (!seat.occupied) runOnJS(toggleSeats)(seat);
+			});
+	};
 
 	if (read_only)
 		return (
@@ -126,21 +139,23 @@ const SvgHallPlan = ({
 						/>
 						<Svg width={"90%"} height={"100%"} viewBox="0 0 108 100">
 							{currentRoom.seats?.map((seat) => (
-								<Path
-									onPress={() => {
+								<GestureDetector key={seat.id} gesture={seatTapGesture(seat)}>
+									<Path
+										/* onPress={() => {
 										if (!seat.occupied) toggleSeats(seat);
-									}}
-									onResponderMove={() => {}}
-									key={seat.id_seat}
-									d={seat.path_d}
-									fill={
-										seat.occupied
-											? "gray"
-											: selectedSeats.some((s) => s.id_seat === seat.id_seat)
-											? "#5fa0c4"
-											: "#85cb3c"
-									}
-								/>
+									}} */
+										onResponderMove={() => {}}
+										key={seat.id_seat}
+										d={seat.path_d}
+										fill={
+											seat.occupied
+												? "gray"
+												: selectedSeats.some((s) => s.id_seat === seat.id_seat)
+												? "#5fa0c4"
+												: "#85cb3c"
+										}
+									/>
+								</GestureDetector>
 							))}
 							{currentRoom.rows_path_d?.map((row, index) => (
 								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />

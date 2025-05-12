@@ -15,15 +15,15 @@ const TicketsInfo = ({ selectedSeats }) => {
 				contentContainerStyle={{ gap: 10, marginBlock: 10, paddingBottom: 20 }}
 				renderItem={({ item }) => (
 					<View style={{ padding: 10, backgroundColor: "lightgray" }}>
-						<Text>Seat number: {item.seat_no}</Text>
-						<Text>Price: {item.price} RON</Text>
-						<Text>Row: {item.row_no}</Text>
+						<Text>Locul: {item.seat_no}</Text>
+						<Text>Pret: {item.price} RON</Text>
+						<Text>Randul: {item.row_no}</Text>
 					</View>
 				)}
 			/>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
-					<Text>Total Price: {selectedSeats.reduce((total, seat) => total + seat.price, 0)}</Text>
+					<Text>Subtotal: {selectedSeats.reduce((total, seat) => total + seat.price, 0)} RON</Text>
 				</View>
 				<TouchableOpacity style={styles.checkoutButton}>
 					<Text style={styles.checkoutButton_text}>Checkout</Text>
