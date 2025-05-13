@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 		width: 10,
 		height: 10,
 		backgroundColor: "red",
-		borderRadius: 20,
+		borderRadius: 40,
 		position: "absolute",
 		right: 2,
 		top: 7,

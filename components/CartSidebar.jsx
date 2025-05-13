@@ -54,7 +54,7 @@ export default function CartSideBar({ sidebarX, children }) {
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
-					<Text style={{ fontWeight: "500", fontSize: 15 }}>
+					<Text style={{ fontWeight: "500", fontSize: 16 }}>
 						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
 				</View>
@@ -131,7 +131,7 @@ const getStyles = (height) =>
 
 		checkoutButton: {
 			backgroundColor: Colors.tertiary,
-			padding: 15,
+			padding: 15.5,
 			borderRadius: 5,
 		},
 		checkoutButton_text: {
