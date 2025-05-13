@@ -17,7 +17,7 @@ const TicketsInfo = ({ selectedSeats }) => {
 				style={styles.ticketList}
 				data={selectedSeats}
 				keyExtractor={(item) => item.id_seat.toString()}
-				contentContainerStyle={{ gap: 10, marginBlock: 10, paddingBottom: 20 }}
+				contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
 				renderItem={({ item }) => (
 					<View>
 						<View style={styles.ticketList_item}>
@@ -31,7 +31,7 @@ const TicketsInfo = ({ selectedSeats }) => {
 								Sectorul:{" "}
 								<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.room_name}</Text>
 							</Text>
-							<Text style={{ fontWeight: "500", fontSize: 16.2, marginTop: 10 }}>
+							<Text style={{ fontWeight: "500", fontSize: 16.5, marginTop: 10 }}>
 								{item.price} RON
 							</Text>
 						</View>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
 	ticketList_item: {
 		padding: 10,
-		backgroundColor: "lightgray",
+		backgroundColor: "#d3d3d3c4",
 		gap: 2,
 		paddingInline: 15,
 	},
