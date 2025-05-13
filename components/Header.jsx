@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
@@ -8,6 +8,9 @@ import { Colors } from "@/constants";
 
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
+
+//hooks
+import { useSelectedSeats } from "@/hooks/useSelectedSeats";
 
 //components
 import CartSideBar, { useCartSideBar } from "@/components/CartSideBar";
@@ -20,8 +23,17 @@ const Header = ({
 	variant = "",
 	style,
 }) => {
+	const [showBadge, setShowBadge] = useState(false);
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
+	const { selectedSeats } = useSelectedSeats();
+	const selectedSeatsLengthRef = useRef(selectedSeats.length);
+
+	useEffect(() => {
+		if (selectedSeats.length > selectedSeatsLengthRef.current) setShowBadge(true);
+		else if (selectedSeats.length == 0) setShowBadge(false);
+		selectedSeatsLengthRef.current = selectedSeats.length;
+	}, [selectedSeats.length]);
 
 	if (variant == 3)
 		return (
@@ -32,10 +44,17 @@ const Header = ({
 					</TouchableOpacity>
 				</View>
 				{showCart && (
-					<TouchableOpacity onPress={open} style={styles.burgerMenu}>
+					<TouchableOpacity
+						onPress={() => {
+							open();
+							setShowBadge(false);
+						}}
+						style={styles.burgerMenu}
+					>
 						<View style={{ padding: 5, right: -1 }}>
 							<Ionicons name="cart-outline" size={28} color={"white"} />
 						</View>
+						{showBadge && <View style={styles.badge}></View>}
 					</TouchableOpacity>
 				)}
 				<CartSideBar sidebarX={sidebarX} />
@@ -143,6 +162,17 @@ const styles = StyleSheet.create({
 		zIndex: 10,
 		width: "100%",
 		backgroundColor: Colors.tertiary,
+	},
+
+	badge: {
+		width: 10,
+		height: 10,
+		backgroundColor: "red",
+		borderRadius: 20,
+		position: "absolute",
+		right: 2,
+		top: 7,
+		zIndex: 999,
 	},
 });
 
