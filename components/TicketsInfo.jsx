@@ -21,10 +21,19 @@ const TicketsInfo = ({ selectedSeats }) => {
 				renderItem={({ item }) => (
 					<View>
 						<View style={styles.ticketList_item}>
-							<Text>Locul: {item.seat_no}</Text>
-							<Text>Pret: {item.price} RON</Text>
-							<Text>Randul: {item.row_no}</Text>
-							<Text>Sectorul: {item.room_name}</Text>
+							<Text style={{ fontWeight: "500" }}>
+								Locul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.seat_no}</Text>
+							</Text>
+							<Text style={{ fontWeight: "500" }}>
+								Randul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.row_no}</Text>
+							</Text>
+							<Text style={{ fontWeight: "500" }}>
+								Sectorul:{" "}
+								<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.room_name}</Text>
+							</Text>
+							<Text style={{ fontWeight: "500", fontSize: 16.2, marginTop: 10 }}>
+								{item.price} RON
+							</Text>
 						</View>
 						<TouchableOpacity
 							onPress={() => removeSeat(item.id_seat)}
@@ -53,11 +62,11 @@ const styles = StyleSheet.create({
 
 	ticketList_removeButton: {
 		position: "absolute",
-		backgroundColor: "#a50a0a",
+		backgroundColor: "#d60303f0",
 		borderRadius: 5,
 		paddingVertical: 4,
 		paddingHorizontal: 10.5,
-		right: 21,
+		right: 20,
 		top: "50%",
 		transform: [{ translateY: -14 }],
 	},

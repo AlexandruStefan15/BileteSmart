@@ -44,17 +44,17 @@ export default function CartSideBar({ sidebarX, children }) {
 					style={styles.closeBtn}
 					onPress={() => (sidebarX.value = withTiming(-SIDEBAR_WIDTH))}
 				>
-					<Text style={styles.closeText}>Inchide</Text>
+					<Text style={styles.closeText}>X</Text>
 				</TouchableOpacity>
-				<Text style={styles.cartTitle}>Cart</Text>
+				<Text style={styles.cartTitle}>Coșul meu</Text>
 			</View>
 			<View style={styles.sidebar_content}>
 				<TicketsInfo selectedSeats={selectedSeats} />
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
-					<Text>
-						Subtotal: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
+					<Text style={{ fontWeight: "500", fontSize: 15 }}>
+						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
 				</View>
 				<TouchableOpacity style={styles.checkoutButton}>
@@ -81,22 +81,23 @@ const getStyles = (height) =>
 		//header
 
 		sidebar_header: {
-			flexDirection: "row-reverse",
+			flexDirection: "row",
 			justifyContent: "space-between",
 			borderBottomWidth: 0.5,
 			alignItems: "center",
 			paddingInline: 15,
-			paddingBlock: 2,
+			paddingBlock: 20,
 		},
 
 		closeBtn: {
 			padding: 15,
-			right: 12,
+			left: 1,
+			position: "absolute",
 		},
 
 		closeText: {
 			textAlign: "center",
-			fontSize: 15,
+			fontSize: 14,
 			backgroundColor: Colors.primary,
 			color: "white",
 			padding: 5,
@@ -105,7 +106,9 @@ const getStyles = (height) =>
 		},
 
 		cartTitle: {
-			fontSize: 22,
+			fontSize: 19.5,
+			fontWeight: "500",
+			marginInline: "auto",
 		},
 
 		//content
