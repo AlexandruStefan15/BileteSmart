@@ -5,14 +5,10 @@ import { FlatList } from "react-native-gesture-handler";
 //colors
 import { Colors } from "@/constants";
 
-//data
-import { useSelectedSeats } from "@/store/store";
-
 // context
 import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
 
 const TicketsInfo = ({ selectedSeats }) => {
-	const removeSeat = useSelectedSeats((state) => state.removeSeat);
 	const { setSelectedSeats } = useContext(SelectedSeatsContext);
 
 	return (
@@ -40,7 +36,9 @@ const TicketsInfo = ({ selectedSeats }) => {
 							</Text>
 						</View>
 						<TouchableOpacity
-							onPress={() => removeSeat(item.id_seat)}
+							onPress={() =>
+								setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat != item.id_seat))
+							}
 							style={styles.ticketList_removeButton}
 						>
 							<Text style={styles.ticketList_removeButton_text}>X</Text>

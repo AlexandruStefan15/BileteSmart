@@ -1,11 +1,12 @@
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
 
 //colors
 import { Colors } from "@/constants/Colors";
 
-//store
-import { useSelectedSeats } from "@/store/store";
+// context
+import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
 
 //components
 import TicketsInfo from "./TicketsInfo";
@@ -28,7 +29,7 @@ export const useCartSideBar = () => {
 };
 
 export default function CartSideBar({ sidebarX, children }) {
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
+	const { selectedSeats } = useContext(SelectedSeatsContext);
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],

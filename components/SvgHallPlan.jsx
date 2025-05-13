@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import Svg, { Path, Image as SvgImage } from "react-native-svg";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Colors } from "@/constants";
 
 //store
-import { useSelectedSeats } from "@/store/store";
+import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
 
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
@@ -34,9 +34,8 @@ const SvgHallPlan = ({
 	fieldPosition, // only for seats screen
 }) => {
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
-	const toggleSeats = useSelectedSeats((state) => state.toggleSeats);
-	const resetSeats = useSelectedSeats((state) => state.resetSeats);
+	const { selectedSeats, setSelectedSeats } = useContext(SelectedSeatsContext);
+
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
 
@@ -141,7 +140,15 @@ const SvgHallPlan = ({
 							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {
-										if (!seat.busy) toggleSeats(seat);
+										if (!seat.busy)
+											setSelectedSeats((prev) => {
+												const exists = prev.some((s) => s.id_seat === seat.id_seat);
+												if (exists) {
+													return prev.filter((s) => s.id_seat !== seat.id_seat);
+												} else {
+													return [...prev, seat];
+												}
+											});
 									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
