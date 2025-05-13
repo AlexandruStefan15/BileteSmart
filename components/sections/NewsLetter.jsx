@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
 	section: {
 		marginTop: -1,
 		flex: 1,
-
 		gap: 10,
 	},
 
@@ -113,5 +112,6 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: "#365771",
 		fontWeight: "bold",
+		fontSize: 17.5,
 	},
 });
