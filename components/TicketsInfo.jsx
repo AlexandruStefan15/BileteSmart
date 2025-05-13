@@ -13,39 +13,45 @@ const TicketsInfo = ({ selectedSeats }) => {
 
 	return (
 		<View style={{ flex: 1 }}>
-			<FlatList
-				style={styles.ticketList}
-				data={selectedSeats}
-				keyExtractor={(item) => item.id_seat.toString()}
-				contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
-				renderItem={({ item }) => (
-					<View>
-						<View style={styles.ticketList_item}>
-							<Text style={{ fontWeight: "500" }}>
-								Locul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.seat_no}</Text>
-							</Text>
-							<Text style={{ fontWeight: "500" }}>
-								Randul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.row_no}</Text>
-							</Text>
-							<Text style={{ fontWeight: "500" }}>
-								Sectorul:{" "}
-								<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.room_name}</Text>
-							</Text>
-							<Text style={{ fontWeight: "500", fontSize: 16.5, marginTop: 10 }}>
-								{item.price} RON
-							</Text>
+			{selectedSeats.length > 0 ? (
+				<FlatList
+					style={styles.ticketList}
+					data={selectedSeats}
+					keyExtractor={(item) => item.id_seat.toString()}
+					contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
+					renderItem={({ item }) => (
+						<View>
+							<View style={styles.ticketList_item}>
+								<Text style={{ fontWeight: "500" }}>
+									Locul:{" "}
+									<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.seat_no}</Text>
+								</Text>
+								<Text style={{ fontWeight: "500" }}>
+									Randul:{" "}
+									<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.row_no}</Text>
+								</Text>
+								<Text style={{ fontWeight: "500" }}>
+									Sectorul:{" "}
+									<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.room_name}</Text>
+								</Text>
+								<Text style={{ fontWeight: "500", fontSize: 16.5, marginTop: 10 }}>
+									{item.price} RON
+								</Text>
+							</View>
+							<TouchableOpacity
+								onPress={() =>
+									setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat != item.id_seat))
+								}
+								style={styles.ticketList_removeButton}
+							>
+								<Text style={styles.ticketList_removeButton_text}>X</Text>
+							</TouchableOpacity>
 						</View>
-						<TouchableOpacity
-							onPress={() =>
-								setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat != item.id_seat))
-							}
-							style={styles.ticketList_removeButton}
-						>
-							<Text style={styles.ticketList_removeButton_text}>X</Text>
-						</TouchableOpacity>
-					</View>
-				)}
-			/>
+					)}
+				/>
+			) : (
+				<Text style={{ margin: "auto" }}>Momentan nu ai bilete in coș...</Text>
+			)}
 		</View>
 	);
 };
