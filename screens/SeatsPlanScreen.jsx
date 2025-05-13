@@ -8,7 +8,7 @@ import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 
-export default RoomsPlanScreen = ({ navigation, route }) => {
+export default SeatsPlanScreen = ({ navigation, route }) => {
 	const { roomId } = route.params;
 	const currentRoom = roomsWithSeats[1][129].rooms.find((room) => room.id_room == roomId);
 	const seats = currentRoom.seats;

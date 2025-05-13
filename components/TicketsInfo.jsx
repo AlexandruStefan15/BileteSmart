@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
@@ -8,8 +8,12 @@ import { Colors } from "@/constants";
 //data
 import { useSelectedSeats } from "@/store/store";
 
+// context
+import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
+
 const TicketsInfo = ({ selectedSeats }) => {
 	const removeSeat = useSelectedSeats((state) => state.removeSeat);
+	const { setSelectedSeats } = useContext(SelectedSeatsContext);
 
 	return (
 		<View style={{ flex: 1 }}>
