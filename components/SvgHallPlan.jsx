@@ -141,13 +141,13 @@ const SvgHallPlan = ({
 							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {
-										if (!seat.occupied) toggleSeats(seat);
+										if (!seat.busy) toggleSeats(seat);
 									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
 									d={seat.path_d}
 									fill={
-										seat.occupied
+										seat.busy
 											? "gray"
 											: selectedSeats.some((s) => s.id_seat === seat.id_seat)
 											? "#5fa0c4"

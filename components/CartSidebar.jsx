@@ -91,13 +91,13 @@ const getStyles = (height) =>
 
 		closeBtn: {
 			padding: 15,
-			left: 1,
+			left: 2,
 			position: "absolute",
 		},
 
 		closeText: {
 			textAlign: "center",
-			fontSize: 14,
+			fontSize: 14.5,
 			backgroundColor: Colors.primary,
 			color: "white",
 			padding: 5,

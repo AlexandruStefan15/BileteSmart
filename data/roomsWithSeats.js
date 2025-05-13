@@ -1342,7 +1342,7 @@ export const roomsWithSeats = {
 							id_room: 1,
 							path_d:
 								"M48.6199 64.81H44.0099C43.6951 64.81 43.4399 65.0652 43.4399 65.38V69.99C43.4399 70.3048 43.6951 70.56 44.0099 70.56H48.6199C48.9347 70.56 49.1899 70.3048 49.1899 69.99V65.38C49.1899 65.0652 48.9347 64.81 48.6199 64.81Z",
-							price: 25,
+							price: 25.55,
 							row_no: "0",
 							col_no: "0",
 							seat_no: "82",
@@ -1431,7 +1431,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50944",
@@ -1591,7 +1591,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50954",
@@ -1607,7 +1607,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50955",
@@ -1623,7 +1623,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50956",
@@ -1687,7 +1687,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50960",
@@ -1719,7 +1719,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50962",
@@ -1735,7 +1735,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50963",
@@ -1783,7 +1783,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50966",
@@ -1815,7 +1815,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50968",
@@ -1831,7 +1831,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50969",
@@ -1847,7 +1847,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50970",
@@ -1863,7 +1863,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "50971",
@@ -2727,7 +2727,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "51025",
@@ -2743,7 +2743,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "51026",
@@ -2759,7 +2759,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "51027",
@@ -2775,7 +2775,7 @@ export const roomsWithSeats = {
 							is_booking_blocked: "0",
 							is_for_child: "0",
 							is_premium: "0",
-							busy: 0,
+							busy: 1,
 						},
 						{
 							id_seat: "51028",
