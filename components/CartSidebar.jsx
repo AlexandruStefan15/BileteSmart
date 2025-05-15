@@ -5,14 +5,14 @@ import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-na
 //colors
 import { Colors } from "@/constants/Colors";
 
-// context
-import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
+//icons
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import TicketsInfo from "./TicketsInfo";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SIDEBAR_WIDTH = SCREEN_WIDTH * 0.85;
+const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
 export const useCartSideBar = () => {
 	const sidebarX = useSharedValue(-SIDEBAR_WIDTH);
@@ -28,8 +28,13 @@ export const useCartSideBar = () => {
 	return { sidebarX, open, close };
 };
 
-export default function CartSideBar({ sidebarX, children }) {
-	const { selectedSeats } = useContext(SelectedSeatsContext);
+export default function CartSideBar({
+	sidebarX,
+	selectedSeats,
+	setSelectedSeats,
+	seatCount,
+	children,
+}) {
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
@@ -43,18 +48,21 @@ export default function CartSideBar({ sidebarX, children }) {
 			<View style={styles.sidebar_header}>
 				<TouchableOpacity
 					style={styles.closeBtn}
-					onPress={() => (sidebarX.value = withTiming(-SIDEBAR_WIDTH))}
+					onPress={() => {
+						seatCount.value = 0;
+						sidebarX.value = withTiming(-SIDEBAR_WIDTH);
+					}}
 				>
-					<Text style={styles.closeText}>X</Text>
+					<FeatherIcon name="arrow-left" size={26} color={"black"} />
 				</TouchableOpacity>
 				<Text style={styles.cartTitle}>Coșul meu</Text>
 			</View>
 			<View style={styles.sidebar_content}>
-				<TicketsInfo selectedSeats={selectedSeats} />
+				<TicketsInfo selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
-					<Text style={{ fontWeight: "500", fontSize: 16 }}>
+					<Text style={{ fontWeight: "600", fontSize: 16 }}>
 						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
 				</View>
@@ -74,7 +82,7 @@ const getStyles = (height) =>
 			left: 0,
 			width: SIDEBAR_WIDTH,
 			height: height - 60,
-			backgroundColor: "#f8f8f8",
+			backgroundColor: "white",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS
 		},
@@ -92,19 +100,19 @@ const getStyles = (height) =>
 
 		closeBtn: {
 			padding: 15,
-			left: 2,
+			left: 3,
 			position: "absolute",
 		},
 
-		closeText: {
+		/* closeBtn_text: {
 			textAlign: "center",
-			fontSize: 14.5,
+			fontSize: 15,
 			backgroundColor: Colors.primary,
 			color: "white",
 			padding: 5,
-			paddingInline: 11,
+			paddingInline: 12,
 			borderRadius: 5,
-		},
+		}, */
 
 		cartTitle: {
 			fontSize: 19.5,

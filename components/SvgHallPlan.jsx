@@ -13,9 +13,6 @@ import { useNavigation } from "@react-navigation/native";
 //colors
 import { Colors } from "@/constants";
 
-//store
-import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
-
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
 
@@ -32,9 +29,9 @@ const SvgHallPlan = ({
 	selectRoom,
 	selectSeats,
 	fieldPosition, // only for seats screen
+	...props
 }) => {
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
-	const { selectedSeats, setSelectedSeats } = useContext(SelectedSeatsContext);
 
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
@@ -141,7 +138,7 @@ const SvgHallPlan = ({
 								<Path
 									onPress={() => {
 										if (!seat.busy)
-											setSelectedSeats((prev) => {
+											props.setSelectedSeats((prev) => {
 												const exists = prev.some((s) => s.id_seat === seat.id_seat);
 												if (exists) {
 													return prev.filter((s) => s.id_seat !== seat.id_seat);
@@ -156,7 +153,7 @@ const SvgHallPlan = ({
 									fill={
 										seat.busy
 											? "gray"
-											: selectedSeats.some((s) => s.id_seat === seat.id_seat)
+											: props.selectedSeats.some((s) => s.id_seat === seat.id_seat)
 											? "#5fa0c4"
 											: "#85cb3c"
 									}

@@ -60,8 +60,8 @@ const LocationScreen = ({ navigation, route }) => {
 						<View style={styles.info}>
 							{Object.entries(currentLocation.info).map(([key, value]) => (
 								<Text style={[styles.infoText]} key={key}>
-									{renderIcon(value.icon)}
-									{"  "}
+									{/* {renderIcon(value.icon)}
+									{"  "} */}
 									{value.text}
 								</Text>
 							))}
@@ -99,7 +99,7 @@ const LocationScreen = ({ navigation, route }) => {
 							<Text style={styles.notFoundText}>
 								<FontAwesomeIcon name="calendar-o" size={18} color={Colors.primary} />
 								{"  "}
-								Nu au fost găsite evenimente disponibile pentru această locație.
+								Nu au fost găsite evenimente disponibile pentru această locație încă.
 							</Text>
 						)}
 					</View>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
 
 	info: {
 		marginTop: 5,
-		gap: 17,
+		gap: 16,
 	},
 
 	infoText: {

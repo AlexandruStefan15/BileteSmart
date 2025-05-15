@@ -67,7 +67,7 @@ const getStyles = (theme) => {
 		event_badge: {
 			backgroundColor: "#242424d6",
 			paddingInline: 18,
-			paddingTop: 6,
+			paddingTop: 7,
 			paddingBottom: 12,
 			textAlign: "center",
 			position: "relative",
@@ -86,7 +86,7 @@ const getStyles = (theme) => {
 		},
 
 		event_badge_text0: {
-			fontSize: 30,
+			fontSize: 27,
 			fontWeight: "bold",
 			marginBottom: -3,
 		},

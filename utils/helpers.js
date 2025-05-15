@@ -43,3 +43,28 @@ export function removeFirstWord(str) {
 	words.shift(); // remove the first word
 	return words.join(" ");
 }
+
+// utils/CartController.js
+import { Dimensions } from "react-native";
+import { withTiming, useSharedValue } from "react-native-reanimated";
+
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const SIDEBAR_WIDTH = SCREEN_WIDTH * 0.85;
+
+const sidebarX = { value: null };
+
+export const getCartController = () => {
+	if (!sidebarX.value) {
+		sidebarX.value = require("react-native-reanimated").useSharedValue(-SIDEBAR_WIDTH);
+	}
+
+	const open = () => {
+		sidebarX.value.value = withTiming(0, { duration: 300 });
+	};
+
+	const close = () => {
+		sidebarX.value.value = withTiming(-SIDEBAR_WIDTH, { duration: 300 });
+	};
+
+	return { sidebarX: sidebarX.value, open, close };
+};

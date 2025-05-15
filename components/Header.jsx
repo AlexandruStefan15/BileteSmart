@@ -1,39 +1,53 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
-import FeatherIcon from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import Animated from "react-native-reanimated";
+import Animated, {
+	useSharedValue,
+	withTiming,
+	useDerivedValue,
+	useAnimatedStyle,
+} from "react-native-reanimated";
+import { Dimensions } from "react-native";
 import { images } from "@/assets/images";
 import { Colors } from "@/constants";
 
+const SCREEN_WIDTH = Dimensions.get("window").width;
+
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
-
-//hooks
-import { useSelectedSeats } from "@/hooks/useSelectedSeats";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import CartSideBar, { useCartSideBar } from "@/components/CartSideBar";
 
 const Header = ({
 	title = false,
+	style,
 	logo = images.logo,
 	showBurgerMenu = true,
 	showCart = false,
 	variant = "",
-	style,
+	selectedSeats = [],
+	setSelectedSeats,
 }) => {
-	const [showBadge, setShowBadge] = useState(false);
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
-	const { selectedSeats } = useSelectedSeats();
-	const selectedSeatsLengthRef = useRef(selectedSeats.length);
+	const seatCount = useSharedValue(selectedSeats.length);
 
 	useEffect(() => {
-		if (selectedSeats.length > selectedSeatsLengthRef.current) setShowBadge(true);
-		else if (selectedSeats.length == 0) setShowBadge(false);
-		selectedSeatsLengthRef.current = selectedSeats.length;
+		seatCount.value = selectedSeats.length;
 	}, [selectedSeats.length]);
+
+	const showBadge = useDerivedValue(() => {
+		return seatCount.value > 0;
+	});
+
+	const badgeStyle = useAnimatedStyle(() => {
+		return {
+			opacity: withTiming(showBadge.value ? 1 : 0, { duration: 150 }),
+			transform: [{ scale: withTiming(showBadge.value ? 1 : 0.5, { duration: 150 }) }],
+		};
+	});
 
 	if (variant == 3)
 		return (
@@ -46,18 +60,23 @@ const Header = ({
 				{showCart && (
 					<TouchableOpacity
 						onPress={() => {
+							seatCount.value = 0;
 							open();
-							setShowBadge(false);
 						}}
 						style={styles.burgerMenu}
 					>
 						<View style={{ padding: 5, right: -1 }}>
 							<Ionicons name="cart-outline" size={28} color={"white"} />
 						</View>
-						{showBadge && <View style={styles.badge}></View>}
+						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar sidebarX={sidebarX} />
+				<CartSideBar
+					sidebarX={sidebarX}
+					selectedSeats={selectedSeats}
+					setSelectedSeats={setSelectedSeats}
+					seatCount={seatCount}
+				/>
 			</Animated.View>
 		);
 

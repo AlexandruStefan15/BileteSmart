@@ -14,12 +14,7 @@ import Button from "@/components/Button";
 //data
 import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched by locationId and eventId
 
-const selectedSeats = [
-	{ room: "A0", seat_number: 4, row: 7, price: 15 },
-	{ room: "A0", seat_number: 5, row: 7, price: 15 },
-];
-
-const EventDetailsScreen = ({ navigation, route }) => {
+const EventDetailsScreen = ({ navigation, route, selectedSeats, setSelectedSeats }) => {
 	const { locationId, event, locationFieldPath } = route.params;
 	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
 	const rooms = roomsWithSeats[1][129].rooms;
@@ -40,7 +35,13 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				</View>
 				<View style={{ backgroundColor: "#242424" }}>
 					<View style={styles.svgWrapper}>
-						<SvgHallPlan rooms={rooms} field_path={locationFieldPath} read_only={true} />
+						<SvgHallPlan
+							rooms={rooms}
+							field_path={locationFieldPath}
+							read_only={true}
+							selectedSeats={selectedSeats}
+							setSelectedSeats={setSelectedSeats}
+						/>
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (
 								<Button
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 		backgroundColor: "#242424",
 		margin: 8,
-		marginBottom: 40,
+		marginBottom: 45,
 		marginTop: 5,
 		gap: 15,
 	},

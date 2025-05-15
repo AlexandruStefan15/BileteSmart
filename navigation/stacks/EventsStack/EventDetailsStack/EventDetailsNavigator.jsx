@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-// context
-import { SelectedSeatsContext } from "@/context/SelectedSeatsContext";
-
 //screens
 import EventDetailsScreen from "@/screens/EventsStack/EventDetailsStack.jsx/EventDetailsScreen";
 import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
@@ -14,20 +11,26 @@ const EventsDetailsNavigator = () => {
 	const [selectedSeats, setSelectedSeats] = useState([]);
 
 	return (
-		<SelectedSeatsContext.Provider value={{ selectedSeats, setSelectedSeats }}>
-			<Stack.Navigator>
-				<Stack.Screen
-					name="EventDetailsScreen"
-					component={EventDetailsScreen}
-					options={{ headerShown: false }}
-				/>
-				<Stack.Screen
-					name="RoomsPlanStack"
-					component={RoomsPlanNavigator}
-					options={{ headerShown: false }}
-				/>
-			</Stack.Navigator>
-		</SelectedSeatsContext.Provider>
+		<Stack.Navigator>
+			<Stack.Screen name="EventDetailsScreen" options={{ headerShown: false }}>
+				{(props) => (
+					<EventDetailsScreen
+						{...props}
+						selectedSeats={selectedSeats}
+						setSelectedSeats={setSelectedSeats}
+					/>
+				)}
+			</Stack.Screen>
+			<Stack.Screen name="RoomsPlanStack" options={{ headerShown: false }}>
+				{(props) => (
+					<RoomsPlanNavigator
+						{...props}
+						selectedSeats={selectedSeats}
+						setSelectedSeats={setSelectedSeats}
+					/>
+				)}
+			</Stack.Screen>
+		</Stack.Navigator>
 	);
 };
 
