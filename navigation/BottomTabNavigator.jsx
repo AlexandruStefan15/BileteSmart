@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
-import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
-import ContactNavigator from "./stacks/ContactStack/ContactNavigator";
 import { StackActions, CommonActions } from "@react-navigation/native";
 import { Colors } from "@/constants";
+
+//navigators
+import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
+import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
+import TicketsNavigator from "./stacks/TicketsStack/TicketsNavigator";
+import ProfileNavigator from "./stacks/ProfileStack/ProfileNavigator";
 
 //icons
 import Icon from "react-native-vector-icons/Feather";
@@ -44,7 +47,7 @@ const BottomTabNavigator = () => {
 
 			<Tab.Screen
 				name="Bilete"
-				component={ContactNavigator}
+				component={TicketsNavigator}
 				options={{
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesomeIcon name="ticket" size={size} color={color} />
@@ -54,7 +57,7 @@ const BottomTabNavigator = () => {
 
 			<Tab.Screen
 				name="Profil"
-				component={ContactNavigator}
+				component={ProfileNavigator}
 				options={{
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesomeIcon name="user" size={size} color={color} />

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 	},
 
 	innerTitle: {
-		fontSize: 25,
+		fontSize: 26,
 		color: "white",
 		textAlign: "center",
 		fontWeight: "bold",
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 		color: "white",
 		borderWidth: 1,
 		borderRadius: 55,
-		height: 56,
+		height: 57,
 		fontWeight: 500,
 		borderColor: "white",
 		textAlign: "center",
