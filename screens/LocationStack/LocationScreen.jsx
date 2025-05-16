@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
 
 	info: {
 		marginTop: 5,
-		gap: 16,
+		gap: 15,
 	},
 
 	infoText: {

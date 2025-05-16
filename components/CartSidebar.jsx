@@ -92,7 +92,7 @@ const getStyles = (height) =>
 		sidebar_header: {
 			flexDirection: "row",
 			justifyContent: "space-between",
-			borderBottomWidth: 0.5,
+			borderBottomWidth: 0.2,
 			alignItems: "center",
 			paddingInline: 15,
 			paddingBlock: 20,
@@ -130,7 +130,7 @@ const getStyles = (height) =>
 
 		footer: {
 			paddingInline: 15,
-			paddingTop: 7,
+			paddingTop: 6.5,
 			paddingBottom: 19,
 			borderTopWidth: 0.2,
 			width: "100%",

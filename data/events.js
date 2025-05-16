@@ -25,7 +25,7 @@ export const eventsByLocation = {
 			event_type: "Sportiv",
 			event_type_name: "Baschet Masculin SC 2024-2025",
 			time: "17:00",
-			date: "2025-05-07",
+			date: "2025-04-26",
 			logo_images: [images.fcArges, images.csmGalati],
 			demo: "0",
 		},

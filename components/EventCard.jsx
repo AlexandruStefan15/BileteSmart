@@ -47,7 +47,7 @@ export default function EventCard({ eventData, style, ...props }) {
 const getStyles = (theme) => {
 	return StyleSheet.create({
 		event_container: {
-			aspectRatio: 100 / 120,
+			aspectRatio: 100 / 130,
 			overflow: "hidden",
 			width: "100%",
 			position: "relative",
