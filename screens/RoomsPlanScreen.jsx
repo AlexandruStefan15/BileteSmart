@@ -13,8 +13,8 @@ export default RoomsPlanScreen = ({
 	route,
 	selectedSeats,
 	setSelectedSeats,
-	showBadge,
-	setShowBadge,
+	seatCount,
+	badgeStyle,
 }) => {
 	const { locationId, eventId, locationFieldPath } = route.params;
 
@@ -25,8 +25,8 @@ export default RoomsPlanScreen = ({
 				showCart={true}
 				selectedSeats={selectedSeats}
 				setSelectedSeats={setSelectedSeats}
-				showBadge={showBadge}
-				setShowBadge={setShowBadge}
+				seatCount={seatCount}
+				badgeStyle={badgeStyle}
 			/>
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}

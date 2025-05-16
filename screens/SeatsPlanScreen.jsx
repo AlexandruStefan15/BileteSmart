@@ -13,13 +13,11 @@ export default SeatsPlanScreen = ({
 	route,
 	selectedSeats,
 	setSelectedSeats,
-	showBadge,
-	setShowBadge,
+	seatCount,
+	badgeStyle,
 }) => {
 	const { roomId } = route.params;
 	const currentRoom = roomsWithSeats[1][129].rooms.find((room) => room.id_room == roomId);
-	const seats = currentRoom.seats;
-	const rows = currentRoom.rows_path_d;
 	const currentRoom_fieldPosition = currentRoom.field_position;
 
 	return (
@@ -29,8 +27,8 @@ export default SeatsPlanScreen = ({
 				showCart={true}
 				selectedSeats={selectedSeats}
 				setSelectedSeats={setSelectedSeats}
-				showBadge={showBadge}
-				setShowBadge={setShowBadge}
+				seatCount={seatCount}
+				badgeStyle={badgeStyle}
 			/>
 			<SvgHallPlan
 				currentRoom={currentRoom}

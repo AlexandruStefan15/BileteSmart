@@ -29,25 +29,11 @@ const Header = ({
 	variant = "",
 	selectedSeats = [],
 	setSelectedSeats,
+	badgeStyle,
+	seatCount,
 }) => {
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
-	const seatCount = useSharedValue(selectedSeats.length);
-
-	useEffect(() => {
-		seatCount.value = selectedSeats.length;
-	}, [selectedSeats.length]);
-
-	const showBadge = useDerivedValue(() => {
-		return seatCount.value > 0;
-	});
-
-	const badgeStyle = useAnimatedStyle(() => {
-		return {
-			opacity: withTiming(showBadge.value ? 1 : 0, { duration: 150 }),
-			transform: [{ scale: withTiming(showBadge.value ? 1 : 0.5, { duration: 150 }) }],
-		};
-	});
 
 	if (variant == 3)
 		return (
