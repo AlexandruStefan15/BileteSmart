@@ -67,8 +67,8 @@ const getStyles = (theme) => {
 		event_badge: {
 			backgroundColor: "#242424d6",
 			paddingInline: 18,
-			paddingTop: 7,
-			paddingBottom: 12,
+			paddingTop: 7.5,
+			paddingBottom: 12.5,
 			textAlign: "center",
 			position: "relative",
 			top: 0,

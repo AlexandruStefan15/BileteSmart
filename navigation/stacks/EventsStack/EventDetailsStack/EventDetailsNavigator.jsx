@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //screens
-import EventDetailsScreen from "@/screens/EventsStack/EventDetailsStack.jsx/EventDetailsScreen";
+import EventDetailsScreen from "@/screens/EventDetailsScreen";
 import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
 
 const Stack = createStackNavigator();
