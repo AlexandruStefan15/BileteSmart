@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import Animated, {
+	useSharedValue,
+	useAnimatedStyle,
+	withTiming,
+	runOnJS,
+} from "react-native-reanimated";
 
 //colors
 import { Colors } from "@/constants";
@@ -21,44 +27,63 @@ const TicketsInfo = ({ selectedSeats = [], setSelectedSeats }) => {
 					keyExtractor={(item) => item.id_seat.toString()}
 					contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
 					renderItem={({ item }) => (
-						<View style={{ flexDirection: "row" }}>
-							<View style={styles.ticketList_item}>
-								{teeth.map((_, index) => (
-									<View key={index} style={[styles.tooth, { top: index * 15.5 }]} />
-								))}
-								<Text style={styles.ticketList_item_text}>
-									Locul:{" "}
-									<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.seat_no}</Text>
-								</Text>
-								<Text style={styles.ticketList_item_text}>
-									Randul:{" "}
-									<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.row_no}</Text>
-								</Text>
-								<Text style={styles.ticketList_item_text}>
-									Sectorul:{" "}
-									<Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.room_name}</Text>
-								</Text>
-								<Text style={{ fontWeight: "600", fontSize: 17, marginTop: 12, color: "white" }}>
-									{item.price} RON
-								</Text>
-							</View>
-							<TouchableOpacity
-								onPress={() =>
-									setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat != item.id_seat))
-								}
-								style={styles.ticketList_removeButton}
-							>
-								<Text style={styles.ticketList_removeButton_text}>
-									<EntypoIcon name="cross" size={20} />
-								</Text>
-							</TouchableOpacity>
-						</View>
+						<TicketItem
+							item={item}
+							onRemove={(id) =>
+								setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat != id))
+							}
+						/>
 					)}
 				/>
 			) : (
 				<Text style={{ margin: "auto" }}>Momentan nu ai bilete in coș...</Text>
 			)}
 		</View>
+	);
+};
+
+const TicketItem = ({ item, onRemove }) => {
+	const translateX = useSharedValue(0);
+
+	const animatedStyle = useAnimatedStyle(() => ({
+		transform: [{ translateX: translateX.value }],
+	}));
+
+	const handleRemove = () => {
+		translateX.value = withTiming(-500, { duration: 300 }, (finished) => {
+			if (finished) {
+				runOnJS(onRemove)(item.id_seat);
+			}
+		});
+	};
+
+	const teeth = Array.from({ length: 6 });
+
+	return (
+		<Animated.View style={[{ flexDirection: "row" }, animatedStyle]}>
+			<View style={styles.ticketList_item}>
+				{teeth.map((_, index) => (
+					<View key={index} style={[styles.tooth, { top: index * 15.5 }]} />
+				))}
+				<Text style={styles.ticketList_item_text}>
+					Locul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.seat_no}</Text>
+				</Text>
+				<Text style={styles.ticketList_item_text}>
+					Randul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.row_no}</Text>
+				</Text>
+				<Text style={styles.ticketList_item_text}>
+					Sectorul: <Text style={{ color: "#1a91d4", fontWeight: "bold" }}>{item.room_name}</Text>
+				</Text>
+				<Text style={{ fontWeight: "600", fontSize: 17, marginTop: 12, color: "white" }}>
+					{item.price} RON
+				</Text>
+			</View>
+			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
+				<Text style={styles.ticketList_removeButton_text}>
+					<EntypoIcon name="cross" size={20} />
+				</Text>
+			</TouchableOpacity>
+		</Animated.View>
 	);
 };
 
