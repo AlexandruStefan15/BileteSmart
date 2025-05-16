@@ -62,7 +62,7 @@ const LocationScreen = ({ navigation, route }) => {
 								<Text style={[styles.infoText]} key={key}>
 									{/* {renderIcon(value.icon)}
 									{"  "} */}
-									{value.text}
+									{value}
 								</Text>
 							))}
 						</View>

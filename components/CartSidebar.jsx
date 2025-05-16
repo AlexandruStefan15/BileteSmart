@@ -107,7 +107,7 @@ const getStyles = (height) =>
 		/* closeBtn_text: {
 			textAlign: "center",
 			fontSize: 15,
-			backgroundColor: Colors.primary,
+			backgroundColor: Colors.primary,                                                                                             
 			color: "white",
 			padding: 5,
 			paddingInline: 12,
@@ -131,7 +131,7 @@ const getStyles = (height) =>
 		footer: {
 			paddingInline: 15,
 			paddingTop: 7,
-			paddingBottom: 20,
+			paddingBottom: 19,
 			borderTopWidth: 0.2,
 			width: "100%",
 			gap: 5,

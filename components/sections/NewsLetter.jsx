@@ -1,10 +1,12 @@
 import { View, Text, TextInput, Image, StyleSheet, Dimensions } from "react-native";
 import React, { useState } from "react";
 
+//images
+import { images } from "@/assets/images";
+
+//components
 import Button from "../Button";
 import Title from "../Title";
-
-import { images } from "@/assets/images";
 
 const { height: windowHeight } = Dimensions.get("window");
 
