@@ -20,17 +20,26 @@ const TicketsInfo = ({ selectedSeats = [], setSelectedSeats }) => {
 
 	return (
 		<View style={{ flex: 1 }}>
-			{selectedSeats.length > 0 ? (
+			{[...selectedSeats].length > 0 ? (
 				<FlatList
 					style={styles.ticketList}
-					data={selectedSeats}
+					data={[...selectedSeats]}
 					keyExtractor={(item) => item.id_seat.toString()}
 					contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
 					renderItem={({ item }) => (
 						<TicketItem
 							item={item}
 							onRemove={(id) =>
-								setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat != id))
+								setSelectedSeats((prev) => {
+									const updated = new Set(prev);
+									for (const seat of updated) {
+										if (seat.id_seat === id) {
+											updated.delete(seat);
+											break;
+										}
+									}
+									return updated;
+								})
 							}
 						/>
 					)}

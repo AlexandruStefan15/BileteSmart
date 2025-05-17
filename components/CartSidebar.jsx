@@ -8,6 +8,9 @@ import { Colors } from "@/constants/Colors";
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
 
+//hooks
+import { useSelectedSeatsContext } from "@/hooks/useSelectedSeats";
+
 //components
 import TicketsInfo from "./TicketsInfo";
 
@@ -28,13 +31,8 @@ export const useCartSideBar = () => {
 	return { sidebarX, open, close };
 };
 
-export default function CartSideBar({
-	sidebarX,
-	selectedSeats,
-	setSelectedSeats,
-	seatCount,
-	children,
-}) {
+export default function CartSideBar({ sidebarX, seatCount, children }) {
+	const { selectedSeats, setSelectedSeats } = useSelectedSeatsContext();
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
@@ -63,7 +61,8 @@ export default function CartSideBar({
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
 					<Text style={{ fontWeight: "600", fontSize: 16 }}>
-						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
+						Total: {[...selectedSeats].reduce((total, seat) => total + parseFloat(seat.price), 0)}{" "}
+						RON{" "}
 					</Text>
 				</View>
 				<TouchableOpacity style={styles.checkoutButton}>

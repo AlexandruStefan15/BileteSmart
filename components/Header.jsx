@@ -27,8 +27,6 @@ const Header = ({
 	showBurgerMenu = true,
 	showCart = false,
 	variant = "",
-	selectedSeats = [],
-	setSelectedSeats,
 	badgeStyle,
 	seatCount,
 }) => {
@@ -57,12 +55,7 @@ const Header = ({
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar
-					sidebarX={sidebarX}
-					selectedSeats={selectedSeats}
-					setSelectedSeats={setSelectedSeats}
-					seatCount={seatCount}
-				/>
+				<CartSideBar sidebarX={sidebarX} seatCount={seatCount} />
 			</Animated.View>
 		);
 

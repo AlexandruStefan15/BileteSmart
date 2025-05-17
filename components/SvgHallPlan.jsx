@@ -15,6 +15,7 @@ import { Colors } from "@/constants";
 
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
+import { useSelectedSeatsContext } from "@/hooks/useSelectedSeats";
 
 //components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
@@ -31,17 +32,41 @@ const SvgHallPlan = ({
 	fieldPosition, // only for seats screen
 	...props
 }) => {
+	const { selectedSeats, setSelectedSeats } = useSelectedSeatsContext();
+	const [seatIds, setSeatIds] = React.useState(new Set());
 	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
-
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
 
-	const seatTapGesture = (seat) => {
-		return Gesture.Tap()
-			.maxDuration(250)
-			.onEnd(() => {
-				if (!seat.occupied) runOnJS(toggleSeats)(seat);
-			});
+	const toggleSeat = (seat) => {
+		let isSelected = false;
+
+		setSelectedSeats((prev) => {
+			const updated = new Set(prev);
+			for (const s of updated) {
+				if (s.id_seat === seat.id_seat) {
+					updated.delete(s);
+					isSelected = true;
+					break;
+				}
+			}
+
+			if (!isSelected) {
+				updated.add(seat);
+			}
+
+			return updated;
+		});
+
+		setSeatIds((prev) => {
+			const updatedIds = new Set(prev);
+			if (isSelected) {
+				updatedIds.delete(seat.id_seat);
+			} else {
+				updatedIds.add(seat.id_seat);
+			}
+			return updatedIds;
+		});
 	};
 
 	if (read_only)
@@ -137,15 +162,7 @@ const SvgHallPlan = ({
 							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {
-										if (!seat.busy)
-											props.setSelectedSeats((prev) => {
-												const exists = prev.some((s) => s.id_seat === seat.id_seat);
-												if (exists) {
-													return prev.filter((s) => s.id_seat !== seat.id_seat);
-												} else {
-													return [...prev, seat];
-												}
-											});
+										if (!seat.busy) toggleSeat(seat);
 									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
@@ -153,7 +170,7 @@ const SvgHallPlan = ({
 									fill={
 										seat.busy
 											? "gray"
-											: props.selectedSeats.some((s) => s.id_seat === seat.id_seat)
+											: [...selectedSeats].some((s) => s.id_seat === seat.id_seat)
 											? "#5fa0c4"
 											: "#85cb3c"
 									}
