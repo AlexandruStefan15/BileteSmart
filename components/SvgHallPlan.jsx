@@ -38,13 +38,20 @@ const SvgHallPlan = ({
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
 
+	const hasSeat = (set, seatId) => {
+		for (const seat of set) {
+			if (seat.id_seat == seatId) return true;
+		}
+		return false;
+	};
+
 	const toggleSeat = (seat) => {
 		let isSelected = false;
 
 		setSelectedSeats((prev) => {
 			const updated = new Set(prev);
 			for (const s of updated) {
-				if (s.id_seat === seat.id_seat) {
+				if (s.id_seat == seat.id_seat) {
 					updated.delete(s);
 					isSelected = true;
 					break;
@@ -170,7 +177,7 @@ const SvgHallPlan = ({
 									fill={
 										seat.busy
 											? "gray"
-											: [...selectedSeats].some((s) => s.id_seat === seat.id_seat)
+											: hasSeat(selectedSeats, seat.id_seat)
 											? "#5fa0c4"
 											: "#85cb3c"
 									}
