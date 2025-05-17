@@ -7,22 +7,18 @@ import Animated, {
 	useAnimatedStyle,
 } from "react-native-reanimated";
 
-//context
-import { useSelectedSeatsContext } from "@/hooks/useSelectedSeats";
-
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
 import SeatsPlanScreen from "@/screens/SeatsPlanScreen";
 
 const Stack = createStackNavigator();
 
-export default function RoomsPlanNavigator({}) {
-	const { selectedSeats } = useSelectedSeatsContext();
-	const seatCount = useSharedValue([...selectedSeats].length);
+export default function RoomsPlanNavigator({ selectedSeatIds, setSelectedSeatIds }) {
+	const seatCount = useSharedValue(0);
 
-	useEffect(() => {
-		seatCount.value = [...selectedSeats].length;
-	}, [[...selectedSeats].length]);
+	const handleSeatCountChange = (count) => {
+		seatCount.value = count;
+	};
 
 	const showBadge = useDerivedValue(() => {
 		return seatCount.value > 0;
@@ -38,11 +34,27 @@ export default function RoomsPlanNavigator({}) {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
-				{(props) => <RoomsPlanScreen {...props} seatCount={seatCount} badgeStyle={badgeStyle} />}
+				{(props) => (
+					<RoomsPlanScreen
+						{...props}
+						selectedSeatIds={selectedSeatIds}
+						seatCount={seatCount}
+						badgeStyle={badgeStyle}
+					/>
+				)}
 			</Stack.Screen>
 
 			<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
-				{(props) => <SeatsPlanScreen {...props} seatCount={seatCount} badgeStyle={badgeStyle} />}
+				{(props) => (
+					<SeatsPlanScreen
+						{...props}
+						seatCount={seatCount}
+						badgeStyle={badgeStyle}
+						onSelectionChange={handleSeatCountChange}
+						selectedSeatIds={selectedSeatIds}
+						setSelectedSeatIds={setSelectedSeatIds}
+					/>
+				)}
 			</Stack.Screen>
 		</Stack.Navigator>
 	);

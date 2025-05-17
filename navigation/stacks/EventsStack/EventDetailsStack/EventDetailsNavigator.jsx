@@ -11,8 +11,12 @@ import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
 const Stack = createStackNavigator();
 
 const EventsDetailsNavigator = () => {
-	const [selectedSeats, setSelectedSeats] = useState(new Set());
-	const contextValue = useMemo(() => ({ selectedSeats, setSelectedSeats }), [selectedSeats]);
+	const [selectedSeats, setSelectedSeats] = useState([]);
+	const [selectedSeatIds, setSelectedSeatIds] = useState(new Set());
+	const contextValue = useMemo(
+		() => ({ selectedSeats, setSelectedSeats, selectedSeatIds, setSelectedSeatIds }),
+		[selectedSeats]
+	);
 
 	return (
 		<SelectedSeatsContext.Provider value={contextValue}>
@@ -21,7 +25,13 @@ const EventsDetailsNavigator = () => {
 					{(props) => <EventDetailsScreen {...props} />}
 				</Stack.Screen>
 				<Stack.Screen name="RoomsPlanStack" options={{ headerShown: false }}>
-					{(props) => <RoomsPlanNavigator {...props} />}
+					{(props) => (
+						<RoomsPlanNavigator
+							selectedSeatIds={selectedSeatIds}
+							setSelectedSeatIds={setSelectedSeatIds}
+							{...props}
+						/>
+					)}
 				</Stack.Screen>
 			</Stack.Navigator>
 		</SelectedSeatsContext.Provider>

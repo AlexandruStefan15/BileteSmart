@@ -8,8 +8,8 @@ import { Colors } from "@/constants/Colors";
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
 
-//hooks
-import { useSelectedSeatsContext } from "@/hooks/useSelectedSeats";
+//context
+import { useSelectedSeatsContext } from "@/context/SelectedSeatsContext";
 
 //components
 import TicketsInfo from "./TicketsInfo";
@@ -31,7 +31,7 @@ export const useCartSideBar = () => {
 	return { sidebarX, open, close };
 };
 
-export default function CartSideBar({ sidebarX, seatCount, children }) {
+export default function CartSideBar({ sidebarX, seatCount, children, ...props }) {
 	const { selectedSeats, setSelectedSeats } = useSelectedSeatsContext();
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
@@ -56,7 +56,12 @@ export default function CartSideBar({ sidebarX, seatCount, children }) {
 				<Text style={styles.cartTitle}>Coșul meu</Text>
 			</View>
 			<View style={styles.sidebar_content}>
-				<TicketsInfo selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />
+				<TicketsInfo
+					selectedSeats={selectedSeats}
+					setSelectedSeats={setSelectedSeats}
+					selectedSeatIds={props.selectedSeatIds}
+					setSelectedSeatIds={props.setSelectedSeatIds}
+				/>
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>

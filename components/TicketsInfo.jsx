@@ -14,7 +14,12 @@ import { Colors } from "@/constants";
 //icons
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-const TicketsInfo = ({ selectedSeats = [], setSelectedSeats }) => {
+const TicketsInfo = ({
+	selectedSeats = [],
+	setSelectedSeats,
+	selectedSeatIds,
+	setSelectedSeatIds,
+}) => {
 	const teethCount = 6;
 	const teeth = Array.from({ length: teethCount });
 
@@ -29,18 +34,14 @@ const TicketsInfo = ({ selectedSeats = [], setSelectedSeats }) => {
 					renderItem={({ item }) => (
 						<TicketItem
 							item={item}
-							onRemove={(id) =>
-								setSelectedSeats((prev) => {
+							onRemove={(id) => {
+								setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat !== id));
+								setSelectedSeatIds((prev) => {
 									const updated = new Set(prev);
-									for (const seat of updated) {
-										if (seat.id_seat === id) {
-											updated.delete(seat);
-											break;
-										}
-									}
-									return updated;
-								})
-							}
+									updated.delete(id);
+									return new Set(updated);
+								});
+							}}
 						/>
 					)}
 				/>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import Svg, { Path, Image as SvgImage } from "react-native-svg";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
@@ -13,9 +13,11 @@ import { useNavigation } from "@react-navigation/native";
 //colors
 import { Colors } from "@/constants";
 
+//context
+import { useSelectedSeatsContext } from "@/context/SelectedSeatsContext";
+
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
-import { useSelectedSeatsContext } from "@/hooks/useSelectedSeats";
 
 //components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
@@ -30,51 +32,41 @@ const SvgHallPlan = ({
 	selectRoom,
 	selectSeats,
 	fieldPosition, // only for seats screen
-	...props
+	onSelectionChange,
+	selectedSeatIds,
+	setSelectedSeatIds,
 }) => {
-	const { selectedSeats, setSelectedSeats } = useSelectedSeatsContext();
-	const [seatIds, setSeatIds] = React.useState(new Set());
-	const [selectedRoomId, setSelectedRoomId] = React.useState(null);
+	/* const [selectedSeatIds, setSelectedSeatIds] = useState(new Set()); */
+	const [selectedRoomId, setSelectedRoomId] = useState(null);
+	const { setSelectedSeats } = useSelectedSeatsContext();
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
 
-	const hasSeat = (set, seatId) => {
-		for (const seat of set) {
-			if (seat.id_seat == seatId) return true;
-		}
-		return false;
-	};
-
-	const toggleSeat = (seat) => {
-		let isSelected = false;
-
-		setSelectedSeats((prev) => {
+	const toggleSeat = (seatId) => {
+		setSelectedSeatIds((prev) => {
 			const updated = new Set(prev);
-			for (const s of updated) {
-				if (s.id_seat == seat.id_seat) {
-					updated.delete(s);
-					isSelected = true;
-					break;
-				}
+			if (updated.has(seatId)) {
+				updated.delete(seatId);
+			} else {
+				updated.add(seatId);
 			}
-
-			if (!isSelected) {
-				updated.add(seat);
-			}
-
 			return updated;
 		});
-
-		setSeatIds((prev) => {
-			const updatedIds = new Set(prev);
-			if (isSelected) {
-				updatedIds.delete(seat.id_seat);
-			} else {
-				updatedIds.add(seat.id_seat);
-			}
-			return updatedIds;
-		});
 	};
+
+	useEffect(() => {
+		if (onSelectionChange) {
+			onSelectionChange(selectedSeatIds.size);
+		}
+	}, [selectedSeatIds, onSelectionChange]);
+
+	useEffect(() => {
+		if (rooms && selectedSeatIds instanceof Set && selectedSeatIds.size > 0 && setSelectedSeats) {
+			const allSeats = rooms.flatMap((r) => r.seats ?? []);
+			const selected = allSeats.filter((seat) => selectedSeatIds.has(seat.id_seat));
+			setSelectedSeats(selected);
+		}
+	}, [selectedSeatIds, rooms]);
 
 	if (read_only)
 		return (
@@ -169,17 +161,13 @@ const SvgHallPlan = ({
 							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {
-										if (!seat.busy) toggleSeat(seat);
+										if (!seat.busy) toggleSeat(seat.id_seat);
 									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
 									d={seat.path_d}
 									fill={
-										seat.busy
-											? "gray"
-											: hasSeat(selectedSeats, seat.id_seat)
-											? "#5fa0c4"
-											: "#85cb3c"
+										seat.busy ? "gray" : selectedSeatIds.has(seat.id_seat) ? "#5fa0c4" : "#85cb3c"
 									}
 								/>
 							))}

@@ -29,6 +29,7 @@ const Header = ({
 	variant = "",
 	badgeStyle,
 	seatCount,
+	...props
 }) => {
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
@@ -55,7 +56,12 @@ const Header = ({
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar sidebarX={sidebarX} seatCount={seatCount} />
+				<CartSideBar
+					sidebarX={sidebarX}
+					seatCount={seatCount}
+					selectedSeatIds={props.selectedSeatIds}
+					setSelectedSeatIds={props.setSelectedSeatIds}
+				/>
 			</Animated.View>
 		);
 
