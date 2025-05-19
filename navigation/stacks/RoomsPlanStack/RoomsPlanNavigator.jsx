@@ -15,7 +15,6 @@ const Stack = createStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
 	const seatCount = useSharedValue(0);
-	const seatCountChanged = useSharedValue(false);
 
 	const showBadge = useDerivedValue(() => {
 		return seatCount.value > 0;
