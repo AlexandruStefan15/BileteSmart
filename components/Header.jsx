@@ -13,6 +13,9 @@ import { Colors } from "@/constants";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
+//store
+import { useSelectedSeats } from "@/store/store";
+
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FeatherIcon from "react-native-vector-icons/Feather";
@@ -27,12 +30,17 @@ const Header = ({
 	showBurgerMenu = true,
 	showCart = false,
 	variant = "",
+	seatCount = {},
 	badgeStyle,
-	seatCount,
 	...props
 }) => {
+	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
+
+	useEffect(() => {
+		seatCount.value = selectedSeats.length;
+	}, [selectedSeats.length]);
 
 	if (variant == 3)
 		return (
@@ -56,12 +64,7 @@ const Header = ({
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar
-					sidebarX={sidebarX}
-					seatCount={seatCount}
-					selectedSeatIds={props.selectedSeatIds}
-					setSelectedSeatIds={props.setSelectedSeatIds}
-				/>
+				<CartSideBar sidebarX={sidebarX} seatCount={seatCount} />
 			</Animated.View>
 		);
 

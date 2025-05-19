@@ -14,12 +14,7 @@ import { Colors } from "@/constants";
 //icons
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-const TicketsInfo = ({
-	selectedSeats = [],
-	setSelectedSeats,
-	selectedSeatIds,
-	setSelectedSeatIds,
-}) => {
+const TicketsInfo = ({ selectedSeats, removeSeat }) => {
 	const teethCount = 6;
 	const teeth = Array.from({ length: teethCount });
 
@@ -28,22 +23,10 @@ const TicketsInfo = ({
 			{[...selectedSeats].length > 0 ? (
 				<FlatList
 					style={styles.ticketList}
-					data={[...selectedSeats]}
+					data={selectedSeats}
 					keyExtractor={(item) => item.id_seat.toString()}
 					contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
-					renderItem={({ item }) => (
-						<TicketItem
-							item={item}
-							onRemove={(id) => {
-								setSelectedSeats((prev) => prev.filter((seat) => seat.id_seat !== id));
-								setSelectedSeatIds((prev) => {
-									const updated = new Set(prev);
-									updated.delete(id);
-									return new Set(updated);
-								});
-							}}
-						/>
-					)}
+					renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
 				/>
 			) : (
 				<Text style={{ margin: "auto" }}>Momentan nu ai bilete in coș...</Text>

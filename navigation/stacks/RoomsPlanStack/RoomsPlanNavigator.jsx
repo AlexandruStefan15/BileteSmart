@@ -13,12 +13,9 @@ import SeatsPlanScreen from "@/screens/SeatsPlanScreen";
 
 const Stack = createStackNavigator();
 
-export default function RoomsPlanNavigator({ selectedSeatIds, setSelectedSeatIds }) {
+export default function RoomsPlanNavigator({}) {
 	const seatCount = useSharedValue(0);
-
-	const handleSeatCountChange = (count) => {
-		seatCount.value = count;
-	};
+	const seatCountChanged = useSharedValue(false);
 
 	const showBadge = useDerivedValue(() => {
 		return seatCount.value > 0;
@@ -34,27 +31,11 @@ export default function RoomsPlanNavigator({ selectedSeatIds, setSelectedSeatIds
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
-				{(props) => (
-					<RoomsPlanScreen
-						{...props}
-						selectedSeatIds={selectedSeatIds}
-						seatCount={seatCount}
-						badgeStyle={badgeStyle}
-					/>
-				)}
+				{(props) => <RoomsPlanScreen {...props} seatCount={seatCount} badgeStyle={badgeStyle} />}
 			</Stack.Screen>
 
 			<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
-				{(props) => (
-					<SeatsPlanScreen
-						{...props}
-						seatCount={seatCount}
-						badgeStyle={badgeStyle}
-						onSelectionChange={handleSeatCountChange}
-						selectedSeatIds={selectedSeatIds}
-						setSelectedSeatIds={setSelectedSeatIds}
-					/>
-				)}
+				{(props) => <SeatsPlanScreen {...props} seatCount={seatCount} badgeStyle={badgeStyle} />}
 			</Stack.Screen>
 		</Stack.Navigator>
 	);

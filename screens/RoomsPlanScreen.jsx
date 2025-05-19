@@ -13,21 +13,13 @@ export default RoomsPlanScreen = ({ route, seatCount, badgeStyle, ...props }) =>
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<Header
-				variant="3"
-				showCart={true}
-				seatCount={seatCount}
-				badgeStyle={badgeStyle}
-				selectedSeatIds={props.selectedSeatIds}
-				setSelectedSeatIds={props.setSelectedSeatIds}
-			/>
+			<Header variant="3" showCart={true} seatCount={seatCount} badgeStyle={badgeStyle} />
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}
 				selectRoom={true}
 				field_path={locationFieldPath}
 				height="100%"
 				style={{ marginTop: 60 }}
-				selectedSeatIds={props.selectedSeatIds}
 			/>
 		</SafeAreaView>
 	);

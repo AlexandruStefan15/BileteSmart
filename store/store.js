@@ -3,7 +3,7 @@ import { create } from "zustand";
 export const useSelectedSeats = create((set) => ({
 	selectedSeats: [],
 
-	toggleSeats: (seat) =>
+	toggleSeat: (seat) =>
 		set((state) => {
 			const exists = state.selectedSeats.find((s) => s.id_seat === seat.id_seat);
 			let newSelection;
@@ -19,10 +19,10 @@ export const useSelectedSeats = create((set) => ({
 			return { selectedSeats: newSelection };
 		}),
 
-	resetSeats: () => set({ selectedSeats: [] }),
-
 	removeSeat: (id) =>
 		set((state) => ({
 			selectedSeats: state.selectedSeats.filter((s) => s.id_seat !== id),
 		})),
+
+	resetSeats: () => set({ selectedSeats: [] }),
 }));

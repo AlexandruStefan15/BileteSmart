@@ -21,23 +21,13 @@ export default SeatsPlanScreen = ({
 
 	return (
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Header
-				variant="3"
-				showCart={true}
-				seatCount={seatCount}
-				badgeStyle={badgeStyle}
-				selectedSeatIds={props.selectedSeatIds}
-				setSelectedSeatIds={props.setSelectedSeatIds}
-			/>
+			<Header variant="3" showCart={true} seatCount={seatCount} badgeStyle={badgeStyle} />
 			<SvgHallPlan
 				currentRoom={currentRoom}
 				selectSeats={true}
 				height="100%"
 				style={{ marginTop: 60 }}
 				fieldPosition={currentRoom_fieldPosition}
-				onSelectionChange={onSelectionChange}
-				selectedSeatIds={props.selectedSeatIds}
-				setSelectedSeatIds={props.setSelectedSeatIds}
 			/>
 		</SafeAreaView>
 	);

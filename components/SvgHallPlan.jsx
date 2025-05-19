@@ -10,11 +10,11 @@ import Animated, {
 } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
+//store
+import { useSelectedSeats } from "@/store/store";
+
 //colors
 import { Colors } from "@/constants";
-
-//context
-import { useSelectedSeatsContext } from "@/context/SelectedSeatsContext";
 
 //hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
@@ -32,41 +32,11 @@ const SvgHallPlan = ({
 	selectRoom,
 	selectSeats,
 	fieldPosition, // only for seats screen
-	onSelectionChange,
-	selectedSeatIds,
-	setSelectedSeatIds,
 }) => {
-	/* const [selectedSeatIds, setSelectedSeatIds] = useState(new Set()); */
+	const { selectedSeats, toggleSeat } = useSelectedSeats();
 	const [selectedRoomId, setSelectedRoomId] = useState(null);
-	const { setSelectedSeats } = useSelectedSeatsContext();
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();
-
-	const toggleSeat = (seatId) => {
-		setSelectedSeatIds((prev) => {
-			const updated = new Set(prev);
-			if (updated.has(seatId)) {
-				updated.delete(seatId);
-			} else {
-				updated.add(seatId);
-			}
-			return updated;
-		});
-	};
-
-	useEffect(() => {
-		if (onSelectionChange) {
-			onSelectionChange(selectedSeatIds.size);
-		}
-	}, [selectedSeatIds, onSelectionChange]);
-
-	useEffect(() => {
-		if (rooms && selectedSeatIds instanceof Set && selectedSeatIds.size > 0 && setSelectedSeats) {
-			const allSeats = rooms.flatMap((r) => r.seats ?? []);
-			const selected = allSeats.filter((seat) => selectedSeatIds.has(seat.id_seat));
-			setSelectedSeats(selected);
-		}
-	}, [selectedSeatIds, rooms]);
 
 	if (read_only)
 		return (
@@ -161,13 +131,17 @@ const SvgHallPlan = ({
 							{currentRoom.seats?.map((seat) => (
 								<Path
 									onPress={() => {
-										if (!seat.busy) toggleSeat(seat.id_seat);
+										if (!seat.busy) toggleSeat(seat);
 									}}
 									onResponderMove={() => {}}
 									key={seat.id_seat}
 									d={seat.path_d}
 									fill={
-										seat.busy ? "gray" : selectedSeatIds.has(seat.id_seat) ? "#5fa0c4" : "#85cb3c"
+										seat.busy
+											? "gray"
+											: selectedSeats.some((s) => s.id_seat == seat.id_seat)
+											? "#5fa0c4"
+											: "#85cb3c"
 									}
 								/>
 							))}

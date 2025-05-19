@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
 
+//store
+import { useSelectedSeats } from "@/store/store";
+
 //colors
 import { Colors } from "@/constants/Colors";
 
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
-
-//context
-import { useSelectedSeatsContext } from "@/context/SelectedSeatsContext";
 
 //components
 import TicketsInfo from "./TicketsInfo";
@@ -32,7 +32,7 @@ export const useCartSideBar = () => {
 };
 
 export default function CartSideBar({ sidebarX, seatCount, children, ...props }) {
-	const { selectedSeats, setSelectedSeats } = useSelectedSeatsContext();
+	const { selectedSeats, removeSeat } = useSelectedSeats();
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
@@ -56,18 +56,12 @@ export default function CartSideBar({ sidebarX, seatCount, children, ...props })
 				<Text style={styles.cartTitle}>Coșul meu</Text>
 			</View>
 			<View style={styles.sidebar_content}>
-				<TicketsInfo
-					selectedSeats={selectedSeats}
-					setSelectedSeats={setSelectedSeats}
-					selectedSeatIds={props.selectedSeatIds}
-					setSelectedSeatIds={props.setSelectedSeatIds}
-				/>
+				<TicketsInfo selectedSeats={selectedSeats} removeSeat={removeSeat} />
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
 					<Text style={{ fontWeight: "600", fontSize: 16 }}>
-						Total: {[...selectedSeats].reduce((total, seat) => total + parseFloat(seat.price), 0)}{" "}
-						RON{" "}
+						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
 				</View>
 				<TouchableOpacity style={styles.checkoutButton}>
@@ -107,16 +101,6 @@ const getStyles = (height) =>
 			left: 3,
 			position: "absolute",
 		},
-
-		/* closeBtn_text: {
-			textAlign: "center",
-			fontSize: 15,
-			backgroundColor: Colors.primary,                                                                                             
-			color: "white",
-			padding: 5,
-			paddingInline: 12,
-			borderRadius: 5,
-		}, */
 
 		cartTitle: {
 			fontSize: 19.5,

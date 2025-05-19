@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, Dimensions } from "react-native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
+
+//store
+import { useSelectedSeats } from "@/store/store";
 
 //utils
 import { formatRomanianDate } from "@/utils/helpers";
@@ -14,10 +17,15 @@ import Button from "@/components/Button";
 //data
 import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched by locationId and eventId
 
-const EventDetailsScreen = ({ navigation, route, selectedSeats, setSelectedSeats }) => {
+const EventDetailsScreen = ({ navigation, route }) => {
 	const { locationId, event, locationFieldPath } = route.params;
 	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
 	const rooms = roomsWithSeats[1][129].rooms;
+	const { resetSeats } = useSelectedSeats();
+
+	useEffect(() => {
+		resetSeats();
+	}, []);
 
 	return (
 		<SafeAreaView style={styles.screen}>
@@ -35,13 +43,7 @@ const EventDetailsScreen = ({ navigation, route, selectedSeats, setSelectedSeats
 				</View>
 				<View style={{ backgroundColor: "#242424" }}>
 					<View style={styles.svgWrapper}>
-						<SvgHallPlan
-							rooms={rooms}
-							field_path={locationFieldPath}
-							read_only={true}
-							selectedSeats={selectedSeats}
-							setSelectedSeats={setSelectedSeats}
-						/>
+						<SvgHallPlan rooms={rooms} field_path={locationFieldPath} read_only={true} />
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (
 								<Button
