@@ -15,6 +15,9 @@ const images = {
 	fcArges: require("./FC_Arges.jpeg"),
 	csmGalati: require("./CSM_Galati.jpeg"),
 	newsletter: require("./newsletter.jpg"),
+	anpc: require("./anpc.png"),
+	litigii: require("./litigii.png"),
+	metopia: require("./metopia.png"),
 };
 
 export { images };

@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
-import Header from "@/components/Header";
-import { Colors } from "@/constants";
 import { ThemeContext } from "@react-navigation/native";
 
+//colors
+import { Colors } from "@/constants";
+
+//components
 import HeroBanner from "@/components/sections/HeroBanner";
 import Locations from "@/components/sections/Locations";
 import EventCounters from "@/components/sections/EventCounters";
 import Newsletter from "@/components/sections/Newsletter";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function HomeScreen({ navigation }) {
 	const { theme } = useContext(ThemeContext);
@@ -21,6 +25,7 @@ export default function HomeScreen({ navigation }) {
 				<Locations />
 				<EventCounters />
 				<Newsletter />
+				<Footer />
 			</ScrollView>
 		</SafeAreaView>
 	);
