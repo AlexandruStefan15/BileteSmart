@@ -77,7 +77,7 @@ const SvgHallPlan = ({
 	if (read_only) {
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
-				<Svg width={300} height={height} fill="none" viewBox="0 0 775 851">
+				<Svg width={290} height={height} fill="none" viewBox="0 0 775 851">
 					<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 					{rooms.map((room) => (
 						<Path
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
 	readOnlyWrapper: {
 		justifyContent: "center",
 		alignItems: "center",
-		paddingBlock: 40,
+		paddingBlock: 25,
 		backgroundColor: "white",
 		borderRadius: 10,
 	},

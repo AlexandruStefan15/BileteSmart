@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
 	svgWrapper: {
 		overflow: "hidden",
 		backgroundColor: "#242424",
-		margin: 8,
+		margin: 20,
 		marginBottom: 45,
 		marginTop: 5,
 		gap: 15,
