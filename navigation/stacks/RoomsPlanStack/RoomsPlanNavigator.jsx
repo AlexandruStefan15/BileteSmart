@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Animated, {
+import {
 	useSharedValue,
 	withTiming,
 	useDerivedValue,

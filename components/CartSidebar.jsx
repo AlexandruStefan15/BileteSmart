@@ -31,7 +31,7 @@ export const useCartSideBar = () => {
 	return { sidebarX, open, close };
 };
 
-export default function CartSideBar({ sidebarX, seatCount, children, ...props }) {
+export default function CartSideBar({ sidebarX, resetBadge, children, ...props }) {
 	const { selectedSeats, removeSeat } = useSelectedSeats();
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
@@ -47,7 +47,7 @@ export default function CartSideBar({ sidebarX, seatCount, children, ...props })
 				<TouchableOpacity
 					style={styles.closeBtn}
 					onPress={() => {
-						seatCount.value = 0;
+						/* resetBadge(); */
 						sidebarX.value = withTiming(-SIDEBAR_WIDTH);
 					}}
 				>

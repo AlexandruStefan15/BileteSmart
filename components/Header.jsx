@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Animated, {
-	useSharedValue,
-	withTiming,
-	useDerivedValue,
-	useAnimatedStyle,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { Dimensions } from "react-native";
 import { images } from "@/assets/images";
 import { Colors } from "@/constants";
@@ -14,7 +9,7 @@ import { Colors } from "@/constants";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 //store
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats, useCartBadge } from "@/store/store";
 
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -32,7 +27,6 @@ const Header = ({
 	variant = "",
 	seatCount = {},
 	badgeStyle,
-	...props
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
@@ -53,7 +47,6 @@ const Header = ({
 				{showCart && (
 					<TouchableOpacity
 						onPress={() => {
-							seatCount.value = 0;
 							open();
 						}}
 						style={styles.burgerMenu}
@@ -64,7 +57,7 @@ const Header = ({
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar sidebarX={sidebarX} seatCount={seatCount} />
+				<CartSideBar sidebarX={sidebarX} />
 			</Animated.View>
 		);
 

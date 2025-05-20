@@ -8,20 +8,19 @@ import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 
-export default SeatsPlanScreen = ({
-	route,
-	seatCount,
-	badgeStyle,
-	onSelectionChange,
-	...props
-}) => {
+export default SeatsPlanScreen = ({ route, seatCount, ...props }) => {
 	const { roomId } = route.params;
 	const currentRoom = roomsWithSeats[1][129].rooms.find((room) => room.id_room == roomId);
 	const currentRoom_fieldPosition = currentRoom.field_position;
 
 	return (
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Header variant="3" showCart={true} seatCount={seatCount} badgeStyle={badgeStyle} />
+			<Header
+				variant="3"
+				showCart={true}
+				seatCount={props.seatCount}
+				badgeStyle={props.badgeStyle}
+			/>
 			<SvgHallPlan
 				currentRoom={currentRoom}
 				selectSeats={true}

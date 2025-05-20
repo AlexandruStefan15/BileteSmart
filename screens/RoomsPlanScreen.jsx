@@ -8,12 +8,17 @@ import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched by loca
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 
-export default RoomsPlanScreen = ({ route, seatCount, badgeStyle, ...props }) => {
+export default RoomsPlanScreen = ({ route, ...props }) => {
 	const { locationId, eventId, locationFieldPath } = route.params;
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<Header variant="3" showCart={true} seatCount={seatCount} badgeStyle={badgeStyle} />
+			<Header
+				variant="3"
+				showCart={true}
+				seatCount={props.seatCount}
+				badgeStyle={props.badgeStyle}
+			/>
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}
 				selectRoom={true}
