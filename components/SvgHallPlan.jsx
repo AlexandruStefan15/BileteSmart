@@ -1,25 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
-import Svg, { Path, Image as SvgImage } from "react-native-svg";
-import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import Animated, {
-	useSharedValue,
-	useAnimatedStyle,
-	withTiming,
-	runOnJS,
-} from "react-native-reanimated";
+import Svg, { Path } from "react-native-svg";
+import { GestureDetector } from "react-native-gesture-handler";
+import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
-//store
+// store
 import { useSelectedSeats } from "@/store/store";
 
-//colors
-import { Colors } from "@/constants";
-
-//hooks
+// hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
 
-//components
+// components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
 
 const SvgHallPlan = ({
@@ -31,34 +23,61 @@ const SvgHallPlan = ({
 	style,
 	selectRoom,
 	selectSeats,
-	fieldPosition, // only for seats screen
+	fieldPosition,
 }) => {
-	const { selectedSeats, toggleSeat } = useSelectedSeats();
-	const [selectedRoomId, setSelectedRoomId] = useState(null);
-	const { gesture, animatedStyle } = useHandGestures();
-	const navigation = useNavigation();
+	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
+	const toggleSeat = useSelectedSeats((state) => state.toggleSeat);
 
-	if (read_only)
+	const navigation = useNavigation();
+	const { gesture, animatedStyle } = useHandGestures();
+	const [selectedRoomId, setSelectedRoomId] = useState(null);
+
+	const selectedSeatIds = useMemo(
+		() => new Set(selectedSeats.map((s) => s.id_seat)),
+		[selectedSeats]
+	);
+
+	const renderSeatPaths = useMemo(() => {
+		return currentRoom?.seats?.map((seat) => {
+			const isSelected = selectedSeatIds.has(seat.id_seat);
+			return (
+				<Path
+					key={seat.id_seat}
+					d={seat.path_d}
+					fill={seat.busy ? "gray" : isSelected ? "#5fa0c4" : "#85cb3c"}
+					onPress={() => !seat.busy && toggleSeat(seat)}
+					onResponderMove={() => {}}
+				/>
+			);
+		});
+	}, [currentRoom?.seats, selectedSeatIds, toggleSeat]);
+
+	const renderRoomPaths = useMemo(() => {
+		return rooms?.map((room) => (
+			<Path
+				key={room.id_room}
+				d={room.path_d}
+				fill={
+					selectedRoomId === room.id_room && room.free_seats > 0 && !room.read_only
+						? "blue"
+						: room.free_seats > 0 && !room.read_only
+						? "green"
+						: "#BFBFBF"
+				}
+				onPress={() =>
+					room.free_seats > 0 &&
+					!room.read_only &&
+					navigation.navigate("SeatsPlanScreen", { roomId: room.id_room })
+				}
+				onResponderMove={() => {}}
+			/>
+		));
+	}, [rooms, selectedRoomId]);
+
+	if (read_only) {
 		return (
-			<View
-				style={[
-					{
-						justifyContent: "center",
-						alignItems: "center",
-						paddingBlock: 40,
-						backgroundColor: "white",
-						borderRadius: 10,
-					},
-					style,
-				]}
-			>
-				<Svg
-					style={{ margin: "auto" }}
-					width={355}
-					height={height}
-					fill="none"
-					viewBox="0 0 775 851"
-				>
+			<View style={[styles.readOnlyWrapper, style]}>
+				<Svg width={355} height={height} fill="none" viewBox="0 0 775 851">
 					<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 					{rooms.map((room) => (
 						<Path
@@ -70,46 +89,30 @@ const SvgHallPlan = ({
 				</Svg>
 			</View>
 		);
+	}
 
-	if (selectRoom)
+	if (selectRoom) {
 		return (
 			<GestureDetector gesture={gesture}>
 				<Animated.View style={[{ flex: 1 }, style]}>
-					<Animated.View style={[styles.svg_container, animatedStyle]}>
-						<Svg
-							style={{ margin: "auto" }}
-							width={355}
-							height={height}
-							fill="none"
-							viewBox="0 0 775 851"
-						>
+					<Animated.View
+						style={[
+							styles.svg_container,
+							animatedStyle,
+							{ flex: 1, justifyContent: "center", alignItems: "center" },
+						]}
+					>
+						<Svg width={355} height={height} fill="none" viewBox="0 0 775 851">
 							<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
-							{rooms.map((room) => (
-								<Path
-									onPress={() =>
-										room.free_seats > 0 &&
-										!room.read_only &&
-										navigation.navigate("SeatsPlanScreen", { roomId: room.id_room })
-									}
-									onResponderMove={() => {}}
-									key={room.id_room}
-									d={room.path_d}
-									fill={
-										selectedRoomId === room.id_room && room.free_seats > 0 && !room.read_only
-											? "blue"
-											: room.free_seats > 0 && !room.read_only
-											? "green"
-											: "#BFBFBF"
-									}
-								/>
-							))}
+							{renderRoomPaths}
 						</Svg>
 					</Animated.View>
 				</Animated.View>
 			</GestureDetector>
 		);
+	}
 
-	if (selectSeats)
+	if (selectSeats) {
 		return (
 			<GestureDetector gesture={gesture}>
 				<Animated.View style={[{ flex: 1, width: "100%" }, style]}>
@@ -128,52 +131,28 @@ const SvgHallPlan = ({
 							}}
 						/>
 						<Svg width={"90%"} height={"100%"} viewBox="0 0 108 100">
-							{currentRoom.seats?.map((seat) => (
-								<Path
-									onPress={() => {
-										if (!seat.busy) toggleSeat(seat);
-									}}
-									onResponderMove={() => {}}
-									key={seat.id_seat}
-									d={seat.path_d}
-									fill={
-										seat.busy
-											? "gray"
-											: selectedSeats.some((s) => s.id_seat == seat.id_seat)
-											? "#5fa0c4"
-											: "#85cb3c"
-									}
-								/>
-							))}
-							{currentRoom.rows_path_d?.map((row, index) => (
+							{renderSeatPaths}
+							{currentRoom?.rows_path_d?.map((row, index) => (
 								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />
 							))}
 						</Svg>
 					</Animated.View>
-					{/* {selectedSeats.size > 0 && (
-						<View style={styles.buttonsContainer}>
-							<Button
-								color={Colors.primary}
-								title="Confirma"
-								onPress={() => console.log([...selectedSeats])}
-							/>
-							<Button color={Colors.primary} title="Reseteaza" onPress={() => resetSeats()} />
-						</View>
-					)} */}
 				</Animated.View>
 			</GestureDetector>
 		);
+	}
 };
 
 const styles = StyleSheet.create({
-	buttonsContainer: {
-		position: "absolute",
-		bottom: 0,
-		left: 0,
-		right: 0,
-		paddingHorizontal: 20,
-		paddingVertical: 20,
-		gap: 10,
+	svg_container: {
+		width: "100%",
+	},
+	readOnlyWrapper: {
+		justifyContent: "center",
+		alignItems: "center",
+		paddingBlock: 40,
+		backgroundColor: "white",
+		borderRadius: 10,
 	},
 });
 
