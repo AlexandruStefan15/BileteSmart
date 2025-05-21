@@ -54,7 +54,7 @@ const Header = ({
 				{showCart && (
 					<TouchableOpacity
 						onPress={() => {
-							displayBadge.value = false;
+							/* displayBadge.value = false; */
 							open();
 						}}
 						style={styles.burgerMenu}
@@ -65,7 +65,7 @@ const Header = ({
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar sidebarX={sidebarX} />
+				<CartSideBar sidebarX={sidebarX} displayBadge={displayBadge} />
 			</Animated.View>
 		);
 

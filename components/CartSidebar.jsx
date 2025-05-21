@@ -47,7 +47,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				<TouchableOpacity
 					style={styles.closeBtn}
 					onPress={() => {
-						/* resetBadge(); */
+						props.displayBadge.value = false;
 						sidebarX.value = withTiming(-SIDEBAR_WIDTH);
 					}}
 				>
