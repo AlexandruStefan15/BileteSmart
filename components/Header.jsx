@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
@@ -27,13 +27,20 @@ const Header = ({
 	variant = "",
 	seatCount = {},
 	badgeStyle,
+	displayBadge = {},
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
+	const didMount = useRef(false);
 
 	useEffect(() => {
-		seatCount.value = selectedSeats.length;
+		if (didMount.current) {
+			displayBadge.value = true;
+			seatCount.value = selectedSeats.length;
+		} else {
+			didMount.current = true;
+		}
 	}, [selectedSeats.length]);
 
 	if (variant == 3)
@@ -47,6 +54,7 @@ const Header = ({
 				{showCart && (
 					<TouchableOpacity
 						onPress={() => {
+							displayBadge.value = false;
 							open();
 						}}
 						style={styles.burgerMenu}

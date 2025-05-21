@@ -15,9 +15,10 @@ const Stack = createStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
 	const seatCount = useSharedValue(0);
+	const displayBadge = useSharedValue(true);
 
 	const showBadge = useDerivedValue(() => {
-		return seatCount.value > 0;
+		return seatCount.value > 0 && displayBadge.value;
 	});
 
 	const badgeStyle = useAnimatedStyle(() => {
@@ -30,11 +31,25 @@ export default function RoomsPlanNavigator({}) {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
-				{(props) => <RoomsPlanScreen {...props} seatCount={seatCount} badgeStyle={badgeStyle} />}
+				{(props) => (
+					<RoomsPlanScreen
+						{...props}
+						seatCount={seatCount}
+						badgeStyle={badgeStyle}
+						displayBadge={displayBadge}
+					/>
+				)}
 			</Stack.Screen>
 
 			<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
-				{(props) => <SeatsPlanScreen {...props} seatCount={seatCount} badgeStyle={badgeStyle} />}
+				{(props) => (
+					<SeatsPlanScreen
+						{...props}
+						seatCount={seatCount}
+						badgeStyle={badgeStyle}
+						displayBadge={displayBadge}
+					/>
+				)}
 			</Stack.Screen>
 		</Stack.Navigator>
 	);
