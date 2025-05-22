@@ -79,7 +79,7 @@ const getStyles = (height) =>
 			top: 0,
 			left: 0,
 			width: SIDEBAR_WIDTH,
-			height: height - 60,
+			height: height /* - 60 */ - 90,
 			backgroundColor: "white",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS
