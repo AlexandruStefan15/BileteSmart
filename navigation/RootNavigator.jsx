@@ -1,4 +1,5 @@
 import React from "react";
+import { View, Platform, StatusBar as bar } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from "./BottomTabNavigator";
@@ -12,10 +13,18 @@ const RootNavigator = () => {
 
 	return (
 		<NavigationContainer>
-			<StatusBar
+			{/* <StatusBar
 				barStyle={theme == "dark" ? "light-content" : "dark-content"}
 				backgroundColor={theme == "dark" ? "black" : "white"}
-			/>
+			/> */}
+			<View
+				style={{
+					backgroundColor: "black",
+					height: Platform.OS === "android" ? bar.currentHeight : 0,
+				}}
+			>
+				<StatusBar barStyle={"light"} />
+			</View>
 			<Stack.Navigator>
 				<Stack.Screen
 					name="Tabs"
