@@ -35,16 +35,16 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 				hideModalContentWhileAnimating={true}
 			>
 				<View style={styles.modalContent}>
-					{options.map((opt) => (
+					{options.map((opt, index) => (
 						<TouchableOpacity
 							key={opt.value}
-							style={styles.option}
+							style={[styles.option, index === 1 && styles.option1]}
 							onPress={() => {
 								onChange(opt.value);
 								setIsVisible(false); // no delay
 							}}
 						>
-							<Text>{opt.label}</Text>
+							<Text style={{ paddingLeft: 5, fontSize: 15 }}>{opt.label}</Text>
 						</TouchableOpacity>
 					))}
 				</View>
@@ -68,18 +68,25 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: "white",
 	},
+
 	pickerText: {
 		color: "white",
 		textAlign: "center",
 	},
+
 	modalContent: {
 		backgroundColor: "white",
 		borderRadius: 8,
-		padding: 10,
+		padding: 5,
+		paddingLeft: 10,
 	},
+
 	option: {
-		paddingVertical: 12,
-		borderBottomWidth: 1,
-		borderBottomColor: "#ccc",
+		paddingVertical: 15,
+	},
+
+	option1: {
+		borderTopWidth: 1,
+		borderColor: "#ccc",
 	},
 });
