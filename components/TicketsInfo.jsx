@@ -89,11 +89,11 @@ const TicketItem = ({ item, onRemove }) => {
 						zIndex: 999,
 						right: 42,
 						top: 50,
-						backgroundColor: "transparent",
-						borderColor: "#5fa0c4",
-						borderRadius: 0,
+						backgroundColor: "#2e2d2d",
+						borderColor: "transparent",
+						borderRadius: 5,
 					}}
-					textStyles={{ color: "#5fa0c4", fontWeight: 500, fontSize: 14.5 }}
+					textStyles={{ color: "#5fa0c4", fontWeight: "bold", fontSize: 14.5 }}
 				/>
 			</View>
 			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
