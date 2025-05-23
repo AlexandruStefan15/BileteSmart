@@ -23,7 +23,7 @@ const RootNavigator = () => {
 					height: Platform.OS === "android" ? bar.currentHeight : 0,
 				}}
 			>
-				<StatusBar barStyle={"light"} />
+				<StatusBar barStyle={"light-content"} />
 			</View>
 			<Stack.Navigator>
 				<Stack.Screen
