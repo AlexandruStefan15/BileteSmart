@@ -10,7 +10,7 @@ const options = [
 	{ label: "Bilet redus (elevi, studenti, pensionari)", value: "Redus" },
 ];
 
-export default function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
+function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 	const [isVisible, setIsVisible] = useState(false);
 
 	return (
@@ -23,7 +23,17 @@ export default function Select({ selected, onChange, modalStyles, selectStyles, 
 				<FontAwesomeIcon name="caret-down" size={18} color={"#5fa0c4"} />
 			</TouchableOpacity>
 
-			<Modal isVisible={isVisible} onBackdropPress={() => setIsVisible(false)} style={modalStyles}>
+			<Modal
+				isVisible={isVisible}
+				onBackdropPress={() => setIsVisible(false)}
+				onModalHide={() => {}}
+				style={modalStyles}
+				useNativeDriver={true}
+				backdropTransitionOutTiming={0}
+				animationIn="fadeInUp"
+				animationOut="fadeOutDown"
+				hideModalContentWhileAnimating={true}
+			>
 				<View style={styles.modalContent}>
 					{options.map((opt) => (
 						<TouchableOpacity
@@ -31,7 +41,7 @@ export default function Select({ selected, onChange, modalStyles, selectStyles, 
 							style={styles.option}
 							onPress={() => {
 								onChange(opt.value);
-								setIsVisible(false);
+								setIsVisible(false); // no delay
 							}}
 						>
 							<Text>{opt.label}</Text>
@@ -42,6 +52,8 @@ export default function Select({ selected, onChange, modalStyles, selectStyles, 
 		</>
 	);
 }
+
+export default React.memo(Select);
 
 const styles = StyleSheet.create({
 	pickerButton: {
