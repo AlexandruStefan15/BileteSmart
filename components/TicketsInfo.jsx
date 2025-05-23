@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { Picker } from "@react-native-picker/picker";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -8,13 +9,17 @@ import Animated, {
 	runOnJS,
 } from "react-native-reanimated";
 
+//store
+import { useSelectedSeats } from "@/store/store";
+
 //colors
 import { Colors } from "@/constants";
 
 //icons
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-const TicketsInfo = ({ selectedSeats, removeSeat }) => {
+const TicketsInfo = ({}) => {
+	const { selectedSeats, removeSeat } = useSelectedSeats();
 	const teethCount = 6;
 	const teeth = Array.from({ length: teethCount });
 
@@ -26,7 +31,9 @@ const TicketsInfo = ({ selectedSeats, removeSeat }) => {
 					data={selectedSeats}
 					keyExtractor={(item) => item.id_seat.toString()}
 					contentContainerStyle={{ gap: 12, marginBlock: 12, paddingBottom: 24 }}
-					renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
+					renderItem={({ item }) => (
+						<TicketItem item={item} selectedSeats={selectedSeats} onRemove={removeSeat} />
+					)}
 				/>
 			) : (
 				<Text style={{ margin: "auto" }}>Momentan nu ai bilete in coș...</Text>
@@ -36,6 +43,7 @@ const TicketsInfo = ({ selectedSeats, removeSeat }) => {
 };
 
 const TicketItem = ({ item, onRemove }) => {
+	const { updateSeatType } = useSelectedSeats();
 	const translateX = useSharedValue(0);
 
 	const animatedStyle = useAnimatedStyle(() => ({
@@ -70,6 +78,28 @@ const TicketItem = ({ item, onRemove }) => {
 				<Text style={{ fontWeight: "600", fontSize: 17, marginTop: 12, color: "white" }}>
 					{item.price} RON
 				</Text>
+				<View
+					style={{
+						width: 115,
+						height: 35,
+						/* position:"absolute", */
+						zIndex: 999,
+						/* 	right: 35,
+						top: 50, */
+						borderWidth: 1.5,
+						borderColor: "white",
+					}}
+				>
+					<Picker
+						style={{ color: "white", height: 50, top: -10 }}
+						selectedValue={item.is_for_child === "1" ? "child" : "adult"}
+						onValueChange={(value) => updateSeatType(item.id_seat, value)}
+						dropdownIconColor="white"
+					>
+						<Picker.Item style={{ fontSize: 14 }} label="Adult" value="adult" />
+						<Picker.Item style={{ fontSize: 14 }} label="Child" value="child" />
+					</Picker>
+				</View>
 			</View>
 			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
 				<Text style={styles.ticketList_removeButton_text}>
@@ -98,6 +128,7 @@ const styles = StyleSheet.create({
 	},
 
 	ticketList_item: {
+		position: "relative",
 		width: "84%",
 		padding: 15.5,
 		backgroundColor: "#363736",

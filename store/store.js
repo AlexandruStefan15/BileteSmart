@@ -25,4 +25,11 @@ export const useSelectedSeats = create((set) => ({
 		})),
 
 	resetSeats: () => set({ selectedSeats: [] }),
+
+	updateSeatType: (id_seat, type) =>
+		set((state) => ({
+			selectedSeats: state.selectedSeats.map((seat) =>
+				seat.id_seat === id_seat ? { ...seat, is_for_child: type === "child" ? "1" : "0" } : seat
+			),
+		})),
 }));

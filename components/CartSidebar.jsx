@@ -56,7 +56,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				<Text style={styles.cartTitle}>Coșul meu</Text>
 			</View>
 			<View style={styles.sidebar_content}>
-				<TicketsInfo selectedSeats={selectedSeats} removeSeat={removeSeat} />
+				<TicketsInfo />
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
