@@ -91,7 +91,7 @@ const TicketItem = ({ item, onRemove }) => {
 					}}
 				>
 					<Picker
-						style={{ color: "white", height: 50, top: -10 }}
+						style={{ color: "white", height: 50, top: -10, width: 115 }}
 						selectedValue={item.is_for_child === "1" ? "child" : "adult"}
 						onValueChange={(value) => updateSeatType(item.id_seat, value)}
 						dropdownIconColor="white"
