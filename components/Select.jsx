@@ -6,8 +6,8 @@ import Modal from "react-native-modal";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const options = [
-	{ label: "Adult", value: "adult" },
-	{ label: "Child", value: "child" },
+	{ label: "Bilet intreg", value: "Intreg" },
+	{ label: "Bilet redus (elevi, studenti, pensionari)", value: "Redus" },
 ];
 
 export default function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {

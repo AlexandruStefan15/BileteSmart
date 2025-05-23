@@ -82,7 +82,7 @@ const TicketItem = ({ item, onRemove }) => {
 					{item.price} RON
 				</Text>
 				<Select
-					selected={item.is_for_child === "1" ? "child" : "adult"}
+					selected={item.is_discounted === "1" ? "Redus" : "Intreg"}
 					onChange={(value) => updateSeatType(item.id_seat, value)}
 					selectStyles={{
 						position: "absolute",

@@ -29,7 +29,7 @@ export const useSelectedSeats = create((set) => ({
 	updateSeatType: (id_seat, type) =>
 		set((state) => ({
 			selectedSeats: state.selectedSeats.map((seat) =>
-				seat.id_seat === id_seat ? { ...seat, is_for_child: type === "child" ? "1" : "0" } : seat
+				seat.id_seat === id_seat ? { ...seat, is_discounted: type === "Redus" ? "1" : "0" } : seat
 			),
 		})),
 }));
