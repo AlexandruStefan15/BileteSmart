@@ -26,13 +26,16 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 			<Modal
 				isVisible={isVisible}
 				onBackdropPress={() => setIsVisible(false)}
-				onModalHide={() => {}}
+				onBackButtonPress={() => setIsVisible(false)}
 				style={modalStyles}
-				useNativeDriver={true}
-				backdropTransitionOutTiming={0}
 				animationIn="fadeInUp"
 				animationOut="fadeOutDown"
-				hideModalContentWhileAnimating={true}
+				animationInTiming={200}
+				animationOutTiming={200}
+				backdropTransitionInTiming={1}
+				backdropTransitionOutTiming={1}
+				useNativeDriver={true}
+				hideModalContentWhileAnimating={false}
 			>
 				<View style={styles.modalContent}>
 					{options.map((opt, index) => (
