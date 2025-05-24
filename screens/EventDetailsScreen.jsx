@@ -30,7 +30,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#242424" }}>
-				<Header variant="2" />
+				<Header variant="2" style={{ marginTop: 5 }} />
 				<View style={styles.banner}>
 					<Text style={styles.banner_title}>{event.title}</Text>
 					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 		marginTop: -3,
 		backgroundColor: "#242424",
 		paddingBlock: 30,
-		paddingTop: 66,
+		paddingTop: 68,
 		paddingInline: 20,
 		alignItems: "center",
 		gap: 20,
