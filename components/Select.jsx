@@ -44,7 +44,7 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 							style={[styles.option, index === 1 && styles.option1]}
 							onPress={() => {
 								onChange(opt.value);
-								setIsVisible(false); // no delay
+								setIsVisible(false);
 							}}
 						>
 							<Text style={{ paddingLeft: 5, fontSize: 15 }}>{opt.label}</Text>

@@ -7,9 +7,9 @@ import { ThemeContext } from "./context/ThemeContext";
 function App() {
 	const { theme, setTheme } = useTheme();
 
-	/* useEffect(() => {
-		SystemUI.setBackgroundColorAsync(theme === "dark" ? "#000000" : "#ffffff");
-	}, [theme]); */
+	useEffect(() => {
+		SystemUI.setBackgroundColorAsync("black");
+	}, [theme]);
 
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme }}>

@@ -13,18 +13,18 @@ const RootNavigator = () => {
 
 	return (
 		<NavigationContainer>
-			{/* <StatusBar
+			<StatusBar
 				barStyle={theme == "dark" ? "light-content" : "dark-content"}
 				backgroundColor={theme == "dark" ? "black" : "white"}
-			/> */}
-			<View
+			/>
+			{/* <View
 				style={{
 					backgroundColor: "black",
 					height: Platform.OS === "android" ? bar.currentHeight : 0,
 				}}
 			>
 				<StatusBar barStyle={"light-content"} />
-			</View>
+			</View> */}
 			<Stack.Navigator>
 				<Stack.Screen
 					name="Tabs"

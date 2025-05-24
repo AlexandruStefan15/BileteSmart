@@ -25,8 +25,8 @@ const BottomTabNavigator = () => {
 				tabBarActiveTintColor: Colors.primary,
 				tabBarInactiveTintColor: "gray",
 				tabBarStyle: {
-					minHeight: 64,
-					paddingTop: 5,
+					minHeight: 63,
+					paddingTop: 4,
 					backgroundColor: /* "#f7f7f7" */ "white",
 				},
 				gestureEnabled: true,
