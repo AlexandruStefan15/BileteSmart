@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 import Animated, {
 	useSharedValue,
@@ -24,8 +24,6 @@ import { FlatList } from "react-native-gesture-handler";
 
 const TicketsInfo = ({}) => {
 	const { selectedSeats, removeSeat } = useSelectedSeats();
-	const teethCount = 6;
-	const teeth = Array.from({ length: teethCount });
 
 	return (
 		<View style={{ flex: 1 }}>
