@@ -16,6 +16,7 @@ import { Colors } from "@/constants";
 
 //icons
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import Select from "./Select";
@@ -78,7 +79,7 @@ const TicketItem = ({ item, onRemove }) => {
 				<Text style={styles.ticketList_item_text}>
 					Sectorul: <Text style={{ color: "#5fa0c4", fontWeight: "bold" }}>{item.room_name}</Text>
 				</Text>
-				<Text style={{ fontWeight: "600", fontSize: 17, marginTop: 12, color: "white" }}>
+				<Text style={{ fontWeight: "600", fontSize: 16.8, marginTop: 12, color: "white" }}>
 					{item.price} RON
 				</Text>
 				<Select
@@ -98,7 +99,7 @@ const TicketItem = ({ item, onRemove }) => {
 			</View>
 			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
 				<Text style={styles.ticketList_removeButton_text}>
-					<EntypoIcon name="cross" size={20} />
+					<EntypoIcon name="cross" size={21} />
 				</Text>
 			</TouchableOpacity>
 		</Animated.View>
@@ -141,8 +142,7 @@ const styles = StyleSheet.create({
 	ticketList_removeButton: {
 		backgroundColor: "#d60303f0",
 		borderRadius: 25,
-		paddingVertical: 7,
-		paddingHorizontal: 7,
+		padding: 7,
 		alignSelf: "flex-start",
 		top: "50%",
 		transform: [{ translateY: -17 }],

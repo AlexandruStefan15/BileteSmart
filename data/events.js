@@ -4,7 +4,7 @@ export const eventsByLocation = {
 	1: [
 		{
 			id_event: "129",
-			title: "CS GLORIA 2018 BN-CSM SLATINA",
+			title: "CS GLORIA 2018 BN - CSM SLATINA",
 			subtitle: "Complex Sportiv Polivalent TeraPlast Arena",
 			event_img: "https://biletesmart.ro/poster/82371745484927864603.05 GLORIA SLATINA.jpg",
 			event_type: "Sportiv",

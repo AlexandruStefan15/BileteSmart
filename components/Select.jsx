@@ -30,7 +30,7 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 				style={modalStyles}
 				animationIn="fadeInUp"
 				animationOut="fadeOutDown"
-				animationInTiming={200}
+				animationInTiming={250}
 				animationOutTiming={200}
 				backdropTransitionInTiming={1}
 				backdropTransitionOutTiming={1}
@@ -39,16 +39,18 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 			>
 				<View style={styles.modalContent}>
 					{options.map((opt, index) => (
-						<TouchableOpacity
-							key={opt.value}
-							style={[styles.option, index === 1 && styles.option1]}
-							onPress={() => {
-								onChange(opt.value);
-								setIsVisible(false);
-							}}
-						>
-							<Text style={{ paddingLeft: 5, fontSize: 15 }}>{opt.label}</Text>
-						</TouchableOpacity>
+						<React.Fragment key={opt.value}>
+							<TouchableOpacity
+								style={[styles.option]}
+								onPress={() => {
+									onChange(opt.value);
+									setIsVisible(false);
+								}}
+							>
+								<Text style={{ paddingLeft: 5, fontSize: 15 }}>{opt.label}</Text>
+							</TouchableOpacity>
+							<View style={[styles.separator, index === 1 && styles.lastSeparator]}></View>
+						</React.Fragment>
 					))}
 				</View>
 			</Modal>
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
 		padding: 8,
 		paddingInline: 15,
 		backgroundColor: "#444",
-		borderRadius: 8,
+		borderRadius: 10,
 		borderWidth: 1,
 		borderColor: "white",
 	},
@@ -85,11 +87,15 @@ const styles = StyleSheet.create({
 	},
 
 	option: {
-		paddingVertical: 15,
+		paddingBlock: 15,
 	},
 
-	option1: {
+	separator: {
 		borderTopWidth: 1,
 		borderColor: "#ccc",
+	},
+
+	lastSeparator: {
+		display: "none",
 	},
 });

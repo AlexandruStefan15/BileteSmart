@@ -103,7 +103,7 @@ const getStyles = (height) =>
 		},
 
 		cartTitle: {
-			fontSize: 19.5,
+			fontSize: 19,
 			fontWeight: "500",
 			marginInline: "auto",
 		},

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, Dimensions } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, StatusBar } from "react-native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
 
@@ -29,8 +29,9 @@ const EventDetailsScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
+			<StatusBar barStyle={"light-content"} backgroundColor={"#242424"} />
 			<ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#242424" }}>
-				<Header variant="2" style={{ marginTop: 5 }} />
+				<Header variant="2" style={{ marginTop: 4 }} />
 				<View style={styles.banner}>
 					<Text style={styles.banner_title}>{event.title}</Text>
 					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
