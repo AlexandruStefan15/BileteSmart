@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
 
 //store
@@ -38,6 +38,19 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 		transform: [{ translateX: sidebarX.value }],
 	}));
 	const styles = getStyles(windowHeight);
+
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+			if (sidebarX.value === 0) {
+				sidebarX.value = withTiming(-SIDEBAR_WIDTH);
+				props.displayBadge.value = false;
+				return true;
+			}
+			return false;
+		});
+
+		return () => backHandler.remove();
+	}, [sidebarX]);
 
 	if (!sidebarX) return null;
 

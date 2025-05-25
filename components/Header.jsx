@@ -88,7 +88,7 @@ const Header = ({
 			{showBurgerMenu && (
 				<TouchableOpacity style={styles.burgerMenu}>
 					<View style={styles.burgerMenu_icon}>
-						<FeatherIcon name="align-left" size={25} />
+						<FeatherIcon name="align-left" size={24} />
 					</View>
 				</TouchableOpacity>
 			)}
