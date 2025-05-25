@@ -31,13 +31,14 @@ export const useSelectedSeats = create((set) => ({
 			selectedSeats: state.selectedSeats.map((seat) => {
 				if (seat.id_seat !== id_seat) return seat;
 
+				const basePrice = seat.base_price;
 				const is_discounted = type === "Redus" ? "1" : "0";
-				const discounted_price = type === "Redus" ? seat.price * 0.8 : seat.price;
+				const price = type === "Redus" ? basePrice * 0.8 : basePrice;
 
 				return {
 					...seat,
 					is_discounted,
-					price: discounted_price,
+					price,
 				};
 			}),
 		})),
