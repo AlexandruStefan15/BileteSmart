@@ -79,7 +79,7 @@ const TicketItem = ({ item, onRemove }) => {
 				<Text style={styles.ticketList_item_text}>
 					Sectorul: <Text style={{ color: "#5fa0c4", fontWeight: "bold" }}>{item.room_name}</Text>
 				</Text>
-				<Text style={{ fontWeight: "600", fontSize: 16.8, marginTop: 12, color: "white" }}>
+				<Text style={{ fontWeight: "600", fontSize: 17, marginTop: 12, color: "#5fa0c4" }}>
 					{item.price} RON
 				</Text>
 				<Select
