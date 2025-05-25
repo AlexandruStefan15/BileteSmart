@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 
 //data
-import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched by locationId and eventId
+import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";

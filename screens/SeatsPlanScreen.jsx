@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 
 //data
-import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched
+import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";

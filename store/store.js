@@ -33,7 +33,7 @@ export const useSelectedSeats = create((set) => ({
 
 				const basePrice = seat.base_price;
 				const is_discounted = type === "Redus" ? "1" : "0";
-				const price = type === "Redus" ? basePrice * 0.8 : basePrice;
+				const price = type === "Redus" ? basePrice * 0.72 : basePrice;
 
 				return {
 					...seat,

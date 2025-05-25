@@ -15,7 +15,7 @@ import Header from "@/components/Header";
 import Button from "@/components/Button";
 
 //data
-import { roomsWithSeats } from "@/data/roomsWithSeats"; // to be fetched by locationId and eventId
+import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const { locationId, event, locationFieldPath } = route.params;
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 		backgroundColor: "#242424",
 		margin: 15,
-		marginBottom: 45,
+		marginBottom: 40,
 		marginTop: 5,
 		gap: 15,
 	},
