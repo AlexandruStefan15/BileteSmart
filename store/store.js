@@ -28,8 +28,17 @@ export const useSelectedSeats = create((set) => ({
 
 	updateSeatType: (id_seat, type) =>
 		set((state) => ({
-			selectedSeats: state.selectedSeats.map((seat) =>
-				seat.id_seat === id_seat ? { ...seat, is_discounted: type === "Redus" ? "1" : "0" } : seat
-			),
+			selectedSeats: state.selectedSeats.map((seat) => {
+				if (seat.id_seat !== id_seat) return seat;
+
+				const is_discounted = type === "Redus" ? "1" : "0";
+				const discounted_price = type === "Redus" ? seat.price * 0.8 : seat.price;
+
+				return {
+					...seat,
+					is_discounted,
+					price: discounted_price,
+				};
+			}),
 		})),
 }));
