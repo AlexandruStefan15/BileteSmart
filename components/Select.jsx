@@ -49,7 +49,7 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 							<TouchableOpacity
 								style={[styles.option]}
 								onPress={(event) => {
-									setSelectedOption(opt.value); // Instantly update selection
+									setSelectedOption(opt.value);
 									setTimeout(() => {
 										setIsVisible(false);
 									}, 0);
@@ -59,7 +59,11 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 								}}
 							>
 								<Text
-									style={[styles.labelText, selectedOption === opt.value && styles.selectedLabel]}
+									style={[
+										styles.labelText,
+										selectedOption === opt.value && styles.selectedLabel,
+										index == 0 && selectedOption == null && styles.selectedLabel,
+									]}
 								>
 									{opt.label}
 								</Text>
@@ -128,18 +132,14 @@ const styles = StyleSheet.create({
 		lineHeight: 20,
 	},
 
-	option: {
-		paddingBlock: 9,
-	},
-
 	labelText: {
-		fontSize: 15.7,
+		fontSize: 16,
 		textAlign: "center",
-		paddingBlock: 13,
-		paddingInline: 16,
-		marginInline: 10,
+		paddingBlock: 12,
+		marginBlock: 7,
+		paddingInline: 15,
+		marginInline: 7,
 		fontWeight: "600",
-		/* backgroundColor: "lightblue", */
 		borderRadius: 13,
 	},
 
