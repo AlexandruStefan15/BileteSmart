@@ -89,7 +89,7 @@ const TicketItem = ({ item, onRemove }) => {
 						top: 50,
 						backgroundColor: "#2e2d2d",
 						borderColor: "transparent",
-						borderRadius: 5,
+						borderRadius: 6,
 					}}
 					textStyles={{ color: "#5fa0c4", fontWeight: "bold", fontSize: 14.5 }}
 				/>

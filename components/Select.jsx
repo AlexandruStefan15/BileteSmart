@@ -62,7 +62,7 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 									style={[
 										styles.labelText,
 										selectedOption === opt.value && styles.selectedLabel,
-										index == 0 && selectedOption == null && styles.selectedLabel,
+										index == 0 && !selectedOption && styles.selectedLabel,
 									]}
 								>
 									{opt.label}
@@ -104,8 +104,9 @@ const styles = StyleSheet.create({
 
 	modalContent: {
 		backgroundColor: "white",
-		borderRadius: 20,
+		borderRadius: 25,
 		padding: 5,
+		paddingInline: 0,
 		paddingBottom: 3,
 	},
 
@@ -135,10 +136,10 @@ const styles = StyleSheet.create({
 	labelText: {
 		fontSize: 16,
 		textAlign: "center",
-		paddingBlock: 12,
-		marginBlock: 7,
-		paddingInline: 15,
-		marginInline: 7,
+		paddingBlock: 13,
+		marginBlock: 9,
+		paddingInline: 16,
+		marginInline: 12,
 		fontWeight: "600",
 		borderRadius: 13,
 	},
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
 	separator: {
 		borderTopWidth: 1,
 		borderColor: "#ccccccad",
+		width: "100%",
 	},
 
 	lastSeparator: {
