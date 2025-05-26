@@ -12,6 +12,7 @@ const options = [
 
 function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 	const [isVisible, setIsVisible] = useState(false);
+	const [selectedOption, setSelectedOption] = useState(null);
 
 	return (
 		<>
@@ -27,27 +28,41 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 				isVisible={isVisible}
 				onBackdropPress={() => setIsVisible(false)}
 				onBackButtonPress={() => setIsVisible(false)}
-				style={modalStyles}
+				style={[styles.modal, modalStyles]}
 				animationIn="fadeInUp"
 				animationOut="fadeOutDown"
 				animationInTiming={250}
-				animationOutTiming={200}
+				animationOutTiming={250}
 				backdropTransitionInTiming={1}
 				backdropTransitionOutTiming={1}
 				useNativeDriver={true}
 				hideModalContentWhileAnimating={false}
 			>
 				<View style={styles.modalContent}>
+					<View style={styles.header}>
+						<Text style={styles.title}>Selectează tipul biletului</Text>
+						<Text style={styles.caption}>Va rugam sa selectati tipul de bilet dorit.</Text>
+					</View>
+					<View style={[styles.separator]}></View>
 					{options.map((opt, index) => (
 						<React.Fragment key={opt.value}>
 							<TouchableOpacity
 								style={[styles.option]}
-								onPress={() => {
-									onChange(opt.value);
-									setIsVisible(false);
+								onPress={(event) => {
+									setSelectedOption(opt.value); // Instantly update selection
+									setTimeout(() => {
+										setIsVisible(false);
+									}, 0);
+									setTimeout(() => {
+										onChange(opt.value);
+									}, 0);
 								}}
 							>
-								<Text style={{ paddingLeft: 5, fontSize: 15 }}>{opt.label}</Text>
+								<Text
+									style={[styles.labelText, selectedOption === opt.value && styles.selectedLabel]}
+								>
+									{opt.label}
+								</Text>
 							</TouchableOpacity>
 							<View style={[styles.separator, index === 1 && styles.lastSeparator]}></View>
 						</React.Fragment>
@@ -79,20 +94,63 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 
+	modal: {
+		alignSelf: "center",
+	},
+
 	modalContent: {
 		backgroundColor: "white",
-		borderRadius: 8,
+		borderRadius: 20,
 		padding: 5,
-		paddingLeft: 10,
+		paddingBottom: 3,
+	},
+
+	header: {
+		padding: 15,
+		paddingBottom: 20,
+		borderColor: "#eee",
+		gap: 9,
+	},
+
+	title: {
+		fontSize: 19,
+		fontWeight: "bold",
+		textAlign: "center",
+		marginTop: 10,
+		lineHeight: 20,
+	},
+
+	caption: {
+		fontSize: 15,
+		textAlign: "center",
+		maxWidth: 200,
+		alignSelf: "center",
+		lineHeight: 20,
 	},
 
 	option: {
-		paddingBlock: 15,
+		paddingBlock: 9,
+	},
+
+	labelText: {
+		fontSize: 15.7,
+		textAlign: "center",
+		paddingBlock: 13,
+		paddingInline: 16,
+		marginInline: 10,
+		fontWeight: "600",
+		/* backgroundColor: "lightblue", */
+		borderRadius: 13,
+	},
+
+	selectedLabel: {
+		backgroundColor: "#5fa0c4",
+		color: "white",
 	},
 
 	separator: {
 		borderTopWidth: 1,
-		borderColor: "#ccc",
+		borderColor: "#ccccccad",
 	},
 
 	lastSeparator: {

@@ -14,8 +14,10 @@ const RootNavigator = () => {
 	return (
 		<NavigationContainer>
 			<StatusBar
-				barStyle={theme == "dark" ? "light-content" : "dark-content"}
-				backgroundColor={theme == "dark" ? "black" : "white"}
+				/* barStyle={theme == "dark" ? "light-content" : "dark-content"}
+				backgroundColor={theme == "dark" ? "black" : "white"} */
+				barStyle={"dark-content"}
+				backgroundColor={"white"}
 			/>
 			{/* <View
 				style={{

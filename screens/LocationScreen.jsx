@@ -8,6 +8,7 @@ import {
 	Image,
 	FlatList,
 	ActivityIndicator,
+	StatusBar,
 } from "react-native";
 import { Colors } from "@/constants";
 
@@ -46,6 +47,7 @@ const LocationScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
+			{/* <StatusBar barStyle="dark-content" backgroundColor={"transparent"} translucent={true} /> */}
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<Header variant="2" />
 				<View style={styles.banner}>

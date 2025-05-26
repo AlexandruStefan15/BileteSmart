@@ -16,7 +16,6 @@ import { Colors } from "@/constants";
 
 //icons
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import Select from "./Select";
