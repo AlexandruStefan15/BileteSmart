@@ -104,21 +104,19 @@ const styles = StyleSheet.create({
 
 	modalContent: {
 		backgroundColor: "white",
-		borderRadius: 25,
-		padding: 5,
-		paddingInline: 0,
+		borderRadius: 20,
+		paddingInline: 1,
 		paddingBottom: 3,
 	},
 
 	header: {
-		padding: 15,
-		paddingBottom: 20,
+		paddingBlock: 20,
 		borderColor: "#eee",
-		gap: 9,
+		gap: 10,
 	},
 
 	title: {
-		fontSize: 19,
+		fontSize: 19.5,
 		fontWeight: "bold",
 		textAlign: "center",
 		marginTop: 10,
@@ -126,9 +124,9 @@ const styles = StyleSheet.create({
 	},
 
 	caption: {
-		fontSize: 15,
+		fontSize: 15.5,
 		textAlign: "center",
-		maxWidth: 200,
+		maxWidth: 220,
 		alignSelf: "center",
 		lineHeight: 20,
 	},
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
 	labelText: {
 		fontSize: 16,
 		textAlign: "center",
-		paddingBlock: 13,
+		paddingBlock: 12,
 		marginBlock: 9,
 		paddingInline: 16,
 		marginInline: 12,

@@ -31,7 +31,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 		<SafeAreaView style={styles.screen}>
 			<StatusBar barStyle={"light-content"} backgroundColor={"#242424"} />
 			<ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#242424" }}>
-				<Header variant="2" style={{ marginTop: 4 }} />
+				<Header variant="2" style={{ marginTop: 3 }} />
 				<View style={styles.banner}>
 					<Text style={styles.banner_title}>{event.title}</Text>
 					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
@@ -76,7 +76,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
 	banner: {
-		marginTop: -3,
+		marginTop: -4,
 		backgroundColor: "#242424",
 		paddingBlock: 30,
 		paddingTop: 68,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 	svgWrapper: {
 		overflow: "hidden",
 		backgroundColor: "#242424",
-		margin: 15,
+		marginInline: 20,
 		marginBottom: 40,
 		marginTop: 5,
 		gap: 15,

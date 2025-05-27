@@ -1,16 +1,21 @@
 {
   "expo": {
     "name": "Bilete Smart",
-    "slug": "test",
+    "slug": "bilete-smart",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/react-logo@3x.png",
+    "icon": "./assets/images/miniLogo.png",
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.pikolo1999.test",
+      "bundleIdentifier": "com.pikolo1999.bilete-smart",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -20,7 +25,7 @@
         "foregroundImage": "./assets/images/react-logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.pikolo1999.test"
+      "package": "com.pikolo1999.biletesmart"
     },
     "web": {
       "bundler": "metro",
@@ -39,7 +44,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "743c003d-b7e6-4ab5-a770-f1a001644851"
+        "projectId": "b401b27b-b264-47a7-92fd-3ff18b249ed6"
       }
     },
     "owner": "pikolo1999",
