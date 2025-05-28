@@ -12,7 +12,7 @@ import { Colors } from "@/constants/Colors";
 import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
-import TicketsInfo from "./TicketsInfo";
+import TicketsInfo from "./TicketList";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;

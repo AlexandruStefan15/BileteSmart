@@ -11,9 +11,6 @@ import Animated, {
 //store
 import { useSelectedSeats } from "@/store/store";
 
-//colors
-import { Colors } from "@/constants";
-
 //icons
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
@@ -21,7 +18,7 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import Select from "./Select";
 import { FlatList } from "react-native-gesture-handler";
 
-const TicketsInfo = ({}) => {
+const TicketList = ({}) => {
 	const { selectedSeats, removeSeat } = useSelectedSeats();
 
 	return (
@@ -152,4 +149,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default TicketsInfo;
+export default TicketList;
