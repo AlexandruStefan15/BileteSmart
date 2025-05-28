@@ -67,7 +67,10 @@ const SvgHallPlan = ({
 				onPress={() =>
 					room.free_seats > 0 &&
 					!room.read_only &&
-					navigation.navigate("SeatsPlanScreen", { roomId: room.id_room })
+					navigation.navigate("SeatsPlanStack", {
+						screen: "SeatsPlanScreen",
+						params: { roomId: room.id_room },
+					})
 				}
 				onResponderMove={() => {}}
 			/>

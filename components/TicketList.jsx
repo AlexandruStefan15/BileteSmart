@@ -43,6 +43,7 @@ const TicketList = ({}) => {
 const TicketItem = ({ item, onRemove }) => {
 	const { updateSeatType } = useSelectedSeats();
 	const translateX = useSharedValue(0);
+	const teeth = Array.from({ length: 6 });
 
 	const animatedStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: translateX.value }],
@@ -55,8 +56,6 @@ const TicketItem = ({ item, onRemove }) => {
 			}
 		});
 	};
-
-	const teeth = Array.from({ length: 6 });
 
 	return (
 		<Animated.View style={[{ flexDirection: "row" }, animatedStyle]}>
@@ -138,10 +137,10 @@ const styles = StyleSheet.create({
 		borderRadius: 25,
 		padding: 7,
 		alignSelf: "flex-start",
-		top: "50%",
+		top: "47.5%",
 		transform: [{ translateY: -17 }],
 		marginInline: "auto",
-		left: 5,
+		left: 6,
 	},
 
 	ticketList_removeButton_text: {

@@ -28,6 +28,7 @@ const Header = ({
 	seatCount = {},
 	badgeStyle,
 	displayBadge = {},
+	arrowColor = "white",
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
@@ -77,7 +78,7 @@ const Header = ({
 						style={{ padding: 20, left: -20, top: -18 }}
 						onPress={() => navigation.goBack()}
 					>
-						<FeatherIcon name="arrow-left" size={26} color={Colors.dark.text.primary} />
+						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />
 					</TouchableOpacity>
 				</View>
 			</Animated.View>
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		flexDirection: "row",
 		paddingHorizontal: 20,
-		paddingVertical: 12,
+		paddingVertical: 13,
 		justifyContent: "space-between",
 		alignItems: "center",
 		zIndex: 10,

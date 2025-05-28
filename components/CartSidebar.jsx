@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
 
 //store
 import { useSelectedSeats } from "@/store/store";
@@ -32,6 +33,7 @@ export const useCartSideBar = () => {
 };
 
 export default function CartSideBar({ sidebarX, resetBadge, children, ...props }) {
+	const navigation = useNavigation();
 	const { selectedSeats, removeSeat } = useSelectedSeats();
 	const windowHeight = Dimensions.get("window").height;
 	const sidebarStyle = useAnimatedStyle(() => ({
@@ -77,7 +79,10 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
 				</View>
-				<TouchableOpacity style={styles.checkoutButton}>
+				<TouchableOpacity
+					style={styles.checkoutButton}
+					onPress={() => navigation.navigate("CheckoutScreen")}
+				>
 					<Text style={styles.checkoutButton_text}>Checkout</Text>
 				</TouchableOpacity>
 			</View>

@@ -9,7 +9,7 @@ import {
 
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
-import SeatsPlanScreen from "@/screens/SeatsPlanScreen";
+import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
 
 const Stack = createStackNavigator();
 
@@ -41,9 +41,9 @@ export default function RoomsPlanNavigator({}) {
 				)}
 			</Stack.Screen>
 
-			<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
+			<Stack.Screen name="SeatsPlanStack" options={{ headerShown: false }}>
 				{(props) => (
-					<SeatsPlanScreen
+					<SeatsPlanNavigator
 						{...props}
 						seatCount={seatCount}
 						badgeStyle={badgeStyle}
