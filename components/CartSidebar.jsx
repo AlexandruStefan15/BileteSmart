@@ -104,7 +104,6 @@ const getStyles = (height) =>
 		},
 
 		//header
-
 		sidebar_header: {
 			flexDirection: "row",
 			justifyContent: "space-between",

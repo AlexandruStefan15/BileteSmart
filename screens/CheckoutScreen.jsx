@@ -1,11 +1,27 @@
-import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
+import React, { useCallback } from "react";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text, BackHandler } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 //components
 import Header from "@/components/Header";
 import CheckoutForm from "@/components/CheckoutForm";
 
 const CheckoutScreen = () => {
+	const navigation = useNavigation();
+
+	useFocusEffect(
+		useCallback(() => {
+			const onBackPress = () => {
+				navigation.goBack();
+				return true;
+			};
+
+			const subscription = BackHandler.addEventListener("hardwareBackPress", onBackPress);
+
+			return () => subscription.remove();
+		}, [navigation])
+	);
+
 	return (
 		<SafeAreaView>
 			<Header variant="2" arrowColor="black" />
