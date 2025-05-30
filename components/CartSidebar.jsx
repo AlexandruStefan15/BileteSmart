@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler } from "react-native";
+import {
+	View,
+	Text,
+	StyleSheet,
+	Dimensions,
+	TouchableOpacity,
+	BackHandler,
+	StatusBar,
+} from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
@@ -33,13 +41,15 @@ export const useCartSideBar = () => {
 };
 
 export default function CartSideBar({ sidebarX, resetBadge, children, ...props }) {
-	const navigation = useNavigation();
 	const { selectedSeats, removeSeat } = useSelectedSeats();
+	const statusBarHeight = StatusBar.currentHeight || 24;
 	const windowHeight = Dimensions.get("window").height;
+	const styles = getStyles(windowHeight, statusBarHeight);
+	const navigation = useNavigation();
+
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
 	}));
-	const styles = getStyles(windowHeight);
 
 	useEffect(() => {
 		const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -90,14 +100,14 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 	);
 }
 
-const getStyles = (height) =>
+const getStyles = (windowHeight, statusBarHeight) =>
 	StyleSheet.create({
 		sidebar: {
 			position: "absolute",
 			top: 0,
 			left: 0,
 			width: SIDEBAR_WIDTH,
-			height: height - 57,
+			height: windowHeight - statusBarHeight - 25,
 			backgroundColor: "white",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS

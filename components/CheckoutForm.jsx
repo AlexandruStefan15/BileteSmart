@@ -67,7 +67,7 @@ export default function CheckoutForm({ onSubmit }) {
 
 			<Text style={styles.label}>Telefon</Text>
 			<TextInput
-				style={[styles.input, { height: 100 }]}
+				style={[styles.input]}
 				value={phoneNr}
 				onChangeText={setPhoneNr}
 				placeholder=""
