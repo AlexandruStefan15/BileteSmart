@@ -9,7 +9,7 @@ import { Colors } from "@/constants";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 //store
-import { useSelectedSeats, useCartBadge } from "@/store/store";
+import { useSelectedSeats } from "@/store/store";
 
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
