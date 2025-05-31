@@ -51,10 +51,10 @@ const OrderSummary = () => {
 				</View>
 			</View>
 			<View style={styles.footer}>
-				<Text style={{}}>
+				<Text>
 					Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
 					sprijini experiența pe acest site web și în alte scopuri descrise în{" "}
-					<TouchableOpacity style={{ color: "#23527c" }}>
+					<TouchableOpacity>
 						<Text style={{ fontWeight: "bold" }}>politica noastră de confidențialitate.</Text>
 					</TouchableOpacity>
 				</Text>
@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
-		fontSize: 18,
+		fontSize: 17.7,
 		fontWeight: "600",
 		textAlign: "center",
 		marginBottom: 38,
-		marginTop: 18,
+		marginTop: 17,
 	},
 
 	ticketsInfo: {
