@@ -12,16 +12,25 @@ const OrderSummary = () => {
 			<Text style={styles.title}>Rezumat Comandă</Text>
 			<View style={styles.ticketsInfo}>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "500" }}>Bilete</Text>
-					<Text style={{ fontSize: 16, fontWeight: "500" }}>Sub-total</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>Bilete</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>Sub-total</Text>
 				</View>
 				{selectedSeats.map((seat, index) => (
 					<View key={index} style={[styles.row, { paddingBottom: 15 }]}>
-						<Text style={{ fontSize: 15, flexShrink: 1, paddingRight: 150, lineHeight: 20 }}>
+						<Text
+							style={{
+								fontSize: 15,
+								flexShrink: 1,
+								paddingRight: 150,
+								lineHeight: 20,
+								fontWeight: "500",
+								color: "grey",
+							}}
+						>
 							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
 							{seat.is_discounted ? "Redus" : "Intreg"}
 						</Text>
-						<Text style={{ fontSize: 15 }}>{seat.price} RON</Text>
+						<Text style={{ fontSize: 15, fontWeight: "500", color: "grey" }}>{seat.price} RON</Text>
 					</View>
 				))}
 				<View style={styles.row}>
@@ -68,8 +77,8 @@ const styles = StyleSheet.create({
 		paddingBottom: 25,
 		paddingInline: 21,
 		backgroundColor: "#f0f8ff",
-		borderTopLeftRadius: 30,
-		borderTopRightRadius: 30,
+		borderTopLeftRadius: 32,
+		borderTopRightRadius: 32,
 	},
 
 	title: {
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
 		fontWeight: "600",
 		textAlign: "center",
 		marginBottom: 38,
-		marginTop: 17,
+		marginTop: 18,
 	},
 
 	ticketsInfo: {

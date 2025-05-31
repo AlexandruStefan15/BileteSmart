@@ -4,7 +4,7 @@ import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "reac
 //components
 import Checkbox from "react-native-bouncy-checkbox";
 
-export default function CheckoutForm({ onSubmit }) {
+export default function CheckoutForm({ onSubmit, style }) {
 	const [lastName, setLastName] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [phoneNr, setPhoneNr] = useState("");
@@ -55,7 +55,7 @@ export default function CheckoutForm({ onSubmit }) {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, style]}>
 			<Text style={styles.formTitle}>Informatii Personale</Text>
 			<Text style={styles.label}>Nume</Text>
 			<TextInput style={styles.input} value={lastName} onChangeText={setLastName} placeholder="" />
@@ -96,7 +96,7 @@ export default function CheckoutForm({ onSubmit }) {
 					disableText={true}
 					fillColor="black"
 					style={{ top: 1 }}
-					size={18}
+					size={18.5}
 					useBuiltInState={false}
 					iconImageStyle={styles.iconImageStyle}
 					innerIconStyle={{ borderRadius: 3 }}
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 	label: {
 		fontSize: 16,
 		fontWeight: "500",
-		marginTop: 6,
+		marginTop: 7,
 		marginBottom: 5,
 		flexShrink: 1,
 	},
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
 	termsAndConditions: {
 		flexDirection: "row",
 		gap: 10,
-		marginTop: 25,
+		marginTop: 20,
 		alignItems: "center",
 	},
 });
