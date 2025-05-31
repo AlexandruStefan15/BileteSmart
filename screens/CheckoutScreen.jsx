@@ -5,6 +5,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 //components
 import Header from "@/components/Header";
 import CheckoutForm from "@/components/CheckoutForm";
+import OrderSummary from "@/components/sections/OrderSummary";
 
 const CheckoutScreen = () => {
 	const navigation = useNavigation();
@@ -27,6 +28,7 @@ const CheckoutScreen = () => {
 			<Header variant="2" arrowColor="black" />
 			<ScrollView style={{ marginTop: 60 }}>
 				<CheckoutForm />
+				<OrderSummary />
 			</ScrollView>
 		</SafeAreaView>
 	);

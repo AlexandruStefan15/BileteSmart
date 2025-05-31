@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "react-native";
+
+//components
+import Checkbox from "react-native-bouncy-checkbox";
 
 export default function CheckoutForm({ onSubmit }) {
 	const [lastName, setLastName] = useState("");
@@ -7,6 +10,7 @@ export default function CheckoutForm({ onSubmit }) {
 	const [phoneNr, setPhoneNr] = useState("");
 	const [email, setEmail] = useState("");
 	const [errors, setErrors] = useState({});
+	const [localChecked, setLocalChecked] = useState(false);
 
 	const validate = () => {
 		const newErrors = {};
@@ -52,6 +56,7 @@ export default function CheckoutForm({ onSubmit }) {
 
 	return (
 		<View style={styles.container}>
+			<Text style={styles.formTitle}>Informatii Personale</Text>
 			<Text style={styles.label}>Nume</Text>
 			<TextInput style={styles.input} value={lastName} onChangeText={setLastName} placeholder="" />
 			{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
@@ -84,18 +89,56 @@ export default function CheckoutForm({ onSubmit }) {
 				keyboardType="email-address"
 			/>
 			{errors.email && <Text style={styles.error}>{errors.email}</Text>}
+			<Text>Pe această adresă veți primi biletul de acces.</Text>
+			<View style={styles.termsAndConditions}>
+				<Checkbox
+					isChecked={localChecked}
+					disableText={true}
+					fillColor="black"
+					style={{ top: -5.6 }}
+					size={18}
+					useBuiltInState={false}
+					iconImageStyle={styles.iconImageStyle}
+					innerIconStyle={{ borderRadius: 3 }}
+					iconStyle={{ borderRadius: 3 }}
+					onPress={(checked) => {
+						setLocalChecked(!localChecked);
+					}}
+				/>
+				<View style={[styles.label, { flexDirection: "row" }]}>
+					<Text
+						onPress={(checked) => {
+							setLocalChecked(!localChecked);
+						}}
+						style={[styles.label]}
+					>
+						Sunt de acord cu{" "}
+					</Text>
+					<TouchableOpacity>
+						<Text style={[styles.label, { color: "#23527c" }]}>termenii si Conditiile.</Text>
+					</TouchableOpacity>
+				</View>
+			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		padding: 20,
+		padding: 21,
 	},
+
+	formTitle: {
+		fontSize: 20,
+		fontWeight: "500",
+		marginBottom: 24,
+	},
+
 	label: {
 		fontSize: 16,
 		fontWeight: "500",
 		marginBottom: 5,
+		flexShrink: 1,
 	},
 	input: {
 		borderWidth: 1,
@@ -107,5 +150,14 @@ const styles = StyleSheet.create({
 	error: {
 		color: "red",
 		marginBottom: 10,
+	},
+
+	//terms and conditions
+
+	termsAndConditions: {
+		flexDirection: "row",
+		gap: 10,
+		marginTop: 25,
+		alignItems: "center",
 	},
 });
