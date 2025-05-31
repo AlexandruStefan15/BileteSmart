@@ -62,7 +62,7 @@ const OrderSummary = () => {
 					style={{ marginTop: 18, backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
 				>
 					<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
-						Plasează Comanda
+						Finalizează Comanda
 					</Text>
 				</TouchableOpacity>
 			</View>
