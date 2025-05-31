@@ -12,13 +12,13 @@ const OrderSummary = () => {
 			<Text style={styles.title}>Rezumat Comandă</Text>
 			<View style={styles.ticketsInfo}>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>Bilete</Text>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>Sub-total</Text>
+					<Text style={{ fontSize: 16, fontWeight: "500" }}>Bilete</Text>
+					<Text style={{ fontSize: 16, fontWeight: "500" }}>Sub-total</Text>
 				</View>
 				{selectedSeats.map((seat, index) => (
-					<View key={index} style={styles.row}>
-						<Text style={{ fontSize: 14.8, flexShrink: 1, paddingRight: 120 }}>
-							Sector: {seat.room_name} | Rand: {seat.row_no} | Scaun: {seat.seat_no} | Tip bilet:{" "}
+					<View key={index} style={[styles.row, { paddingBottom: 15 }]}>
+						<Text style={{ fontSize: 15, flexShrink: 1, paddingRight: 150, lineHeight: 20 }}>
+							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
 							{seat.is_discounted ? "Redus" : "Intreg"}
 						</Text>
 						<Text style={{ fontSize: 15 }}>{seat.price} RON</Text>
@@ -31,8 +31,8 @@ const OrderSummary = () => {
 					</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 15 }}>Taxa procesare tranzactie:</Text>
-					<Text style={{ fontSize: 15 }}>3 RON</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>Taxa procesare tranzactie:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>3 RON</Text>
 				</View>
 				<View style={styles.row}>
 					<Text style={{ fontSize: 16, fontWeight: "600" }}>Total:</Text>
@@ -42,11 +42,11 @@ const OrderSummary = () => {
 				</View>
 			</View>
 			<View style={styles.footer}>
-				<Text>
+				<Text style={{}}>
 					Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
 					sprijini experiența pe acest site web și în alte scopuri descrise în{" "}
 					<TouchableOpacity style={{ color: "#23527c" }}>
-						<Text>politica noastră de confidențialitate.</Text>
+						<Text style={{ fontWeight: "bold" }}>politica noastră de confidențialitate.</Text>
 					</TouchableOpacity>
 				</Text>
 				<TouchableOpacity
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: "600",
 		textAlign: "center",
-		marginBottom: 35,
-		marginTop: 15,
+		marginBottom: 38,
+		marginTop: 17,
 	},
 
 	ticketsInfo: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		borderBottomWidth: 0.5,
 		borderBottomColor: "#ccc",
-		paddingBottom: 11,
+		paddingBottom: 15,
 	},
 
 	footer: {

@@ -95,7 +95,7 @@ export default function CheckoutForm({ onSubmit }) {
 					isChecked={localChecked}
 					disableText={true}
 					fillColor="black"
-					style={{ top: -5.6 }}
+					style={{ top: 1 }}
 					size={18}
 					useBuiltInState={false}
 					iconImageStyle={styles.iconImageStyle}
@@ -137,9 +137,11 @@ const styles = StyleSheet.create({
 	label: {
 		fontSize: 16,
 		fontWeight: "500",
+		marginTop: 6,
 		marginBottom: 5,
 		flexShrink: 1,
 	},
+
 	input: {
 		borderWidth: 1,
 		borderColor: "#ccc",
