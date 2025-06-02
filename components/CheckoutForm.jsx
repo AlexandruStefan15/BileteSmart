@@ -9,6 +9,7 @@ export default function CheckoutForm({ onSubmit, style }) {
 	const [firstName, setFirstName] = useState("");
 	const [phoneNr, setPhoneNr] = useState("");
 	const [email, setEmail] = useState("");
+	const [confirmEmail, setConfirmEmail] = useState("");
 	const [errors, setErrors] = useState({});
 	const [localChecked, setLocalChecked] = useState(false);
 
@@ -16,8 +17,15 @@ export default function CheckoutForm({ onSubmit, style }) {
 		const newErrors = {};
 		if (!lastName.trim()) newErrors.lastName = "Numele este obligatoriu";
 		if (!firstName.trim()) newErrors.firstName = "Prenumele este obligatoriu";
-		if (!phoneNr.trim()) newErrors.lastName = "Numarul de telefon este obligatoriu";
+		if (!phoneNr.trim()) newErrors.phoneNr = "Numarul de telefon este obligatoriu";
 		if (!email.trim()) newErrors.email = "Emailul este obligatoriu";
+		if (!confirmEmail.trim()) newErrors.confirmEmail = "Confirmarea emailului este obligatorie";
+		if (email && !/\S+@\S+\.\S+/.test(email)) newErrors.email = "Emailul nu este valid";
+		if (email !== confirmEmail) newErrors.confirmEmail = "Emailurile nu se potrivesc";
+		if (!localChecked) newErrors.terms = "Trebuie sa accepti termenii si conditiile";
+		if (phoneNr && !/^\d{10,15}$/.test(phoneNr)) {
+			newErrors.phoneNr = "Numarul de telefon trebuie sa contina intre 10 si 15 cifre";
+		}
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -89,7 +97,18 @@ export default function CheckoutForm({ onSubmit, style }) {
 				keyboardType="email-address"
 			/>
 			{errors.email && <Text style={styles.error}>{errors.email}</Text>}
-			<Text>Pe această adresă veți primi biletul de acces.</Text>
+
+			<Text style={styles.label}>Confirma email</Text>
+			<TextInput
+				style={styles.input}
+				value={confirmEmail}
+				onChangeText={setConfirmEmail}
+				placeholder=""
+				keyboardType="email-address"
+			/>
+			{errors.confirmEmail && <Text style={styles.error}>{errors.confirmEmail}</Text>}
+
+			{/* <Text>Pe această adresă veți primi biletul de acces.</Text> */}
 			<View style={styles.termsAndConditions}>
 				<Checkbox
 					isChecked={localChecked}
@@ -126,18 +145,20 @@ export default function CheckoutForm({ onSubmit, style }) {
 const styles = StyleSheet.create({
 	container: {
 		padding: 21,
+		paddingRight: 25,
+		marginTop: 60,
 	},
 
 	formTitle: {
 		fontSize: 20,
 		fontWeight: "500",
-		marginBottom: 24,
+		marginBottom: 20,
 	},
 
 	label: {
-		fontSize: 16,
+		fontSize: 15,
 		fontWeight: "500",
-		marginTop: 7,
+		marginTop: 5,
 		marginBottom: 5,
 		flexShrink: 1,
 	},
@@ -159,7 +180,7 @@ const styles = StyleSheet.create({
 	termsAndConditions: {
 		flexDirection: "row",
 		gap: 10,
-		marginTop: 20,
+
 		alignItems: "center",
 	},
 });

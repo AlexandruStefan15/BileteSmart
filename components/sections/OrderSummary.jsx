@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
 		paddingBottom: 25,
 		paddingInline: 21,
 		backgroundColor: "#f0f8ff",
-		borderTopLeftRadius: 32,
-		borderTopRightRadius: 32,
+		borderTopLeftRadius: 40,
+		borderTopRightRadius: 40,
 	},
 
 	title: {

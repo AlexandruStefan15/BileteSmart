@@ -27,7 +27,7 @@ const CheckoutScreen = () => {
 		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
 			<ScrollView style={{ flexGrow: 1 }}>
 				<Header variant="2" arrowColor="black" />
-				<CheckoutForm style={{ marginTop: 55 }} />
+				<CheckoutForm />
 				<OrderSummary />
 			</ScrollView>
 		</SafeAreaView>
