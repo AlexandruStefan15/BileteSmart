@@ -14,7 +14,7 @@ import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
 const Stack = createStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
-	const seatCount = useSharedValue(0);
+	/* const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
 
 	const showBadge = useDerivedValue(() => {
@@ -26,7 +26,7 @@ export default function RoomsPlanNavigator({}) {
 			opacity: withTiming(showBadge.value ? 1 : 0, { duration: 150 }),
 			transform: [{ scale: withTiming(showBadge.value ? 1 : 0.5, { duration: 150 }) }],
 		};
-	});
+	}); */
 
 	return (
 		<Stack.Navigator>
@@ -34,9 +34,9 @@ export default function RoomsPlanNavigator({}) {
 				{(props) => (
 					<RoomsPlanScreen
 						{...props}
-						seatCount={seatCount}
+						/* seatCount={seatCount}
 						badgeStyle={badgeStyle}
-						displayBadge={displayBadge}
+						displayBadge={displayBadge} */
 					/>
 				)}
 			</Stack.Screen>
@@ -45,9 +45,9 @@ export default function RoomsPlanNavigator({}) {
 				{(props) => (
 					<SeatsPlanNavigator
 						{...props}
-						seatCount={seatCount}
+						/* seatCount={seatCount}
 						badgeStyle={badgeStyle}
-						displayBadge={displayBadge}
+						displayBadge={displayBadge} */
 					/>
 				)}
 			</Stack.Screen>

@@ -55,7 +55,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 		const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
 			if (sidebarX.value === 0) {
 				sidebarX.value = withTiming(-SIDEBAR_WIDTH);
-				props.displayBadge.value = false;
+				/* props.displayBadge.value = false; */
 				return true;
 			}
 			return false;
@@ -72,7 +72,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				<TouchableOpacity
 					style={styles.closeBtn}
 					onPress={() => {
-						props.displayBadge.value = false;
+						/* props.displayBadge.value = false; */
 						sidebarX.value = withTiming(-SIDEBAR_WIDTH);
 					}}
 				>

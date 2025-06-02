@@ -32,7 +32,7 @@ const Header = ({
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
-	const { sidebarX, open, close } = useCartSideBar();
+	/* 	const { sidebarX, open, close } = useCartSideBar(); */
 	const didMount = useRef(false);
 
 	useEffect(() => {
@@ -52,10 +52,9 @@ const Header = ({
 						<FeatherIcon name="arrow-left" size={26} color={"white"} />
 					</TouchableOpacity>
 				</View>
-				{showCart && (
+				{/* {showCart && (
 					<TouchableOpacity
 						onPress={() => {
-							/* displayBadge.value = false; */
 							open();
 						}}
 						style={styles.burgerMenu}
@@ -65,8 +64,8 @@ const Header = ({
 						</View>
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
-				)}
-				<CartSideBar sidebarX={sidebarX} displayBadge={displayBadge} />
+				)} */}
+				{/* <CartSideBar sidebarX={sidebarX} displayBadge={displayBadge} /> */}
 			</Animated.View>
 		);
 
