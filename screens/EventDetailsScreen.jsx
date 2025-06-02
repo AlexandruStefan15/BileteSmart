@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, StatusBar } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
 
@@ -23,9 +24,12 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const rooms = roomsWithSeats[1][129].rooms;
 	const { resetSeats } = useSelectedSeats();
 
-	useEffect(() => {
-		resetSeats();
-	}, []);
+	useFocusEffect(
+		React.useCallback(() => {
+			resetSeats();
+			return () => {};
+		}, [])
+	);
 
 	return (
 		<SafeAreaView style={styles.screen}>

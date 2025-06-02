@@ -34,17 +34,6 @@ const LocationScreen = ({ navigation, route }) => {
 	const { /* events, */ loading, error } = useFetchEvents(currentLocation.id);
 	const events = eventsByLocation[currentLocation.id]; // to be fetched from above
 
-	/* useFocusEffect(
-		React.useCallback(() => {
-			navigation.popToTop();
-
-			return () => {
-				console.log("Screen is unfocused (blurred)");
-			};
-		}, [])
-	);
- */
-
 	return (
 		<SafeAreaView style={styles.screen}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -127,7 +116,7 @@ const LocationScreen = ({ navigation, route }) => {
 	);
 };
 
-const renderIcon = (icon) => {
+/* const renderIcon = (icon) => {
 	switch (icon.type) {
 		case "FontAwesome":
 			return <FontAwesomeIcon name={icon.name} size={icon.size} color={Colors.primary} />;
@@ -138,7 +127,7 @@ const renderIcon = (icon) => {
 		default:
 			return null;
 	}
-};
+}; */
 
 const styles = StyleSheet.create({
 	screen: {
