@@ -26,7 +26,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 		if (email !== confirmEmail) newErrors.confirmEmail = "Emailurile nu se potrivesc";
 		if (!localChecked) newErrors.terms = "Trebuie sa accepti termenii si conditiile";
 		if (phoneNr && !/^\d{10,15}$/.test(phoneNr)) {
-			newErrors.phoneNr = "Numarul de telefon trebuie sa contina intre 10 si 15 cifre";
+			newErrors.phoneNr = "Numarul de telefon trebuie sa contina minim 10 cifre";
 		}
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		padding: 10,
 		marginBottom: 10,
+		backgroundColor: "white",
 	},
 	error: {
 		color: "red",
@@ -177,6 +178,7 @@ const styles = StyleSheet.create({
 	//terms and conditions
 
 	termsAndConditions: {
+		marginTop: 5,
 		flexDirection: "row",
 		gap: 10,
 
