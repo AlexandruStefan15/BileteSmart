@@ -135,7 +135,7 @@ const SvgHallPlan = ({
 								[fieldPosition === "top" ? "top" : "bottom"]: 100,
 							}}
 						/>
-						<Svg width={"90%"} height={"100%"} viewBox="0 0 108 100">
+						<Svg width={"90%"} height={"100%"} viewBox={currentRoom?.svgViewBox}>
 							{renderSeatPaths}
 							{currentRoom?.rows_path_d?.map((row, index) => (
 								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />
@@ -148,7 +148,7 @@ const SvgHallPlan = ({
 	}
 };
 
-export default React.memo(SvgHallPlan);
+export default SvgHallPlan;
 
 const styles = StyleSheet.create({
 	svg_container: {
