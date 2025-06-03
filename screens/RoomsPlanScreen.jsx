@@ -17,8 +17,8 @@ export default RoomsPlanScreen = ({ route, ...props }) => {
 				variant="3"
 				showCart={true}
 				seatCount={props.seatCount}
-				/* badgeStyle={props.badgeStyle}
-				displayBadge={props.displayBadge} */
+				badgeStyle={props.badgeStyle}
+				displayBadge={props.displayBadge}
 			/>
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}

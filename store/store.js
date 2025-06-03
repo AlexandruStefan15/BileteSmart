@@ -3,8 +3,6 @@ import { create } from "zustand";
 export const useSelectedSeats = create((set) => ({
 	selectedSeats: [],
 
-	setSelectedSeats: (seats) => set({ selectedSeats: seats }),
-
 	toggleSeat: (seat) =>
 		set((state) => {
 			const exists = state.selectedSeats.find((s) => s.id_seat === seat.id_seat);

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { GestureDetector } from "react-native-gesture-handler";
@@ -24,59 +24,33 @@ const SvgHallPlan = ({
 	selectRoom,
 	selectSeats,
 	fieldPosition,
-	openCart,
 }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const toggleSeat = useSelectedSeats((state) => state.toggleSeat);
-	const setSelectedSeats = useSelectedSeats((state) => state.setSelectedSeats);
 
 	const navigation = useNavigation();
 	const { gesture, animatedStyle } = useHandGestures();
 	const [selectedRoomId, setSelectedRoomId] = useState(null);
-	const [localSelectedSeatIds, setLocalSelectedSeatIds] = useState(new Set());
 
-	const toggleLocalSeat = (seat) => {
-		if (seat.busy) return;
-
-		setLocalSelectedSeatIds((prev) => {
-			const newSet = new Set(prev);
-			if (newSet.has(seat.id_seat)) {
-				newSet.delete(seat.id_seat);
-			} else {
-				newSet.add(seat.id_seat);
-			}
-			return newSet;
-		});
-	};
-
-	const confirmSelection = () => {
-		const selected = currentRoom?.seats?.filter((seat) => localSelectedSeatIds.has(seat.id_seat));
-		setSelectedSeats(selected);
-		requestAnimationFrame(() => {
-			setTimeout(() => {
-				openCart();
-			}, 150);
-		});
-	};
-
-	useEffect(() => {
-		setLocalSelectedSeatIds(new Set(selectedSeats.map((s) => s.id_seat)));
-	}, [selectedSeats]);
+	const selectedSeatIds = useMemo(
+		() => new Set(selectedSeats.map((s) => s.id_seat)),
+		[selectedSeats]
+	);
 
 	const renderSeatPaths = useMemo(() => {
 		return currentRoom?.seats?.map((seat) => {
-			const isSelected = localSelectedSeatIds.has(seat.id_seat);
+			const isSelected = selectedSeatIds.has(seat.id_seat);
 			return (
 				<Path
 					key={seat.id_seat}
 					d={seat.path_d}
 					fill={seat.busy ? "gray" : isSelected ? "#5fa0c4" : "#85cb3c"}
-					onPress={() => toggleLocalSeat(seat)}
+					onPress={() => !seat.busy && toggleSeat(seat)}
 					onResponderMove={() => {}}
 				/>
 			);
 		});
-	}, [currentRoom?.seats, localSelectedSeatIds]);
+	}, [currentRoom?.seats, selectedSeatIds, toggleSeat]);
 
 	const renderRoomPaths = useMemo(() => {
 		return rooms?.map((room) => (
@@ -166,18 +140,6 @@ const SvgHallPlan = ({
 							))}
 						</Svg>
 					</Animated.View>
-					{localSelectedSeatIds.size > 0 && (
-						<View style={styles.buttonsContainer}>
-							<Button title="Confirma" onPress={confirmSelection} />
-							<Button
-								title="Reseteaza"
-								onPress={() => {
-									setLocalSelectedSeatIds(new Set());
-									setSelectedSeats([]);
-								}}
-							/>
-						</View>
-					)}
 				</Animated.View>
 			</GestureDetector>
 		);
@@ -194,15 +156,6 @@ const styles = StyleSheet.create({
 		paddingBlock: 25,
 		backgroundColor: "white",
 		borderRadius: 10,
-	},
-
-	buttonsContainer: {
-		position: "absolute",
-		bottom: 20,
-		left: 0,
-		right: 0,
-		paddingHorizontal: 20,
-		gap: 10,
 	},
 });
 
