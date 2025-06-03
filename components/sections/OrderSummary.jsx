@@ -21,7 +21,7 @@ const OrderSummary = ({ formRef }) => {
 							style={{
 								fontSize: 15,
 								flexShrink: 1,
-								paddingRight: 150,
+								paddingRight: 130,
 								lineHeight: 20,
 								fontWeight: "500",
 								color: "#23527c",
@@ -30,7 +30,7 @@ const OrderSummary = ({ formRef }) => {
 							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
 							{seat.is_discounted ? "Redus" : "Intreg"}
 						</Text>
-						<Text style={{ fontSize: 16, fontWeight: "600", color: "#23527c" }}>
+						<Text style={{ fontSize: 15.5, fontWeight: "600", color: "#23527c" }}>
 							{seat.price} RON
 						</Text>
 					</View>
