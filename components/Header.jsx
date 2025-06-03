@@ -16,7 +16,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
-import CartSideBar, { useCartSideBar } from "@/components/CartSideBar";
+import CartSideBar, { useCartSideBar } from "./CartSideBar";
 
 const Header = ({
 	title = false,
