@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text, BackHandler } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
@@ -9,6 +9,7 @@ import OrderSummary from "@/components/sections/OrderSummary";
 
 const CheckoutScreen = () => {
 	const navigation = useNavigation();
+	const formRef = useRef();
 
 	useFocusEffect(
 		useCallback(() => {
@@ -27,8 +28,8 @@ const CheckoutScreen = () => {
 		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
 			<ScrollView style={{ flexGrow: 1 }}>
 				<Header variant="2" arrowColor="black" />
-				<CheckoutForm />
-				<OrderSummary />
+				<CheckoutForm ref={formRef} />
+				<OrderSummary formRef={formRef} />
 			</ScrollView>
 		</SafeAreaView>
 	);

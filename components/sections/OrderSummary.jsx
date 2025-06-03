@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 //store
 import { useSelectedSeats } from "@/store/store";
 
-const OrderSummary = () => {
+const OrderSummary = ({ formRef }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 
 	return (
@@ -24,13 +24,15 @@ const OrderSummary = () => {
 								paddingRight: 150,
 								lineHeight: 20,
 								fontWeight: "500",
-								color: "grey",
+								color: "#23527c",
 							}}
 						>
 							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
 							{seat.is_discounted ? "Redus" : "Intreg"}
 						</Text>
-						<Text style={{ fontSize: 15, fontWeight: "500", color: "grey" }}>{seat.price} RON</Text>
+						<Text style={{ fontSize: 16, fontWeight: "600", color: "#23527c" }}>
+							{seat.price} RON
+						</Text>
 					</View>
 				))}
 				<View style={styles.row}>
@@ -59,6 +61,7 @@ const OrderSummary = () => {
 					</TouchableOpacity>
 				</Text>
 				<TouchableOpacity
+					onPress={() => formRef?.current?.submit()}
 					style={{ marginTop: 18, backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
 				>
 					<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>

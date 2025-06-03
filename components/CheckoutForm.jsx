@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle, use } from "react";
 import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "react-native";
-
-//components
 import Checkbox from "react-native-bouncy-checkbox";
 
-export default function CheckoutForm({ onSubmit, style }) {
+//store
+import { useSelectedSeats } from "@/store/store";
+
+const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
+	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const [lastName, setLastName] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [phoneNr, setPhoneNr] = useState("");
@@ -26,15 +28,19 @@ export default function CheckoutForm({ onSubmit, style }) {
 		if (phoneNr && !/^\d{10,15}$/.test(phoneNr)) {
 			newErrors.phoneNr = "Numarul de telefon trebuie sa contina intre 10 si 15 cifre";
 		}
-
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
 	};
 
 	const handleSubmit = async () => {
-		if (!validate()) return;
+		if (!validate()) {
+			Alert.alert("Eroare", "Va rugam sa revizuiti formularul si sa corectati erorile.");
+			return;
+		}
 
-		try {
+		Alert.alert("Success", "Form submitted successfully!");
+
+		/* try {
 			const response = await fetch("https://your-api.com/checkout", {
 				method: "POST",
 				headers: {
@@ -51,39 +57,38 @@ export default function CheckoutForm({ onSubmit, style }) {
 				setFirstName("");
 				setPhoneNr("");
 				setEmail("");
+				setConfirmEmail("");
 				setErrors({});
-				onSubmit?.({ lastName, firstName, phoneNr, email });
+				setLocalChecked(false);
+				onSubmit?.({ lastName, firstName, phoneNr, email, selectedSeats });
 			} else {
 				Alert.alert("Error", data.error || "Something went wrong.");
 			}
 		} catch (err) {
 			console.error(err);
 			Alert.alert("Network Error", "Failed to send message.");
-		}
+		} */
 	};
+
+	useImperativeHandle(ref, () => ({ submit: handleSubmit }));
 
 	return (
 		<View style={[styles.container, style]}>
 			<Text style={styles.formTitle}>Informatii Personale</Text>
+
 			<Text style={styles.label}>Nume</Text>
-			<TextInput style={styles.input} value={lastName} onChangeText={setLastName} placeholder="" />
+			<TextInput style={styles.input} value={lastName} onChangeText={setLastName} />
 			{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
 
 			<Text style={styles.label}>Prenume</Text>
-			<TextInput
-				style={styles.input}
-				value={firstName}
-				onChangeText={setFirstName}
-				placeholder=""
-			/>
+			<TextInput style={styles.input} value={firstName} onChangeText={setFirstName} />
 			{errors.firstName && <Text style={styles.error}>{errors.firstName}</Text>}
 
 			<Text style={styles.label}>Telefon</Text>
 			<TextInput
-				style={[styles.input]}
+				style={styles.input}
 				value={phoneNr}
 				onChangeText={setPhoneNr}
-				placeholder=""
 				keyboardType="number-pad"
 			/>
 			{errors.phoneNr && <Text style={styles.error}>{errors.phoneNr}</Text>}
@@ -93,7 +98,6 @@ export default function CheckoutForm({ onSubmit, style }) {
 				style={styles.input}
 				value={email}
 				onChangeText={setEmail}
-				placeholder=""
 				keyboardType="email-address"
 			/>
 			{errors.email && <Text style={styles.error}>{errors.email}</Text>}
@@ -103,16 +107,14 @@ export default function CheckoutForm({ onSubmit, style }) {
 				style={styles.input}
 				value={confirmEmail}
 				onChangeText={setConfirmEmail}
-				placeholder=""
 				keyboardType="email-address"
 			/>
 			{errors.confirmEmail && <Text style={styles.error}>{errors.confirmEmail}</Text>}
 
-			{/* <Text>Pe această adresă veți primi biletul de acces.</Text> */}
 			<View style={styles.termsAndConditions}>
 				<Checkbox
 					isChecked={localChecked}
-					disableText={true}
+					disableText
 					fillColor="black"
 					style={{ top: 1 }}
 					size={18.5}
@@ -120,17 +122,10 @@ export default function CheckoutForm({ onSubmit, style }) {
 					iconImageStyle={styles.iconImageStyle}
 					innerIconStyle={{ borderRadius: 3 }}
 					iconStyle={{ borderRadius: 3 }}
-					onPress={(checked) => {
-						setLocalChecked(!localChecked);
-					}}
+					onPress={() => setLocalChecked(!localChecked)}
 				/>
-				<View style={[styles.label, { flexDirection: "row" }]}>
-					<Text
-						onPress={(checked) => {
-							setLocalChecked(!localChecked);
-						}}
-						style={[styles.label]}
-					>
+				<View style={{ flexDirection: "row", flexShrink: 1 }}>
+					<Text onPress={() => setLocalChecked(!localChecked)} style={styles.label}>
 						Sunt de acord cu{" "}
 					</Text>
 					<TouchableOpacity>
@@ -138,9 +133,13 @@ export default function CheckoutForm({ onSubmit, style }) {
 					</TouchableOpacity>
 				</View>
 			</View>
+
+			{errors.terms && <Text style={styles.error}>{errors.terms}</Text>}
 		</View>
 	);
-}
+});
+
+export default CheckoutForm;
 
 const styles = StyleSheet.create({
 	container: {
