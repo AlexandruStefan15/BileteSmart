@@ -2801,6 +2801,8 @@
 					"busy": 0,
 					"free_seats": 0,
 					"read_only": 0,
+					"field_position": "top",
+					"rows_path_d": [],
 					"seats": []
 				},
 				{
@@ -2810,7 +2812,58 @@
 					"busy": 0,
 					"free_seats": 212,
 					"read_only": 0,
-					"seats": []
+					"field_position": "top",
+					"rows_path_d": [],
+					"seats": [
+						{
+							"id_seat": "30857",
+							"id_room": 3,
+							"path_d": "M16.5 93.14H11.89C11.5752 93.14 11.32 93.3952 11.32 93.71V98.32C11.32 98.6348 11.5752 98.89 11.89 98.89H16.5C16.8148 98.89 17.07 98.6348 17.07 98.32V93.71C17.07 93.3952 16.8148 93.14 16.5 93.14Z",
+							"price": 25,
+							"row_no": "0",
+							"col_no": "0",
+							"seat_no": "1",
+							"room_name": "A3",
+							"is_valid": "1",
+							"is_booking_blocked": "0",
+							"is_for_child": "0",
+							"is_premium": "0",
+							"busy": 0,
+							"base_price": 25
+						},
+						{
+							"id_seat": "30858",
+							"id_room": 3,
+							"path_d": "M23.67 93.14H19.06C18.7452 93.14 18.49 93.3952 18.49 93.71V98.32C18.49 98.6348 18.7452 98.89 19.06 98.89H23.67C23.9848 98.89 24.24 98.6348 24.24 98.32V93.71C24.24 93.3952 23.9848 93.14 23.67 93.14Z",
+							"price": 25,
+							"row_no": "0",
+							"col_no": "0",
+							"seat_no": "2",
+							"room_name": "A3",
+							"is_valid": "1",
+							"is_booking_blocked": "0",
+							"is_for_child": "0",
+							"is_premium": "0",
+							"busy": 0,
+							"base_price": 25
+						},
+						{
+							"id_seat": "30859",
+							"id_room": 3,
+							"path_d": "M30.84 93.14H26.23C25.9152 93.14 25.66 93.3952 25.66 93.71V98.32C25.66 98.6348 25.9152 98.89 26.23 98.89H30.84C31.1548 98.89 31.41 98.6348 31.41 98.32V93.71C31.41 93.3952 31.1548 93.14 30.84 93.14Z",
+							"price": 25,
+							"row_no": "0",
+							"col_no": "0",
+							"seat_no": "3",
+							"room_name": "A3",
+							"is_valid": "1",
+							"is_booking_blocked": "0",
+							"is_for_child": "0",
+							"is_premium": "0",
+							"busy": 0,
+							"base_price": 25
+						}
+					]
 				},
 				{
 					"id_room": 4,

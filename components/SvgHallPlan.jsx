@@ -4,7 +4,6 @@ import Svg, { Path } from "react-native-svg";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import { shallow } from "zustand/shallow";
 
 // store
 import { useSelectedSeats } from "@/store/store";
@@ -14,10 +13,6 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 
 // components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
-
-const SeatPath = React.memo(({ d, fill, onPress }) => {
-	return <Path d={d} fill={fill} onPress={onPress} onResponderMove={() => {}} />;
-});
 
 const SvgHallPlan = ({
 	rooms,
@@ -30,7 +25,7 @@ const SvgHallPlan = ({
 	selectSeats,
 	fieldPosition,
 }) => {
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats, shallow);
+	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const toggleSeat = useSelectedSeats((state) => state.toggleSeat);
 
 	const navigation = useNavigation();
@@ -48,11 +43,12 @@ const SvgHallPlan = ({
 		return currentRoom?.seats?.map((seat) => {
 			const isSelected = selectedSeatIds.has(seat.id_seat);
 			return (
-				<SeatPath
+				<Path
 					key={seat.id_seat}
 					d={seat.path_d}
 					fill={seat.busy ? "gray" : isSelected ? "#5fa0c4" : "#85cb3c"}
 					onPress={() => !seat.busy && toggleSeat(seat)}
+					onResponderMove={() => {}}
 				/>
 			);
 		});
@@ -124,7 +120,7 @@ const SvgHallPlan = ({
 	if (selectSeats) {
 		return (
 			<GestureDetector gesture={gesture}>
-				<Animated.View style={[{ flex: 1, width: "100%" }, style]}>
+				<Animated.View style={[{ flex: 1, width: "100%", marginTop: 64 }, style]}>
 					<Animated.View
 						style={[
 							styles.svg_container,

@@ -26,7 +26,6 @@ export default SeatsPlanScreen = ({ route, seatCount, ...props }) => {
 				currentRoom={currentRoom}
 				selectSeats={true}
 				height="100%"
-				style={{ marginTop: 64 }}
 				fieldPosition={currentRoom_fieldPosition}
 			/>
 		</SafeAreaView>
