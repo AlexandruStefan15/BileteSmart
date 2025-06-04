@@ -32,12 +32,17 @@ const SvgHallPlan = ({
 	const { gesture, animatedStyle } = useHandGestures();
 	const [selectedRoomId, setSelectedRoomId] = useState(null);
 
+	const handleSeatPress = React.useCallback(
+		(seat) => {
+			if (!seat.busy) toggleSeat(seat);
+		},
+		[toggleSeat]
+	);
+
 	const selectedSeatIds = useMemo(
 		() => new Set(selectedSeats.map((s) => s.id_seat)),
 		[selectedSeats]
 	);
-
-	console.log("rerendered");
 
 	const renderSeatPaths = useMemo(() => {
 		return currentRoom?.seats?.map((seat) => {
@@ -47,8 +52,9 @@ const SvgHallPlan = ({
 					key={seat.id_seat}
 					d={seat.path_d}
 					fill={seat.busy ? "gray" : isSelected ? "#5fa0c4" : "#85cb3c"}
-					onPress={() => !seat.busy && toggleSeat(seat)}
+					onPress={() => handleSeatPress(seat)}
 					onResponderMove={() => {}}
+					onMoveShouldSetResponder={() => true}
 				/>
 			);
 		});

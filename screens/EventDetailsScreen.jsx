@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "space-between",
 		maxWidth: 380,
+		marginTop: 8,
 	},
 
 	banner_footer_time: {
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
 		marginInline: 20,
 		marginBottom: 40,
 		marginTop: 5,
-		gap: 15,
+		gap: 13,
 	},
 
 	svgWrapper_button: {

@@ -139,6 +139,7 @@ const getStyles = (windowHeight, statusBarHeight) =>
 
 		sidebar_content: {
 			flex: 1,
+			paddingBlock: 2,
 		},
 
 		//footer
