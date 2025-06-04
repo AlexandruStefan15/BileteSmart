@@ -21,7 +21,7 @@ import { Colors } from "@/constants/Colors";
 import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
-import TicketsInfo from "./TicketList";
+import TicketList from "./TicketList";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
@@ -81,7 +81,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				<Text style={styles.cartTitle}>Coșul meu</Text>
 			</View>
 			<View style={styles.sidebar_content}>
-				<TicketsInfo />
+				<TicketList />
 			</View>
 			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
