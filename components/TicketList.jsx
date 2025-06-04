@@ -43,7 +43,7 @@ const TicketList = () => {
 				contentContainerStyle={{ gap: 12, marginVertical: 12, paddingBottom: 24 }}
 				renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
 				initialNumToRender={5}
-				maxToRenderPerBatch={8}
+				maxToRenderPerBatch={10}
 				windowSize={10}
 				removeClippedSubviews
 			/>
