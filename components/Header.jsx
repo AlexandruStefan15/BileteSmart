@@ -55,7 +55,6 @@ const Header = ({
 				{showCart && (
 					<TouchableOpacity
 						onPress={() => {
-							/* displayBadge.value = false; */
 							open();
 						}}
 						style={styles.burgerMenu}
