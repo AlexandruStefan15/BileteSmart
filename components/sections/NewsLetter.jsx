@@ -68,18 +68,21 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		gap: 21,
+		gap: 23,
 	},
 
 	innerTitle: {
-		fontSize: 26,
+		fontSize: 27,
 		color: "white",
 		textAlign: "center",
 		fontWeight: "bold",
+		lineHeight: 33,
+		marginBottom: -5,
 	},
 
 	innerSubtitle: {
-		fontSize: 16,
+		fontSize: 16.5,
+		fontWeight: "500",
 		color: "white",
 		textAlign: "center",
 	},
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
 		fontWeight: 500,
 		borderColor: "white",
 		textAlign: "center",
-		fontSize: 17,
+		fontSize: 16,
 		backgroundColor: "#00000059",
 	},
 
@@ -114,6 +117,6 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: "#365771",
 		fontWeight: "bold",
-		fontSize: 17.5,
+		fontSize: 17,
 	},
 });

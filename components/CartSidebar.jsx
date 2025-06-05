@@ -107,10 +107,11 @@ const getStyles = (windowHeight, statusBarHeight) =>
 			top: 0,
 			left: 0,
 			width: SIDEBAR_WIDTH,
-			height: windowHeight - statusBarHeight - 25,
+			height: windowHeight - statusBarHeight - 30,
 			backgroundColor: "white",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS
+			overflow: "hidden",
 		},
 
 		//header
@@ -139,7 +140,6 @@ const getStyles = (windowHeight, statusBarHeight) =>
 
 		sidebar_content: {
 			flex: 1,
-			paddingBlock: 2,
 		},
 
 		//footer
@@ -147,7 +147,7 @@ const getStyles = (windowHeight, statusBarHeight) =>
 		footer: {
 			paddingInline: 15,
 			paddingTop: 6.5,
-			paddingBottom: 19,
+			paddingBottom: 15,
 			borderTopWidth: 0.2,
 			width: "100%",
 			gap: 5,
