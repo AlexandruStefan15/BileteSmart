@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
 	ticketList: {
 		paddingHorizontal: 15,
 		position: "relative",
+		backgroundColor: "#f5f5f6",
 	},
 	tooth: {
 		position: "absolute",
