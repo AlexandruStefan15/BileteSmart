@@ -62,15 +62,15 @@ const OrderSummary = ({ formRef }) => {
 							politica noastră de confidențialitate.
 						</Text>
 					</Text>
+					<TouchableOpacity
+						onPress={() => formRef?.current?.submit()}
+						style={{ backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
+					>
+						<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
+							Finalizează Comanda
+						</Text>
+					</TouchableOpacity>
 				</View>
-				<TouchableOpacity
-					onPress={() => formRef?.current?.submit()}
-					style={{ backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
-				>
-					<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
-						Finalizează Comanda
-					</Text>
-				</TouchableOpacity>
 			</View>
 		</View>
 	);
@@ -109,10 +109,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 15,
 	},
 
-	footer: {
-		marginTop: 7,
-		marginBottom: 14,
-	},
+	footer: { gap: 13, marginTop: 6 },
 });
 
 export default OrderSummary;

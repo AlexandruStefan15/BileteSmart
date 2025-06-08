@@ -84,7 +84,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				<TicketList />
 			</View>
 			<View style={styles.footer}>
-				<View style={{ padding: 15, backgroundColor: "lightblue", marginVertical: 5 }}>
+				<View style={{ padding: 15, backgroundColor: "#b9dde9", marginVertical: 5 }}>
 					<Text style={{ fontWeight: "600", fontSize: 16 }}>
 						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
