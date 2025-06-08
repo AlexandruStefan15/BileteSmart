@@ -91,7 +91,11 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				</View>
 				<TouchableOpacity
 					style={styles.checkoutButton}
-					onPress={() => navigation.navigate("CheckoutScreen")}
+					onPress={() =>
+						navigation.navigate("SeatsPlanStack", {
+							screen: "CheckoutScreen",
+						})
+					}
 				>
 					<Text style={styles.checkoutButton_text}>Checkout</Text>
 				</TouchableOpacity>
