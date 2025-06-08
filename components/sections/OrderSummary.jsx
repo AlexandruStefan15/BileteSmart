@@ -53,16 +53,19 @@ const OrderSummary = ({ formRef }) => {
 				</View>
 			</View>
 			<View style={styles.footer}>
-				<Text style={{}}>
-					Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
-					sprijini experiența pe acest site web și în alte scopuri descrise în{" "}
-					<TouchableOpacity>
-						<Text style={{ fontWeight: "bold" }}>politica noastră de confidențialitate.</Text>
-					</TouchableOpacity>
-				</Text>
+				<View style={styles.footer}>
+					<Text style={{}}>
+						Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
+						sprijini experiența pe acest site web și în alte scopuri descrise în
+						<Text style={{ fontWeight: "bold", color: "#23527c" }} onPress={() => {}}>
+							{" "}
+							politica noastră de confidențialitate.  
+						</Text>
+					</Text>
+				</View>
 				<TouchableOpacity
 					onPress={() => formRef?.current?.submit()}
-					style={{ marginTop: 18, backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
+					style={{ backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
 				>
 					<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
 						Finalizează Comanda
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
 	container: {
 		marginTop: 25,
 		paddingTop: 20,
-		paddingBottom: 25,
+		paddingBottom: 20,
 		paddingInline: 21,
 		backgroundColor: "#e6eff4",
 		borderTopLeftRadius: 40,
@@ -107,7 +110,8 @@ const styles = StyleSheet.create({
 	},
 
 	footer: {
-		marginTop: 18,
+		marginTop: 7,
+		marginBottom: 14,
 	},
 });
 
