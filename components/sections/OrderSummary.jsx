@@ -30,7 +30,7 @@ const OrderSummary = ({ formRef }) => {
 							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
 							{seat.is_discounted ? "Redus" : "Intreg"}
 						</Text>
-						<Text style={{ fontSize: 16, fontWeight: "600", color: "#23527c" }}>
+						<Text style={{ fontSize: 15.5, fontWeight: "600", color: "#23527c" }}>
 							{seat.price} RON
 						</Text>
 					</View>
@@ -53,7 +53,7 @@ const OrderSummary = ({ formRef }) => {
 				</View>
 			</View>
 			<View style={styles.footer}>
-				<Text>
+				<Text style={{}}>
 					Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
 					sprijini experiența pe acest site web și în alte scopuri descrise în{" "}
 					<TouchableOpacity>
