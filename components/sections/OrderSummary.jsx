@@ -19,7 +19,7 @@ const OrderSummary = ({ formRef }) => {
 					<View key={index} style={[styles.row, { paddingBottom: 15 }]}>
 						<Text
 							style={{
-								fontSize: 15,
+								fontSize: 15.5,
 								flexShrink: 1,
 								paddingRight: 130,
 								lineHeight: 20,
@@ -30,24 +30,24 @@ const OrderSummary = ({ formRef }) => {
 							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
 							{seat.is_discounted ? "Redus" : "Intreg"}
 						</Text>
-						<Text style={{ fontSize: 15.5, fontWeight: "600", color: "#23527c" }}>
+						<Text style={{ fontSize: 16, fontWeight: "600", color: "#23527c" }}>
 							{seat.price} RON
 						</Text>
 					</View>
 				))}
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>Subtotal:</Text>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Subtotal:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>
 						{selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON
 					</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>Taxa procesare tranzactie:</Text>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>3 RON</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Taxa procesare tranzactie:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>3 RON</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>Total:</Text>
-					<Text style={{ fontSize: 16, fontWeight: "600" }}>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Total:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>
 						{selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0) + 3} RON
 					</Text>
 				</View>
@@ -75,21 +75,22 @@ const OrderSummary = ({ formRef }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 15,
+		marginTop: 25,
 		paddingTop: 20,
 		paddingBottom: 25,
 		paddingInline: 21,
-		backgroundColor: "#f0f8ff",
+		backgroundColor: "#e6eff4",
 		borderTopLeftRadius: 40,
 		borderTopRightRadius: 40,
 	},
 
 	title: {
-		fontSize: 17.7,
-		fontWeight: "600",
+		fontSize: 19.2,
+		fontWeight: "bold",
 		textAlign: "center",
-		marginBottom: 38,
+		marginBottom: 40,
 		marginTop: 17,
+		color: "#23527c",
 	},
 
 	ticketsInfo: {

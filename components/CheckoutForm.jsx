@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
 		padding: 21,
 		paddingRight: 25,
 		marginTop: 60,
+		backgroundColor: "white",
 	},
 
 	formTitle: {
