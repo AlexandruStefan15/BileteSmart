@@ -83,8 +83,8 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 			<View style={styles.sidebar_content}>
 				<TicketList />
 			</View>
-			<View style={styles.footer}>
-				<View style={{ padding: 15, backgroundColor: "#b9dde9", marginVertical: 5 }}>
+			<View style={styles.sidebar_footer}>
+				<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
 					<Text style={{ fontWeight: "600", fontSize: 16 }}>
 						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
 					</Text>
@@ -122,7 +122,8 @@ const getStyles = (windowHeight, statusBarHeight) =>
 		sidebar_header: {
 			flexDirection: "row",
 			justifyContent: "space-between",
-			borderBottomWidth: 0.2,
+			borderBottomWidth: 0.5,
+			borderColor: "black",
 			alignItems: "center",
 			paddingInline: 15,
 			paddingBlock: 20,
@@ -144,15 +145,18 @@ const getStyles = (windowHeight, statusBarHeight) =>
 
 		sidebar_content: {
 			flex: 1,
+			backgroundColor: "white",
 		},
 
 		//footer
 
-		footer: {
+		sidebar_footer: {
 			paddingInline: 15,
 			paddingTop: 6.5,
 			paddingBottom: 15,
-			borderTopWidth: 0.2,
+			borderColor: "grey",
+			/* borderColor:"#bababad9", */
+			borderTopWidth: 0.5,
 			width: "100%",
 			gap: 5,
 		},

@@ -40,7 +40,7 @@ const TicketList = () => {
 				style={styles.ticketList}
 				data={selectedSeats}
 				keyExtractor={(item) => item.id_seat.toString()}
-				contentContainerStyle={{ gap: 11, marginVertical: 12, paddingBottom: 24 }}
+				contentContainerStyle={{ gap: 10.5, marginVertical: 12, paddingBottom: 24 }}
 				renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
 				initialNumToRender={5}
 				maxToRenderPerBatch={10}
@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
 	ticketList: {
 		paddingHorizontal: 15,
 		position: "relative",
-		backgroundColor: "#f5f5f6",
+		/* backgroundColor: "#f5f5f6", */
+		backgroundColor: "white",
 	},
 	tooth: {
 		position: "absolute",
