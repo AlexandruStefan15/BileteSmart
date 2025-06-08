@@ -59,7 +59,7 @@ const OrderSummary = ({ formRef }) => {
 						sprijini experiența pe acest site web și în alte scopuri descrise în
 						<Text style={{ fontWeight: "bold", color: "#23527c" }} onPress={() => {}}>
 							{" "}
-							politica noastră de confidențialitate.  
+							politica noastră de confidențialitate.
 						</Text>
 					</Text>
 				</View>
