@@ -31,7 +31,7 @@ const EventsScreen = ({ navigation }) => {
 									<View key={event.id_event} style={{ marginVertical: 12 }}>
 										<Image
 											source={{ uri: event.event_img }}
-											style={{ height: 250, borderRadius: 12 }}
+											style={{ height: 240, borderRadius: 12 }}
 											resizeMode="cover"
 										/>
 										<Text style={{ fontSize: 16 }}>{event.title}</Text>
