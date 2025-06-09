@@ -50,8 +50,6 @@ const LocationScreen = ({ navigation, route }) => {
 						<View style={styles.info}>
 							{Object.entries(currentLocation.info).map(([key, value]) => (
 								<Text style={[styles.infoText]} key={key}>
-									{/* {renderIcon(value.icon)}
-									{"  "} */}
 									{value}
 								</Text>
 							))}

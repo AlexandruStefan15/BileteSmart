@@ -13,8 +13,8 @@ const Locations = () => {
 	const { /* locations, */ loading, error } = useFetchLocations();
 	const navigation = useNavigation();
 
-	if (loading) return <ActivityIndicator />;
-	if (error) return <Text style={{ color: "red" }}>Error: {error.message}</Text>;
+	/* if (loading) return <ActivityIndicator />;
+	if (error) return <Text style={{ color: "red" }}>Error: {error.message}</Text>; */
 
 	return (
 		<View style={styles.section}>
