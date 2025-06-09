@@ -31,8 +31,10 @@ import EventCard from "@/components/EventCard";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
-	const { /* events, */ loading, error } = useFetchEvents(currentLocation.id);
+	/* const { events, loading, error } = useFetchEvents(currentLocation.id); */
 	const events = eventsByLocation[currentLocation.id]; // to be fetched from above
+	const loading = !events; // Simulating loading state
+	const error = null; // Simulating no error state
 
 	return (
 		<SafeAreaView style={styles.screen}>

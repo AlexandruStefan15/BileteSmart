@@ -1,17 +1,53 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image } from "react-native";
 import { Colors } from "@/constants";
 
+//components
 import Header from "@/components/Header";
+import Events from "@/components/sections/Events";
+
+//data
+import { locations } from "@/data/locations"; // to be fetched
+
+//hooks
+import { useEventsByLocation } from "@/hooks/useEventsByLocation";
 
 const EventsScreen = ({ navigation }) => {
+	const { eventsGrouped } = useEventsByLocation();
+
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header title="Home" />
-			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-					<Text>Events screen</Text>
-				</View>
+			<ScrollView style={{ padding: 16 }}>
+				{locations.map((location) => {
+					const events = eventsGrouped[location.id] || [];
+
+					return (
+						<View key={location.id} style={{ marginBottom: 32 }}>
+							<Text style={{ fontSize: 20, fontWeight: "bold" }}>{location.name}</Text>
+
+							{events.length > 0 ? (
+								events.map((event) => (
+									<View key={event.id_event} style={{ marginVertical: 12 }}>
+										<Image
+											source={{ uri: event.event_img }}
+											style={{ height: 250, borderRadius: 12 }}
+											resizeMode="cover"
+										/>
+										<Text style={{ fontSize: 16 }}>{event.title}</Text>
+										<Text style={{ color: "gray" }}>
+											{event.date} @ {event.time}
+										</Text>
+									</View>
+								))
+							) : (
+								<Text style={{ fontStyle: "italic", color: "gray", marginTop: 8 }}>
+									Niciun eveniment disponibil.
+								</Text>
+							)}
+						</View>
+					);
+				})}
 			</ScrollView>
 		</SafeAreaView>
 	);
