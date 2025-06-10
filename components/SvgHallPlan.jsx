@@ -27,10 +27,9 @@ const SvgHallPlan = ({
 }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const toggleSeat = useSelectedSeats((state) => state.toggleSeat);
-
+	const [selectedRoomId, setSelectedRoomId] = useState(null);
 	const navigation = useNavigation();
 	const { gesture, animatedStyle } = useHandGestures();
-	const [selectedRoomId, setSelectedRoomId] = useState(null);
 
 	const handleSeatPress = React.useCallback(
 		(seat) => {
