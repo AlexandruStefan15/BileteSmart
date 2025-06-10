@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList, ActivityIndicator, Image } from "react-native";
+import { StyleSheet, View, Text, FlatList, Image } from "react-native";
 import { useFetchLocations } from "@/hooks/useFetchLocations";
 import Ripple from "react-native-material-ripple";
 import { useNavigation } from "@react-navigation/native";

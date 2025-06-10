@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-//screens
+//screens & navigators
 import EventDetailsScreen from "@/screens/EventDetailsScreen";
 import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
 

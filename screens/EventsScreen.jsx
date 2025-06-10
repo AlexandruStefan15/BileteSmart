@@ -4,7 +4,7 @@ import { Colors } from "@/constants";
 
 //components
 import Header from "@/components/Header";
-import Events from "@/components/sections/Events";
+import Ripple from "react-native-material-ripple";
 
 //data
 import { locations } from "@/data/locations"; // to be fetched
@@ -29,11 +29,27 @@ const EventsScreen = ({ navigation }) => {
 							{events.length > 0 ? (
 								events.map((event) => (
 									<View key={event.id_event} style={{ marginVertical: 12 }}>
-										<Image
-											source={{ uri: event.event_img }}
-											style={{ height: 250, borderRadius: 12 }}
-											resizeMode="cover"
-										/>
+										<Ripple
+											onPress={() =>
+												navigation.navigate("EventDetailsStack", {
+													screen: "EventDetailsScreen",
+													params: {
+														locationId: location.id,
+														event: event,
+														locationFieldPath: location.field_path_d,
+													},
+												})
+											}
+											rippleColor="white"
+											rippleDuration={320}
+											rippleCentered={false}
+										>
+											<Image
+												source={{ uri: event.event_img }}
+												style={{ height: 250, borderRadius: 12 }}
+												resizeMode="cover"
+											/>
+										</Ripple>
 										<Text style={{ fontSize: 16 }}>{event.title}</Text>
 										<Text style={{ color: "gray" }}>
 											{event.date} @ {event.time}

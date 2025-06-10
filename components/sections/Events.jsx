@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 
 const Events = ({ events, title }) => {
@@ -39,3 +39,4 @@ const styles = StyleSheet.create({
 });
 
 export default Events;
+ */
