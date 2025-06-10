@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: "#365771e6",
 		position: "relative",
-		height: windowHeight - 132,
+		height: windowHeight - 130,
 	},
 
 	backgroundImage: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 	},
 
 	innerTitle: {
-		fontSize: 27,
+		fontSize: 28,
 		color: "white",
 		textAlign: "center",
 		fontWeight: "bold",
@@ -103,15 +103,15 @@ const styles = StyleSheet.create({
 		fontWeight: 500,
 		borderColor: "white",
 		textAlign: "center",
-		fontSize: 16,
+		fontSize: 17,
 		backgroundColor: "#00000059",
 	},
 
 	button: {
 		backgroundColor: "white",
-		width: "100%",
-		maxWidth: 190,
+		height: 57,
 		justifyContent: "center",
+		paddingInline: 32,
 	},
 
 	buttonText: {

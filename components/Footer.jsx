@@ -68,7 +68,9 @@ const styles = StyleSheet.create({
 	},
 
 	bottom: {
+		gap: 15,
 		paddingInline: 10,
+		marginBottom: 15,
 	},
 
 	links_list: {

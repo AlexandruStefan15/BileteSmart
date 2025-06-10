@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 	container: {
 		position: "relative",
 		backgroundColor: "#242424cc",
-		height: windowHeight - 132,
+		height: windowHeight - 130,
 		alignItems: "center",
 		justifyContent: "center",
 		gap: 30,

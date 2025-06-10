@@ -13,10 +13,9 @@ export default function Button({ children, variant = "", style, styleText = {}, 
 const styles = StyleSheet.create({
 	button: {
 		backgroundColor: Colors.primary,
-		paddingVertical: 15,
-		paddingHorizontal: 30,
+		paddingBlock: 15,
+		paddingInline: 30,
 		borderRadius: 30,
-		alignSelf: "center",
 	},
 
 	buttonText: {
