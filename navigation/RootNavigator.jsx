@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from "./BottomTabNavigator";
 import { StatusBar } from "react-native";
 import { useTheme } from "../hooks/useTheme";
+import { navigationRef } from "./navigationRef";
 
 const Stack = createStackNavigator();
 
@@ -12,21 +13,13 @@ const RootNavigator = () => {
 	const { theme } = useTheme();
 
 	return (
-		<NavigationContainer>
+		<NavigationContainer ref={navigationRef}>
 			<StatusBar
 				/* barStyle={theme == "dark" ? "light-content" : "dark-content"}
 				backgroundColor={theme == "dark" ? "black" : "white"} */
 				barStyle={"dark-content"}
 				backgroundColor={"white"}
 			/>
-			{/* <View
-				style={{
-					backgroundColor: "black",
-					height: Platform.OS === "android" ? bar.currentHeight : 0,
-				}}
-			>
-				<StatusBar barStyle={"light-content"} />
-			</View> */}
 			<Stack.Navigator>
 				<Stack.Screen
 					name="Tabs"
