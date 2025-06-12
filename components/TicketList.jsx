@@ -14,7 +14,7 @@ import Select from "./Select";
 
 const teeth = Array.from({ length: 6 });
 
-const TicketList = () => {
+const TicketList = ({ style }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const removeSeat = useSelectedSeats((state) => state.removeSeat);
 	const [canShowTickets, setCanShowTickets] = useState(false);
@@ -37,10 +37,10 @@ const TicketList = () => {
 	return (
 		<View style={{ flex: 1 }}>
 			<FlatList
-				style={styles.ticketList}
+				style={[styles.ticketList, style]}
 				data={selectedSeats}
 				keyExtractor={(item) => item.id_seat.toString()}
-				contentContainerStyle={{ gap: 11, marginVertical: 12, paddingBottom: 24 }}
+				contentContainerStyle={{ gap: 11, paddingBlock: 15 }}
 				renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
 				initialNumToRender={5}
 				maxToRenderPerBatch={10}
@@ -76,15 +76,17 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 				{teeth.map((_, index) => (
 					<View key={index} style={[styles.tooth, { top: index * 15.5 }]} />
 				))}
-				<Text style={styles.ticketList_item_text}>
-					Locul: <Text style={styles.highlight}>{item.seat_no}</Text>
-				</Text>
-				<Text style={styles.ticketList_item_text}>
-					Randul: <Text style={styles.highlight}>{item.row_no}</Text>
-				</Text>
-				<Text style={styles.ticketList_item_text}>
-					Sectorul: <Text style={styles.highlight}>{item.room_name}</Text>
-				</Text>
+				<View style={styles.ticketList_item_details}>
+					<Text style={styles.ticketList_item_text}>
+						Locul: <Text style={styles.highlight}>{item.seat_no}</Text>
+					</Text>
+					<Text style={styles.ticketList_item_text}>
+						Randul: <Text style={styles.highlight}>{item.row_no}</Text>
+					</Text>
+					<Text style={styles.ticketList_item_text}>
+						Sectorul: <Text style={styles.highlight}>{item.room_name}</Text>
+					</Text>
+				</View>
 				<Text style={styles.priceText}>{item.price} RON</Text>
 				<Select
 					selected={item.is_discounted === "1" ? "Redus" : "Intreg"}
@@ -98,7 +100,7 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 						borderColor: "transparent",
 						borderRadius: 6,
 					}}
-					textStyles={{ color: "#67a6c9", fontWeight: "bold", fontSize: 14.5 }}
+					textStyles={{ color: "lightgrey", fontWeight: "bold", fontSize: 13.8 }}
 				/>
 			</View>
 			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
@@ -114,9 +116,9 @@ const styles = StyleSheet.create({
 	ticketList: {
 		paddingHorizontal: 15,
 		position: "relative",
-		/* backgroundColor: "#f5f5f6", */
-		backgroundColor: "white",
+		backgroundColor: "#f5f5f6",
 	},
+
 	tooth: {
 		position: "absolute",
 		marginTop: 29,
@@ -124,9 +126,10 @@ const styles = StyleSheet.create({
 		width: 8.5,
 		height: 8.5,
 		borderRadius: 10,
-		backgroundColor: "white",
+		backgroundColor: "#f5f5f6",
 		zIndex: 2,
 	},
+
 	ticketList_item: {
 		position: "relative",
 		width: "84%",
@@ -136,21 +139,29 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 28,
 		borderRadius: 12,
 	},
+
+	ticketList_item_details: {
+		gap: 2.5,
+	},
+
 	ticketList_item_text: {
 		fontWeight: "500",
 		fontSize: 14.5,
-		color: "#fafafa",
+		color: "white",
 	},
+
 	highlight: {
-		color: "#5fa0c4",
+		color: "#6caed2",
 		fontWeight: "bold",
 	},
+
 	priceText: {
 		fontWeight: "600",
 		fontSize: 17,
 		marginTop: 12,
-		color: "#5fa0c4",
+		color: "#6caed2",
 	},
+
 	ticketList_removeButton: {
 		backgroundColor: "#d60303f0",
 		borderRadius: 25,
@@ -161,6 +172,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: "auto",
 		left: 6,
 	},
+
 	ticketList_removeButton_text: {
 		color: "white",
 	},

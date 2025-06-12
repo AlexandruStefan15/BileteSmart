@@ -145,17 +145,16 @@ const getStyles = (windowHeight, statusBarHeight) =>
 
 		sidebar_content: {
 			flex: 1,
-			backgroundColor: "white",
+			backgroundColor: "#f5f5f6",
 		},
 
 		//footer
 
 		sidebar_footer: {
 			paddingInline: 15,
-			paddingTop: 6.5,
+			paddingTop: 7,
 			paddingBottom: 15,
 			borderColor: "grey",
-			/* borderColor:"#bababad9", */
 			borderTopWidth: 0.5,
 			width: "100%",
 			gap: 5,
