@@ -98,7 +98,7 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 						borderColor: "transparent",
 						borderRadius: 6,
 					}}
-					textStyles={{ color: "#5fa0c4", fontWeight: "bold", fontSize: 14.5 }}
+					textStyles={{ color: "#67a6c9", fontWeight: "bold", fontSize: 14.5 }}
 				/>
 			</View>
 			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 	ticketList_item_text: {
 		fontWeight: "500",
 		fontSize: 14.5,
-		color: "white",
+		color: "#fafafa",
 	},
 	highlight: {
 		color: "#5fa0c4",

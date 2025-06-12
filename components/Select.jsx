@@ -21,7 +21,7 @@ function Select({ selected, onChange, modalStyles, selectStyles, textStyles }) {
 				onPress={() => setIsVisible(true)}
 			>
 				<Text style={[styles.pickerText, textStyles]}>{selected || "Select..."}</Text>
-				<FontAwesomeIcon name="caret-down" size={18} color={"#5fa0c4"} />
+				<FontAwesomeIcon name="caret-down" size={18} color={textStyles.color} />
 			</TouchableOpacity>
 
 			<Modal
