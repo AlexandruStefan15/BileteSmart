@@ -1,7 +1,6 @@
 // HomeNavigator.jsx
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { forwardRef } from "react";
-import { NavigationContainerRef } from "@react-navigation/native";
 
 import HomeScreen from "@/screens/HomeScreen";
 import LocationNavigator from "@/navigation/stacks/HomeStack/LocationStack/LocationNavigator";

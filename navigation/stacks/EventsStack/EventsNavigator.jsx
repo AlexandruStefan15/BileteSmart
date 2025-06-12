@@ -10,11 +10,11 @@ const Stack = createStackNavigator();
 const EventsNavigator = () => (
 	<Stack.Navigator>
 		<Stack.Screen name="EventsScreen" component={EventsScreen} options={{ headerShown: false }} />
-		<Stack.Screen
+		{/* <Stack.Screen
 			name="EventDetailsStack"
 			component={EventsDetailsNavigator}
 			options={{ headerShown: false }}
-		/>
+		/> */}
 	</Stack.Navigator>
 );
 

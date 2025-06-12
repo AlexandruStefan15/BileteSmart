@@ -111,7 +111,7 @@ const getStyles = (windowHeight, statusBarHeight) =>
 			top: 0,
 			left: 0,
 			width: SIDEBAR_WIDTH,
-			height: windowHeight - statusBarHeight - 32,
+			height: windowHeight,
 			backgroundColor: "white",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS

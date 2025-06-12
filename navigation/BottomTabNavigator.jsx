@@ -19,11 +19,11 @@ const Tab = createBottomTabNavigator();
 const getTabBarStyle = (route, rootScreenName) => {
 	const focusedRoute = getFocusedRouteNameFromRoute(route);
 
-	if (focusedRoute && focusedRoute !== rootScreenName) {
+	/* if (focusedRoute && focusedRoute !== rootScreenName) {
 		return {
 			display: "none",
 		};
-	}
+	} */
 	return { minHeight: 63, paddingTop: 4, backgroundColor: "white" };
 };
 

@@ -7,6 +7,9 @@ import { StatusBar } from "react-native";
 import { useTheme } from "../hooks/useTheme";
 import { navigationRef } from "./navigationRef";
 
+//screens and stacks
+import EventDetailsNavigator from "./stacks/EventsStack/EventDetailsStack/EventDetailsNavigator";
+
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -25,6 +28,11 @@ const RootNavigator = () => {
 					name="Tabs"
 					component={BottomTabNavigator}
 					options={{ /* header: () => <Header />, */ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="EventDetailsStack"
+					component={EventDetailsNavigator}
+					options={{ headerShown: false }}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

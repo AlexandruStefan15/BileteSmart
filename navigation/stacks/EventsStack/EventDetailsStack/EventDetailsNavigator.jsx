@@ -7,7 +7,7 @@ import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
 
 const Stack = createStackNavigator();
 
-const EventsDetailsNavigator = () => {
+const EventDetailsNavigator = () => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="EventDetailsScreen" options={{ headerShown: false }}>
@@ -20,4 +20,4 @@ const EventsDetailsNavigator = () => {
 	);
 };
 
-export default EventsDetailsNavigator;
+export default EventDetailsNavigator;
