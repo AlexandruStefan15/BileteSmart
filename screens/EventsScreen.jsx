@@ -46,7 +46,7 @@ const EventsScreen = ({ navigation }) => {
 										>
 											<Image
 												source={{ uri: event.event_img }}
-												style={{ height: 250, borderRadius: 12 }}
+												style={{ height: 245, borderRadius: 12 }}
 												resizeMode="cover"
 											/>
 										</Ripple>
