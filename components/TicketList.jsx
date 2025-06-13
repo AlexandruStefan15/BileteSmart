@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 		width: "84%",
 		padding: 16,
 		backgroundColor: "#363736",
-		gap: 3,
+		gap: 2.5,
 		paddingHorizontal: 28,
 		borderRadius: 12,
 	},
