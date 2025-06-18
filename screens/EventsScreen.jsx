@@ -4,7 +4,6 @@ import { Colors } from "@/constants";
 
 //components
 import Header from "@/components/Header";
-import Ripple from "react-native-material-ripple";
 import EventCard from "@/components/EventCard";
 
 //data
@@ -19,14 +18,21 @@ const EventsScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header title="Home" />
-			<ScrollView style={{}}>
-				<View style={{ marginTop: 12, gap: 40, padding: 16 }}>
+			<ScrollView>
+				<View style={{ gap: 45, padding: 16, paddingBlock: 35 }}>
 					{locations.map((location) => {
 						const events = eventsGrouped[location.id] || [];
 
 						return (
-							<View key={location.id} style={{}}>
-								<Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+							<View key={location.id}>
+								<Text
+									style={{
+										fontSize: 20.5,
+										fontWeight: "bold",
+										marginBottom: 12,
+										color: Colors.primary,
+									}}
+								>
 									{location.name}
 								</Text>
 
