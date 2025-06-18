@@ -5,6 +5,7 @@ import { Colors } from "@/constants";
 //components
 import Header from "@/components/Header";
 import Ripple from "react-native-material-ripple";
+import EventCard from "@/components/EventCard";
 
 //data
 import { locations } from "@/data/locations"; // to be fetched
@@ -18,47 +19,37 @@ const EventsScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header title="Home" />
-			<ScrollView style={{ padding: 16 }}>
-				<View style={{ marginTop: 5, marginBottom: 30 }}>
+			<ScrollView style={{}}>
+				<View style={{ marginTop: 12, gap: 40, padding: 16 }}>
 					{locations.map((location) => {
 						const events = eventsGrouped[location.id] || [];
 
 						return (
-							<View key={location.id} style={{ marginBlock: 15 }}>
-								<Text style={{ fontSize: 20, fontWeight: "bold" }}>{location.name}</Text>
+							<View key={location.id} style={{}}>
+								<Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+									{location.name}
+								</Text>
 
 								{events.length > 0 ? (
 									events.map((event) => (
-										<View key={event.id_event} style={{ marginVertical: 12 }}>
-											<Ripple
-												onPress={() =>
-													navigation.navigate("EventDetailsStack", {
-														screen: "EventDetailsScreen",
-														params: {
-															locationId: location.id,
-															event: event,
-															locationFieldPath: location.field_path_d,
-														},
-													})
-												}
-												rippleColor="white"
-												rippleDuration={320}
-												rippleCentered={false}
-											>
-												<Image
-													source={{ uri: event.event_img }}
-													style={{ height: 245, borderRadius: 12 }}
-													resizeMode="cover"
-												/>
-											</Ripple>
-											<Text style={{ fontSize: 17 }}>{event.title}</Text>
-											{/* <Text style={{ color: "gray" }}>
-												{event.date}, {event.time}
-											</Text> */}
-										</View>
+										<EventCard
+											variant="2"
+											onPress={() =>
+												navigation.navigate("EventDetailsStack", {
+													screen: "EventDetailsScreen",
+													params: {
+														locationId: location.id,
+														event: event,
+														locationFieldPath: location.field_path_d,
+													},
+												})
+											}
+											key={event.id_event}
+											eventData={event}
+										/>
 									))
 								) : (
-									<Text style={{ fontStyle: "italic", color: "gray", marginTop: 8 }}>
+									<Text style={{ fontStyle: "italic", color: "gray", marginTop: 0 }}>
 										Niciun eveniment disponibil.
 									</Text>
 								)}

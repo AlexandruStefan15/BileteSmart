@@ -9,9 +9,42 @@ import { formatDate } from "@/utils/helpers";
 //components
 import Ripple from "react-native-material-ripple";
 
-export default function EventCard({ eventData, style, ...props }) {
+export default function EventCard({ eventData, style, variant = "", ...props }) {
 	const styles = getStyles("light");
 	const navigation = useNavigation();
+
+	if (variant == 2)
+		return (
+			<View>
+				<Ripple
+					style={[styles.event_container2, style]}
+					rippleColor="white"
+					rippleDuration={320}
+					rippleCentered={false}
+					{...props}
+				>
+					<ImageBackground
+						source={{ uri: encodeURI(eventData.event_img) }}
+						imageStyle={styles.event_image2}
+					>
+						<View style={styles.event_badge}>
+							{formatDate(eventData.date)
+								.trim()
+								.split(" ")
+								.map((word, index) => (
+									<Text
+										style={[styles[`event_badge_text`], styles[`event_badge_text${index}`]]}
+										key={index}
+									>
+										{word}
+									</Text>
+								))}
+						</View>
+					</ImageBackground>
+				</Ripple>
+				<Text style={styles.event_title2}>{eventData.title}</Text>
+			</View>
+		);
 
 	return (
 		<Ripple
@@ -97,6 +130,33 @@ const getStyles = (theme) => {
 			position: "absolute",
 			top: 44,
 			height: 520,
+		},
+
+		//variant 2
+
+		event_container2: {
+			aspectRatio: 100 / 65,
+			overflow: "hidden",
+			width: "100%",
+			position: "relative",
+			borderRadius: 15,
+			borderWidth: 1.5,
+			borderColor: "#dedede5e",
+		},
+
+		event_image2: {
+			resizeMode: "cover",
+			alignSelf: "flex-end",
+			position: "absolute",
+			top: 0,
+			height: 520,
+		},
+
+		event_title2: {
+			fontSize: 16,
+			fontWeight: 500,
+			marginLeft: 2,
+			marginTop: 2,
 		},
 	});
 };
