@@ -24,7 +24,7 @@ const getTabBarStyle = (route, rootScreenName) => {
 			display: "none",
 		};
 	} */
-	return { minHeight: 63, paddingTop: 4, backgroundColor: "white" };
+	return { minHeight: 63, paddingTop: 5, backgroundColor: "white" };
 };
 
 const BottomTabNavigator = () => {

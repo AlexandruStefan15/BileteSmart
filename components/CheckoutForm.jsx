@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
 	container: {
 		padding: 21,
 		paddingRight: 25,
-		marginTop: 60,
+		/* marginTop: 60, */
 		backgroundColor: "white",
 	},
 

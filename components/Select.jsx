@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
 		fontSize: 19.5,
 		fontWeight: "bold",
 		textAlign: "center",
-		marginTop: 10,
+		marginTop: 9,
 		lineHeight: 20,
 	},
 

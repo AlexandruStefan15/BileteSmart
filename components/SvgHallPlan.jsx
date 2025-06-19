@@ -112,7 +112,7 @@ const SvgHallPlan = ({
 							{ flex: 1, justifyContent: "center", alignItems: "center" },
 						]}
 					>
-						<Svg width={355} height={height} fill="none" viewBox="0 0 775 851">
+						<Svg width={"88%"} height={height} fill="none" viewBox="0 0 775 851">
 							<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 							{renderRoomPaths}
 						</Svg>
@@ -140,7 +140,7 @@ const SvgHallPlan = ({
 								[fieldPosition === "top" ? "top" : "bottom"]: 100,
 							}}
 						/>
-						<Svg width={"90%"} height={"100%"} viewBox={currentRoom?.svgViewBox}>
+						<Svg style={{}} width={"90%"} height={"100%"} viewBox={currentRoom?.svgViewBox}>
 							{renderSeatPaths}
 							{currentRoom?.rows_path_d?.map((row, index) => (
 								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />

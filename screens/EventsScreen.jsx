@@ -19,23 +19,13 @@ const EventsScreen = ({ navigation }) => {
 		<SafeAreaView style={styles.screen}>
 			<Header title="Home" />
 			<ScrollView>
-				<View style={{ gap: 45, padding: 16, paddingBlock: 35 }}>
+				<View style={styles.container}>
 					{locations.map((location) => {
 						const events = eventsGrouped[location.id] || [];
 
 						return (
 							<View key={location.id}>
-								<Text
-									style={{
-										fontSize: 20.5,
-										fontWeight: "bold",
-										marginBottom: 12,
-										color: Colors.primary,
-									}}
-								>
-									{location.name}
-								</Text>
-
+								<Text style={styles.location_title}>{location.name}</Text>
 								{events.length > 0 ? (
 									events.map((event) => (
 										<EventCard
@@ -72,6 +62,15 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		backgroundColor: Colors["light"].background.primary,
+	},
+
+	container: { gap: 45, padding: 16, paddingBlock: 35 },
+
+	location_title: {
+		fontSize: 20.5,
+		fontWeight: "bold",
+		marginBottom: 12,
+		color: Colors.primary,
 	},
 });
 

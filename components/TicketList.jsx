@@ -94,8 +94,8 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 					selectStyles={{
 						position: "absolute",
 						zIndex: 999,
-						right: 42,
-						top: 50,
+						right: 40,
+						top: 47,
 						backgroundColor: "#2e2d2d",
 						borderColor: "transparent",
 						borderRadius: 6,
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
 
 	tooth: {
 		position: "absolute",
-		marginTop: 29,
-		left: -3,
+		marginTop: 26,
+		left: -3.5,
 		width: 8.5,
 		height: 8.5,
 		borderRadius: 10,
