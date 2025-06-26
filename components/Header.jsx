@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
@@ -17,6 +17,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import CartSideBar, { useCartSideBar } from "./CartSideBar";
+import CustomDrawer, { useDrawer } from "./CustomDrawer";
 
 const Header = ({
 	title = false,
@@ -34,6 +35,8 @@ const Header = ({
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
 	const didMount = useRef(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
+	const { isOpen, openDrawer, closeDrawer } = useDrawer();
 
 	useEffect(() => {
 		if (didMount.current) {
@@ -86,7 +89,7 @@ const Header = ({
 	return (
 		<Animated.View style={[styles.container, style]}>
 			{showBurgerMenu && (
-				<TouchableOpacity style={styles.burgerMenu}>
+				<TouchableOpacity style={styles.burgerMenu} onPress={() => openDrawer()}>
 					<View style={styles.burgerMenu_icon}>
 						<FeatherIcon name="align-left" size={24} />
 					</View>
@@ -104,6 +107,7 @@ const Header = ({
 					/>
 				</View>
 			)}
+			<CustomDrawer isOpen={isOpen} closeDrawer={() => closeDrawer()} navigation={navigation} />
 		</Animated.View>
 	);
 };
