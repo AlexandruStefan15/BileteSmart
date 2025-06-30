@@ -10,6 +10,7 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 
 //store
 import { useSelectedSeats } from "@/store/store";
+import { useDrawerStore } from "@/store/store";
 
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -17,7 +18,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import CartSideBar, { useCartSideBar } from "./CartSideBar";
-import CustomDrawer, { useDrawer } from "./CustomDrawer";
+import CustomDrawer from "./CustomDrawer";
 
 const Header = ({
 	title = false,
@@ -35,8 +36,7 @@ const Header = ({
 	const navigation = useNavigation();
 	const { sidebarX, open, close } = useCartSideBar();
 	const didMount = useRef(false);
-	const [drawerOpen, setDrawerOpen] = useState(false);
-	const { isOpen, openDrawer, closeDrawer } = useDrawer();
+	const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
 
 	useEffect(() => {
 		if (didMount.current) {
@@ -89,7 +89,7 @@ const Header = ({
 	return (
 		<Animated.View style={[styles.container, style]}>
 			{showBurgerMenu && (
-				<TouchableOpacity style={styles.burgerMenu} onPress={() => openDrawer()}>
+				<TouchableOpacity style={styles.burgerMenu} onPress={() => toggleDrawer()}>
 					<View style={styles.burgerMenu_icon}>
 						<FeatherIcon name="align-left" size={24} />
 					</View>
@@ -107,7 +107,7 @@ const Header = ({
 					/>
 				</View>
 			)}
-			<CustomDrawer isOpen={isOpen} closeDrawer={() => closeDrawer()} navigation={navigation} />
+			<CustomDrawer navigation={navigation} />
 		</Animated.View>
 	);
 };

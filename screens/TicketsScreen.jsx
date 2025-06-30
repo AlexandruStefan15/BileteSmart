@@ -1,10 +1,23 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
 import { Colors } from "@/constants";
+import { useFocusEffect } from "@react-navigation/native";
+
+//store
+import { useDrawerStore } from "@/store/store";
 
 import Header from "@/components/Header";
 
 const TicketsScreen = ({ navigation }) => {
+	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
+
+	useFocusEffect(
+		React.useCallback(() => {
+			// On focus, close the drawer
+			closeDrawer();
+		}, [])
+	);
+
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header title="Home" />

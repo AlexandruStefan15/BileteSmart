@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { withTiming } from "react-native-reanimated";
 
 export const useSelectedSeats = create((set) => ({
 	selectedSeats: [],
@@ -42,4 +43,11 @@ export const useSelectedSeats = create((set) => ({
 				};
 			}),
 		})),
+}));
+
+export const useDrawerStore = create((set) => ({
+	isDrawerOpen: false,
+	openDrawer: () => set({ isDrawerOpen: true }),
+	closeDrawer: () => set({ isDrawerOpen: false }),
+	toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
 }));

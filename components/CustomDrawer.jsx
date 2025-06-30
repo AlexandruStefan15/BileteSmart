@@ -1,50 +1,48 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
-import Animated, {
-	useSharedValue,
-	withTiming,
-	useAnimatedStyle,
-	runOnJS,
-} from "react-native-reanimated";
+import React, { useEffect } from "react";
+import { TouchableOpacity, Text, StyleSheet, Dimensions, Pressable } from "react-native";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import { useDrawerStore } from "@/store/store";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
-
 const drawerWidth = SCREEN_WIDTH * 0.75;
 
-export const useDrawer = () => {
-	const isOpen = useSharedValue(0); // 0 = closed, 1 = open
+const CustomDrawer = ({ navigation }) => {
+	const isDrawerOpen = useDrawerStore((state) => state.isDrawerOpen);
+	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
+	const translateX = useSharedValue(-drawerWidth);
 
-	const openDrawer = () => (isOpen.value = withTiming(1));
-	const closeDrawer = () => (isOpen.value = withTiming(0));
+	const animatedStyle = useAnimatedStyle(() => ({
+		transform: [{ translateX: translateX.value }],
+	}));
 
-	return { isOpen, openDrawer, closeDrawer };
-};
-
-const CustomDrawer = ({ isOpen, closeDrawer, navigation }) => {
-	const animatedStyle = useAnimatedStyle(() => {
-		return {
-			transform: [{ translateX: withTiming(isOpen.value ? 0 : -drawerWidth) }],
-		};
-	});
+	useEffect(() => {
+		translateX.value = withTiming(isDrawerOpen ? 0 : -drawerWidth, { duration: 200 });
+	}, [isDrawerOpen]);
 
 	const handleNavigate = (screen) => {
-		closeDrawer(); // close first
+		closeDrawer();
 		navigation.navigate(screen);
 	};
 
 	return (
-		<Animated.View style={[styles.drawer, animatedStyle]}>
-			<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Contact")}>
-				<Text style={styles.text}>Contact</Text>
-			</TouchableOpacity>
-			<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Ticketing")}>
-				<Text style={styles.text}>Ticketing</Text>
-			</TouchableOpacity>
-			<TouchableOpacity style={styles.link} onPress={closeDrawer}>
-				<Text style={styles.text}>Close</Text>
-			</TouchableOpacity>
-		</Animated.View>
+		<>
+			{isDrawerOpen && <Pressable style={styles.overlay} onPress={closeDrawer} />}
+			<Animated.View style={[styles.drawer, animatedStyle]}>
+				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Acasa")}>
+					<Text style={styles.text}>Acasa</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Evenimente")}>
+					<Text style={styles.text}>Evenimente</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Contact")}>
+					<Text style={styles.text}>Contact</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Ticketing")}>
+					<Text style={styles.text}>Ticketing</Text>
+				</TouchableOpacity>
+			</Animated.View>
+		</>
 	);
 };
 
@@ -63,6 +61,18 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		zIndex: 9999,
 		height: SCREEN_HEIGHT,
+	},
+	overlay: {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: "rgba(0,0,0,0.3)",
+		zIndex: 9998,
+		height: SCREEN_HEIGHT,
+		width: SCREEN_WIDTH,
+		pointerEvents: "box-only",
 	},
 	link: {
 		paddingVertical: 15,

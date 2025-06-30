@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import { ThemeContext } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 
 //colors
 import { Colors } from "@/constants";
+
+//store
+import { useDrawerStore } from "@/store/store";
 
 //components
 import HeroBanner from "@/components/sections/HeroBanner";
@@ -16,6 +20,15 @@ import Footer from "@/components/Footer";
 export default function HomeScreen({ navigation }) {
 	const { theme } = useContext(ThemeContext);
 	const styles = getStyles(theme || "light");
+
+	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
+
+	useFocusEffect(
+		React.useCallback(() => {
+			// On focus, close the drawer
+			closeDrawer();
+		}, [])
+	);
 
 	return (
 		<SafeAreaView style={styles.screen}>

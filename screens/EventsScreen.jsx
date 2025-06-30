@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image } from "react-native";
 import { Colors } from "@/constants";
+import { useFocusEffect } from "@react-navigation/native";
 
 //components
 import Header from "@/components/Header";
@@ -12,8 +13,20 @@ import { locations } from "@/data/locations"; // to be fetched
 //hooks
 import { useEventsByLocation } from "@/hooks/useEventsByLocation";
 
+//store
+import { useDrawerStore } from "@/store/store";
+
 const EventsScreen = ({ navigation }) => {
 	const { eventsGrouped } = useEventsByLocation();
+
+	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
+
+	useFocusEffect(
+		React.useCallback(() => {
+			// On focus, close the drawer
+			closeDrawer();
+		}, [])
+	);
 
 	return (
 		<SafeAreaView style={styles.screen}>
