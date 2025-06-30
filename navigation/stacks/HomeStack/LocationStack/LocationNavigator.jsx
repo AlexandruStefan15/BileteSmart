@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 //screens
 import LocationScreen from "@/screens/LocationScreen";
-import EventsDetailsNavigator from "../../EventsStack/EventDetailsStack/EventDetailsNavigator";
 
 const Stack = createStackNavigator();
 
