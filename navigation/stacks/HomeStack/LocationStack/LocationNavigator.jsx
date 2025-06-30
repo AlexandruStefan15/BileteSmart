@@ -13,11 +13,6 @@ const LocationNavigator = () => (
 			component={LocationScreen}
 			options={{ headerShown: false }}
 		/>
-		{/* <Stack.Screen
-			name="EventDetailsStack"
-			component={EventsDetailsNavigator}
-			options={{ headerShown: false }}
-		/> */}
 	</Stack.Navigator>
 );
 

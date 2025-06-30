@@ -18,50 +18,64 @@ import { useDrawerStore } from "@/store/store";
 
 const EventsScreen = ({ navigation }) => {
 	const { eventsGrouped } = useEventsByLocation();
-
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
+
+	const hasNoEvents = Object.values(eventsGrouped).every(
+		(eventsArray) => Array.isArray(eventsArray) && eventsArray.length === 0
+	);
 
 	useFocusEffect(
 		React.useCallback(() => {
-			// On focus, close the drawer
 			closeDrawer();
 		}, [])
 	);
 
+	if (hasNoEvents) {
+		return (
+			<SafeAreaView style={styles.screen}>
+				<Header />
+				<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+					<View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
+						<Text style={styles.location_title}>No events available</Text>
+						{/* Optional: add an image */}
+					</View>
+				</ScrollView>
+			</SafeAreaView>
+		);
+	}
+
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header title="Home" />
+			<Header />
 			<ScrollView>
 				<View style={styles.container}>
 					{locations.map((location) => {
 						const events = eventsGrouped[location.id] || [];
-
+						if (events.length == 0) {
+							return null;
+						}
 						return (
 							<View key={location.id}>
-								<Text style={styles.location_title}>{location.name}</Text>
-								{events.length > 0 ? (
+								{events.length > 0 &&
 									events.map((event) => (
-										<EventCard
-											variant="2"
-											onPress={() =>
-												navigation.navigate("EventDetailsStack", {
-													screen: "EventDetailsScreen",
-													params: {
-														locationId: location.id,
-														event: event,
-														locationFieldPath: location.field_path_d,
-													},
-												})
-											}
-											key={event.id_event}
-											eventData={event}
-										/>
-									))
-								) : (
-									<Text style={{ fontStyle: "italic", color: "gray", marginTop: 0 }}>
-										Niciun eveniment disponibil.
-									</Text>
-								)}
+										<React.Fragment key={event.id_event}>
+											<Text style={styles.location_title}>{location.name}</Text>
+											<EventCard
+												variant="2"
+												onPress={() =>
+													navigation.navigate("EventDetailsStack", {
+														screen: "EventDetailsScreen",
+														params: {
+															locationId: location.id,
+															event: event,
+															locationFieldPath: location.field_path_d,
+														},
+													})
+												}
+												eventData={event}
+											/>
+										</React.Fragment>
+									))}
 							</View>
 						);
 					})}
@@ -77,7 +91,7 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	container: { gap: 45, padding: 16, paddingBlock: 35 },
+	container: { gap: 40, padding: 16, paddingBlock: 35 },
 
 	location_title: {
 		fontSize: 20.5,

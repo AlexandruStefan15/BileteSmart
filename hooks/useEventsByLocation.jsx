@@ -8,6 +8,10 @@ import { locations } from "@/data/locations";
 export function useEventsByLocation() {
 	const [eventsGrouped, setEventsGrouped] = useState({});
 
+	/* 	const hasNoEvents = Object.values(eventsGrouped).every(
+		(eventsArray) => Array.isArray(eventsArray) && eventsArray.length === 0
+	); */
+
 	useFocusEffect(
 		useCallback(() => {
 			const fetchEvents = async () => {
