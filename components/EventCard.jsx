@@ -88,7 +88,7 @@ const getStyles = (theme) => {
 			width: "100%",
 			position: "relative",
 			borderRadius: 10,
-			borderWidth: 1.5,
+			borderWidth: 1.2,
 			borderColor: "#dedede5e",
 		},
 
