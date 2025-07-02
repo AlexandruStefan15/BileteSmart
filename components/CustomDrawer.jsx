@@ -31,7 +31,7 @@ const CustomDrawer = ({ navigation }) => {
 			}
 		})
 		.onEnd((event) => {
-			if (event.translationX < -50) {
+			if (event.translationX < -70) {
 				translateX.value = withTiming(-drawerWidth);
 				runOnJS(closeDrawer)();
 			} else {
