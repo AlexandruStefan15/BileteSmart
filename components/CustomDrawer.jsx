@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { TouchableOpacity, Text, StyleSheet, Dimensions, Pressable } from "react-native";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import Animated, {
+	useSharedValue,
+	useAnimatedStyle,
+	withTiming,
+	runOnJS,
+} from "react-native-reanimated";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { useDrawerStore } from "@/store/store";
 import { navigationRef } from "@/navigation/navigationRef";
 
@@ -17,6 +23,22 @@ const CustomDrawer = ({ navigation }) => {
 		transform: [{ translateX: translateX.value }],
 	}));
 
+	const panGesture = Gesture.Pan()
+		.enabled(isDrawerOpen)
+		.onUpdate((event) => {
+			if (event.translationX < 0) {
+				translateX.value = event.translationX;
+			}
+		})
+		.onEnd((event) => {
+			if (event.translationX < -50) {
+				translateX.value = withTiming(-drawerWidth);
+				runOnJS(closeDrawer)();
+			} else {
+				translateX.value = withTiming(0);
+			}
+		});
+
 	useEffect(() => {
 		translateX.value = withTiming(isDrawerOpen ? 0 : -drawerWidth, { duration: 200 });
 	}, [isDrawerOpen]);
@@ -31,20 +53,22 @@ const CustomDrawer = ({ navigation }) => {
 	return (
 		<>
 			{isDrawerOpen && <Pressable style={styles.overlay} onPress={closeDrawer} />}
-			<Animated.View style={[styles.drawer, animatedStyle]}>
-				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Acasa")}>
-					<Text style={styles.text}>Acasa</Text>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Evenimente")}>
-					<Text style={styles.text}>Evenimente</Text>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Contact")}>
-					<Text style={styles.text}>Contact</Text>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Ticketing")}>
-					<Text style={styles.text}>Ticketing</Text>
-				</TouchableOpacity>
-			</Animated.View>
+			<GestureDetector gesture={panGesture}>
+				<Animated.View style={[styles.drawer, animatedStyle]}>
+					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Acasa")}>
+						<Text style={styles.text}>Acasa</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Evenimente")}>
+						<Text style={styles.text}>Evenimente</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Contact")}>
+						<Text style={styles.text}>Contact</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Ticketing")}>
+						<Text style={styles.text}>Ticketing</Text>
+					</TouchableOpacity>
+				</Animated.View>
+			</GestureDetector>
 		</>
 	);
 };
