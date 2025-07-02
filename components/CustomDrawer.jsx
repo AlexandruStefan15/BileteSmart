@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { TouchableOpacity, Text, StyleSheet, Dimensions, Pressable } from "react-native";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { useDrawerStore } from "@/store/store";
+import { navigationRef } from "@/navigation/navigationRef";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
@@ -22,7 +23,9 @@ const CustomDrawer = ({ navigation }) => {
 
 	const handleNavigate = (screen) => {
 		closeDrawer();
-		navigation.navigate(screen);
+		if (navigationRef.isReady()) {
+			navigationRef.navigate(screen);
+		}
 	};
 
 	return (

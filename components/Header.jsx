@@ -18,7 +18,6 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 
 //components
 import CartSideBar, { useCartSideBar } from "./CartSideBar";
-import CustomDrawer from "./CustomDrawer";
 
 const Header = ({
 	title = false,
@@ -107,7 +106,6 @@ const Header = ({
 					/>
 				</View>
 			)}
-			<CustomDrawer navigation={navigation} />
 		</Animated.View>
 	);
 };
