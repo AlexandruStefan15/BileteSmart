@@ -116,19 +116,6 @@ const LocationScreen = ({ navigation, route }) => {
 	);
 };
 
-/* const renderIcon = (icon) => {
-	switch (icon.type) {
-		case "FontAwesome":
-			return <FontAwesomeIcon name={icon.name} size={icon.size} color={Colors.primary} />;
-		case "Fontisto":
-			return <FontistoIcon name={icon.name} size={icon.size} color={Colors.primary} />;
-		case "MaterialCommunity":
-			return <MaterialCommunityIcon name={icon.name} size={icon.size} color={Colors.primary} />;
-		default:
-			return null;
-	}
-}; */
-
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
@@ -148,6 +135,7 @@ const styles = StyleSheet.create({
 		marginTop: -35,
 		backgroundColor: Colors["light"].background.primary,
 		padding: 20,
+		marginBottom: 5,
 	},
 
 	mainTitle: {
@@ -178,7 +166,8 @@ const styles = StyleSheet.create({
 	},
 
 	eventsSection: {
-		marginBlock: 20,
+		marginTop: 12,
+		marginBottom: 7,
 		gap: 0,
 	},
 
@@ -188,6 +177,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		borderRadius: 10,
 		lineHeight: 22,
+		fontWeight: 400,
 	},
 
 	description: {

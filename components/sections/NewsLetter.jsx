@@ -1,12 +1,8 @@
 import { View, Text, TextInput, Image, StyleSheet, Dimensions } from "react-native";
 import React, { useState } from "react";
 
-//images
-import { images } from "@/assets/images";
-
 //components
 import Button from "../Button";
-import Title from "../Title";
 
 const { height: windowHeight } = Dimensions.get("window");
 
@@ -25,7 +21,7 @@ export default function Newsletter() {
 					</Text>
 					<View style={styles.buttonsContainer}>
 						<Button style={styles.button} styleText={styles.buttonText}>
-							Aboneaza-te
+							Abonează-te
 						</Button>
 						<TextInput
 							style={styles.input}
@@ -72,7 +68,7 @@ const styles = StyleSheet.create({
 	},
 
 	innerTitle: {
-		fontSize: 28,
+		fontSize: 28.5,
 		color: "white",
 		textAlign: "center",
 		fontWeight: "bold",
@@ -103,7 +99,7 @@ const styles = StyleSheet.create({
 		fontWeight: 500,
 		borderColor: "white",
 		textAlign: "center",
-		fontSize: 16.8,
+		fontSize: 16.5,
 		backgroundColor: "#00000059",
 	},
 
@@ -111,12 +107,13 @@ const styles = StyleSheet.create({
 		backgroundColor: "white",
 		height: 57,
 		justifyContent: "center",
-		paddingInline: 32,
+		paddingInline: 35,
+		maxHeight: 55,
 	},
 
 	buttonText: {
 		color: "#365771",
-		fontWeight: "bold",
+		fontWeight: "800",
 		fontSize: 17,
 	},
 });

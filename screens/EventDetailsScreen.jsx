@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 		backgroundColor: "#242424",
 		marginInline: 20,
-		marginBottom: 40,
+		marginBottom: 35,
 		marginTop: 5,
 		gap: 13,
 	},

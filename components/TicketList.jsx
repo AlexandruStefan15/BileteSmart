@@ -74,7 +74,7 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 		<Animated.View style={[{ flexDirection: "row" }, animatedStyle]}>
 			<View style={styles.ticketList_item}>
 				{teeth.map((_, index) => (
-					<View key={index} style={[styles.tooth, { top: index * 15.5 }]} />
+					<View key={index} style={[styles.tooth, { top: index * 15.7 }]} />
 				))}
 				<View style={styles.ticketList_item_details}>
 					<Text style={styles.ticketList_item_text}>
@@ -95,7 +95,7 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 						position: "absolute",
 						zIndex: 999,
 						right: 40,
-						top: 47,
+						top: 50,
 						backgroundColor: "#2e2d2d",
 						borderColor: "transparent",
 						borderRadius: 6,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 
 	tooth: {
 		position: "absolute",
-		marginTop: 26,
+		marginTop: 28,
 		left: -3.5,
 		width: 8.5,
 		height: 8.5,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
 	},
 
 	ticketList_item_details: {
-		gap: 2.5,
+		gap: 2.7,
 	},
 
 	ticketList_item_text: {

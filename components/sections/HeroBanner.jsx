@@ -24,7 +24,13 @@ const HeroBanner = () => {
 					<Text style={styles.title}>
 						Poți cumpăra bilete pentru sala ta Polivalentă preferată direct de aici!
 					</Text>
-					<Button onPress={() => navigate("Evenimente")}>Vezi evenimente</Button>
+					<Button
+						style={styles.button}
+						styleText={styles.buttonText}
+						onPress={() => navigate("Evenimente")}
+					>
+						Vezi evenimente
+					</Button>
 				</View>
 			</LinearGradient>
 		</View>
@@ -59,14 +65,14 @@ const styles = StyleSheet.create({
 
 	button: {
 		backgroundColor: Colors.primary,
-		paddingVertical: 15,
-		paddingHorizontal: 30,
+		paddingBlock: 16,
+		paddingInline: 30,
 		borderRadius: 30,
 	},
 
 	buttonText: {
 		color: "white",
-		fontSize: 18,
+		fontSize: 18.5,
 	},
 
 	title: {

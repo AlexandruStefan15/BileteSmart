@@ -27,7 +27,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						source={{ uri: encodeURI(eventData.event_img) }}
 						imageStyle={styles.event_image2}
 					>
-						<View style={styles.event_badge}>
+						{/* <View style={styles.event_badge}>
 							{formatDate(eventData.date)
 								.trim()
 								.split(" ")
@@ -39,10 +39,13 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 										{word}
 									</Text>
 								))}
-						</View>
+						</View> */}
 					</ImageBackground>
 				</Ripple>
 				<Text style={styles.event_title2}>{eventData.title}</Text>
+				<Text style={styles.event_subtitle2}>
+					{eventData.date} | {eventData.time}
+				</Text>
 			</View>
 		);
 
@@ -135,7 +138,7 @@ const getStyles = (theme) => {
 		//variant 2
 
 		event_container2: {
-			aspectRatio: 100 / 67,
+			aspectRatio: 100 / 66,
 			overflow: "hidden",
 			width: "100%",
 			position: "relative",
@@ -153,10 +156,24 @@ const getStyles = (theme) => {
 		},
 
 		event_title2: {
-			fontSize: 16,
+			fontSize: 15,
+			fontWeight: 600,
+			marginLeft: 2,
+			marginTop: 5,
+		},
+
+		event_subtitle2: {
+			fontSize: 14,
+			color: "gray",
 			fontWeight: 500,
 			marginLeft: 2,
+			marginBottom: 5,
 			marginTop: 2,
+			textAlign: "left",
+			/* fontFamily: Fonts["light"].regular, */
+			fontStyle: "normal",
+			lineHeight: 20,
+			letterSpacing: 0.2,
 		},
 	});
 };
