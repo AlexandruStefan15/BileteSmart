@@ -137,7 +137,7 @@ const SvgHallPlan = ({
 							width={"90%"}
 							style={{
 								position: "absolute",
-								[fieldPosition === "top" ? "top" : "bottom"]: 100,
+								[fieldPosition === "top" ? "top" : "bottom"]: currentRoom?.svgGap || 100,
 							}}
 						/>
 						<Svg style={{}} width={"90%"} height={"100%"} viewBox={currentRoom?.svgViewBox}>

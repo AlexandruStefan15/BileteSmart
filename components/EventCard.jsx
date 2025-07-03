@@ -159,7 +159,7 @@ const getStyles = (theme) => {
 			fontSize: 15,
 			fontWeight: 600,
 			marginLeft: 2,
-			marginTop: 5,
+			marginTop: 4.5,
 		},
 
 		event_subtitle2: {

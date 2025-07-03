@@ -9,7 +9,7 @@ const StadiumMarkerSvg = (props) => {
 		<Svg
 			width={"100%"}
 			height={36}
-			viewBox="25 0 424 36"
+			viewBox="20 0 424 36"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			{...props}

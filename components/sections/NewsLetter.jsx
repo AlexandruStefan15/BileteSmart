@@ -107,13 +107,13 @@ const styles = StyleSheet.create({
 		backgroundColor: "white",
 		height: 57,
 		justifyContent: "center",
-		paddingInline: 35,
+		paddingInline: 32,
 		maxHeight: 55,
 	},
 
 	buttonText: {
 		color: "#365771",
 		fontWeight: "800",
-		fontSize: 17,
+		fontSize: 16.75,
 	},
 });

@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 
 	tooth: {
 		position: "absolute",
-		marginTop: 28,
+		marginTop: 27,
 		left: -3.5,
 		width: 8.5,
 		height: 8.5,
