@@ -40,7 +40,7 @@ const TicketList = ({ style }) => {
 				style={[styles.ticketList, style]}
 				data={selectedSeats}
 				keyExtractor={(item) => item.id_seat.toString()}
-				contentContainerStyle={{ gap: 11, paddingBlock: 15 }}
+				contentContainerStyle={{ gap: 12, paddingBlock: 15 }}
 				renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
 				initialNumToRender={5}
 				maxToRenderPerBatch={10}
@@ -95,7 +95,7 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 						position: "absolute",
 						zIndex: 999,
 						right: 40,
-						top: 50,
+						top: 49,
 						backgroundColor: "#2e2d2d",
 						borderColor: "transparent",
 						borderRadius: 6,
