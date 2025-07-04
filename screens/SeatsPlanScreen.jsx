@@ -21,6 +21,7 @@ export default SeatsPlanScreen = ({ route, seatCount, ...props }) => {
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}
 				displayBadge={props.displayBadge}
+				openSidebar={props.openSidebar}
 			/>
 			<SvgHallPlan
 				currentRoom={currentRoom}

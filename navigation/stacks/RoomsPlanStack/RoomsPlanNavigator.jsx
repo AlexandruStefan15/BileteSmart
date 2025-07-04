@@ -6,6 +6,10 @@ import {
 	useDerivedValue,
 	useAnimatedStyle,
 } from "react-native-reanimated";
+import { View } from "react-native";
+
+//components
+import CartSideBar, { useCartSideBar } from "@/components/CartSideBar";
 
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
@@ -14,6 +18,7 @@ import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
 const Stack = createStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
+	const { sidebarX, open, close } = useCartSideBar();
 	const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
 
@@ -29,28 +34,35 @@ export default function RoomsPlanNavigator({}) {
 	});
 
 	return (
-		<Stack.Navigator>
-			<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
-				{(props) => (
-					<RoomsPlanScreen
-						{...props}
-						seatCount={seatCount}
-						badgeStyle={badgeStyle}
-						displayBadge={displayBadge}
-					/>
-				)}
-			</Stack.Screen>
+		<View style={{ flex: 1 }}>
+			<Stack.Navigator>
+				<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
+					{(props) => (
+						<RoomsPlanScreen
+							{...props}
+							seatCount={seatCount}
+							badgeStyle={badgeStyle}
+							displayBadge={displayBadge}
+							openSidebar={open}
+							sidebarX={sidebarX}
+						/>
+					)}
+				</Stack.Screen>
 
-			<Stack.Screen name="SeatsPlanStack" options={{ headerShown: false }}>
-				{(props) => (
-					<SeatsPlanNavigator
-						{...props}
-						seatCount={seatCount}
-						badgeStyle={badgeStyle}
-						displayBadge={displayBadge}
-					/>
-				)}
-			</Stack.Screen>
-		</Stack.Navigator>
+				<Stack.Screen name="SeatsPlanStack" options={{ headerShown: false }}>
+					{(props) => (
+						<SeatsPlanNavigator
+							{...props}
+							seatCount={seatCount}
+							badgeStyle={badgeStyle}
+							displayBadge={displayBadge}
+							openSidebar={open}
+							sidebarX={sidebarX}
+						/>
+					)}
+				</Stack.Screen>
+			</Stack.Navigator>
+			<CartSideBar sidebarX={sidebarX} displayBadge={displayBadge} />
+		</View>
 	);
 }

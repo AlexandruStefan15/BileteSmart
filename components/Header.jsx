@@ -30,10 +30,10 @@ const Header = ({
 	badgeStyle,
 	displayBadge = {},
 	arrowColor = "white",
+	openSidebar = () => {},
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
-	const { sidebarX, open, close } = useCartSideBar();
 	const didMount = useRef(false);
 	const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
 
@@ -57,7 +57,8 @@ const Header = ({
 				{showCart && (
 					<TouchableOpacity
 						onPress={() => {
-							open();
+							openSidebar();
+							/* displayBadge.value = false; */
 						}}
 						style={styles.burgerMenu}
 					>
@@ -67,7 +68,6 @@ const Header = ({
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
 				)}
-				<CartSideBar sidebarX={sidebarX} displayBadge={displayBadge} />
 			</Animated.View>
 		);
 

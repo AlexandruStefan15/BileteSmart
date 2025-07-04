@@ -9,7 +9,7 @@ import {
 	StatusBar,
 } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
-import { useNavigation } from "@react-navigation/native";
+import { navigationRef } from "@/navigation/navigationRef";
 
 //store
 import { useSelectedSeats } from "@/store/store";
@@ -40,12 +40,9 @@ export const useCartSideBar = () => {
 	return { sidebarX, open, close };
 };
 
-export default function CartSideBar({ sidebarX, resetBadge, children, ...props }) {
+export default function CartSideBar({ sidebarX, resetBadge, children, navigation, ...props }) {
 	const { selectedSeats, removeSeat } = useSelectedSeats();
-	const statusBarHeight = StatusBar.currentHeight || 24;
-	const windowHeight = Dimensions.get("window").height;
-	const styles = getStyles(windowHeight, statusBarHeight);
-	const navigation = useNavigation();
+	const styles = getStyles();
 
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
@@ -92,7 +89,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 				<TouchableOpacity
 					style={styles.checkoutButton}
 					onPress={() =>
-						navigation.navigate("SeatsPlanStack", {
+						navigationRef.navigate("SeatsPlanStack", {
 							screen: "CheckoutScreen",
 						})
 					}
@@ -104,14 +101,15 @@ export default function CartSideBar({ sidebarX, resetBadge, children, ...props }
 	);
 }
 
-const getStyles = (windowHeight, statusBarHeight) =>
+const getStyles = () =>
 	StyleSheet.create({
 		sidebar: {
 			position: "absolute",
 			top: 0,
 			left: 0,
+			bottom: 0,
 			width: SIDEBAR_WIDTH,
-			height: windowHeight,
+			height: "100%",
 			backgroundColor: "white",
 			elevation: 10, // for Android
 			zIndex: 999, // for iOS
