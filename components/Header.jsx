@@ -9,15 +9,11 @@ import { Colors } from "@/constants";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 //store
-import { useSelectedSeats } from "@/store/store";
-import { useDrawerStore } from "@/store/store";
+import { useSelectedSeats, useDrawerStore, useCartSidebarStore } from "@/store/store";
 
 //icons
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FeatherIcon from "react-native-vector-icons/Feather";
-
-//components
-import CartSideBar, { useCartSideBar } from "./CartSideBar";
 
 const Header = ({
 	title = false,
@@ -30,12 +26,12 @@ const Header = ({
 	badgeStyle,
 	displayBadge = {},
 	arrowColor = "white",
-	openSidebar = () => {},
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
 	const didMount = useRef(false);
 	const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
+	const openSidebar = useCartSidebarStore((state) => state.openSidebar);
 
 	useEffect(() => {
 		if (didMount.current) {
@@ -76,7 +72,7 @@ const Header = ({
 			<Animated.View style={[styles.container2, style]}>
 				<View style={styles.backButton}>
 					<TouchableOpacity
-						style={{ padding: 20, left: -20, top: -18 }}
+						style={{ padding: 20, left: -21, top: -18 }}
 						onPress={() => navigation.goBack()}
 					>
 						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />

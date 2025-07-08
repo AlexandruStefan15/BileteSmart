@@ -88,12 +88,12 @@ const getStyles = (theme) => {
 			width: "100%",
 			position: "relative",
 			borderRadius: 10,
-			borderWidth: 1.2,
+			borderWidth: 1.3,
 			borderColor: "#dedede5e",
 		},
 
 		event_title: {
-			fontSize: 16,
+			fontSize: 15,
 			fontWeight: 500,
 			backgroundColor: "white",
 			padding: 11,

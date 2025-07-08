@@ -116,8 +116,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 					isChecked={localChecked}
 					disableText
 					fillColor="black"
-					style={{ top: 1 }}
-					size={18.5}
+					size={19}
 					useBuiltInState={false}
 					iconImageStyle={styles.iconImageStyle}
 					innerIconStyle={{ borderRadius: 3 }}
@@ -145,7 +144,6 @@ const styles = StyleSheet.create({
 	container: {
 		padding: 21,
 		paddingRight: 25,
-		/* marginTop: 60, */
 		backgroundColor: "white",
 	},
 

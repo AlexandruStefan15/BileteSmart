@@ -1,5 +1,8 @@
 import { create } from "zustand";
-import { withTiming } from "react-native-reanimated";
+import { withTiming, makeMutable } from "react-native-reanimated";
+import { Dimensions } from "react-native";
+
+//selectedSeats Store
 
 export const useSelectedSeats = create((set) => ({
 	selectedSeats: [],
@@ -45,9 +48,27 @@ export const useSelectedSeats = create((set) => ({
 		})),
 }));
 
+// Drawer Store
+
 export const useDrawerStore = create((set) => ({
 	isDrawerOpen: false,
 	openDrawer: () => set({ isDrawerOpen: true }),
 	closeDrawer: () => set({ isDrawerOpen: false }),
 	toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
+}));
+
+// CartSideBar Store
+
+const SIDEBAR_WIDTH = Dimensions.get("window").width;
+
+const sidebarX = makeMutable(-SIDEBAR_WIDTH);
+
+export const useCartSidebarStore = create(() => ({
+	sidebarX,
+	openSidebar: () => {
+		sidebarX.value = withTiming(0, { duration: 300 });
+	},
+	closeSidebar: () => {
+		sidebarX.value = withTiming(-SIDEBAR_WIDTH, { duration: 300 });
+	},
 }));

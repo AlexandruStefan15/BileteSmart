@@ -26,20 +26,6 @@ import TicketList from "./TicketList";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
-export const useCartSideBar = () => {
-	const sidebarX = useSharedValue(-SIDEBAR_WIDTH);
-
-	const open = () => {
-		sidebarX.value = withTiming(0, { duration: 300 });
-	};
-
-	const close = () => {
-		sidebarX.value = withTiming(-SIDEBAR_WIDTH, { duration: 300 });
-	};
-
-	return { sidebarX, open, close };
-};
-
 export default function CartSideBar({ sidebarX, resetBadge, children, navigation, ...props }) {
 	const { selectedSeats, removeSeat } = useSelectedSeats();
 	const styles = getStyles();

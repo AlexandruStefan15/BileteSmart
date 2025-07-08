@@ -46,7 +46,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 						<Image style={styles.banner_footer_image} source={event.logo_images[1]} />
 					</View>
 				</View>
-				<View style={{ backgroundColor: "#242424" }}>
+				<View>
 					<View style={styles.svgWrapper}>
 						<SvgHallPlan rooms={rooms} field_path={locationFieldPath} read_only={true} />
 						<View>
@@ -65,7 +65,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 										})
 									}
 								>
-									Selecteaza sectorul
+									Selecteaza sector
 								</Button>
 							) : (
 								<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
@@ -79,6 +79,11 @@ const EventDetailsScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+	screen: {
+		flex: 1,
+		backgroundColor: "#242424",
+	},
+
 	banner: {
 		marginTop: -4,
 		backgroundColor: "#242424",
@@ -134,21 +139,23 @@ const styles = StyleSheet.create({
 
 	svgWrapper: {
 		overflow: "hidden",
-		backgroundColor: "#242424",
 		marginInline: 20,
-		marginBottom: 35,
 		marginTop: 5,
-		gap: 13,
+		marginBottom: 20,
+		gap: 14,
 	},
 
 	svgWrapper_button: {
 		flex: 1,
-		borderRadius: 10,
+		borderRadius: 8,
 		width: "100%",
 	},
 
 	svgWrapper_button_text: {
-		fontWeight: "500",
+		fontSize: 16,
+		fontWeight: "600",
+		textTransform: "uppercase",
+		letterSpacing: 0.5,
 	},
 
 	noAvailableSeatsText: {

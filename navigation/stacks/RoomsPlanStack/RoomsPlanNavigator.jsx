@@ -8,9 +8,6 @@ import {
 } from "react-native-reanimated";
 import { View } from "react-native";
 
-//components
-import CartSideBar, { useCartSideBar } from "@/components/CartSideBar";
-
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
 import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
@@ -18,7 +15,6 @@ import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
 const Stack = createStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
-	const { sidebarX, open, close } = useCartSideBar();
 	const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
 
@@ -43,8 +39,6 @@ export default function RoomsPlanNavigator({}) {
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
-							openSidebar={open}
-							sidebarX={sidebarX}
 						/>
 					)}
 				</Stack.Screen>
@@ -56,13 +50,10 @@ export default function RoomsPlanNavigator({}) {
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
-							openSidebar={open}
-							sidebarX={sidebarX}
 						/>
 					)}
 				</Stack.Screen>
 			</Stack.Navigator>
-			<CartSideBar sidebarX={sidebarX} displayBadge={displayBadge} />
 		</View>
 	);
 }

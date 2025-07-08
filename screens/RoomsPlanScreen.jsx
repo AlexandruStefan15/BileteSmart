@@ -4,12 +4,17 @@ import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 //data
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
+//store
+import { useCartSidebarStore } from "@/store/store";
+
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
+import CartSideBar from "@/components/CartSideBar";
 
-export default RoomsPlanScreen = ({ route, ...props }) => {
+export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 	const { locationId, eventId, locationFieldPath } = route.params;
+	const { sidebarX } = useCartSidebarStore();
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -19,7 +24,6 @@ export default RoomsPlanScreen = ({ route, ...props }) => {
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}
 				displayBadge={props.displayBadge}
-				openSidebar={props.openSidebar}
 			/>
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}
@@ -28,6 +32,7 @@ export default RoomsPlanScreen = ({ route, ...props }) => {
 				height="100%"
 				style={{ marginTop: 60 }}
 			/>
+			<CartSideBar sidebarX={sidebarX} displayBadge={props.displayBadge} />
 		</SafeAreaView>
 	);
 };
