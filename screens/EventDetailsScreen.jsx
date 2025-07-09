@@ -1,5 +1,14 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, StatusBar } from "react-native";
+import {
+	StyleSheet,
+	View,
+	SafeAreaView,
+	ScrollView,
+	Text,
+	Image,
+	StatusBar,
+	Pressable,
+} from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
@@ -65,7 +74,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 										})
 									}
 								>
-									Selecteaza sector
+									Selecteaza sectorul
 								</Button>
 							) : (
 								<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
@@ -141,7 +150,7 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 		marginInline: 20,
 		marginTop: 5,
-		marginBottom: 20,
+		marginBottom: 25,
 		gap: 14,
 	},
 
@@ -152,9 +161,8 @@ const styles = StyleSheet.create({
 	},
 
 	svgWrapper_button_text: {
-		fontSize: 16,
+		fontSize: 17,
 		fontWeight: "600",
-		textTransform: "uppercase",
 		letterSpacing: 0.5,
 	},
 

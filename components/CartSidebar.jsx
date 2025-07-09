@@ -6,7 +6,7 @@ import {
 	Dimensions,
 	TouchableOpacity,
 	BackHandler,
-	StatusBar,
+	Image,
 } from "react-native";
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
 import { navigationRef } from "@/navigation/navigationRef";
@@ -19,6 +19,9 @@ import { Colors } from "@/constants/Colors";
 
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
+
+//images
+import { images } from "@/assets/images";
 
 //components
 import TicketList from "./TicketList";
@@ -51,7 +54,7 @@ export default function CartSideBar({ sidebarX, resetBadge, children, navigation
 
 	return (
 		<Animated.View style={[styles.sidebar, sidebarStyle]}>
-			<View style={styles.sidebar_header}>
+			<View style={styles.header}>
 				<TouchableOpacity
 					style={styles.closeBtn}
 					onPress={() => {
@@ -61,12 +64,22 @@ export default function CartSideBar({ sidebarX, resetBadge, children, navigation
 				>
 					<FeatherIcon name="arrow-left" size={26} color={"black"} />
 				</TouchableOpacity>
-				<Text style={styles.cartTitle}>Coșul meu</Text>
+				<View
+					style={{
+						flexDirection: "row",
+						alignItems: "center",
+						gap: 10,
+						marginInline: "auto",
+					}}
+				>
+					<Text style={styles.cartTitle}>Coșul meu</Text>
+					<Image source={images.shoppingCart} style={{ width: 24, height: 24 }} />
+				</View>
 			</View>
-			<View style={styles.sidebar_content}>
+			<View style={styles.content}>
 				<TicketList />
 			</View>
-			<View style={styles.sidebar_footer}>
+			<View style={styles.footer}>
 				<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
 					<Text style={{ fontWeight: "600", fontSize: 16 }}>
 						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
@@ -103,7 +116,7 @@ const getStyles = () =>
 		},
 
 		//header
-		sidebar_header: {
+		header: {
 			flexDirection: "row",
 			justifyContent: "space-between",
 			borderBottomWidth: 0.5,
@@ -127,14 +140,14 @@ const getStyles = () =>
 
 		//content
 
-		sidebar_content: {
+		content: {
 			flex: 1,
 			backgroundColor: "#f5f5f6",
 		},
 
 		//footer
 
-		sidebar_footer: {
+		footer: {
 			paddingInline: 15,
 			paddingTop: 7,
 			paddingBottom: 15,

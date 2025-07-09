@@ -69,6 +69,6 @@ export const useCartSidebarStore = create(() => ({
 		sidebarX.value = withTiming(0, { duration: 300 });
 	},
 	closeSidebar: () => {
-		sidebarX.value = withTiming(-SIDEBAR_WIDTH, { duration: 300 });
+		sidebarX.value = withTiming(-SIDEBAR_WIDTH, { duration: 350 });
 	},
 }));

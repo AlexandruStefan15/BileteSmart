@@ -72,18 +72,18 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 
 	return (
 		<Animated.View style={[{ flexDirection: "row" }, animatedStyle]}>
-			<View style={styles.ticketList_item}>
+			<View style={styles.item}>
 				{teeth.map((_, index) => (
 					<View key={index} style={[styles.tooth, { top: index * 15.7 }]} />
 				))}
-				<View style={styles.ticketList_item_details}>
-					<Text style={styles.ticketList_item_text}>
+				<View style={styles.item_details}>
+					<Text style={styles.item_text}>
 						Locul: <Text style={styles.highlight}>{item.seat_no}</Text>
 					</Text>
-					<Text style={styles.ticketList_item_text}>
+					<Text style={styles.item_text}>
 						Randul: <Text style={styles.highlight}>{item.row_no}</Text>
 					</Text>
-					<Text style={styles.ticketList_item_text}>
+					<Text style={styles.item_text}>
 						Sectorul: <Text style={styles.highlight}>{item.room_name}</Text>
 					</Text>
 				</View>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 		zIndex: 2,
 	},
 
-	ticketList_item: {
+	item: {
 		position: "relative",
 		width: "84%",
 		padding: 16,
@@ -140,18 +140,18 @@ const styles = StyleSheet.create({
 		borderRadius: 12,
 	},
 
-	ticketList_item_details: {
-		gap: 2.7,
+	item_details: {
+		gap: 2.8,
 	},
 
-	ticketList_item_text: {
+	item_text: {
 		fontWeight: "500",
 		fontSize: 14.5,
 		color: "white",
 	},
 
 	highlight: {
-		color: "#6caed2",
+		color: "#74b7dd",
 		fontWeight: "bold",
 	},
 
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
 		fontWeight: "600",
 		fontSize: 17,
 		marginTop: 12,
-		color: "#6caed2",
+		color: "#74b7dd",
 	},
 
 	ticketList_removeButton: {

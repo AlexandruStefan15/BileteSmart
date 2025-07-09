@@ -18,6 +18,7 @@ const images = {
 	anpc: require("./anpc.png"),
 	litigii: require("./litigii.png"),
 	metopia: require("./metopia.png"),
+	shoppingCart: require("./shoppingCart.png"),
 };
 
 export { images };
