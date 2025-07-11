@@ -17,18 +17,6 @@ const teeth = Array.from({ length: 6 });
 const TicketList = ({ style }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const removeSeat = useSelectedSeats((state) => state.removeSeat);
-	const [canShowTickets, setCanShowTickets] = useState(false);
-
-	useEffect(() => {
-		const task = InteractionManager.runAfterInteractions(() => {
-			setTimeout(() => setCanShowTickets(true), 300);
-		});
-		return () => task.cancel();
-	}, []);
-
-	if (!canShowTickets) {
-		return <Text style={{ margin: "auto" }}>Loading...</Text>;
-	}
 
 	if (selectedSeats.length === 0) {
 		return <Text style={{ margin: "auto" }}>Momentan nu ai bilete în coș...</Text>;

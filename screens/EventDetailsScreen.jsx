@@ -1,14 +1,5 @@
 import React, { useEffect } from "react";
-import {
-	StyleSheet,
-	View,
-	SafeAreaView,
-	ScrollView,
-	Text,
-	Image,
-	StatusBar,
-	Pressable,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, StatusBar } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
