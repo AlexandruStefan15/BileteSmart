@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 
 	header: {
 		padding: 12,
-		paddingBlock: 15,
+		paddingBlock: 16,
 		backgroundColor: "#365771",
 		flexDirection: "column",
 		gap: 16,
