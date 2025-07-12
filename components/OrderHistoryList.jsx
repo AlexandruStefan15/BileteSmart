@@ -40,7 +40,7 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
 				<Text>ID Order: {order.id_order}</Text>
-				<Text>Buy Date: {order.buy_date}</Text>
+				<Text>Event Date: {order.date}</Text>
 				<Text>First Name: {order.first_name}</Text>
 				<Text>Last Name: {order.last_name}</Text>
 				<Text>Phone: {order.phone}</Text>
@@ -49,7 +49,7 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 	);
 };
 
-const Orders = ({ orders }) => {
+const OrderHistoryList = ({ orders }) => {
 	const [expandedOrderIds, setExpandedOrderIds] = useState([]);
 
 	const toggleOrder = (id) => {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 14,
 		backgroundColor: "#365771",
 		flexDirection: "column",
-		gap: 30,
+		gap: 25,
 	},
 	headerText: {
 		fontSize: 16,
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Orders;
+export default OrderHistoryList;

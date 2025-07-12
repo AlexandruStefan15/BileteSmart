@@ -8,7 +8,7 @@ import { useDrawerStore } from "@/store/store";
 
 //components
 import Header from "@/components/Header";
-import Orders from "@/components/Orders";
+import OrderHistoryList from "@/components/OrderHistoryList";
 
 const ordersData = [
 	{
@@ -177,9 +177,7 @@ const TicketsScreen = ({ navigation, route }) => {
 		<SafeAreaView style={styles.screen}>
 			<Header />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-					<Orders orders={ordersData} />
-				</View>
+				<OrderHistoryList orders={ordersData} />
 			</ScrollView>
 		</SafeAreaView>
 	);

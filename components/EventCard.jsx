@@ -138,12 +138,12 @@ const getStyles = (theme) => {
 		//variant 2
 
 		event_container2: {
-			aspectRatio: 100 / 66,
+			aspectRatio: 100 / 65,
 			overflow: "hidden",
 			width: "100%",
 			position: "relative",
 			borderRadius: 13,
-			borderWidth: 1.5,
+			borderWidth: 1.3,
 			borderColor: "#dedede5e",
 		},
 
