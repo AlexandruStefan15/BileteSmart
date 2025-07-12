@@ -92,22 +92,24 @@ const styles = StyleSheet.create({
 
 	header: {
 		padding: 12,
-		paddingBottom: 14,
+		paddingBlock: 15,
 		backgroundColor: "#365771",
 		flexDirection: "column",
-		gap: 25,
+		gap: 16,
 	},
+
 	headerText: {
 		fontSize: 16,
-		fontWeight: "bold",
+		fontWeight: "700",
 		color: "white",
-		marginBottom: 5,
+		textAlign: "center",
+		textTransform: "uppercase",
 	},
 
 	headerSubText: {
 		fontSize: 14,
 		color: "white",
-		marginLeft: "auto",
+		textAlign: "center",
 	},
 
 	animatedContent: {
