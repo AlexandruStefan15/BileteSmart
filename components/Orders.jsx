@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import Animated, {
+	useSharedValue,
+	useAnimatedStyle,
+	withTiming,
+	Easing,
+	ReduceMotion,
+} from "react-native-reanimated";
 
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
 	const height = useSharedValue(isExpanded ? 145 : 0);
 	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
 	React.useEffect(() => {
-		height.value = withTiming(isExpanded ? 145 : 0, { duration: 300 });
-		opacity.value = withTiming(isExpanded ? 1 : 0, { duration: 300 });
+		height.value = withTiming(isExpanded ? 145 : 0, {
+			duration: 300,
+			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+			reduceMotion: ReduceMotion.System,
+		});
+		opacity.value = withTiming(isExpanded ? 1 : 0, {
+			duration: 300,
+			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+			reduceMotion: ReduceMotion.System,
+		});
 	}, [isExpanded]);
 
 	const animatedStyle = useAnimatedStyle(() => ({
@@ -81,7 +95,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 14,
 		backgroundColor: "#365771",
 		flexDirection: "column",
-		gap: 10,
+		gap: 30,
 	},
 	headerText: {
 		fontSize: 16,
@@ -93,6 +107,7 @@ const styles = StyleSheet.create({
 	headerSubText: {
 		fontSize: 14,
 		color: "white",
+		marginLeft: "auto",
 	},
 
 	animatedContent: {
