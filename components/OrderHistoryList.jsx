@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 		paddingBlock: 16,
 		backgroundColor: "#365771",
 		flexDirection: "column",
-		gap: 16,
+		gap: 15,
 	},
 
 	headerText: {
