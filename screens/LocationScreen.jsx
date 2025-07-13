@@ -59,7 +59,6 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.eventsSection}>
 						<Title style={[styles.title]}>Evenimente</Title>
-
 						{error && <Text style={styles.infoText}>Error: {error.message}</Text>}
 						{loading ? (
 							<ActivityIndicator color="#007AFF" />

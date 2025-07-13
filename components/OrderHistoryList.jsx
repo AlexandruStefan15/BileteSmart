@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
 	},
 
 	itemContainer: {
-		backgroundColor: "white",
 		borderRadius: 8,
 		overflow: "hidden",
 	},
