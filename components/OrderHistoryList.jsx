@@ -9,24 +9,25 @@ import Animated, {
 } from "react-native-reanimated";
 
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
-	const height = useSharedValue(isExpanded ? 145 : 0);
+	const height = useSharedValue(isExpanded ? 200 : 0);
 	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
 	React.useEffect(() => {
-		height.value = withTiming(isExpanded ? 145 : 0, {
+		height.value = withTiming(isExpanded ? 200 : 0, {
 			duration: 300,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
 		});
+
 		opacity.value = withTiming(isExpanded ? 1 : 0, {
-			duration: 300,
+			duration: 250,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
 		});
 	}, [isExpanded]);
 
 	const animatedStyle = useAnimatedStyle(() => ({
-		height: height.value,
+		maxHeight: height.value,
 		opacity: opacity.value,
 		overflow: "hidden",
 	}));
@@ -39,11 +40,13 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 			</TouchableOpacity>
 
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
-				<Text>ID Order: {order.id_order}</Text>
-				<Text>Event Date: {order.date}</Text>
-				<Text>First Name: {order.first_name}</Text>
-				<Text>Last Name: {order.last_name}</Text>
-				<Text>Phone: {order.phone}</Text>
+				<View style={styles.innerContent}>
+					<Text>ID Order: {order.id_order}</Text>
+					<Text>Event Date: {order.date}</Text>
+					<Text>First Name: {order.first_name}</Text>
+					<Text>Last Name: {order.last_name}</Text>
+					<Text>Phone: {order.phone}</Text>
+				</View>
 			</Animated.View>
 		</View>
 	);
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
 	},
 
 	headerText: {
-		fontSize: 16,
+		fontSize: 15.7,
 		fontWeight: "700",
 		color: "white",
 		textAlign: "center",
@@ -123,6 +126,11 @@ const styles = StyleSheet.create({
 		borderColor: "#ccc",
 		borderBottomEndRadius: 8,
 		borderBottomStartRadius: 8,
+	},
+
+	innerContent: {
+		paddingBlock: 10,
+		gap: 5,
 	},
 });
 
