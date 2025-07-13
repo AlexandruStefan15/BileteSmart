@@ -17,8 +17,6 @@ import { eventsByLocation } from "@/data/events"; // to be fetched
 
 //icons
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import FontistoIcon from "react-native-vector-icons/Fontisto";
-import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //hooks
 import { useFetchEvents } from "@/hooks/useFetchEvents";

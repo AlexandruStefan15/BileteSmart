@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -7,6 +7,9 @@ import Animated, {
 	Easing,
 	ReduceMotion,
 } from "react-native-reanimated";
+
+// images
+import { images } from "@/assets/images";
 
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
 	const height = useSharedValue(isExpanded ? 200 : 0);
@@ -37,6 +40,19 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 			<TouchableOpacity onPress={onToggle} style={styles.header}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>Achizitionat in {order.buy_date}</Text>
+				{/* <Image
+					source={images.logo}
+					style={{
+						position: "absolute",
+						top: 12,
+						left: 0,
+						width: "100%",
+						height: "100%",
+						zIndex: -1,
+						resizeMode: "contain",
+					}}
+					blurRadius={3}
+				/> */}
 			</TouchableOpacity>
 
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
