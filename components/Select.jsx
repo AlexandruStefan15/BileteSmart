@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
 	},
 
 	selectedLabel: {
-		backgroundColor: "#5fa0c4",
+		backgroundColor: "#2196f3",
 		color: "white",
 	},
 

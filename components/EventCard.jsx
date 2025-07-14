@@ -6,6 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 //utils
 import { formatDate } from "@/utils/helpers";
 
+//icons
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
 //components
 import Ripple from "react-native-material-ripple";
 
@@ -43,9 +46,12 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</ImageBackground>
 				</Ripple>
 				<Text style={styles.event_title2}>{eventData.title}</Text>
-				<Text style={styles.event_subtitle2}>
-					{eventData.date} | {eventData.time}
-				</Text>
+				<View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
+					<MaterialIcons style={{ top: -1 }} name="access-time" size={20.5} color={Colors.accent} />
+					<Text style={styles.event_subtitle2}>
+						{eventData.date} | {eventData.time}
+					</Text>
+				</View>
 			</View>
 		);
 
@@ -172,7 +178,6 @@ const getStyles = (theme) => {
 			textAlign: "left",
 			/* fontFamily: Fonts["light"].regular, */
 			fontStyle: "normal",
-			lineHeight: 20,
 			letterSpacing: 0.2,
 		},
 	});
