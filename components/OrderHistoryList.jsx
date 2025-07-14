@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
 
 	innerContent: {
 		paddingBlock: 10,
-		gap: 7,
+		gap: 6,
 	},
 
 	innerContent_text: {
-		fontSize: 14.5,
+		fontSize: 14,
 	},
 });
 
