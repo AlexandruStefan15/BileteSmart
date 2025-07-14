@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Pressable } from "react-native";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -8,15 +8,15 @@ import Animated, {
 	ReduceMotion,
 } from "react-native-reanimated";
 
-// images
-import { images } from "@/assets/images";
+//components
+import QRCodeModal from "./QRCodeModal";
 
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
-	const height = useSharedValue(isExpanded ? 200 : 0);
+	const height = useSharedValue(isExpanded ? 260 : 0);
 	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
 	React.useEffect(() => {
-		height.value = withTiming(isExpanded ? 200 : 0, {
+		height.value = withTiming(isExpanded ? 260 : 0, {
 			duration: 300,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
@@ -40,28 +40,16 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 			<TouchableOpacity onPress={onToggle} style={styles.header}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>Achizitionat in {order.buy_date}</Text>
-				{/* <Image
-					source={images.logo}
-					style={{
-						position: "absolute",
-						top: 12,
-						left: 0,
-						width: "100%",
-						height: "100%",
-						zIndex: -1,
-						resizeMode: "contain",
-					}}
-					blurRadius={3}
-				/> */}
 			</TouchableOpacity>
-
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
 				<View style={styles.innerContent}>
-					<Text>ID Order: {order.id_order}</Text>
-					<Text>Event Date: {order.date}</Text>
-					<Text>First Name: {order.first_name}</Text>
-					<Text>Last Name: {order.last_name}</Text>
-					<Text>Phone: {order.phone}</Text>
+					<Text style={styles.innerContent_text}>ID Order: {order.id_order}</Text>
+					<Text style={styles.innerContent_text}>Event Date: {order.date}</Text>
+					<Text style={styles.innerContent_text}>First Name: {order.first_name}</Text>
+					<Text style={styles.innerContent_text}>Last Name: {order.last_name}</Text>
+					<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
+					<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
+					<QRCodeModal style={{ marginTop: 5 }} id={order.id_order} />
 				</View>
 			</Animated.View>
 		</View>
@@ -117,7 +105,7 @@ const styles = StyleSheet.create({
 	},
 
 	headerText: {
-		fontSize: 15.7,
+		fontSize: 15.5,
 		fontWeight: "700",
 		color: "white",
 		textAlign: "center",
@@ -145,7 +133,11 @@ const styles = StyleSheet.create({
 
 	innerContent: {
 		paddingBlock: 10,
-		gap: 5,
+		gap: 7,
+	},
+
+	innerContent_text: {
+		fontSize: 14.5,
 	},
 });
 
