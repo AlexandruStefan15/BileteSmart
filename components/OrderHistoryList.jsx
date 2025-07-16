@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -12,6 +13,7 @@ import Animated, {
 import QRCodeModal from "./QRCodeModal";
 
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
+	const navigation = useNavigation();
 	const height = useSharedValue(isExpanded ? 260 : 0);
 	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
@@ -50,6 +52,13 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 					<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
 					<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
 					<QRCodeModal style={{ marginTop: 5 }} id={order.id_order} />
+					<Pressable
+						onPress={() => {
+							navigation.navigate({});
+						}}
+					>
+						Vezi biletele
+					</Pressable>
 				</View>
 			</Animated.View>
 		</View>

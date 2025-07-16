@@ -27,9 +27,9 @@ const TicketList = ({ style }) => {
 			<FlatList
 				style={[styles.ticketList, style]}
 				data={selectedSeats}
-				keyExtractor={(item) => item.id_seat.toString()}
+				keyExtractor={(seat) => seat.id_seat.toString()}
 				contentContainerStyle={{ gap: 12, paddingBlock: 15 }}
-				renderItem={({ item }) => <TicketItem item={item} onRemove={removeSeat} />}
+				renderItem={({ seat }) => <Ticket data={seat} onRemove={removeSeat} />}
 				initialNumToRender={5}
 				maxToRenderPerBatch={10}
 				windowSize={10}
@@ -39,7 +39,7 @@ const TicketList = ({ style }) => {
 	);
 };
 
-const TicketItem = React.memo(({ item, onRemove }) => {
+const Ticket = React.memo(({ data, onRemove }) => {
 	const updateSeatType = useSelectedSeats((state) => state.updateSeatType);
 	const translateX = useSharedValue(0);
 
@@ -49,13 +49,13 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 
 	const handleRemove = () => {
 		translateX.value = withTiming(-500, { duration: 300 }, (finished) => {
-			if (finished) runOnJS(onRemove)(item.id_seat);
+			if (finished) runOnJS(onRemove)(data.id_seat);
 		});
 	};
 
 	const handleTypeChange = useCallback(
-		(value) => updateSeatType(item.id_seat, value),
-		[item.id_seat, updateSeatType]
+		(value) => updateSeatType(data.id_seat, value),
+		[data.id_seat, updateSeatType]
 	);
 
 	return (
@@ -66,18 +66,18 @@ const TicketItem = React.memo(({ item, onRemove }) => {
 				))}
 				<View style={styles.item_details}>
 					<Text style={styles.item_text}>
-						Locul: <Text style={styles.highlight}>{item.seat_no}</Text>
+						Locul: <Text style={styles.highlight}>{data.seat_no}</Text>
 					</Text>
 					<Text style={styles.item_text}>
-						Randul: <Text style={styles.highlight}>{item.row_no}</Text>
+						Randul: <Text style={styles.highlight}>{data.row_no}</Text>
 					</Text>
 					<Text style={styles.item_text}>
-						Sectorul: <Text style={styles.highlight}>{item.room_name}</Text>
+						Sectorul: <Text style={styles.highlight}>{data.room_name}</Text>
 					</Text>
 				</View>
-				<Text style={styles.priceText}>{item.price} RON</Text>
+				<Text style={styles.priceText}>{data.price} RON</Text>
 				<Select
-					selected={item.is_discounted === "1" ? "Redus" : "Intreg"}
+					selected={data.is_discounted === "1" ? "Redus" : "Intreg"}
 					onChange={handleTypeChange}
 					selectStyles={{
 						position: "absolute",
