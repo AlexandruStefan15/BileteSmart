@@ -46,20 +46,22 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 			</TouchableOpacity>
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
 				<View style={styles.innerContent}>
-					<Text style={styles.innerContent_text}>ID Order: {order.id_order}</Text>
-					<Text style={styles.innerContent_text}>Event Date: {order.date}</Text>
-					<Text style={styles.innerContent_text}>First Name: {order.first_name}</Text>
-					<Text style={styles.innerContent_text}>Last Name: {order.last_name}</Text>
-					<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
-					<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
-					<QRCodeModal style={{ marginTop: 5, marginBottom: 3 }} id={order.id_order} />
+					<View style={{ gap: 7, marginBottom: 8 }}>
+						<Text style={styles.innerContent_text}>ID Order: {order.id_order}</Text>
+						<Text style={styles.innerContent_text}>Event Date: {order.date}</Text>
+						<Text style={styles.innerContent_text}>First Name: {order.first_name}</Text>
+						<Text style={styles.innerContent_text}>Last Name: {order.last_name}</Text>
+						<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
+						<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
+					</View>
+					<QRCodeModal style={{ marginBottom: 3 }} id={order.id_order} />
 					<Button
 						variant="2"
 						onPress={() => {
 							navigation.navigate({});
 						}}
 					>
-						<Text>Vezi biletele</Text>
+						Vezi bilete
 					</Button>
 				</View>
 			</Animated.View>
@@ -143,8 +145,8 @@ const styles = StyleSheet.create({
 	},
 
 	innerContent: {
-		paddingBlock: 10,
-		gap: 6,
+		paddingBlock: 11,
+		gap: 5,
 	},
 
 	innerContent_text: {

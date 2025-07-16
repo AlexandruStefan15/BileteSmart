@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { View, Pressable, Modal, StyleSheet, Dimensions, Text } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
+//components
+import Button from "./Button";
+
 const { width: screenWidth } = Dimensions.get("window");
 
 const QRCodeModal = ({ id, style }) => {
@@ -9,9 +12,9 @@ const QRCodeModal = ({ id, style }) => {
 
 	return (
 		<View style={[styles.container, style]}>
-			<Pressable style={styles.button} onPress={() => setVisible(true)}>
-				<Text style={styles.buttonText}>Vezi codul QR</Text>
-			</Pressable>
+			<Button variant="2" onPress={() => setVisible(true)}>
+				Vezi codul QR
+			</Button>
 
 			<Modal
 				animationType="slide"
@@ -31,20 +34,6 @@ const QRCodeModal = ({ id, style }) => {
 
 const styles = StyleSheet.create({
 	container: {},
-
-	button: {
-		padding: 10,
-		backgroundColor: "#2196f3",
-		borderRadius: 3,
-		alignItems: "center",
-	},
-
-	buttonText: {
-		color: "white",
-		fontWeight: "600",
-		fontSize: 13.7,
-		textTransform: "uppercase",
-	},
 
 	modalOverlay: {
 		flex: 1,

@@ -54,7 +54,6 @@ const Header = ({
 					<TouchableOpacity
 						onPress={() => {
 							openSidebar();
-							/* displayBadge.value = false; */
 						}}
 						style={styles.burgerMenu}
 					>

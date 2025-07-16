@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
 	},
 
 	links_list: {
-		gap: 7,
+		gap: 10,
+		paddingLeft: 5,
 	},
 
 	link: {
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 		marginBottom: 20,
 		alignItems: "center",
-		gap: 15,
+		gap: 20,
 	},
 });
 
