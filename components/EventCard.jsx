@@ -46,8 +46,8 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</ImageBackground>
 				</Ripple>
 				<Text style={styles.event_title2}>{eventData.title}</Text>
-				<View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-					<Image style={{ width: 18, height: 18.3, top: -1 }} source={images.clock}></Image>
+				<View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
+					<Image style={{ width: 19, height: 19, top: -1 }} source={images.clock}></Image>
 					<Text style={styles.event_subtitle2}>
 						{eventData.date} | {eventData.time}
 					</Text>
