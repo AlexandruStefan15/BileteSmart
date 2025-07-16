@@ -19,6 +19,7 @@ const images = {
 	litigii: require("./litigii.png"),
 	metopia: require("./metopia.png"),
 	shoppingCart: require("./shoppingCart.png"),
+	clock: require("./clock.png"),
 };
 
 export { images };

@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
 import { Colors, Fonts } from "@/constants";
 import { useNavigation } from "@react-navigation/native";
 
 //utils
 import { formatDate } from "@/utils/helpers";
 
-//icons
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+//images
+import { images } from "@/assets/images/index";
 
 //components
 import Ripple from "react-native-material-ripple";
@@ -46,8 +46,8 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</ImageBackground>
 				</Ripple>
 				<Text style={styles.event_title2}>{eventData.title}</Text>
-				<View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
-					<MaterialIcons style={{ top: -1 }} name="access-time" size={20.5} color={Colors.accent} />
+				<View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+					<Image style={{ width: 18, height: 18.3, top: -1 }} source={images.clock}></Image>
 					<Text style={styles.event_subtitle2}>
 						{eventData.date} | {eventData.time}
 					</Text>
@@ -170,7 +170,7 @@ const getStyles = (theme) => {
 
 		event_subtitle2: {
 			fontSize: 14,
-			color: "gray",
+			color: "#848383",
 			fontWeight: 500,
 			marginLeft: 2,
 			marginBottom: 5,
