@@ -5,7 +5,7 @@ import { Colors } from "@/constants";
 export default function Button({ children, variant = "", style, styleText = {}, ...props }) {
 	return (
 		<TouchableOpacity style={[styles[`button${variant}`], style]} {...props}>
-			<Text style={[styles.buttonText, styleText]}>{children}</Text>
+			<Text style={[styles[`buttonText${variant}`], styleText]}>{children}</Text>
 		</TouchableOpacity>
 	);
 }
@@ -22,5 +22,21 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontSize: 18,
 		textAlign: "center",
+	},
+
+	//variant 2
+
+	button2: {
+		padding: 10,
+		backgroundColor: "#2196f3",
+		borderRadius: 3,
+		alignItems: "center",
+	},
+
+	buttonText2: {
+		color: "white",
+		fontWeight: "600",
+		fontSize: 13.7,
+		textTransform: "uppercase",
 	},
 });

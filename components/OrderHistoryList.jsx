@@ -11,14 +11,15 @@ import Animated, {
 
 //components
 import QRCodeModal from "./QRCodeModal";
+import Button from "./Button";
 
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
 	const navigation = useNavigation();
-	const height = useSharedValue(isExpanded ? 260 : 0);
+	const height = useSharedValue(isExpanded ? 300 : 0);
 	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
 	React.useEffect(() => {
-		height.value = withTiming(isExpanded ? 260 : 0, {
+		height.value = withTiming(isExpanded ? 300 : 0, {
 			duration: 300,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
@@ -51,14 +52,15 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 					<Text style={styles.innerContent_text}>Last Name: {order.last_name}</Text>
 					<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
 					<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
-					<QRCodeModal style={{ marginTop: 5 }} id={order.id_order} />
-					<Pressable
+					<QRCodeModal style={{ marginTop: 5, marginBottom: 3 }} id={order.id_order} />
+					<Button
+						variant="2"
 						onPress={() => {
 							navigation.navigate({});
 						}}
 					>
-						Vezi biletele
-					</Pressable>
+						<Text>Vezi biletele</Text>
+					</Button>
 				</View>
 			</Animated.View>
 		</View>
