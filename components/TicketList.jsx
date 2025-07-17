@@ -27,9 +27,9 @@ const TicketList = ({ style }) => {
 			<FlatList
 				style={[styles.ticketList, style]}
 				data={selectedSeats}
-				keyExtractor={(seat) => seat.id_seat.toString()}
+				keyExtractor={(item) => item.id_seat.toString()}
 				contentContainerStyle={{ gap: 12, paddingBlock: 15 }}
-				renderItem={({ seat }) => <Ticket data={seat} onRemove={removeSeat} />}
+				renderItem={({ item }) => <Ticket data={item} onRemove={removeSeat} />}
 				initialNumToRender={5}
 				maxToRenderPerBatch={10}
 				windowSize={10}

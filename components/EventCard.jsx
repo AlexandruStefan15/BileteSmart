@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
-import { Colors, Fonts } from "@/constants";
-import { useNavigation } from "@react-navigation/native";
 
 //utils
 import { formatDate } from "@/utils/helpers";
@@ -14,7 +12,6 @@ import Ripple from "react-native-material-ripple";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
 	const styles = getStyles("light");
-	const navigation = useNavigation();
 
 	if (variant == 2)
 		return (

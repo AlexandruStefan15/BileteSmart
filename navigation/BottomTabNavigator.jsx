@@ -6,7 +6,7 @@ import { Colors } from "@/constants";
 // Navigators
 import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
-import TicketsNavigator from "./stacks/TicketsStack/TicketsNavigator";
+import OrdersHistoryNavigator from "./stacks/OrdersHistoryNavigator";
 import ProfileNavigator from "./stacks/ProfileStack/ProfileNavigator";
 
 // Icons
@@ -54,9 +54,9 @@ const BottomTabNavigator = () => {
 			/>
 			<Tab.Screen
 				name="Bilete"
-				component={TicketsNavigator}
+				component={OrdersHistoryNavigator}
 				options={({ route }) => ({
-					tabBarStyle: getTabBarStyle(route, "TicketsScreen"),
+					tabBarStyle: getTabBarStyle(route, "OrdersHistoryScreen"),
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesomeIcon name="ticket" size={size} color={color} />
 					),
