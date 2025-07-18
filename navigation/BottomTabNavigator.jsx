@@ -6,7 +6,7 @@ import { Colors } from "@/constants";
 // Navigators
 import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
-import OrdersHistoryNavigator from "./stacks/OrdersHistoryNavigator";
+import TicketsNavigator from "./stacks/TicketsNavigator";
 import ProfileNavigator from "./stacks/ProfileStack/ProfileNavigator";
 
 // Icons
@@ -17,9 +17,9 @@ import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 const Tab = createBottomTabNavigator();
 
 const getTabBarStyle = (route, rootScreenName) => {
-	const focusedRoute = getFocusedRouteNameFromRoute(route);
+	/* const focusedRoute = getFocusedRouteNameFromRoute(route);
 
-	/* if (focusedRoute && focusedRoute !== rootScreenName) {
+	if (focusedRoute && focusedRoute !== rootScreenName) {
 		return {
 			display: "none",
 		};
@@ -54,9 +54,9 @@ const BottomTabNavigator = () => {
 			/>
 			<Tab.Screen
 				name="Bilete"
-				component={OrdersHistoryNavigator}
+				component={TicketsNavigator}
 				options={({ route }) => ({
-					tabBarStyle: getTabBarStyle(route, "OrdersHistoryScreen"),
+					tabBarStyle: getTabBarStyle(route, "TicketsScreen"),
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesomeIcon name="ticket" size={size} color={color} />
 					),

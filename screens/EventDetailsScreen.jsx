@@ -135,8 +135,6 @@ const styles = StyleSheet.create({
 		resizeMode: "contain",
 	},
 
-	// SVG HALL PLAN
-
 	svgWrapper: {
 		overflow: "hidden",
 		marginInline: 20,

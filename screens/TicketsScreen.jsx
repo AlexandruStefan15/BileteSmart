@@ -164,7 +164,7 @@ const ordersData = [
 	},
 ];
 
-const OrdersHistoryScreen = ({ navigation, route }) => {
+const TicketsScreen = ({ navigation, route }) => {
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
 	useFocusEffect(
@@ -190,4 +190,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default OrdersHistoryScreen;
+export default TicketsScreen;

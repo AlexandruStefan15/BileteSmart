@@ -17,7 +17,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 		return (
 			<View>
 				<Ripple
-					style={[styles.event_container2, style]}
+					style={[styles.container2, style]}
 					rippleColor="white"
 					rippleDuration={320}
 					rippleCentered={false}
@@ -25,7 +25,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				>
 					<ImageBackground
 						source={{ uri: encodeURI(eventData.event_img) }}
-						imageStyle={styles.event_image2}
+						imageStyle={styles.image2}
 					>
 						{/* <View style={styles.event_badge}>
 							{formatDate(eventData.date)
@@ -42,10 +42,10 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						</View> */}
 					</ImageBackground>
 				</Ripple>
-				<Text style={styles.event_title2}>{eventData.title}</Text>
-				<View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
-					<Image style={{ width: 19, height: 19, top: -1 }} source={images.clock}></Image>
-					<Text style={styles.event_subtitle2}>
+				<Text style={styles.title2}>{eventData.title}</Text>
+				<View style={styles.subtitleWrapper2}>
+					<Image style={styles.subtitleIcon2} source={images.clock}></Image>
+					<Text style={styles.subtitle2}>
 						{eventData.date} | {eventData.time}
 					</Text>
 				</View>
@@ -54,26 +54,20 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	return (
 		<Ripple
-			style={[styles.event_container, style]}
+			style={[styles.container, style]}
 			rippleColor="white"
 			rippleDuration={320}
 			rippleCentered={false}
 			{...props}
 		>
-			<ImageBackground
-				source={{ uri: encodeURI(eventData.event_img) }}
-				imageStyle={styles.event_image}
-			>
-				<Text style={styles.event_title}>{eventData.title}</Text>
-				<View style={styles.event_badge}>
+			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
+				<Text style={styles.title}>{eventData.title}</Text>
+				<View style={styles.badge}>
 					{formatDate(eventData.date)
 						.trim()
 						.split(" ")
 						.map((word, index) => (
-							<Text
-								style={[styles[`event_badge_text`], styles[`event_badge_text${index}`]]}
-								key={index}
-							>
+							<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
 								{word}
 							</Text>
 						))}
@@ -85,7 +79,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 const getStyles = (theme) => {
 	return StyleSheet.create({
-		event_container: {
+		container: {
 			aspectRatio: 100 / 130,
 			overflow: "hidden",
 			width: "100%",
@@ -95,7 +89,7 @@ const getStyles = (theme) => {
 			borderColor: "#dedede5e",
 		},
 
-		event_title: {
+		title: {
 			fontSize: 15,
 			fontWeight: 500,
 			backgroundColor: "white",
@@ -103,7 +97,7 @@ const getStyles = (theme) => {
 			textAlign: "center",
 		},
 
-		event_badge: {
+		badge: {
 			backgroundColor: "#242424d6",
 			paddingInline: 18,
 			paddingTop: 7.5,
@@ -116,7 +110,7 @@ const getStyles = (theme) => {
 			alignSelf: "flex-start",
 		},
 
-		event_badge_text: {
+		badge_text: {
 			fontSize: 14,
 			fontWeight: 400,
 			color: "white",
@@ -124,13 +118,13 @@ const getStyles = (theme) => {
 			fontWeight: "500",
 		},
 
-		event_badge_text0: {
+		badge_text0: {
 			fontSize: 25,
 			fontWeight: "bold",
 			marginBottom: -3,
 		},
 
-		event_image: {
+		image: {
 			resizeMode: "cover",
 			alignSelf: "flex-end",
 			position: "absolute",
@@ -140,7 +134,7 @@ const getStyles = (theme) => {
 
 		//variant 2
 
-		event_container2: {
+		container2: {
 			aspectRatio: 100 / 65,
 			overflow: "hidden",
 			width: "100%",
@@ -150,7 +144,7 @@ const getStyles = (theme) => {
 			borderColor: "#dedede5e",
 		},
 
-		event_image2: {
+		image2: {
 			resizeMode: "cover",
 			alignSelf: "flex-end",
 			position: "absolute",
@@ -158,14 +152,27 @@ const getStyles = (theme) => {
 			height: 520,
 		},
 
-		event_title2: {
+		title2: {
 			fontSize: 15,
 			fontWeight: 600,
 			marginLeft: 2,
 			marginTop: 4.5,
 		},
 
-		event_subtitle2: {
+		subtitleWrapper2: {
+			flexDirection: "row",
+			alignItems: "center",
+			gap: 4,
+			marginLeft: 2,
+		},
+
+		subtitleIcon2: {
+			width: 18.5,
+			height: 18.3,
+			top: -1,
+		},
+
+		subtitle2: {
 			fontSize: 14,
 			color: "#848383",
 			fontWeight: 500,
