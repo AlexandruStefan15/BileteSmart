@@ -4,11 +4,14 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 //store
 import { useSelectedSeats } from "@/store/store";
 
+//icons
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+
 const OrderSummary = ({ formRef }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container]}>
 			<Text style={styles.title}>Rezumat Comandă</Text>
 			<View style={styles.ticketsInfo}>
 				<View style={styles.row}>
@@ -17,19 +20,22 @@ const OrderSummary = ({ formRef }) => {
 				</View>
 				{selectedSeats.map((seat, index) => (
 					<View key={index} style={[styles.row, { paddingBottom: 15 }]}>
-						<Text
-							style={{
-								fontSize: 15.5,
-								flexShrink: 1,
-								paddingRight: 130,
-								lineHeight: 20,
-								fontWeight: "500",
-								color: "#23527c",
-							}}
-						>
-							Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
-							{seat.is_discounted ? "Redus" : "Intreg"}
-						</Text>
+						<View style={{ flexShrink: 1, flexDirection: "row", alignItems: "center", gap: 15 }}>
+							<FontAwesomeIcon name="ticket" size={20} color="#23527c" />
+							<Text
+								style={{
+									fontSize: 15.5,
+									flexShrink: 1,
+									paddingRight: 100,
+									lineHeight: 20,
+									fontWeight: "500",
+									color: "#23527c",
+								}}
+							>
+								Sector: {seat.room_name}, Rand: {seat.row_no}, Scaun: {seat.seat_no}, Tip:{" "}
+								{seat.is_discounted ? "Redus" : "Intreg"}
+							</Text>
+						</View>
 						<Text style={{ fontSize: 15.5, fontWeight: "600", color: "#23527c" }}>
 							{seat.price} RON
 						</Text>
@@ -54,7 +60,7 @@ const OrderSummary = ({ formRef }) => {
 			</View>
 			<View style={styles.footer}>
 				<View style={styles.footer}>
-					<Text style={{}}>
+					<Text style={{ fontSize: 14.5, lineHeight: 18 }}>
 						Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
 						sprijini experiența pe acest site web și în alte scopuri descrise în
 						<Text style={{ fontWeight: "bold", color: "#23527c" }} onPress={() => {}}>
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
 	container: {
 		marginTop: 25,
 		paddingTop: 20,
-		paddingBottom: 20,
+		paddingBottom: 25,
 		paddingInline: 21,
 		backgroundColor: "#ecf3f6",
 		borderTopLeftRadius: 40,

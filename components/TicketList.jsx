@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#363736",
 		gap: 2.5,
 		paddingHorizontal: 28,
-		borderRadius: 12,
+		borderRadius: 10,
 	},
 
 	item_details: {

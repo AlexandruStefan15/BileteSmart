@@ -1,5 +1,14 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image, StatusBar } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+	StyleSheet,
+	View,
+	SafeAreaView,
+	ScrollView,
+	Text,
+	Image,
+	StatusBar,
+	Dimensions,
+} from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { eventsByLocation } from "@/data/events";
 import { images } from "@/assets/images";
@@ -18,11 +27,19 @@ import Button from "@/components/Button";
 //data
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
+const SCREEN_HEIGHT = Dimensions.get("window").height;
+
 const EventDetailsScreen = ({ navigation, route }) => {
+	const [bannerHeight, setBannerHeight] = useState(0);
 	const { locationId, event, locationFieldPath } = route.params;
 	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
 	const rooms = roomsWithSeats[1][129].rooms;
 	const { resetSeats } = useSelectedSeats();
+
+	const handleLayout = (event) => {
+		const { height } = event.nativeEvent.layout;
+		setBannerHeight(height);
+	};
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -34,9 +51,9 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<StatusBar barStyle={"light-content"} backgroundColor={"#242424"} />
-			<ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#242424" }}>
+			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<Header variant="2" style={{ marginTop: 3 }} />
-				<View style={styles.banner}>
+				<View style={styles.banner} onLayout={handleLayout}>
 					<Text style={styles.banner_title}>{event.title}</Text>
 					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
 					<Text style={styles.banner_date}>{formatRomanianDate(event.date)}</Text>
@@ -48,7 +65,12 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				</View>
 				<View>
 					<View style={styles.svgWrapper}>
-						<SvgHallPlan rooms={rooms} field_path={locationFieldPath} read_only={true} />
+						<SvgHallPlan
+							rooms={rooms}
+							field_path={locationFieldPath}
+							read_only={true}
+							height={SCREEN_HEIGHT - bannerHeight - 95 - 55}
+						/>
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (
 								<Button
@@ -82,11 +104,11 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		backgroundColor: "#242424",
+		maxHeight: SCREEN_HEIGHT,
 	},
 
 	banner: {
 		marginTop: -4,
-		backgroundColor: "#242424",
 		paddingBlock: 30,
 		paddingTop: 68,
 		paddingInline: 20,
@@ -145,7 +167,7 @@ const styles = StyleSheet.create({
 
 	svgWrapper_button: {
 		flex: 1,
-		borderRadius: 8,
+		borderRadius: 6,
 		width: "100%",
 	},
 

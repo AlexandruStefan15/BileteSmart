@@ -8,7 +8,7 @@ import {
 	BackHandler,
 	Image,
 } from "react-native";
-import Animated, { useAnimatedStyle, withTiming, useSharedValue } from "react-native-reanimated";
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { navigationRef } from "@/navigation/navigationRef";
 
 //store
@@ -73,29 +73,31 @@ export default function CartSideBar({ sidebarX, resetBadge, children, navigation
 					}}
 				>
 					<Text style={styles.cartTitle}>Coșul meu</Text>
-					<Image source={images.shoppingCart} style={{ width: 24, height: 24 }} />
+					<Image source={images.shoppingCart} style={{ width: 25, height: 25 }} />
 				</View>
 			</View>
 			<View style={styles.content}>
 				<TicketList />
 			</View>
-			<View style={styles.footer}>
-				<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
-					<Text style={{ fontWeight: "600", fontSize: 16 }}>
-						Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
-					</Text>
+			{selectedSeats.length > 0 && (
+				<View style={styles.footer}>
+					<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
+						<Text style={{ fontWeight: "600", fontSize: 16 }}>
+							Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
+						</Text>
+					</View>
+					<TouchableOpacity
+						style={styles.checkoutButton}
+						onPress={() =>
+							navigationRef.navigate("SeatsPlanStack", {
+								screen: "CheckoutScreen",
+							})
+						}
+					>
+						<Text style={styles.checkoutButton_text}>Checkout</Text>
+					</TouchableOpacity>
 				</View>
-				<TouchableOpacity
-					style={styles.checkoutButton}
-					onPress={() =>
-						navigationRef.navigate("SeatsPlanStack", {
-							screen: "CheckoutScreen",
-						})
-					}
-				>
-					<Text style={styles.checkoutButton_text}>Checkout</Text>
-				</TouchableOpacity>
-			</View>
+			)}
 		</Animated.View>
 	);
 }
@@ -149,12 +151,12 @@ const getStyles = () =>
 
 		footer: {
 			paddingInline: 15,
-			paddingTop: 7,
-			paddingBottom: 15,
+			paddingTop: 10,
+			paddingBottom: 18,
 			borderColor: "grey",
 			borderTopWidth: 0.5,
 			width: "100%",
-			gap: 5,
+			gap: 3,
 		},
 
 		checkoutButton: {

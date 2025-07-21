@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Text, Button, Dimensions } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
@@ -13,6 +13,8 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 
 // components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
+
+const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const SvgHallPlan = ({
 	rooms,
@@ -87,7 +89,7 @@ const SvgHallPlan = ({
 	if (read_only) {
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
-				<Svg width={250} height={250} fill="none" viewBox="0 0 775 851">
+				<Svg width={260} height={height} fill="none" viewBox="0 0 775 851">
 					<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 					{rooms.map((room) => (
 						<Path
