@@ -19,7 +19,7 @@ export default function Newsletter() {
 					<Text style={styles.innerSubtitle}>
 						Abonează-te pentru a afla primul când apar evenimente noi
 					</Text>
-					<View style={styles.buttonsContainer}>
+					<View style={styles.footer}>
 						<Button style={styles.button} styleText={styles.buttonText}>
 							Abonează-te
 						</Button>
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 
-	buttonsContainer: {
-		gap: 21,
+	footer: {
+		gap: 20,
 		width: "100%",
 		alignItems: "center",
 		flexDirection: "column-reverse",
