@@ -31,15 +31,12 @@ const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const [bannerHeight, setBannerHeight] = useState(0);
+	const [headerHeight, setHeaderHeight] = useState(0);
 	const { locationId, event, locationFieldPath } = route.params;
 	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
 	const rooms = roomsWithSeats[1][129].rooms;
 	const { resetSeats } = useSelectedSeats();
-
-	const handleLayout = (event) => {
-		const { height } = event.nativeEvent.layout;
-		setBannerHeight(height);
-	};
+	const styles = getStyles(bannerHeight, headerHeight);
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -51,9 +48,9 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<StatusBar barStyle={"light-content"} backgroundColor={"#242424"} />
-			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
 				<Header variant="2" style={{ marginTop: 3 }} />
-				<View style={styles.banner} onLayout={handleLayout}>
+				<View style={styles.banner}>
 					<Text style={styles.banner_title}>{event.title}</Text>
 					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
 					<Text style={styles.banner_date}>{formatRomanianDate(event.date)}</Text>
@@ -69,7 +66,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							rooms={rooms}
 							field_path={locationFieldPath}
 							read_only={true}
-							height={SCREEN_HEIGHT - bannerHeight - 95 - 55}
+							height={255}
 						/>
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (
@@ -100,89 +97,89 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		backgroundColor: "#242424",
-		maxHeight: SCREEN_HEIGHT,
-	},
+const getStyles = (bannerHeight, headerHeight) =>
+	StyleSheet.create({
+		screen: {
+			flex: 1,
+			backgroundColor: "#242424",
+		},
 
-	banner: {
-		marginTop: -4,
-		paddingBlock: 30,
-		paddingTop: 68,
-		paddingInline: 20,
-		alignItems: "center",
-		gap: 20,
-	},
+		banner: {
+			marginTop: -15,
+			paddingBlock: 30,
+			paddingTop: 68,
+			paddingInline: 20,
+			alignItems: "center",
+			gap: 20,
+		},
 
-	banner_title: {
-		color: "white",
-		fontWeight: 500,
-		fontSize: 15,
-		textAlign: "center",
-	},
+		banner_title: {
+			color: "white",
+			fontWeight: 500,
+			fontSize: 15,
+			textAlign: "center",
+		},
 
-	banner_subtitle: {
-		color: "white",
-		fontSize: 25,
-		textAlign: "center",
-		fontWeight: "bold",
-	},
+		banner_subtitle: {
+			color: "white",
+			fontSize: 25,
+			textAlign: "center",
+			fontWeight: "bold",
+		},
 
-	banner_date: {
-		color: "#5fa0c4",
-		fontWeight: "bold",
-		fontSize: 20,
-	},
+		banner_date: {
+			color: "#5fa0c4",
+			fontWeight: "bold",
+			fontSize: 20,
+		},
 
-	banner_footer: {
-		width: "100%",
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		maxWidth: 380,
-		marginTop: 8,
-	},
+		banner_footer: {
+			width: "100%",
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "space-between",
+			maxWidth: 380,
+			marginTop: 8,
+		},
 
-	banner_footer_time: {
-		color: "white",
-		fontWeight: "bold",
-		fontSize: 18,
-	},
+		banner_footer_time: {
+			color: "white",
+			fontWeight: "bold",
+			fontSize: 18,
+		},
 
-	banner_footer_image: {
-		width: 101,
-		aspectRatio: 1 / 1,
-		resizeMode: "contain",
-	},
+		banner_footer_image: {
+			width: 101,
+			aspectRatio: 1 / 1,
+			resizeMode: "contain",
+		},
 
-	svgWrapper: {
-		overflow: "hidden",
-		marginInline: 20,
-		marginTop: 5,
-		marginBottom: 25,
-		gap: 14,
-	},
+		svgWrapper: {
+			overflow: "hidden",
+			marginInline: 20,
+			marginTop: 5,
+			marginBottom: 25,
+			gap: 14,
+		},
 
-	svgWrapper_button: {
-		flex: 1,
-		borderRadius: 6,
-		width: "100%",
-	},
+		svgWrapper_button: {
+			flex: 1,
+			borderRadius: 5,
+			width: "100%",
+		},
 
-	svgWrapper_button_text: {
-		fontSize: 17,
-		fontWeight: "600",
-		letterSpacing: 0.5,
-	},
+		svgWrapper_button_text: {
+			fontSize: 17,
+			fontWeight: "600",
+			letterSpacing: 0.5,
+		},
 
-	noAvailableSeatsText: {
-		color: "red",
-		fontSize: 16,
-		textAlign: "center",
-		marginTop: 10,
-	},
-});
+		noAvailableSeatsText: {
+			color: "red",
+			fontSize: 16,
+			textAlign: "center",
+			marginTop: 10,
+		},
+	});
 
 export default EventDetailsScreen;
