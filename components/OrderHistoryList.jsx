@@ -40,7 +40,7 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 
 	return (
 		<View style={styles.itemContainer}>
-			<TouchableOpacity onPress={onToggle} style={styles.header}>
+			<TouchableOpacity style={styles.header} onPress={onToggle}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>Achizitionat in {order.buy_date}</Text>
 			</TouchableOpacity>
