@@ -44,7 +44,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				</Ripple>
 				<Text style={styles.title2}>{eventData.title}</Text>
 				<View style={styles.subtitleWrapper2}>
-					<Image style={styles.subtitleIcon2} source={images.clock}></Image>
+					<Image style={styles.subtitleIcon2} source={images.schedule}></Image>
 					<Text style={styles.subtitle2}>
 						{eventData.date} | {eventData.time}
 					</Text>
@@ -104,7 +104,7 @@ const getStyles = (theme) => {
 			paddingBottom: 13,
 			textAlign: "center",
 			position: "relative",
-			top: 0,
+			top: 1,
 			left: 11,
 			minWidth: 70,
 			alignSelf: "flex-start",
@@ -167,8 +167,8 @@ const getStyles = (theme) => {
 		},
 
 		subtitleIcon2: {
-			width: 18.5,
-			height: 18.3,
+			width: 19.5,
+			height: 19.5,
 			top: -1,
 		},
 

@@ -179,6 +179,7 @@ const styles = StyleSheet.create({
 
 	description: {
 		gap: 0,
+		marginTop: 6,
 	},
 
 	descriptionText: {
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
 		margin: 0,
 		padding: 0,
 		lineHeight: 22,
-		marginTop: -1,
+		marginTop: -3,
 	},
 
 	contactInfo: {
