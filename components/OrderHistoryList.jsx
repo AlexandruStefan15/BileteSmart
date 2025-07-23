@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Pressable } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated, {
 	useSharedValue,

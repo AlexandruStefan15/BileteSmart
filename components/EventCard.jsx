@@ -167,8 +167,8 @@ const getStyles = (theme) => {
 		},
 
 		subtitleIcon2: {
-			width: 19.5,
-			height: 19.5,
+			width: 19.8,
+			height: 19.8,
 			top: -1,
 		},
 

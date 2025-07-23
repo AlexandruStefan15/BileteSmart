@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Keyboard } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Colors } from "@/constants";
@@ -16,7 +17,7 @@ import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 
 const Tab = createBottomTabNavigator();
 
-const getTabBarStyle = (route, rootScreenName) => {
+const getTabBarStyle = (route, rootScreenName /* , keyboardVisible */) => {
 	/* const focusedRoute = getFocusedRouteNameFromRoute(route);
 
 	if (focusedRoute && focusedRoute !== rootScreenName) {
@@ -24,12 +25,36 @@ const getTabBarStyle = (route, rootScreenName) => {
 			display: "none",
 		};
 	} */
+
+	/* if (keyboardVisible) return { display: "none" }; */
+
 	return { minHeight: 63, paddingTop: 5, backgroundColor: "white" };
 };
 
 const BottomTabNavigator = () => {
+	/* const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+	useEffect(() => {
+		const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () =>
+			setKeyboardVisible(true)
+		);
+		const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () =>
+			setKeyboardVisible(false)
+		);
+
+		return () => {
+			keyboardDidShowListener.remove();
+			keyboardDidHideListener.remove();
+		};
+	}, []); */
+
 	return (
-		<Tab.Navigator screenOptions={{ headerShown: false }}>
+		<Tab.Navigator
+			screenOptions={{
+				headerShown: false,
+				tabBarHideOnKeyboard: true,
+			}}
+		>
 			<Tab.Screen
 				name="Acasa"
 				component={HomeNavigator}
