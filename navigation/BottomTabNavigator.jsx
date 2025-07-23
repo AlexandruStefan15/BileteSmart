@@ -17,7 +17,7 @@ import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 
 const Tab = createBottomTabNavigator();
 
-const getTabBarStyle = (route, rootScreenName /* , keyboardVisible */) => {
+const getTabBarStyle = (route, rootScreenName) => {
 	/* const focusedRoute = getFocusedRouteNameFromRoute(route);
 
 	if (focusedRoute && focusedRoute !== rootScreenName) {
@@ -26,28 +26,10 @@ const getTabBarStyle = (route, rootScreenName /* , keyboardVisible */) => {
 		};
 	} */
 
-	/* if (keyboardVisible) return { display: "none" }; */
-
 	return { minHeight: 63, paddingTop: 5, backgroundColor: "white" };
 };
 
 const BottomTabNavigator = () => {
-	/* const [keyboardVisible, setKeyboardVisible] = useState(false);
-
-	useEffect(() => {
-		const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () =>
-			setKeyboardVisible(true)
-		);
-		const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () =>
-			setKeyboardVisible(false)
-		);
-
-		return () => {
-			keyboardDidShowListener.remove();
-			keyboardDidHideListener.remove();
-		};
-	}, []); */
-
 	return (
 		<Tab.Navigator
 			screenOptions={{
