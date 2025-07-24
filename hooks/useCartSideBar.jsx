@@ -11,7 +11,7 @@ const SIDEBAR_WIDTH = SCREEN_WIDTH * 0.85;
 // shared value stored outside React lifecycle
 const sidebarX = { value: null };
 
-export const useCartSideBar = () => {
+export const useCartSidebar = () => {
 	// initialize once
 	if (sidebarX.value === null) {
 		const _shared = require("react-native-reanimated").useSharedValue(-SIDEBAR_WIDTH);

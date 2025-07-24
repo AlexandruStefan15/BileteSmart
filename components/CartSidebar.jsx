@@ -29,7 +29,7 @@ import TicketList from "./TicketList";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
-export default function CartSideBar({ sidebarX, resetBadge, children, navigation, ...props }) {
+export default function CartSidebar({ sidebarX, resetBadge, children, navigation, ...props }) {
 	const { selectedSeats, removeSeat } = useSelectedSeats();
 	const styles = getStyles();
 

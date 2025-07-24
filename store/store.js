@@ -57,7 +57,7 @@ export const useDrawerStore = create((set) => ({
 	toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
 }));
 
-// CartSideBar Store
+// CartSidebar Store
 
 const SIDEBAR_WIDTH = Dimensions.get("window").width;
 

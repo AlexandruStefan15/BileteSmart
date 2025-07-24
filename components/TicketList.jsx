@@ -61,9 +61,11 @@ const Ticket = React.memo(({ data, onRemove }) => {
 	return (
 		<Animated.View style={[{ flexDirection: "row" }, animatedStyle]}>
 			<View style={styles.item}>
-				{teeth.map((_, index) => (
-					<View key={index} style={[styles.tooth, { top: index * 15.7 }]} />
-				))}
+				<View style={styles.toothWrapper}>
+					{teeth.map((_, index) => (
+						<View key={index} style={[styles.toothLeft, { top: index * 15.7 }]} />
+					))}
+				</View>
 				<View style={styles.item_details}>
 					<Text style={styles.item_text}>
 						Locul: <Text style={styles.highlight}>{data.seat_no}</Text>
@@ -90,6 +92,9 @@ const Ticket = React.memo(({ data, onRemove }) => {
 					}}
 					textStyles={{ color: "lightgrey", fontWeight: "bold", fontSize: 13.8 }}
 				/>
+				{teeth.map((_, index) => (
+					<View key={index} style={[styles.toothRight, { top: index * 15.7 }]} />
+				))}
 			</View>
 			<TouchableOpacity onPress={handleRemove} style={styles.ticketList_removeButton}>
 				<Text style={styles.ticketList_removeButton_text}>
@@ -107,16 +112,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#f5f5f6",
 	},
 
-	tooth: {
-		position: "absolute",
-		marginTop: 27.5,
-		left: -3.5,
-		width: 8.5,
-		height: 8.5,
-		borderRadius: 10,
-		backgroundColor: "#f5f5f6",
-		zIndex: 2,
-	},
+	//Ticket styles
 
 	item: {
 		position: "relative",
@@ -126,6 +122,28 @@ const styles = StyleSheet.create({
 		gap: 2.5,
 		paddingHorizontal: 28,
 		borderRadius: 10,
+	},
+
+	toothLeft: {
+		position: "absolute",
+		marginTop: 27.5,
+		left: -3.5,
+		width: 9,
+		height: 9,
+		borderRadius: 10,
+		backgroundColor: "#f5f5f6",
+		zIndex: 2,
+	},
+
+	toothRight: {
+		position: "absolute",
+		marginTop: 27.5,
+		right: -3.2,
+		width: 9,
+		height: 9,
+		borderRadius: 10,
+		backgroundColor: "#f5f5f6",
+		zIndex: 2,
 	},
 
 	item_details: {

@@ -10,7 +10,7 @@ import { useCartSidebarStore } from "@/store/store";
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
-import CartSideBar from "@/components/CartSideBar";
+import CartSidebar from "@/components/CartSidebar";
 
 export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 	const { locationId, eventId, locationFieldPath } = route.params;
@@ -32,7 +32,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				height="100%"
 				style={{ marginTop: 60 }}
 			/>
-			<CartSideBar sidebarX={sidebarX} displayBadge={props.displayBadge} />
+			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
 		</SafeAreaView>
 	);
 };
