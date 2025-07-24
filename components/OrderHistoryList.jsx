@@ -58,7 +58,7 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 					<Button
 						variant="2"
 						onPress={() => {
-							navigation.navigate({});
+							navigation.navigate("OrderedTicketsScreen");
 						}}
 					>
 						Vezi bilete
