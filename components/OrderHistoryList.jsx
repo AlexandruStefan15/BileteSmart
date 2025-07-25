@@ -13,6 +13,34 @@ import Animated, {
 import QRCodeModal from "./QRCodeModal";
 import Button from "./Button";
 
+const OrderHistoryList = ({ orders }) => {
+	const [expandedOrderIds, setExpandedOrderIds] = useState([]);
+
+	const toggleOrder = (id) => {
+		setExpandedOrderIds((prev) =>
+			prev.includes(id) ? prev.filter((orderId) => orderId !== id) : [...prev, id]
+		);
+	};
+
+	const renderItem = ({ item: order }) => (
+		<AccordionItem
+			order={order}
+			isExpanded={expandedOrderIds.includes(order.id_order)}
+			onToggle={() => toggleOrder(order.id_order)}
+		/>
+	);
+
+	return (
+		<FlatList
+			data={orders}
+			keyExtractor={(item) => item.id_order.toString()}
+			renderItem={renderItem}
+			contentContainerStyle={styles.list}
+			style={{ width: "100%" }}
+		/>
+	);
+};
+
 const AccordionItem = ({ order, isExpanded, onToggle }) => {
 	const navigation = useNavigation();
 	const height = useSharedValue(isExpanded ? 300 : 0);
@@ -66,35 +94,6 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 				</View>
 			</Animated.View>
 		</View>
-	);
-};
-
-const OrderHistoryList = ({ orders }) => {
-	const [expandedOrderIds, setExpandedOrderIds] = useState([]);
-
-	const toggleOrder = (id) => {
-		setExpandedOrderIds((prev) =>
-			prev.includes(id) ? prev.filter((orderId) => orderId !== id) : [...prev, id]
-		);
-	};
-
-	const renderItem = ({ item: order }) => (
-		<AccordionItem
-			order={order}
-			isExpanded={expandedOrderIds.includes(order.id_order)}
-			onToggle={() => toggleOrder(order.id_order)}
-		/>
-	);
-
-	return (
-		<FlatList
-			data={orders}
-			keyExtractor={(item) => item.id_order.toString()}
-			renderItem={renderItem}
-			contentContainerStyle={styles.list}
-			scrollEnabled={false}
-			style={{ width: "100%" }}
-		/>
 	);
 };
 

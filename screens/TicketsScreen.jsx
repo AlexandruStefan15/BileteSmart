@@ -176,9 +176,7 @@ const TicketsScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header />
-			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<OrderHistoryList orders={ordersData} />
-			</ScrollView>
+			<OrderHistoryList orders={ordersData} />
 		</SafeAreaView>
 	);
 };
