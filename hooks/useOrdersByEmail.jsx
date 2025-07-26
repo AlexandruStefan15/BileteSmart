@@ -10,15 +10,17 @@ export const useOrdersByEmail = (email) => {
 	const fetchOrders = useCallback(async () => {
 		if (!email) return;
 
+		const cleanEmail = email.trim().toLowerCase();
+
 		setLoading(true);
 		setError(null);
 
 		try {
-			const response = await fetch(`${BASE_URL}/${encodeURIComponent(email)}`);
+			const response = await fetch(`${BASE_URL}/${cleanEmail}`);
 			if (!response.ok) throw new Error("Failed to fetch orders");
 
 			const data = await response.json();
-			setOrders(data);
+			setOrders(data.orders || []);
 		} catch (err) {
 			setError(err.message || "Unknown error");
 			setOrders([]);

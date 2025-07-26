@@ -12,36 +12,35 @@ import Animated, {
 //components
 import QRCodeModal from "./QRCodeModal";
 import Button from "./Button";
+import SeeMoreFlatList from "@/components/SeeMoreFlatList";
 
 const OrderHistoryList = ({ orders }) => {
-	const [expandedOrderIds, setExpandedOrderIds] = useState([]);
+	const [expandedOrderId, setExpandedOrderId] = useState(null);
 
 	const toggleOrder = (id) => {
-		setExpandedOrderIds((prev) =>
-			prev.includes(id) ? prev.filter((orderId) => orderId !== id) : [...prev, id]
-		);
+		setExpandedOrderId((prevId) => (prevId === id ? null : id));
 	};
 
-	const renderItem = ({ item: order }) => (
+	const renderItem = ({ item }) => (
 		<AccordionItem
-			order={order}
-			isExpanded={expandedOrderIds.includes(order.id_order)}
-			onToggle={() => toggleOrder(order.id_order)}
+			order={item}
+			isExpanded={expandedOrderId === item.id_order}
+			onToggle={() => toggleOrder(item.id_order)}
 		/>
 	);
 
 	return (
-		<FlatList
+		<SeeMoreFlatList
 			data={orders}
-			keyExtractor={(item) => item.id_order.toString()}
 			renderItem={renderItem}
-			contentContainerStyle={styles.list}
-			style={{ width: "100%" }}
+			keyExtractor={(item) => item.id_order.toString()}
+			initialCount={6}
+			step={6}
 		/>
 	);
 };
 
-const AccordionItem = ({ order, isExpanded, onToggle }) => {
+const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 	const navigation = useNavigation();
 	const height = useSharedValue(isExpanded ? 300 : 0);
 	const opacity = useSharedValue(isExpanded ? 1 : 0);
@@ -64,6 +63,7 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 		maxHeight: height.value,
 		opacity: opacity.value,
 		overflow: "hidden",
+		willChange: "transform",
 	}));
 
 	return (
@@ -82,20 +82,24 @@ const AccordionItem = ({ order, isExpanded, onToggle }) => {
 						<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
 						<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
 					</View>
-					<QRCodeModal style={{ marginBottom: 3 }} id={order.id_order} />
-					<Button
-						variant="2"
-						onPress={() => {
-							navigation.navigate("OrderedTicketsScreen");
-						}}
-					>
-						Vezi bilete
-					</Button>
+					{isExpanded && (
+						<>
+							<QRCodeModal style={{ marginBottom: 3 }} id={order.id_order} />
+							<Button
+								variant="2"
+								onPress={() => {
+									navigation.navigate("OrderedTicketsScreen");
+								}}
+							>
+								Vezi bilete
+							</Button>
+						</>
+					)}
 				</View>
 			</Animated.View>
 		</View>
 	);
-};
+});
 
 const styles = StyleSheet.create({
 	list: {
