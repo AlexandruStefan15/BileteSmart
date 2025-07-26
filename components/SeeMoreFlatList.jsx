@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
 		gap: 12,
 	},
 	seeMoreButton: {
-		marginVertical: 12,
+		marginBottom: 12,
+		marginTop: 6,
 		padding: 10,
 		paddingInline: 12,
 		alignSelf: "center",

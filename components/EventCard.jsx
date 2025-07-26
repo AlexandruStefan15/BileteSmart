@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
 
+//constants
+import { Colors } from "@/constants";
+
 //utils
 import { formatDate } from "@/utils/helpers";
 
@@ -174,7 +177,7 @@ const getStyles = (theme) => {
 
 		subtitle2: {
 			fontSize: 14,
-			color: "#848383",
+			color: Colors.secondary,
 			fontWeight: 500,
 			marginLeft: 2,
 			marginBottom: 5,
