@@ -34,8 +34,8 @@ const OrderHistoryList = ({ orders }) => {
 			data={orders}
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id_order.toString()}
-			initialCount={6}
-			step={6}
+			initialCount={7}
+			step={7}
 		/>
 	);
 };
@@ -82,19 +82,16 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 						<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
 						<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
 					</View>
-					{isExpanded && (
-						<>
-							<QRCodeModal style={{ marginBottom: 3 }} id={order.id_order} />
-							<Button
-								variant="2"
-								onPress={() => {
-									navigation.navigate("OrderedTicketsScreen");
-								}}
-							>
-								Vezi bilete
-							</Button>
-						</>
-					)}
+
+					<QRCodeModal style={{ marginBottom: 3 }} id={order.id_order} />
+					<Button
+						variant="2"
+						onPress={() => {
+							navigation.navigate("OrderedTicketsScreen");
+						}}
+					>
+						Vezi bilete
+					</Button>
 				</View>
 			</Animated.View>
 		</View>
@@ -117,7 +114,7 @@ const styles = StyleSheet.create({
 		paddingBlock: 16,
 		backgroundColor: "#365771",
 		flexDirection: "column",
-		gap: 15,
+		gap: 20,
 	},
 
 	headerText: {

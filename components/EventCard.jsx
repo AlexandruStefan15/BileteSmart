@@ -10,11 +10,17 @@ import { formatDate } from "@/utils/helpers";
 //images
 import { images } from "@/assets/images/index";
 
+//hooks
+import { useCustomFonts } from "@/hooks/useCustomFonts";
+
 //components
 import Ripple from "react-native-material-ripple";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
+	const fonts = useCustomFonts();
 	const styles = getStyles("light");
+
+	if (!fonts) return null;
 
 	if (variant == 2)
 		return (
@@ -156,10 +162,11 @@ const getStyles = (theme) => {
 		},
 
 		title2: {
-			fontSize: 15,
+			fontSize: 14.5,
 			fontWeight: 600,
 			marginLeft: 2,
 			marginTop: 4.5,
+			fontFamily: "Poppins-SemiBold",
 		},
 
 		subtitleWrapper2: {
@@ -169,23 +176,22 @@ const getStyles = (theme) => {
 			marginLeft: 2,
 		},
 
-		subtitleIcon2: {
-			width: 19,
-			height: 19,
-			top: -1,
-		},
-
 		subtitle2: {
-			fontSize: 14,
+			fontSize: 13.5,
 			color: Colors.secondary,
 			fontWeight: 500,
 			marginLeft: 2,
 			marginBottom: 5,
-			marginTop: 2,
+			lineHeight: 16,
 			textAlign: "left",
-			/* fontFamily: Fonts["light"].regular, */
 			fontStyle: "normal",
 			letterSpacing: 0.2,
+		},
+
+		subtitleIcon2: {
+			width: 19,
+			height: 19,
+			top: -2.5,
 		},
 	});
 };
