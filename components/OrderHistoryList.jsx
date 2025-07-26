@@ -36,6 +36,7 @@ const OrderHistoryList = ({ orders }) => {
 			keyExtractor={(item) => item.id_order.toString()}
 			initialCount={7}
 			step={7}
+			windowSize={7}
 		/>
 	);
 };

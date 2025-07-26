@@ -11,6 +11,7 @@ const SeeMoreFlatList = ({
 	step = 5,
 	keyExtractor,
 	contentContainerStyle,
+	windowSize,
 	...rest
 }) => {
 	const [visibleCount, setVisibleCount] = useState(initialCount);
@@ -23,6 +24,7 @@ const SeeMoreFlatList = ({
 			data={visibleData}
 			renderItem={renderItem}
 			keyExtractor={keyExtractor}
+			windowSize={windowSize}
 			ListFooterComponent={
 				visibleCount < data.length ? (
 					<TouchableOpacity style={styles.seeMoreButton} onPress={showMore}>
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
 		gap: 12,
 	},
 	seeMoreButton: {
-		marginBottom: 18,
+		marginBottom: 17,
 		marginTop: 7,
 		paddingBlock: 14,
 		paddingInline: 30,

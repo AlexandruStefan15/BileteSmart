@@ -144,7 +144,7 @@ const getStyles = (theme) => {
 		//variant 2
 
 		container2: {
-			aspectRatio: 100 / 65,
+			aspectRatio: 100 / 64,
 			overflow: "hidden",
 			width: "100%",
 			position: "relative",
