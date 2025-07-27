@@ -26,7 +26,7 @@ const TicketsScreen = ({ navigation, route }) => {
 
 	if (loading)
 		return <ActivityIndicator style={styles.activityIndicator} color={"#365771"} size="large" />;
-	if (error) return <Text>Error fetching orders.</Text>;
+	/* if (error) return <Text>Oops, something went wrong. Please try again later.</Text>; */
 
 	return (
 		<SafeAreaView style={styles.screen}>

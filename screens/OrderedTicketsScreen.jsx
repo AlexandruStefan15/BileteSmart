@@ -11,8 +11,6 @@ import Ticket from "@/components/Ticket";
 const OrderedTicketsScreen = ({ navigation, route }) => {
 	const { tickets, event_title } = route.params;
 
-	console.log(tickets);
-
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header />
