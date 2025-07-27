@@ -9,13 +9,23 @@ import Select from "./Select";
 
 const teeth = Array.from({ length: 6 });
 
-const Ticket = ({ data }) => {
+const Ticket = ({ data, variant = "" }) => {
 	const updateSeatType = useSelectedSeats((state) => state.updateSeatType);
 
 	const handleTypeChange = useCallback(
 		(value) => updateSeatType(data.id_seat, value),
 		[data.id_seat, updateSeatType]
 	);
+
+	if (variant == 2)
+		return (
+			<View style={styles.container2}>
+				<View style={styles.left2}>
+					<Text style={styles.ticketNumber2}>Nr. bilet: {data.ticket_codes}</Text>
+					<Text style={styles.title2}>{data.event_title}</Text>
+				</View>
+			</View>
+		);
 
 	return (
 		<View style={styles.container}>

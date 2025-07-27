@@ -88,7 +88,10 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 					<Button
 						variant="2"
 						onPress={() => {
-							navigation.navigate("OrderedTicketsScreen");
+							navigation.navigate("OrderedTicketsScreen", {
+								tickets: order.tickets,
+								event_title: order.movie,
+							});
 						}}
 					>
 						Vezi bilete
