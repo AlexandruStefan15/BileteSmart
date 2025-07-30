@@ -15,9 +15,15 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 
 import Ticket from "./Ticket";
 
-const TicketList = ({ style }) => {
+const TicketList = React.memo(({ style }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const removeSeat = useSelectedSeats((state) => state.removeSeat);
+
+	const keyExtractor = React.useCallback((seat) => seat.id_seat.toString(), []);
+	const renderItem = React.useCallback(
+		({ item }) => <TicketContainer data={item} onRemove={removeSeat} />,
+		[removeSeat]
+	);
 
 	if (selectedSeats.length === 0) {
 		return <Text style={{ margin: "auto" }}>Momentan nu ai bilete în coș...</Text>;
@@ -28,9 +34,9 @@ const TicketList = ({ style }) => {
 			<FlatList
 				style={[styles.ticketList, style]}
 				data={selectedSeats}
-				keyExtractor={(seat) => seat.id_seat.toString()}
+				keyExtractor={keyExtractor}
 				contentContainerStyle={{ gap: 12, paddingBlock: 15 }}
-				renderItem={({ item }) => <TicketContainer data={item} onRemove={removeSeat} />}
+				renderItem={renderItem}
 				initialNumToRender={5}
 				maxToRenderPerBatch={10}
 				windowSize={10}
@@ -38,7 +44,7 @@ const TicketList = ({ style }) => {
 			/>
 		</View>
 	);
-};
+});
 
 const TicketContainer = React.memo(({ data, onRemove }) => {
 	const translateX = useSharedValue(0);

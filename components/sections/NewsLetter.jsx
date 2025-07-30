@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 		fontWeight: 500,
 		borderColor: "white",
 		textAlign: "center",
-		fontSize: 16.5,
+		fontSize: 16,
 		backgroundColor: "#00000059",
 	},
 
@@ -114,6 +114,6 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: "#365771",
 		fontWeight: "800",
-		fontSize: 16.75,
+		fontSize: 16,
 	},
 });

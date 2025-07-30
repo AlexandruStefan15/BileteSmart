@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Text, ActivityIndicator } from "react-native";
 import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";

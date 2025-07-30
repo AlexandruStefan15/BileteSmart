@@ -14,24 +14,22 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 // components
 import StadiumMarkerSvg from "./StadiumMarkerSvg";
 
-const SCREEN_HEIGHT = Dimensions.get("window").height;
-
 const SvgHallPlan = ({
 	rooms,
 	currentRoom,
 	field_path,
 	height = 355,
 	read_only,
-	style,
 	selectRoom,
 	selectSeats,
 	fieldPosition,
+	style,
 }) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
 	const toggleSeat = useSelectedSeats((state) => state.toggleSeat);
 	const [selectedRoomId, setSelectedRoomId] = useState(null);
-	const navigation = useNavigation();
 	const { gesture, animatedStyle } = useHandGestures();
+	const navigation = useNavigation();
 
 	const handleSeatPress = React.useCallback(
 		(seat) => {
@@ -48,6 +46,7 @@ const SvgHallPlan = ({
 	const renderSeatPaths = useMemo(() => {
 		return currentRoom?.seats?.map((seat) => {
 			const isSelected = selectedSeatIds.has(seat.id_seat);
+
 			return (
 				<Path
 					key={seat.id_seat}

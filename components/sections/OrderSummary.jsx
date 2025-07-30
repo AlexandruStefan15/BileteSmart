@@ -70,7 +70,7 @@ const OrderSummary = ({ formRef }) => {
 					</Text>
 					<TouchableOpacity
 						onPress={() => formRef?.current?.submit()}
-						style={{ backgroundColor: "#23527c", padding: 13, borderRadius: 6 }}
+						style={{ backgroundColor: "#23527c", padding: 14, borderRadius: 6 }}
 					>
 						<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
 							Finalizează Comanda

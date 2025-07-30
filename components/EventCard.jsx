@@ -165,7 +165,7 @@ const getStyles = (theme) => {
 			fontSize: 14.5,
 			fontWeight: 600,
 			marginLeft: 2,
-			marginTop: 4.5,
+			marginTop: 5,
 			fontFamily: "Poppins-SemiBold",
 		},
 
@@ -177,21 +177,21 @@ const getStyles = (theme) => {
 		},
 
 		subtitle2: {
-			fontSize: 13.5,
+			fontSize: 13.7,
 			color: Colors.secondary,
 			fontWeight: 500,
 			marginLeft: 2,
 			marginBottom: 5,
-			lineHeight: 16,
+			lineHeight: 16.5,
 			textAlign: "left",
 			fontStyle: "normal",
 			letterSpacing: 0.2,
 		},
 
 		subtitleIcon2: {
-			width: 19,
-			height: 19,
-			top: -2.5,
+			width: 20,
+			height: 20,
+			top: -2.3,
 		},
 	});
 };

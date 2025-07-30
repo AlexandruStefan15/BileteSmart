@@ -34,9 +34,8 @@ const OrderHistoryList = ({ orders }) => {
 			data={orders}
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id_order.toString()}
-			initialCount={7}
-			step={7}
-			windowSize={7}
+			initialCount={8}
+			step={8}
 		/>
 	);
 };
@@ -114,11 +113,11 @@ const styles = StyleSheet.create({
 	},
 
 	header: {
+		gap: 12,
 		padding: 12,
-		paddingBlock: 16,
+		paddingBlock: 20,
 		backgroundColor: "#365771",
 		flexDirection: "column",
-		gap: 20,
 	},
 
 	headerText: {

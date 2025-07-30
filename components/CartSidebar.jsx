@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
 	View,
 	Text,
@@ -29,10 +29,13 @@ import TicketList from "./TicketList";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
-export default function CartSidebar({ sidebarX, resetBadge, children, navigation, ...props }) {
-	const { selectedSeats, removeSeat } = useSelectedSeats();
-	const styles = getStyles();
-
+export default React.memo(function CartSidebar({
+	sidebarX,
+	resetBadge,
+	children,
+	navigation,
+	...props
+}) {
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
 	}));
@@ -79,95 +82,105 @@ export default function CartSidebar({ sidebarX, resetBadge, children, navigation
 			<View style={styles.content}>
 				<TicketList />
 			</View>
-			{selectedSeats.length > 0 && (
-				<View style={styles.footer}>
-					<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
-						<Text style={{ fontWeight: "600", fontSize: 16 }}>
-							Total: {selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON{" "}
-						</Text>
-					</View>
-					<TouchableOpacity
-						style={styles.checkoutButton}
-						onPress={() =>
-							navigationRef.navigate("SeatsPlanStack", {
-								screen: "CheckoutScreen",
-							})
-						}
-					>
-						<Text style={styles.checkoutButton_text}>Checkout</Text>
-					</TouchableOpacity>
-				</View>
-			)}
+			<CartSidebarFooter />
 		</Animated.View>
 	);
-}
+});
 
-const getStyles = () =>
-	StyleSheet.create({
-		sidebar: {
-			position: "absolute",
-			top: 0,
-			left: 0,
-			bottom: 0,
-			width: SIDEBAR_WIDTH,
-			height: "100%",
-			backgroundColor: "white",
-			elevation: 10, // for Android
-			zIndex: 999, // for iOS
-			overflow: "hidden",
-		},
+const CartSidebarFooter = React.memo(() => {
+	const { selectedSeats } = useSelectedSeats();
 
-		//header
-		header: {
-			flexDirection: "row",
-			justifyContent: "space-between",
-			borderBottomWidth: 0.5,
-			borderColor: "black",
-			alignItems: "center",
-			paddingInline: 15,
-			paddingBlock: 20,
-		},
+	const totalPrice = useMemo(
+		() => selectedSeats.reduce((sum, seat) => sum + parseFloat(seat.price), 0),
+		[selectedSeats]
+	);
 
-		closeBtn: {
-			padding: 15,
-			left: 3,
-			position: "absolute",
-		},
+	if (selectedSeats.length == 0) return null;
 
-		cartTitle: {
-			fontSize: 19,
-			fontWeight: "500",
-			marginInline: "auto",
-		},
+	return (
+		<View style={styles.footer}>
+			<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
+				<Text style={{ fontWeight: "600", fontSize: 16 }}>Total: {totalPrice} RON</Text>
+			</View>
+			<TouchableOpacity
+				style={styles.checkoutButton}
+				onPress={() =>
+					navigationRef.navigate("SeatsPlanStack", {
+						screen: "CheckoutScreen",
+					})
+				}
+			>
+				<Text style={styles.checkoutButton_text}>Checkout</Text>
+			</TouchableOpacity>
+		</View>
+	);
+});
 
-		//content
+const styles = StyleSheet.create({
+	sidebar: {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		bottom: 0,
+		width: SIDEBAR_WIDTH,
+		height: "100%",
+		backgroundColor: "white",
+		elevation: 10, // for Android
+		zIndex: 999, // for iOS
+		overflow: "hidden",
+	},
 
-		content: {
-			flex: 1,
-			backgroundColor: "#f5f5f6",
-		},
+	//header
+	header: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		borderBottomWidth: 0.5,
+		borderColor: "black",
+		alignItems: "center",
+		paddingInline: 15,
+		paddingBlock: 20,
+	},
 
-		//footer
+	closeBtn: {
+		padding: 15,
+		left: 3,
+		position: "absolute",
+	},
 
-		footer: {
-			paddingInline: 15,
-			paddingTop: 10,
-			paddingBottom: 18,
-			borderColor: "grey",
-			borderTopWidth: 0.5,
-			width: "100%",
-			gap: 3,
-		},
+	cartTitle: {
+		fontSize: 19,
+		fontWeight: "500",
+		marginInline: "auto",
+	},
 
-		checkoutButton: {
-			backgroundColor: Colors.tertiary,
-			padding: 15.5,
-			borderRadius: 5,
-		},
-		checkoutButton_text: {
-			color: "white",
-			textAlign: "center",
-			fontWeight: "bold",
-			fontSize: 16,
-		},
-	});
+	//content
+
+	content: {
+		flex: 1,
+		backgroundColor: "#f5f5f6",
+	},
+
+	//footer
+
+	footer: {
+		paddingInline: 15,
+		paddingTop: 10,
+		paddingBottom: 18,
+		borderColor: "grey",
+		borderTopWidth: 0.5,
+		width: "100%",
+		gap: 3,
+	},
+
+	checkoutButton: {
+		backgroundColor: Colors.tertiary,
+		padding: 15.5,
+		borderRadius: 5,
+	},
+	checkoutButton_text: {
+		color: "white",
+		textAlign: "center",
+		fontWeight: "bold",
+		fontSize: 16,
+	},
+});
