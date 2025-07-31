@@ -34,15 +34,15 @@ const Ticket = ({ data, variant = "" }) => {
 					<QRCodeModalButton style={styles.qrCode} variant="2" id={data.ticket_codes} />
 				</View>
 				<View style={styles.right}>
-					<View style={styles.right_wrapper}>
+					<View style={styles.right_item}>
 						<Text style={[styles.right_text, styles.right_top]}>Loc</Text>
 						<Text style={[styles.right_text, styles.place]}>4</Text>
 					</View>
-					<View style={styles.right_wrapper}>
+					<View style={styles.right_item}>
 						<Text style={[styles.right_text, styles.right_top]}>Rand</Text>
 						<Text style={[styles.right_text, styles.row]}>2</Text>
 					</View>
-					<View style={styles.right_wrapper}>
+					<View style={styles.right_item}>
 						<Text style={[styles.right_text, styles.right_top]}>Sec.</Text>
 						<Text style={[styles.right_text, styles.room]}>{data.room}</Text>
 					</View>
@@ -129,18 +129,18 @@ const getStyles = (variant) => {
 			},
 
 			right: {
-				backgroundColor: "#ececec",
+				backgroundColor: "#e9e9e9ff",
 				paddingInline: 12,
 				paddingBlock: 5,
 				gap: 3,
 				alignItems: "center",
 				justifyContent: "center",
 				borderLeftWidth: 1.9,
-				borderColor: Colors.primary,
+				borderColor: Colors.tertiary,
 				borderStyle: "dashed",
 			},
 
-			right_wrapper: {
+			right_item: {
 				transform: [{ rotate: "-90deg" }],
 				alignItems: "center",
 				paddingInline: 5,
