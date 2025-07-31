@@ -113,7 +113,7 @@ const getStyles = (variant) => {
 				gap: 12,
 				width: "60%",
 				padding: 16,
-				paddingRight: 12,
+				paddingRight: 2,
 				justifyContent: "space-between",
 				flexShrink: 1,
 			},
@@ -124,7 +124,6 @@ const getStyles = (variant) => {
 			},
 
 			qrCode: {
-				marginBottom: 3,
 				marginRight: 15,
 			},
 

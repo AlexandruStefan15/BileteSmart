@@ -26,7 +26,7 @@ const OrderSummary = ({ formRef }) => {
 								style={{
 									fontSize: 15.5,
 									flexShrink: 1,
-									paddingRight: 100,
+									paddingRight: 95,
 									lineHeight: 20,
 									fontWeight: "500",
 									color: "#23527c",
