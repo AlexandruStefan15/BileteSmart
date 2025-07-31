@@ -16,7 +16,7 @@ const QRCodeModalButton = ({ id, style, variant = "" }) => {
 			{variant == "2" ? (
 				<>
 					<Pressable onPress={() => setVisible(true)}>
-						<QRCode value={id.toString()} size={55} />
+						<QRCode value={id.toString()} size={56} />
 					</Pressable>
 				</>
 			) : (

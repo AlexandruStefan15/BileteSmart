@@ -113,7 +113,9 @@ const getStyles = (variant) => {
 				gap: 12,
 				width: "60%",
 				padding: 16,
+				paddingRight: 12,
 				justifyContent: "space-between",
+				flexShrink: 1,
 			},
 
 			middle: {
