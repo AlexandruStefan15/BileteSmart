@@ -12,7 +12,7 @@ const SeeMoreFlatList = ({
 	keyExtractor,
 	contentContainerStyle,
 	windowSize,
-	...rest
+	...props
 }) => {
 	const [visibleCount, setVisibleCount] = useState(initialCount);
 	const visibleData = data.slice(0, visibleCount);
@@ -33,7 +33,7 @@ const SeeMoreFlatList = ({
 				) : null
 			}
 			contentContainerStyle={[styles.list, contentContainerStyle]}
-			{...rest}
+			{...props}
 		/>
 	);
 };

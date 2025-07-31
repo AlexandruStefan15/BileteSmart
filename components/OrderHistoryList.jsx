@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 //components
-import QRCodeModal from "./QRCodeModal";
+import QRCodeModalButton from "./QRCodeModalButton";
 import Button from "./Button";
 import SeeMoreFlatList from "@/components/SeeMoreFlatList";
 
@@ -82,8 +82,7 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 						<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
 						<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
 					</View>
-
-					<QRCodeModal style={{ marginBottom: 3 }} id={order.id_order} />
+					<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
 					<Button
 						variant="2"
 						onPress={() => {
@@ -102,11 +101,6 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 });
 
 const styles = StyleSheet.create({
-	list: {
-		padding: 16,
-		gap: 12,
-	},
-
 	itemContainer: {
 		borderRadius: 8,
 		overflow: "hidden",

@@ -18,6 +18,8 @@ const OrderedTicketsScreen = ({ navigation, route }) => {
 				data={tickets}
 				renderItem={({ item }) => <Ticket data={{ ...item, event_title }} variant="2" />}
 				keyExtractor={(ticket) => ticket.ticket_codes}
+				style={styles.list}
+				contentContainerStyle={styles.contentContainerList}
 			/>
 		</SafeAreaView>
 	);
@@ -27,6 +29,15 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		backgroundColor: Colors["light"].background.primary,
+	},
+
+	list: {
+		marginBlock: 5,
+	},
+
+	contentContainerList: {
+		padding: 16,
+		gap: 15,
 	},
 });
 
