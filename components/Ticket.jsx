@@ -136,7 +136,7 @@ const getStyles = (variant) => {
 				alignItems: "center",
 				justifyContent: "center",
 				borderLeftWidth: 1.9,
-				borderColor: Colors.tertiary,
+				borderColor: Colors.primary,
 				borderStyle: "dashed",
 			},
 
