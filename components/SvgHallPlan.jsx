@@ -148,23 +148,25 @@ const SvgHallPlan = ({
 							{
 								justifyContent: "center",
 								alignItems: "center",
-								backgroundColor: "red",
+								/* backgroundColor: "red", */
 								gap: 20,
+								flexDirection:
+									fieldPosition === "top"
+										? "column"
+										: fieldPosition === "bottom" && "column-reverse",
 							},
 						]}
 					>
-						<FieldMarkerSvg
-							width={"90%"}
-							style={{
-								position: "relative",
-								/* [fieldPosition === "top" ? "top" : "bottom"]: currentRoom?.svgGap || 100, */
-							}}
-						/>
+						<FieldMarkerSvg width={"92%"} />
 
 						<Svg
-							style={{ backgroundColor: "blue" }}
-							width={"90%"}
-							height={currentRoom.svgHeight || 300}
+							style={
+								{
+									/* backgroundColor: "blue", */
+								}
+							}
+							width={"92%"}
+							height={"65%"}
 							viewBox={currentRoom?.svgViewBox}
 						>
 							{renderSeatPaths}
