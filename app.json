@@ -1,58 +1,58 @@
 {
-  "expo": {
-    "name": "Bilete Smart",
-    "slug": "bilete-smart",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/miniLogo.png",
-    "splash": {
-      "image": "./assets/images/logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.pikolo1999.bilete-smart",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/react-logo.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.pikolo1999.biletesmart"
-    },
-    "web": {
-      "bundler": "metro",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/react-logo.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ]
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "b401b27b-b264-47a7-92fd-3ff18b249ed6"
-      }
-    },
-    "owner": "pikolo1999",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/743c003d-b7e6-4ab5-a770-f1a001644851"
-    }
-  }
+	"expo": {
+		"name": "Bilete Smart",
+		"slug": "bilete-smart",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/miniLogo.png",
+		"splash": {
+			"image": "./assets/images/logo.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"scheme": "myapp",
+		"userInterfaceStyle": "automatic",
+		"newArchEnabled": true,
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.pikolo1999.bilete-smart",
+			"infoPlist": {
+				"ITSAppUsesNonExemptEncryption": false
+			}
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/appIcon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.pikolo1999.biletesmart"
+		},
+		"web": {
+			"bundler": "metro",
+			"favicon": "./assets/images/favicon.png"
+		},
+		"plugins": [
+			[
+				"expo-splash-screen",
+				{
+					"image": "./assets/images/logo.png",
+					"imageWidth": 200,
+					"resizeMode": "contain",
+					"backgroundColor": "#ffffff"
+				}
+			]
+		],
+		"extra": {
+			"eas": {
+				"projectId": "b401b27b-b264-47a7-92fd-3ff18b249ed6"
+			}
+		},
+		"owner": "pikolo1999",
+		"runtimeVersion": {
+			"policy": "appVersion"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/743c003d-b7e6-4ab5-a770-f1a001644851"
+		}
+	}
 }
