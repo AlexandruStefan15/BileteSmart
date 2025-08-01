@@ -32,7 +32,7 @@ export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 				currentRoom={currentRoom}
 				selectSeats={true}
 				fieldPosition={currentRoom_fieldPosition}
-				style={{ marginTop: 50 }}
+				style={{ marginTop: 45 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
 		</SafeAreaView>
