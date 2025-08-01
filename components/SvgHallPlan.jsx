@@ -148,7 +148,6 @@ const SvgHallPlan = ({
 							{
 								justifyContent: "center",
 								alignItems: "center",
-								/* backgroundColor: "red", */
 								gap: 25,
 								flexDirection:
 									fieldPosition === "top"
