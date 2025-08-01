@@ -14,9 +14,6 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 // components
 import FieldMarkerSvg from "./FieldMarkerSvg";
 
-const { width: windowWidth } = Dimensions.get("window");
-const { height: windowHeight } = Dimensions.get("window");
-
 const SvgHallPlan = ({
 	rooms,
 	currentRoom,
