@@ -72,15 +72,7 @@ const Ticket = ({ data, variant = "" }) => {
 			<Select
 				selected={data.is_discounted === "1" ? "Redus" : "Intreg"}
 				onChange={handleTypeChange}
-				selectStyles={{
-					position: "absolute",
-					zIndex: 999,
-					right: 40,
-					top: 49,
-					backgroundColor: "#2e2d2d",
-					borderColor: "transparent",
-					borderRadius: 6,
-				}}
+				selectStyles={styles.selectType}
 				textStyles={{ color: "lightgrey", fontWeight: "bold", fontSize: 13.8 }}
 			/>
 			<View style={styles.teethWrapperRight}>
@@ -113,9 +105,23 @@ const getStyles = (variant) => {
 				gap: 12,
 				width: "60%",
 				padding: 16,
-				paddingRight: 2,
+				paddingRight: 0,
 				justifyContent: "space-between",
 				flexShrink: 1,
+			},
+
+			ticketNumber: {
+				fontFamily: "Poppins-SemiBold",
+			},
+
+			title: {
+				fontFamily: "Poppins-Bold",
+				fontSize: 16,
+				paddingRight: 10,
+			},
+
+			buyDate: {
+				fontFamily: "Poppins-SemiBold",
 			},
 
 			middle: {
@@ -164,19 +170,6 @@ const getStyles = (variant) => {
 			room: {
 				fontSize: 18,
 				fontWeight: "bold",
-			},
-
-			ticketNumber: {
-				fontFamily: "Poppins-SemiBold",
-			},
-
-			title: {
-				fontFamily: "Poppins-Bold",
-				fontSize: 16,
-			},
-
-			buyDate: {
-				fontFamily: "Poppins-SemiBold",
 			},
 		});
 
@@ -233,6 +226,16 @@ const getStyles = (variant) => {
 			fontSize: 17,
 			marginTop: 12,
 			color: "#74b7dd",
+		},
+
+		selectType: {
+			position: "absolute",
+			zIndex: 999,
+			right: 40,
+			top: 49,
+			backgroundColor: "#2e2d2d",
+			borderColor: "transparent",
+			borderRadius: 6,
 		},
 	});
 };

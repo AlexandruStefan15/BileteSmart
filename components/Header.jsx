@@ -71,7 +71,7 @@ const Header = ({
 			<Animated.View style={[styles.container2, style]}>
 				<View style={styles.backButton}>
 					<TouchableOpacity
-						style={{ padding: 20, left: -21, top: -18 }}
+						style={{ padding: 15, left: -17, top: 0 }}
 						onPress={() => navigation.goBack()}
 					>
 						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		flexDirection: "row-reverse",
 		paddingHorizontal: 20,
-		paddingVertical: 14,
+		paddingVertical: 0,
 		justifyContent: "space-between",
 		alignItems: "center",
 		zIndex: 10,
