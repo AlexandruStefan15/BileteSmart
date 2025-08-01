@@ -134,7 +134,6 @@ const SvgHallPlan = ({
 						{
 							flex: 1,
 							width: "100%",
-							marginTop: 64,
 							justifyContent: "center",
 							alignItems: "center",
 						},

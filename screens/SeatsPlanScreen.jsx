@@ -31,8 +31,8 @@ export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 			<SvgHallPlan
 				currentRoom={currentRoom}
 				selectSeats={true}
-				height="100%"
 				fieldPosition={currentRoom_fieldPosition}
+				style={{ marginTop: 50 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
 		</SafeAreaView>
