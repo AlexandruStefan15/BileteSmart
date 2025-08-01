@@ -12,7 +12,10 @@ import { useSelectedSeats } from "@/store/store";
 import { useHandGestures } from "@/hooks/useHandGestures";
 
 // components
-import StadiumMarkerSvg from "./StadiumMarkerSvg";
+import FieldMarkerSvg from "./FieldMarkerSvg";
+
+const { width: windowWidth } = Dimensions.get("window");
+const { height: windowHeight } = Dimensions.get("window");
 
 const SvgHallPlan = ({
 	rooms,
@@ -126,22 +129,44 @@ const SvgHallPlan = ({
 	if (selectSeats) {
 		return (
 			<GestureDetector gesture={gesture}>
-				<Animated.View style={[{ flex: 1, width: "100%", marginTop: 64 }, style]}>
+				<Animated.View
+					style={[
+						{
+							flex: 1,
+							width: "100%",
+							marginTop: 64,
+							justifyContent: "center",
+							alignItems: "center",
+						},
+						style,
+					]}
+				>
 					<Animated.View
 						style={[
 							styles.svg_container,
 							animatedStyle,
-							{ flex: 1, justifyContent: "center", alignItems: "center" },
+							{
+								justifyContent: "center",
+								alignItems: "center",
+								backgroundColor: "red",
+								gap: 20,
+							},
 						]}
 					>
-						<StadiumMarkerSvg
+						<FieldMarkerSvg
 							width={"90%"}
 							style={{
-								position: "absolute",
-								[fieldPosition === "top" ? "top" : "bottom"]: currentRoom?.svgGap || 100,
+								position: "relative",
+								/* [fieldPosition === "top" ? "top" : "bottom"]: currentRoom?.svgGap || 100, */
 							}}
 						/>
-						<Svg style={{}} width={"90%"} height={"100%"} viewBox={currentRoom?.svgViewBox}>
+
+						<Svg
+							style={{ backgroundColor: "blue" }}
+							width={"90%"}
+							height={currentRoom.svgHeight || 300}
+							viewBox={currentRoom?.svgViewBox}
+						>
 							{renderSeatPaths}
 							{currentRoom?.rows_path_d?.map((row, index) => (
 								<Path key={index} d={row} fill="black" stroke="black" strokeWidth={0.05} />

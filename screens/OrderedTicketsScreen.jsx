@@ -16,7 +16,7 @@ const OrderedTicketsScreen = ({ navigation, route }) => {
 			<Header variant="2" arrowColor="black" style={{ position: "relative" }} />
 			<FlatList
 				data={tickets}
-				renderItem={({ item }) => <Ticket data={{ ...item, event_title }} variant="2" />}
+				renderItem={({ item: ticket }) => <Ticket data={{ ...ticket, event_title }} variant="2" />}
 				keyExtractor={(ticket) => ticket.ticket_codes}
 				style={styles.list}
 				contentContainerStyle={styles.contentContainerList}

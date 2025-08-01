@@ -7,6 +7,9 @@ import { useSelectedSeats } from "@/store/store";
 //constants
 import { Colors } from "@/constants/Colors";
 
+//hooks
+import { useCustomFonts } from "@/hooks/useCustomFonts";
+
 //components
 import Select from "./Select";
 import QRCodeModalButton from "./QRCodeModalButton";
@@ -16,11 +19,14 @@ const teeth = Array.from({ length: 6 });
 const Ticket = ({ data, variant = "" }) => {
 	const updateSeatType = useSelectedSeats((state) => state.updateSeatType);
 	const styles = getStyles(variant);
+	const fonts = useCustomFonts();
 
 	const handleTypeChange = useCallback(
 		(value) => updateSeatType(data.id_seat, value),
 		[data.id_seat, updateSeatType]
 	);
+
+	if (!fonts) return null;
 
 	if (variant == 2)
 		return (

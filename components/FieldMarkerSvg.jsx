@@ -2,7 +2,7 @@ import * as React from "react";
 import { useWindowDimensions } from "react-native";
 import Svg, { G, Rect, Path } from "react-native-svg";
 
-const StadiumMarkerSvg = (props) => {
+const FieldMarkerSvg = (props) => {
 	const windowWidth = useWindowDimensions().width;
 
 	return (
@@ -38,4 +38,4 @@ const StadiumMarkerSvg = (props) => {
 		</Svg>
 	);
 };
-export default StadiumMarkerSvg;
+export default FieldMarkerSvg;
