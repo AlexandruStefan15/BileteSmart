@@ -48,9 +48,7 @@
 			}
 		},
 		"owner": "pikolo1999",
-		"runtimeVersion": {
-			"policy": "appVersion"
-		},
+		"runtimeVersion": "1.0.0",
 		"updates": {
 			"url": "https://u.expo.dev/743c003d-b7e6-4ab5-a770-f1a001644851"
 		}
