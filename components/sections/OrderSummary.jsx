@@ -4,6 +4,9 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 //store
 import { useSelectedSeats } from "@/store/store";
 
+//constants
+import { Colors } from "@/constants/Colors";
+
 //icons
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
@@ -60,9 +63,9 @@ const OrderSummary = ({ formRef }) => {
 			</View>
 			<View style={styles.footer}>
 				<View style={styles.footer}>
-					<Text style={{ fontSize: 14.5, lineHeight: 18 }}>
+					<Text style={{ fontSize: 14.5, lineHeight: 18.5 }}>
 						Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
-						sprijini experiența pe acest site web și în alte scopuri descrise în
+						sprijini experiența pe această aplicație și în alte scopuri descrise în
 						<Text style={{ fontWeight: "bold", color: "#23527c" }} onPress={() => {}}>
 							{" "}
 							politica noastră de confidențialitate.
@@ -70,7 +73,7 @@ const OrderSummary = ({ formRef }) => {
 					</Text>
 					<TouchableOpacity
 						onPress={() => formRef?.current?.submit()}
-						style={{ backgroundColor: "#23527c", padding: 14, borderRadius: 6 }}
+						style={{ backgroundColor: Colors.tertiary, padding: 15, borderRadius: 6 }}
 					>
 						<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
 							Finalizează Comanda
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 15,
 	},
 
-	footer: { gap: 13, marginTop: 6 },
+	footer: { gap: 13, marginTop: 5.5 },
 });
 
 export default OrderSummary;

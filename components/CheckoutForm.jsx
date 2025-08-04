@@ -115,7 +115,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 				<Checkbox
 					isChecked={localChecked}
 					disableText
-					fillColor="black"
+					fillColor="#23527c"
 					size={19}
 					useBuiltInState={false}
 					iconImageStyle={styles.iconImageStyle}
