@@ -74,13 +74,25 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 			</TouchableOpacity>
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
 				<View style={styles.innerContent}>
-					<View style={{ gap: 7, marginBottom: 8 }}>
-						<Text style={styles.innerContent_text}>ID Order: {order.id_order}</Text>
-						<Text style={styles.innerContent_text}>Event Date: {order.date}</Text>
-						<Text style={styles.innerContent_text}>First Name: {order.first_name}</Text>
-						<Text style={styles.innerContent_text}>Last Name: {order.last_name}</Text>
-						<Text style={styles.innerContent_text}>Phone: {order.phone}</Text>
-						<Text style={styles.innerContent_text}>Total: {order.total} RON</Text>
+					<View style={{ gap: 8, marginBottom: 8 }}>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>ID Order:</Text> #{order.id_order}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Prenume:</Text> {order.first_name}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Data eveniment:</Text> {order.date}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
+						</Text>
 					</View>
 					<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
 					<Button

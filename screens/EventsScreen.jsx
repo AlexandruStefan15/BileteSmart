@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, Image } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Text, ActivityIndicator } from "react-native";
 import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -17,6 +17,7 @@ import { useEventsByLocation } from "@/hooks/useEventsByLocation";
 import { useDrawerStore } from "@/store/store";
 
 const EventsScreen = ({ navigation }) => {
+	const [isLoading, setIsLoading] = React.useState(true);
 	const { eventsGrouped } = useEventsByLocation();
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
@@ -24,11 +25,27 @@ const EventsScreen = ({ navigation }) => {
 		(eventsArray) => Array.isArray(eventsArray) && eventsArray.length === 0
 	);
 
+	React.useEffect(() => {
+		const timeout = setTimeout(() => {
+			setIsLoading(false);
+		}, 1000);
+
+		return () => clearTimeout(timeout);
+	}, []);
+
 	useFocusEffect(
 		React.useCallback(() => {
 			closeDrawer();
 		}, [])
 	);
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+				<ActivityIndicator size="large" color="#345772" />
+			</View>
+		);
+	}
 
 	if (hasNoEvents) {
 		return (
