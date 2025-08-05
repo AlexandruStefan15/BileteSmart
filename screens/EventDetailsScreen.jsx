@@ -66,7 +66,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							rooms={rooms}
 							field_path={locationFieldPath}
 							read_only={true}
-							height={275}
+							height={260}
 						/>
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (

@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 	container: { gap: 26, paddingInline: 15, paddingBlock: 25 },
 
 	location_title: {
-		fontSize: 19.2,
+		fontSize: 19.5,
 		fontWeight: "bold",
 		marginBottom: 12,
 		color: Colors.primary,

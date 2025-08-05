@@ -104,7 +104,7 @@ const getStyles = (theme, variant) => {
 				alignSelf: "flex-end",
 				position: "absolute",
 				top: 0,
-				height: 520,
+				height: 555,
 			},
 
 			title: {
@@ -161,7 +161,7 @@ const getStyles = (theme, variant) => {
 		},
 
 		badge: {
-			backgroundColor: "#242424d6",
+			backgroundColor: "#242424de",
 			paddingInline: 18,
 			paddingTop: 7.5,
 			paddingBottom: 13,
