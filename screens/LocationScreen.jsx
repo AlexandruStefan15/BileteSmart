@@ -11,6 +11,7 @@ import {
 	StatusBar,
 } from "react-native";
 import { Colors } from "@/constants";
+import { images } from "@/assets/images";
 
 //data
 import { eventsByLocation } from "@/data/events"; // to be fetched
@@ -26,6 +27,7 @@ import Header from "@/components/Header";
 import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
+import ImageCarousel from "@/components/ImageCarousel";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
@@ -107,6 +109,18 @@ const LocationScreen = ({ navigation, route }) => {
 							</Text>
 						</View>
 					)}
+					<ImageCarousel
+						data={[
+							{
+								image: "https://biletesmart.ro/wp-content/uploads/2023/05/TeraPlast-Arena-1.1.jpg",
+							},
+							{
+								image:
+									"https://biletesmart.ro/wp-content/uploads/2023/02/2022-09-29-17-37-43-300x225.jpeg",
+							},
+							{ image: images.salaPolivalentaAlbaBlaj },
+						]}
+					/>
 				</View>
 			</ScrollView>
 		</SafeAreaView>
