@@ -31,7 +31,20 @@ export const eventsByLocation = {
 		},
 	],
 
-	3: [],
+	3: [
+		{
+			id_event: "91",
+			title: "ROMANIA - CROATIA",
+			subtitle: "Sala Polivalentă Alba Blaj",
+			event_img: "https://biletesmart.ro/poster/740817538972569251ROMANIA - CROATIA.jpg",
+			event_type: "Sportiv",
+			event_type_name: "CEV EuroVolley 2026 Qualifiers",
+			time: "18:00",
+			date: "2025-08-06",
+			logo_images: [images.romaniaFlag, images.croatiaFlag],
+			demo: "0",
+		},
+	],
 
 	4: [],
 };

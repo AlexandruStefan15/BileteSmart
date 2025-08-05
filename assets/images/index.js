@@ -20,6 +20,8 @@ const images = {
 	metopia: require("./metopia.png"),
 	shoppingCart: require("./shoppingCart.png"),
 	schedule: require("./schedule.png"),
+	romaniaFlag: require("./romaniaFlag.png"),
+	croatiaFlag: require("./croatiaFlag.png"),
 };
 
 export { images };
