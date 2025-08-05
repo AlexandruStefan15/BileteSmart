@@ -33,7 +33,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const [bannerHeight, setBannerHeight] = useState(0);
 	const [headerHeight, setHeaderHeight] = useState(0);
 	const { locationId, event, locationFieldPath } = route.params;
-	/* const roomsWithSeatsData = roomsWithSeats[locationId][event.id_event].rooms; */
+	/* const rooms = roomsWithSeats[locationId][event.id_event].rooms; */
 	const rooms = roomsWithSeats[1][129].rooms;
 	const { resetSeats } = useSelectedSeats();
 	const styles = getStyles(bannerHeight, headerHeight);
