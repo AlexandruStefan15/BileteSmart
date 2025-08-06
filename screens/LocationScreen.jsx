@@ -112,42 +112,6 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.photoGallery}>
 						<Title style={[styles.title]}>Galerie foto</Title>
-						{/* <ImageCarousel
-							styleContainer={{}}
-							autoPlay={false}
-							pagination={true}
-							data={[
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/05/TeraPlast-Arena-1.1.jpg",
-								},
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/02/2022-09-29-17-37-43-scaled.jpeg",
-								},
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/02/6-2022-10-01-20-08-00-scaled.jpeg",
-								},
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/02/5-2022-09-30-17-54-13-scaled.jpeg",
-								},
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/02/4-2022-09-30-17-52-20-scaled.jpeg",
-								},
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/02/3-2022-08-12-11-11-29-scaled.jpeg",
-								},
-								{
-									image:
-										"https://biletesmart.ro/wp-content/uploads/2023/02/2-2022-08-15-20-29-02-scaled.jpeg",
-								},
-							]}
-						/> */}
-
 						<ImageGallery images={currentLocation.galleryImages} />
 					</View>
 				</View>
@@ -196,7 +160,7 @@ const styles = StyleSheet.create({
 	},
 
 	info: {
-		marginTop: 5,
+		marginTop: 6,
 		gap: 15.5,
 	},
 

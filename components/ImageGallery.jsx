@@ -3,6 +3,7 @@ import {
 	View,
 	Text,
 	Image,
+	ImageBackground,
 	StyleSheet,
 	TouchableOpacity,
 	FlatList,
@@ -10,9 +11,17 @@ import {
 } from "react-native";
 
 const { width } = Dimensions.get("window");
-const IMAGE_SIZE = width / 2 - 22;
+const IMAGE_SIZE = width / 2 - 21.5;
 
 const ImageGallery = ({ images }) => {
+	if (!images || images.length === 0) {
+		return (
+			<View style={styles.emptyState}>
+				<Text style={styles.emptyStateText}>No images available</Text>
+			</View>
+		);
+	}
+
 	const renderItem = ({ item, index }) => {
 		return (
 			<TouchableOpacity
@@ -22,22 +31,22 @@ const ImageGallery = ({ images }) => {
 				}}
 				activeOpacity={0.8}
 			>
-				<Image source={{ uri: item.url }} style={styles.image} />
+				{index == 3 && images.length > 4 ? (
+					<ImageBackground source={{ uri: item.url }} style={{ flex: 1 }} resizeMode="cover">
+						<View style={styles.overlay}>
+							<Text style={styles.overlayText}>+{images.length - 4}</Text>
+						</View>
+					</ImageBackground>
+				) : (
+					<Image source={{ uri: item.url }} style={styles.image} />
+				)}
 			</TouchableOpacity>
 		);
 	};
 
-	if (!images || images.length === 0) {
-		return (
-			<View style={styles.emptyState}>
-				<Text style={styles.emptyStateText}>No images available</Text>
-			</View>
-		);
-	}
-
 	return (
 		<FlatList
-			data={images.slice(0, 4)} // Show only first 5
+			data={images.slice(0, 4)} // Show only first 4
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id}
 			numColumns={2}
@@ -50,11 +59,12 @@ const ImageGallery = ({ images }) => {
 const styles = StyleSheet.create({
 	row: {
 		justifyContent: "space-between",
-		marginBottom: 5,
+		marginBottom: 3,
 	},
 	imageContainer: {
+		position: "relative",
 		width: IMAGE_SIZE,
-		height: IMAGE_SIZE,
+		aspectRatio: 100 / 75,
 		borderRadius: 0,
 		overflow: "hidden",
 	},
@@ -63,10 +73,16 @@ const styles = StyleSheet.create({
 		height: "100%",
 	},
 	overlay: {
-		...StyleSheet.absoluteFillObject,
-		backgroundColor: "rgba(0,0,0,0.4)",
+		height: "100%",
+		width: "100%",
+		position: "absolute",
+		inset: 0,
+		zIndex: 999,
+		/* ...StyleSheet.absoluteFillObject, */
+		backgroundColor: "rgba(0, 0, 0, 0.44)",
 		justifyContent: "center",
 		alignItems: "center",
+		/* experimental_backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4))", */
 	},
 	overlayText: {
 		color: "#fff",
