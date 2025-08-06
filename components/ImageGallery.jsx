@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 	imageContainer: {
 		position: "relative",
 		width: IMAGE_SIZE,
-		aspectRatio: 100 / 75,
+		aspectRatio: 100 / 76,
 		borderRadius: 0,
 		overflow: "hidden",
 	},
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 		inset: 0,
 		zIndex: 999,
 		/* ...StyleSheet.absoluteFillObject, */
-		backgroundColor: "rgba(0, 0, 0, 0.44)",
+		backgroundColor: "rgba(0, 0, 0, 0.46)",
 		justifyContent: "center",
 		alignItems: "center",
 		/* experimental_backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4))", */
