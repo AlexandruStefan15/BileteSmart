@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 const { width } = Dimensions.get("window");
-const IMAGE_SIZE = width / 2 - 25;
+const IMAGE_SIZE = width / 2 - 22;
 
 const ImageGallery = ({ images }) => {
 	const renderItem = ({ item, index }) => {
@@ -50,13 +50,12 @@ const ImageGallery = ({ images }) => {
 const styles = StyleSheet.create({
 	row: {
 		justifyContent: "space-between",
-		marginBottom: 10,
-		gap: 10,
+		marginBottom: 5,
 	},
 	imageContainer: {
 		width: IMAGE_SIZE,
 		height: IMAGE_SIZE,
-		borderRadius: 10,
+		borderRadius: 0,
 		overflow: "hidden",
 	},
 	image: {
