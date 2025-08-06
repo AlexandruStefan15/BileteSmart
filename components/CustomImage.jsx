@@ -51,11 +51,9 @@ export default CustomImage;
 
 const styles = StyleSheet.create({
 	imageContainer: {
-		borderRadius: 12,
 		overflow: "hidden",
 	},
 	image: {
 		width: "100%",
-		height: undefined, // use aspectRatio to control height
 	},
 });

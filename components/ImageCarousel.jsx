@@ -11,7 +11,7 @@ import Animated, {
 import CustomImage from "./CustomImage";
 import Pagination from "./Pagination";
 
-const ImageCarousel = ({ data, autoPlay, pagination }) => {
+const ImageCarousel = ({ data, autoPlay, pagination, styleContainer }) => {
 	const scrollViewRef = useAnimatedRef(null);
 	const interval = useRef();
 	const [isAutoPlay, setIsAutoPlay] = useState(autoPlay);
@@ -21,8 +21,8 @@ const ImageCarousel = ({ data, autoPlay, pagination }) => {
 		{ key: "spacer-right" },
 	]);
 	const { width } = useWindowDimensions();
-	const SIZE = width * 0.7;
-	const SPACER = (width - SIZE) / 2;
+	const SIZE = width - 46;
+	const SPACER = (width - SIZE - 46) / 2;
 	const x = useSharedValue(0);
 	const offSet = useSharedValue(0);
 	const targetX = useSharedValue(0);
@@ -52,7 +52,7 @@ const ImageCarousel = ({ data, autoPlay, pagination }) => {
 		if (isAutoPlay === true) {
 			interval.current = setInterval(() => {
 				scrollViewRef.current.scrollTo({ x: targetX.value, y: 0 });
-			}, 2000);
+			}, 3000);
 		} else {
 			clearInterval(interval.current);
 		}
@@ -63,7 +63,7 @@ const ImageCarousel = ({ data, autoPlay, pagination }) => {
 	}, [isAutoPlay, scrollViewRef]);
 
 	return (
-		<View>
+		<View style={[{ justifyContent: "center" }, styleContainer]}>
 			<Animated.ScrollView
 				ref={scrollViewRef}
 				onScroll={onScroll}
