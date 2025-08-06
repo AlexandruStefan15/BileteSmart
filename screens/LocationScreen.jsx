@@ -28,11 +28,12 @@ import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
 import ImageCarousel from "@/components/ImageCarousel";
+import ImageGallery from "@/components/ImageGallery";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
 	/* const { events, loading, error } = useFetchEvents(currentLocation.id); */
-	const events = eventsByLocation[currentLocation.id]; // to be fetched from above
+	const events = eventsByLocation[currentLocation.id]; // to be fetched like above
 	const loading = !events; // Simulating loading state
 	const error = null; // Simulating no error state
 
@@ -111,7 +112,7 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.photoGallery}>
 						<Title style={[styles.title]}>Galerie foto</Title>
-						<ImageCarousel
+						{/* <ImageCarousel
 							styleContainer={{}}
 							autoPlay={false}
 							pagination={true}
@@ -145,7 +146,9 @@ const LocationScreen = ({ navigation, route }) => {
 										"https://biletesmart.ro/wp-content/uploads/2023/02/2-2022-08-15-20-29-02-scaled.jpeg",
 								},
 							]}
-						/>
+						/> */}
+
+						<ImageGallery images={currentLocation.galleryImages} />
 					</View>
 				</View>
 			</ScrollView>
