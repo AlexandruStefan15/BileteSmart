@@ -70,7 +70,9 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 		<View style={styles.itemContainer}>
 			<TouchableOpacity style={styles.header} onPress={onToggle}>
 				<Text style={styles.headerText}>{order.movie}</Text>
-				<Text style={styles.headerSubText}>Achizitionat in {order.buy_date}</Text>
+				<Text style={styles.headerSubText}>
+					Achizitionat in {order.buy_date.trim().split(/\s+/)[0]}
+				</Text>
 			</TouchableOpacity>
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
 				<View style={styles.innerContent}>
@@ -111,6 +113,8 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 		</View>
 	);
 });
+
+export default React.memo(OrderHistoryList);
 
 const styles = StyleSheet.create({
 	itemContainer: {
@@ -162,5 +166,3 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 	},
 });
-
-export default OrderHistoryList;

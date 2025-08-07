@@ -45,17 +45,17 @@ const OrderSummary = ({ formRef }) => {
 					</View>
 				))}
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Subtotal:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Subtotal</Text>
 					<Text style={{ fontSize: 16, fontWeight: "bold" }}>
 						{selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON
 					</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Taxa procesare tranzactie:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Taxa procesare tranzactie</Text>
 					<Text style={{ fontSize: 16, fontWeight: "bold" }}>3 RON</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Total:</Text>
+					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Total</Text>
 					<Text style={{ fontSize: 16, fontWeight: "bold" }}>
 						{selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0) + 3} RON
 					</Text>

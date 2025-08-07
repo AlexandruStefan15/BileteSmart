@@ -28,7 +28,7 @@ const SeeMoreFlatList = ({
 			ListFooterComponent={
 				visibleCount < data.length ? (
 					<TouchableOpacity style={styles.seeMoreButton} onPress={showMore}>
-						<Text style={styles.seeMoreText}>Vezi mai multe</Text>
+						<Text style={styles.seeMoreText}>Vezi mai mult</Text>
 					</TouchableOpacity>
 				) : null
 			}
@@ -37,6 +37,8 @@ const SeeMoreFlatList = ({
 		/>
 	);
 };
+
+export default React.memo(SeeMoreFlatList);
 
 const styles = StyleSheet.create({
 	list: {
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
 		marginBottom: 17,
 		marginTop: 7,
 		paddingBlock: 14,
-		paddingInline: 32,
+		paddingInline: 30,
 		alignSelf: "center",
 		backgroundColor: "white",
 		borderRadius: 30,
@@ -56,10 +58,8 @@ const styles = StyleSheet.create({
 	},
 	seeMoreText: {
 		textAlign: "center",
-		color: "#686868",
+		color: "#606060ff",
 		fontWeight: "bold",
-		fontSize: 14,
+		fontSize: 13.8,
 	},
 });
-
-export default SeeMoreFlatList;

@@ -43,7 +43,7 @@ const LocationScreen = ({ navigation, route }) => {
 				<Header variant="2" />
 				<View style={styles.banner}>
 					<Image
-						source={currentLocation.images[1]}
+						source={currentLocation.images.banner}
 						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
 					/>
 				</View>
