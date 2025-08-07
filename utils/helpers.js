@@ -25,10 +25,13 @@ export function formatRomanianDate(dateStr) {
 	return `${dayOfWeek} ${dayOfMonth} ${month}`;
 }
 
-export function formatDate(dateString, variant = "") {
+export function formatDate(dateString, variant) {
 	const date = new Date(dateString);
 
-	if (variant === "short")
+	if (variant == "numeric")
+		return date.toLocaleDateString("ro-RO", { day: "numeric", month: "numeric", year: "numeric" });
+
+	if (variant == "short")
 		return date.toLocaleDateString("ro-RO", { day: "numeric", month: "short", year: "numeric" });
 
 	return date.toLocaleDateString("ro-RO", {

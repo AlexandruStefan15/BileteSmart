@@ -9,6 +9,9 @@ import Animated, {
 	ReduceMotion,
 } from "react-native-reanimated";
 
+//utils
+import { formatDate } from "@/utils/helpers";
+
 //components
 import QRCodeModalButton from "./QRCodeModalButton";
 import Button from "./Button";
@@ -71,7 +74,7 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 			<TouchableOpacity style={styles.header} onPress={onToggle}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>
-					Achizitionat in {order.buy_date.trim().split(/\s+/)[0]}
+					Achizitionat in {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")}
 				</Text>
 			</TouchableOpacity>
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
