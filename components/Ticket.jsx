@@ -36,7 +36,7 @@ const Ticket = ({ data, variant = "" }) => {
 			<View style={styles.container}>
 				<View style={styles.left}>
 					<Text style={[styles.text, styles.ticketNumber]}>Nr. bilet: {data.ticket_codes}</Text>
-					<Text style={[styles.text, styles.title]} /* numberOfLines={2} ellipsizeMode="tail" */>
+					<Text style={[styles.text, styles.title]} numberOfLines={3} ellipsizeMode="tail">
 						{data.event_title}
 					</Text>
 					<Text style={[styles.text, styles.buyDate]}>
