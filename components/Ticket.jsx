@@ -7,6 +7,9 @@ import { useSelectedSeats } from "@/store/store";
 //constants
 import { Colors } from "@/constants/Colors";
 
+//utils
+import { formatDate } from "@/utils/helpers";
+
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
 
@@ -33,8 +36,13 @@ const Ticket = ({ data, variant = "" }) => {
 			<View style={styles.container}>
 				<View style={styles.left}>
 					<Text style={[styles.text, styles.ticketNumber]}>Nr. bilet: {data.ticket_codes}</Text>
-					<Text style={[styles.text, styles.title]}>{data.event_title}</Text>
-					<Text style={[styles.text, styles.buyDate]}>{data.buy_date}</Text>
+					<Text style={[styles.text, styles.title]} /* numberOfLines={2} ellipsizeMode="tail" */>
+						{data.event_title}
+					</Text>
+					<Text style={[styles.text, styles.buyDate]}>
+						{formatDate(data.buy_date.trim().split(/\s+/)[0], "numeric")}{" "}
+						{data.buy_date.trim().split(/\s+/)[1]}
+					</Text>
 				</View>
 				<View style={styles.middle}>
 					<QRCodeModalButton style={styles.qrCode} variant="2" id={data.ticket_codes} />

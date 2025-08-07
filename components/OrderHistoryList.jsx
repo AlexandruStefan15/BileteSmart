@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated, {
@@ -20,6 +20,10 @@ import SeeMoreFlatList from "@/components/SeeMoreFlatList";
 const OrderHistoryList = ({ orders }) => {
 	const [expandedOrderId, setExpandedOrderId] = useState(null);
 
+	const newlyAddedOrders = useMemo(() => {
+		return [...orders].sort((a, b) => new Date(b.buy_date) - new Date(a.buy_date));
+	}, [orders]);
+
 	const toggleOrder = (id) => {
 		setExpandedOrderId((prevId) => (prevId === id ? null : id));
 	};
@@ -34,7 +38,7 @@ const OrderHistoryList = ({ orders }) => {
 
 	return (
 		<SeeMoreFlatList
-			data={orders}
+			data={newlyAddedOrders}
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id_order.toString()}
 			initialCount={8}
@@ -74,7 +78,8 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 			<TouchableOpacity style={styles.header} onPress={onToggle}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>
-					Achizitionat in {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")}
+					Achizitionat in {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")} la{" "}
+					{order.buy_date.trim().split(/\s+/)[1]}
 				</Text>
 			</TouchableOpacity>
 			<Animated.View style={[styles.animatedContent, animatedStyle]}>
@@ -93,7 +98,9 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 							<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
 						</Text>
 						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Data eveniment:</Text> {order.date}
+							<Text style={{ fontWeight: "600" }}>Data eveniment:</Text>{" "}
+							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")},{" "}
+							{order.date.trim().split(/\s+/)[1]}
 						</Text>
 						<Text style={styles.innerContent_text}>
 							<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
