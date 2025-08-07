@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
 
 	headerSubText: {
 		fontSize: 14,
+		fontWeight: "500",
 		color: "white",
 		textAlign: "center",
 	},

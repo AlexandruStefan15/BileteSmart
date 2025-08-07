@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(0, 0, 0, 0.46)",
 		justifyContent: "center",
 		alignItems: "center",
-		/* experimental_backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4))", */
 	},
 	overlayText: {
 		color: "#fff",
