@@ -51,10 +51,10 @@ const styles = StyleSheet.create({
 		paddingBlock: 14,
 		paddingInline: 30,
 		alignSelf: "center",
-		backgroundColor: "#6b6b6bff",
+		backgroundColor: "#6e6e6eff",
 		borderRadius: 30,
 		borderWidth: 1,
-		borderColor: "lightgrey",
+		borderColor: "#6e6e6eff",
 	},
 	seeMoreText: {
 		textAlign: "center",

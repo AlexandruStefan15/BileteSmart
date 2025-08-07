@@ -35,23 +35,11 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					<ImageBackground
 						source={{ uri: encodeURI(eventData.event_img) }}
 						imageStyle={styles.image}
-					>
-						{/* <View style={styles.event_badge}>
-							{formatDate(eventData.date)
-								.trim()
-								.split(" ")
-								.map((word, index) => (
-									<Text
-										style={[styles[`event_badge_text`], styles[`event_badge_text${index}`]]}
-										key={index}
-									>
-										{word}
-									</Text>
-								))}
-						</View> */}
-					</ImageBackground>
+					/>
 				</Ripple>
-				<Text style={styles.title}>{eventData.title}</Text>
+				<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+					{eventData.title}
+				</Text>
 				<View style={styles.subtitleWrapper}>
 					<Image style={styles.subtitleIcon} source={images.schedule}></Image>
 					<Text style={styles.subtitle}>
@@ -123,7 +111,7 @@ const getStyles = (theme, variant) => {
 			},
 
 			subtitle: {
-				fontSize: 13.7,
+				fontSize: 13.8,
 				color: Colors.secondary,
 				fontWeight: 500,
 				marginLeft: 2,
@@ -135,8 +123,8 @@ const getStyles = (theme, variant) => {
 			},
 
 			subtitleIcon: {
-				width: 20,
-				height: 20,
+				width: 19.7,
+				height: 19.7,
 				top: -2.3,
 			},
 		});

@@ -98,7 +98,7 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 							<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
 						</Text>
 						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Data eveniment:</Text>{" "}
+							<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
 							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")},{" "}
 							{order.date.trim().split(/\s+/)[1]}
 						</Text>
