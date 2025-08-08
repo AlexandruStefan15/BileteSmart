@@ -88,7 +88,7 @@ const SvgHallPlan = ({
 	if (read_only) {
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
-				<Svg width={260} height={height} fill="none" viewBox="0 0 775 851">
+				<Svg width={270} height={height} fill="none" viewBox="0 0 775 851">
 					<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 					{rooms.map((room) => (
 						<Path

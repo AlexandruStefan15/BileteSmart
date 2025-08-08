@@ -28,15 +28,26 @@ import Button from "@/components/Button";
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const EventDetailsScreen = ({ navigation, route }) => {
-	const [bannerHeight, setBannerHeight] = useState(0);
-	const [headerHeight, setHeaderHeight] = useState(0);
+	const [titleHeight, setTitleHeight] = useState(0);
+	const [subtitleHeight, setSubtitleHeight] = useState(0);
 	const { locationId, event, locationFieldPath } = route.params;
 	/* const rooms = roomsWithSeats[locationId][event.id_event].rooms; */
 	const rooms = roomsWithSeats[1][129].rooms;
 	const { resetSeats } = useSelectedSeats();
-	const styles = getStyles(bannerHeight, headerHeight);
+	const styles = getStyles();
+
+	const handleTitleLayout = (event) => {
+		const { height } = event.nativeEvent.layout;
+		setTitleHeight(height);
+	};
+
+	const handleSubtitleLayout = (event) => {
+		const { height } = event.nativeEvent.layout;
+		setSubtitleHeight(height);
+	};
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -51,8 +62,12 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
 				<Header variant="2" style={{ marginTop: 3 }} />
 				<View style={styles.banner}>
-					<Text style={styles.banner_title}>{event.title}</Text>
-					<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
+					<Text style={styles.banner_title} onLayout={handleTitleLayout}>
+						{event.title}
+					</Text>
+					<Text style={styles.banner_subtitle} onLayout={handleSubtitleLayout}>
+						{event.subtitle}
+					</Text>
 					<Text style={styles.banner_date}>{formatRomanianDate(event.date)}</Text>
 					<View style={styles.banner_footer}>
 						<Image style={styles.banner_footer_image} source={event.logo_images[0]} />
@@ -66,7 +81,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							rooms={rooms}
 							field_path={locationFieldPath}
 							read_only={true}
-							height={SCREEN_HEIGHT * 0.35} //old value:260
+							height={SCREEN_HEIGHT * 0.39 - subtitleHeight} //old value:260
 						/>
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (
@@ -89,6 +104,9 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							) : (
 								<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
 							)}
+							{/* <Text style={{ color: "white", textAlign: "center", marginTop: 10 }}>
+								scr height:{SCREEN_HEIGHT}, scr width:{SCREEN_WIDTH}
+							</Text> */}
 						</View>
 					</View>
 				</View>
@@ -97,7 +115,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	);
 };
 
-const getStyles = (bannerHeight, headerHeight) =>
+const getStyles = () =>
 	StyleSheet.create({
 		screen: {
 			flex: 1,
