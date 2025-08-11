@@ -7,9 +7,6 @@ import Animated, {
 	withTiming,
 	Easing,
 	ReduceMotion,
-	LinearTransition,
-	FadeIn,
-	FadeOut,
 } from "react-native-reanimated";
 
 //utils
@@ -46,81 +43,86 @@ const OrderHistoryList = ({ orders }) => {
 		<SeeMoreFlatList
 			data={newlyAddedOrders}
 			renderItem={renderItem}
-			keyExtractor={(item) => String(item.id_order)}
+			keyExtractor={(item) => item.id_order.toString()}
 			initialCount={8}
 			step={8}
-			initialNumToRender={8}
-			maxToRenderPerBatch={6}
-			updateCellsBatchingPeriod={30}
-			windowSize={5}
-			removeClippedSubviews
 		/>
 	);
 };
 
 const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 	const navigation = useNavigation();
+	const height = useSharedValue(isExpanded ? 300 : 0);
+	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
-	const buyParts = React.useMemo(() => order.buy_date.trim().split(/\s+/), [order.buy_date]);
-	const eventParts = React.useMemo(() => order.date.trim().split(/\s+/), [order.date]);
+	React.useEffect(() => {
+		height.value = withTiming(isExpanded ? 300 : 0, {
+			duration: 300,
+			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+			reduceMotion: ReduceMotion.System,
+		});
+
+		opacity.value = withTiming(isExpanded ? 1 : 0, {
+			duration: 250,
+			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+			reduceMotion: ReduceMotion.System,
+		});
+	}, [isExpanded]);
+
+	const animatedStyle = useAnimatedStyle(() => ({
+		maxHeight: height.value,
+		opacity: opacity.value,
+		overflow: "hidden",
+		willChange: "transform",
+	}));
 
 	return (
 		<View style={styles.itemContainer}>
 			<TouchableOpacity style={styles.header} onPress={onToggle}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>
-					Achiziționat în {formatDate(buyParts[0], "numeric")} la {buyParts[1]}
+					Achizitionat in {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")} la{" "}
+					{order.buy_date.trim().split(/\s+/)[1]}
 				</Text>
 			</TouchableOpacity>
 
-			<Animated.View
-				layout={LinearTransition.duration(75)}
-				style={[styles.animatedContent]}
-				collapsable={false}
-			>
-				{isExpanded && (
-					<Animated.View
-						style={styles.innerContent}
-						entering={FadeIn.duration(400)}
-						exiting={FadeOut.duration(400)}
+			<Animated.View style={[styles.animatedContent, animatedStyle]}>
+				<View style={styles.innerContent}>
+					<View style={{ gap: 8, marginBottom: 8 }}>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>ID Order:</Text> #{order.id_order}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Prenume:</Text> {order.first_name}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
+							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")},{" "}
+							{order.date.trim().split(/\s+/)[1]}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
+						</Text>
+					</View>
+					<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
+					<Button
+						variant="2"
+						onPress={() => {
+							navigation.navigate("OrderedTicketsScreen", {
+								tickets: order.tickets,
+								event_title: order.movie,
+							});
+						}}
 					>
-						<View style={{ gap: 8, marginBottom: 8 }}>
-							<Text style={styles.innerContent_text}>
-								<Text style={{ fontWeight: "600" }}>ID Order:</Text> #{order.id_order}
-							</Text>
-							<Text style={styles.innerContent_text}>
-								<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}
-							</Text>
-							<Text style={styles.innerContent_text}>
-								<Text style={{ fontWeight: "600" }}>Prenume:</Text> {order.first_name}
-							</Text>
-							<Text style={styles.innerContent_text}>
-								<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
-							</Text>
-							<Text style={styles.innerContent_text}>
-								<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
-								{formatDate(eventParts[0], "numeric")}, {eventParts[1]}
-							</Text>
-							<Text style={styles.innerContent_text}>
-								<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
-							</Text>
-						</View>
-
-						<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
-
-						<Button
-							variant="2"
-							onPress={() =>
-								navigation.navigate("OrderedTicketsScreen", {
-									tickets: order.tickets,
-									event_title: order.movie,
-								})
-							}
-						>
-							Vezi bilete
-						</Button>
-					</Animated.View>
-				)}
+						Vezi bilete
+					</Button>
+				</View>
 			</Animated.View>
 		</View>
 	);
