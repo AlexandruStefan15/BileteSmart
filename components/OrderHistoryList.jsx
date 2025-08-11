@@ -28,12 +28,15 @@ const OrderHistoryList = ({ orders }) => {
 		setExpandedOrderId((prevId) => (prevId === id ? null : id));
 	};
 
-	const renderItem = ({ item }) => (
-		<AccordionItem
-			order={item}
-			isExpanded={expandedOrderId === item.id_order}
-			onToggle={() => toggleOrder(item.id_order)}
-		/>
+	const renderItem = React.useCallback(
+		({ item }) => (
+			<AccordionItem
+				order={item}
+				isExpanded={expandedOrderId === item.id_order}
+				onToggle={() => toggleOrder(item.id_order)}
+			/>
+		),
+		[expandedOrderId]
 	);
 
 	return (
