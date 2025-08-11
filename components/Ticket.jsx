@@ -150,10 +150,10 @@ const getStyles = (variant) => {
 			right: {
 				backgroundColor: "#e9e9e9ff",
 				paddingInline: 12,
-				paddingBlock: 5,
+				paddingBlock: 7,
 				gap: 3,
 				alignItems: "center",
-				justifyContent: "center",
+				justifyContent: "space-evenly",
 				borderLeftWidth: 1.9,
 				borderColor: Colors.primary,
 				borderStyle: "dashed",
