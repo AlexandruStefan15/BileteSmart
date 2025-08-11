@@ -73,14 +73,17 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 				</Text>
 			</TouchableOpacity>
 
-			{isExpanded && (
-				<Animated.View
-					layout={LinearTransition.duration(220)}
-					entering={FadeIn.duration(120)}
-					exiting={FadeOut.duration(120)}
-					style={[styles.animatedContent, { overflow: "hidden" }]}
-				>
-					<Animated.View style={styles.innerContent}>
+			<Animated.View
+				layout={LinearTransition.duration(75)}
+				style={[styles.animatedContent]}
+				collapsable={false}
+			>
+				{isExpanded && (
+					<Animated.View
+						style={styles.innerContent}
+						entering={FadeIn.duration(400)}
+						exiting={FadeOut.duration(400)}
+					>
 						<View style={{ gap: 8, marginBottom: 8 }}>
 							<Text style={styles.innerContent_text}>
 								<Text style={{ fontWeight: "600" }}>ID Order:</Text> #{order.id_order}
@@ -117,8 +120,8 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 							Vezi bilete
 						</Button>
 					</Animated.View>
-				</Animated.View>
-			)}
+				)}
+			</Animated.View>
 		</View>
 	);
 });
