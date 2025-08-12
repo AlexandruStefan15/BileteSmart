@@ -48,9 +48,7 @@ const OrderHistoryList = ({ orders }) => {
 			keyExtractor={(item) => item.id_order.toString()}
 			initialCount={8}
 			step={8}
-			// Optional perf knobs:
-			// removeClippedSubviews
-			// windowSize={7}
+			windowSize={7}
 		/>
 	);
 };
@@ -59,7 +57,7 @@ export default React.memo(OrderHistoryList);
 
 const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 	const navigation = useNavigation();
-	const expanded = React.useRef(false); // avoid state-caused re-renders
+	const expanded = useRef(false); // avoid state-caused re-renders
 	const contentHeight = useSharedValue(0);
 	const contentOpacity = useSharedValue(0);
 
