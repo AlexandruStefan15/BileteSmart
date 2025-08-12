@@ -34,16 +34,16 @@ const Ticket = ({ data, variant = "" }) => {
 	if (variant == 2)
 		return (
 			<View style={styles.container}>
+				<Text style={[styles.text, styles.ticketNumber]}>Nr. bilet: {data.ticket_codes}</Text>
 				<View style={styles.left}>
-					<Text style={[styles.text, styles.ticketNumber]}>Nr. bilet: {data.ticket_codes}</Text>
-					<Text style={[styles.text, styles.title]} numberOfLines={3} ellipsizeMode="tail">
+					<Text style={[styles.text, styles.title]} numberOfLines={2} ellipsizeMode="tail">
 						{data.event_title}
 					</Text>
-					<Text style={[styles.text, styles.buyDate]}>
-						{formatDate(data.buy_date.trim().split(/\s+/)[0], "numeric")}{" "}
-						{data.buy_date.trim().split(/\s+/)[1]}
-					</Text>
 				</View>
+				<Text style={[styles.text, styles.buyDate]}>
+					{formatDate(data.buy_date.trim().split(/\s+/)[0], "numeric")}{" "}
+					{data.buy_date.trim().split(/\s+/)[1]}
+				</Text>
 				<View style={styles.middle}>
 					<QRCodeModalButton style={styles.qrCode} variant="2" id={data.ticket_codes} />
 				</View>
@@ -104,6 +104,7 @@ const getStyles = (variant) => {
 	if (variant == "2")
 		return StyleSheet.create({
 			container: {
+				position: "relative",
 				backgroundColor: "#363736",
 				borderLeftWidth: 15,
 				borderLeftColor: Colors.primary,
@@ -117,15 +118,18 @@ const getStyles = (variant) => {
 
 			left: {
 				gap: 12,
-				width: "60%",
 				padding: 16,
 				paddingRight: 0,
-				justifyContent: "space-between",
+				justifyContent: "center",
 				flexShrink: 1,
 			},
 
 			ticketNumber: {
 				fontFamily: "Poppins-SemiBold",
+				position: "absolute",
+				top: 15,
+				left: 15,
+				zIndex: 999,
 			},
 
 			title: {
@@ -136,15 +140,19 @@ const getStyles = (variant) => {
 
 			buyDate: {
 				fontFamily: "Poppins-SemiBold",
+				position: "absolute",
+				bottom: 15,
+				left: 15,
 			},
 
 			middle: {
 				justifyContent: "center",
 				alignItems: "center",
+				alignSelf: "center",
 			},
 
 			qrCode: {
-				marginRight: 15,
+				marginInline: 15,
 			},
 
 			right: {

@@ -112,7 +112,7 @@ const getStyles = (theme, variant) => {
 
 			subtitle: {
 				fontSize: 13.8,
-				color: Colors.secondary,
+				color: "#858585",
 				fontWeight: 500,
 				marginLeft: 2,
 				marginBottom: 5,
@@ -155,7 +155,7 @@ const getStyles = (theme, variant) => {
 			paddingBottom: 13,
 			textAlign: "center",
 			position: "relative",
-			top: 1,
+			top: 1.5,
 			left: 11,
 			minWidth: 70,
 			alignSelf: "flex-start",

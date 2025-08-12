@@ -17,11 +17,8 @@ import QRCodeModalButton from "./QRCodeModalButton";
 import Button from "./Button";
 import SeeMoreFlatList from "@/components/SeeMoreFlatList";
 
-const ROW_OPEN_HEIGHT = 300;
-
 const OrderHistoryList = ({ orders }) => {
-	// { id: number|string, close: () => void }
-	const openItemRef = useRef(null);
+	const openItemRef = useRef(null); // { id: number|string, close: () => void }
 
 	const sortedOrders = useMemo(() => {
 		return [...orders].sort((a, b) => new Date(b.buy_date) - new Date(a.buy_date));
@@ -61,8 +58,14 @@ const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 	const contentHeight = useSharedValue(0);
 	const contentOpacity = useSharedValue(0);
 
+	const animatedContentStyle = useAnimatedStyle(() => ({
+		maxHeight: contentHeight.value,
+		opacity: contentOpacity.value,
+		overflow: "hidden",
+	}));
+
 	const open = useCallback(() => {
-		contentHeight.value = withTiming(ROW_OPEN_HEIGHT, {
+		contentHeight.value = withTiming(300, {
 			duration: 300,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
@@ -97,12 +100,6 @@ const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 		onRequestOpen?.(order.id_order, { close });
 		open();
 	}, [close, open, onRequestOpen, order.id_order]);
-
-	const animatedContentStyle = useAnimatedStyle(() => ({
-		maxHeight: contentHeight.value,
-		opacity: contentOpacity.value,
-		overflow: "hidden",
-	}));
 
 	return (
 		<View style={styles.itemContainer}>
