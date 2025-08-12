@@ -18,25 +18,27 @@ import Button from "./Button";
 import SeeMoreFlatList from "@/components/SeeMoreFlatList";
 
 const OrderHistoryList = ({ orders }) => {
-	const [expandedOrderId, setExpandedOrderId] = useState(null);
+	/* const [expandedOrderId, setExpandedOrderId] = useState(null); */
 
 	const newlyAddedOrders = useMemo(() => {
 		return [...orders].sort((a, b) => new Date(b.buy_date) - new Date(a.buy_date));
 	}, [orders]);
 
-	const toggleOrder = (id) => {
+	/* 	const toggleOrder = (id) => {
 		setExpandedOrderId((prevId) => (prevId === id ? null : id));
-	};
+	}; */
 
 	const renderItem = React.useCallback(
 		({ item }) => (
 			<AccordionItem
 				order={item}
-				isExpanded={expandedOrderId === item.id_order}
-				onToggle={() => toggleOrder(item.id_order)}
+				/* isExpanded={expandedOrderId === item.id_order} */
+				/* onToggle={() => toggleOrder(item.id_order)} */
 			/>
 		),
-		[expandedOrderId]
+		[
+			/* expandedOrderId */
+		]
 	);
 
 	return (
@@ -51,34 +53,34 @@ const OrderHistoryList = ({ orders }) => {
 };
 
 const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
+	const [expanded, setExpanded] = useState(false);
+	const contentHeight = useSharedValue(0);
+	const contentOpacity = useSharedValue(0);
 	const navigation = useNavigation();
-	const height = useSharedValue(isExpanded ? 300 : 0);
-	const opacity = useSharedValue(isExpanded ? 1 : 0);
 
-	React.useEffect(() => {
-		height.value = withTiming(isExpanded ? 300 : 0, {
+	const toggleExpand = () => {
+		contentHeight.value = withTiming(expanded ? 0 : 300, {
 			duration: 300,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
 		});
-
-		opacity.value = withTiming(isExpanded ? 1 : 0, {
+		contentOpacity.value = withTiming(expanded ? 0 : 1, {
 			duration: 250,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
 		});
-	}, [isExpanded]);
+		setExpanded(!expanded);
+	};
 
-	const animatedStyle = useAnimatedStyle(() => ({
-		maxHeight: height.value,
-		opacity: opacity.value,
+	const animatedContentStyle = useAnimatedStyle(() => ({
+		maxHeight: contentHeight.value,
+		opacity: contentOpacity.value,
 		overflow: "hidden",
-		willChange: "transform",
 	}));
 
 	return (
 		<View style={styles.itemContainer}>
-			<TouchableOpacity style={styles.header} onPress={onToggle}>
+			<TouchableOpacity style={styles.header} onPress={toggleExpand}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>
 					Achizitionat in {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")} la{" "}
@@ -86,7 +88,7 @@ const AccordionItem = React.memo(({ order, isExpanded, onToggle }) => {
 				</Text>
 			</TouchableOpacity>
 
-			<Animated.View style={[styles.animatedContent, animatedStyle]}>
+			<Animated.View style={[styles.animatedContent, animatedContentStyle]}>
 				<View style={styles.innerContent}>
 					<View style={{ gap: 8, marginBottom: 8 }}>
 						<Text style={styles.innerContent_text}>
