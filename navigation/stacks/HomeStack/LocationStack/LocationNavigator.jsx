@@ -14,7 +14,11 @@ const LocationNavigator = () => (
 			component={LocationScreen}
 			options={{ headerShown: false }}
 		/>
-		<Stack.Screen name="GalleryScreen" component={GalleryScreen}></Stack.Screen>
+		<Stack.Screen
+			name="GalleryScreen"
+			component={GalleryScreen}
+			options={{ headerTitle: "Galerie" }}
+		></Stack.Screen>
 	</Stack.Navigator>
 );
 
