@@ -29,7 +29,6 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				rooms={roomsWithSeats[1][129].rooms}
 				selectRoom={true}
 				field_path={locationFieldPath}
-				height="100%"
 				style={{ marginTop: 60 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
