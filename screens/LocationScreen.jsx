@@ -9,6 +9,7 @@ import {
 	FlatList,
 	ActivityIndicator,
 	StatusBar,
+	Pressable,
 } from "react-native";
 import { Colors } from "@/constants";
 import { images } from "@/assets/images";
@@ -112,7 +113,10 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.photoGallery}>
 						<Title style={[styles.title]}>Galerie foto</Title>
-						<ImageGallery images={currentLocation.galleryImages} />
+						<ImageGallery
+							images={currentLocation.galleryImages}
+							onPressImage={() => navigation.navigate("GalleryScreen")}
+						/>
 					</View>
 				</View>
 			</ScrollView>

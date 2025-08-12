@@ -9,11 +9,7 @@ const Stack = createStackNavigator();
 const TicketsNavigator = () => (
 	<Stack.Navigator>
 		<Stack.Screen name="TicketsScreen" component={TicketsScreen} options={{ headerShown: false }} />
-		<Stack.Screen
-			name="OrderedTicketsScreen"
-			component={OrderedTicketsScreen}
-			options={{ headerShown: false }}
-		/>
+		<Stack.Screen name="OrderedTicketsScreen" component={OrderedTicketsScreen} />
 	</Stack.Navigator>
 );
 

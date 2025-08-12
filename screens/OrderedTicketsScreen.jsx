@@ -13,7 +13,7 @@ const OrderedTicketsScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header variant="2" arrowColor="black" style={{ position: "relative" }} />
+			{/* <Header variant="2" arrowColor="black" style={{ position: "relative" }} /> */}
 			<FlatList
 				data={tickets}
 				renderItem={({ item: ticket }) => <Ticket data={{ ...ticket, event_title }} variant="2" />}
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	list: {},
+	list: {
+		marginTop: 10,
+	},
 
 	contentContainerList: {
 		padding: 16,

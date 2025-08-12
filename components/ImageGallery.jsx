@@ -13,7 +13,7 @@ import {
 const { width } = Dimensions.get("window");
 const IMAGE_SIZE = width / 2 - 21.5;
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onPressImage }) => {
 	if (!images || images.length === 0) {
 		return (
 			<View style={styles.emptyState}>
@@ -27,7 +27,7 @@ const ImageGallery = ({ images }) => {
 			<TouchableOpacity
 				style={styles.imageContainer}
 				onPress={() => {
-					// Navigate or open modal
+					onPressImage?.();
 				}}
 				activeOpacity={0.8}
 			>
