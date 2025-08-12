@@ -63,7 +63,7 @@ const OrderSummary = ({ formRef }) => {
 			</View>
 			<View style={styles.footer}>
 				<View style={styles.footer}>
-					<Text style={{ fontSize: 14.5, lineHeight: 18.5 }}>
+					<Text style={{ fontSize: 14.5, lineHeight: 18.5, paddingLeft: 3 }}>
 						Datele dumneavoastră personale vor fi folosite pentru a vă procesa comanda, pentru a vă
 						sprijini experiența pe această aplicație și în alte scopuri descrise în
 						<Text style={{ fontWeight: "bold", color: "#23527c" }} onPress={() => {}}>
