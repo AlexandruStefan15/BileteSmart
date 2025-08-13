@@ -81,7 +81,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							rooms={rooms}
 							field_path={locationFieldPath}
 							read_only={true}
-							height={SCREEN_HEIGHT * 0.39 - subtitleHeight} //old value:260
+							height={330 - subtitleHeight} //old value:260
 						/>
 						<View>
 							{rooms.find((room) => room.free_seats > 0) ? (
@@ -104,9 +104,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							) : (
 								<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
 							)}
-							{/* <Text style={{ color: "white", textAlign: "center", marginTop: 10 }}>
-								scr height:{SCREEN_HEIGHT}, scr width:{SCREEN_WIDTH}
-							</Text> */}
 						</View>
 					</View>
 				</View>
@@ -123,9 +120,8 @@ const getStyles = () =>
 		},
 
 		banner: {
-			marginTop: -15,
 			paddingBlock: 30,
-			paddingTop: 68,
+			paddingTop: 52,
 			paddingInline: 20,
 			alignItems: "center",
 			gap: 20,
