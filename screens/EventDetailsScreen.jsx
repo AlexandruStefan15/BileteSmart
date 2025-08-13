@@ -1,113 +1,134 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
 	StyleSheet,
 	View,
 	SafeAreaView,
-	ScrollView,
 	Text,
 	Image,
 	StatusBar,
-	Dimensions,
+	ScrollView,
+	useWindowDimensions,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { eventsByLocation } from "@/data/events";
-import { images } from "@/assets/images";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-//store
+// store
 import { useSelectedSeats } from "@/store/store";
 
-//utils
+// utils
 import { formatRomanianDate } from "@/utils/helpers";
 
-//components
+// components
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import Button from "@/components/Button";
 
-//data
-import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
+// data
+import roomsWithSeats from "@/data/roomsWithSeats.json";
 
-const SCREEN_HEIGHT = Dimensions.get("window").height;
-const SCREEN_WIDTH = Dimensions.get("window").width;
+const MIN_CARD = 260; // map's minimum workable height
 
 const EventDetailsScreen = ({ navigation, route }) => {
-	const [titleHeight, setTitleHeight] = useState(0);
-	const [subtitleHeight, setSubtitleHeight] = useState(0);
-	const { locationId, event, locationFieldPath } = route.params;
-	/* const rooms = roomsWithSeats[locationId][event.id_event].rooms; */
-	const rooms = roomsWithSeats[1][129].rooms;
+	const [cardH, setCardH] = useState(MIN_CARD);
+	const [cardW, setCardW] = useState(MIN_CARD);
+	const insets = useSafeAreaInsets();
+	const { height: screenH } = useWindowDimensions();
+
 	const { resetSeats } = useSelectedSeats();
-	const styles = getStyles();
+	const { locationId, event, locationFieldPath } = route.params;
 
-	const handleTitleLayout = (event) => {
-		const { height } = event.nativeEvent.layout;
-		setTitleHeight(height);
-	};
-
-	const handleSubtitleLayout = (event) => {
-		const { height } = event.nativeEvent.layout;
-		setSubtitleHeight(height);
-	};
+	// const rooms = roomsWithSeats[locationId][event.id_event].rooms;
+	const rooms = roomsWithSeats[1][129].rooms;
 
 	useFocusEffect(
 		React.useCallback(() => {
 			resetSeats();
 			return () => {};
-		}, [])
+		}, [resetSeats])
+	);
+
+	const onCardLayout = useCallback((e) => {
+		const h = Math.max(MIN_CARD, Math.floor(e.nativeEvent.layout.height));
+		const w = Math.floor(e.nativeEvent.layout.width);
+		setCardH(h);
+		setCardW(w - 100);
+	}, []);
+
+	const styles = getStyles();
+
+	const handleSelectSector = () =>
+		navigation.navigate("RoomsPlanStack", {
+			screen: "RoomsPlanScreen",
+			params: {
+				eventId: event.id_event,
+				locationId,
+				locationFieldPath,
+			},
+		});
+
+	// Tiny screens fallback: enable scrolling only if the card collapsed to MIN_CARD
+	const canScroll = cardH === MIN_CARD;
+
+	const Body = (
+		<>
+			<Header variant="2" style={{ marginTop: 3 }} />
+
+			{/* Banner takes its natural height */}
+			<View style={styles.banner}>
+				<Text style={styles.banner_title}>{event.title}</Text>
+				<Text style={styles.banner_subtitle}>{event.subtitle}</Text>
+				<Text style={styles.banner_date}>{formatRomanianDate(event.date)}</Text>
+
+				<View style={styles.banner_footer}>
+					<Image style={styles.banner_footer_image} source={event.logo_images[0]} />
+					<Text style={styles.banner_footer_time}>17:00 (CET)</Text>
+					<Image style={styles.banner_footer_image} source={event.logo_images[1]} />
+				</View>
+			</View>
+
+			{/* Body fills the rest of the screen */}
+			<View style={styles.body}>
+				{/* Card expands to all remaining vertical space */}
+				<View style={styles.card} onLayout={onCardLayout}>
+					{/* Pass the *actual* rendered height to the SVG plan */}
+					<SvgHallPlan
+						rooms={rooms}
+						field_path={locationFieldPath}
+						width={cardW}
+						height={cardH}
+						read_only
+					/>
+				</View>
+
+				{/* Button sits below the card, auto height */}
+				<View style={styles.actions}>
+					{rooms.find((r) => r.free_seats > 0) ? (
+						<Button
+							styleText={styles.svgWrapper_button_text}
+							style={styles.svgWrapper_button}
+							onPress={handleSelectSector}
+						>
+							Selecteaza sectorul
+						</Button>
+					) : (
+						<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
+					)}
+				</View>
+			</View>
+		</>
 	);
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<StatusBar barStyle={"light-content"} backgroundColor={"#242424"} />
-			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
-				<Header variant="2" style={{ marginTop: 3 }} />
-				<View style={styles.banner}>
-					<Text style={styles.banner_title} onLayout={handleTitleLayout}>
-						{event.title}
-					</Text>
-					<Text style={styles.banner_subtitle} onLayout={handleSubtitleLayout}>
-						{event.subtitle}
-					</Text>
-					<Text style={styles.banner_date}>{formatRomanianDate(event.date)}</Text>
-					<View style={styles.banner_footer}>
-						<Image style={styles.banner_footer_image} source={event.logo_images[0]} />
-						<Text style={styles.banner_footer_time}>17:00 (CET)</Text>
-						<Image style={styles.banner_footer_image} source={event.logo_images[1]} />
-					</View>
-				</View>
-				<View>
-					<View style={styles.svgWrapper}>
-						<SvgHallPlan
-							rooms={rooms}
-							field_path={locationFieldPath}
-							read_only={true}
-							height={330 - subtitleHeight} //old value:260
-						/>
-						<View>
-							{rooms.find((room) => room.free_seats > 0) ? (
-								<Button
-									styleText={styles.svgWrapper_button_text}
-									style={styles.svgWrapper_button}
-									onPress={() =>
-										navigation.navigate("RoomsPlanStack", {
-											screen: "RoomsPlanScreen",
-											params: {
-												eventId: event.id_event,
-												locationId: locationId,
-												locationFieldPath: locationFieldPath,
-											},
-										})
-									}
-								>
-									Selecteaza sectorul
-								</Button>
-							) : (
-								<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
-							)}
-						</View>
-					</View>
-				</View>
-			</ScrollView>
+			<StatusBar barStyle="light-content" backgroundColor="#242424" />
+
+			{canScroll ? (
+				<ScrollView contentContainerStyle={{ paddingBottom: insets.bottom }} bounces={false}>
+					{Body}
+				</ScrollView>
+			) : (
+				<View style={{ flex: 1 }}>{Body}</View>
+			)}
 		</SafeAreaView>
 	);
 };
@@ -120,16 +141,16 @@ const getStyles = () =>
 		},
 
 		banner: {
-			paddingBlock: 30,
 			paddingTop: 52,
-			paddingInline: 20,
+			paddingBottom: 30,
+			paddingHorizontal: 20,
 			alignItems: "center",
 			gap: 20,
 		},
 
 		banner_title: {
 			color: "white",
-			fontWeight: 500,
+			fontWeight: "500",
 			fontSize: 15,
 			textAlign: "center",
 		},
@@ -164,20 +185,33 @@ const getStyles = () =>
 
 		banner_footer_image: {
 			width: 101,
-			aspectRatio: 1 / 1,
+			aspectRatio: 1,
 			resizeMode: "contain",
 		},
 
-		svgWrapper: {
-			overflow: "hidden",
-			marginInline: 20,
+		/** BODY = remainder of the screen */
+		body: {
+			flex: 1,
+			marginHorizontal: 20,
 			marginTop: 5,
 			marginBottom: 25,
 			gap: 14,
 		},
 
-		svgWrapper_button: {
+		/** CARD fills the remaining vertical space automatically */
+		card: {
 			flex: 1,
+			backgroundColor: "white",
+			borderRadius: 16,
+			overflow: "hidden",
+			// no fixed heights here
+		},
+
+		actions: {
+			// auto height
+		},
+
+		svgWrapper_button: {
 			borderRadius: 5,
 			width: "100%",
 		},
