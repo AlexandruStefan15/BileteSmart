@@ -189,7 +189,7 @@ const getStyles = () =>
 			resizeMode: "contain",
 		},
 
-		/** BODY = remainder of the screen */
+		/* BODY = remainder of the screen */
 		body: {
 			flex: 1,
 			marginHorizontal: 20,
@@ -198,13 +198,12 @@ const getStyles = () =>
 			gap: 14,
 		},
 
-		/** CARD fills the remaining vertical space automatically */
+		/* CARD fills the remaining vertical space automatically */
 		card: {
 			flex: 1,
 			backgroundColor: "white",
 			borderRadius: 16,
 			overflow: "hidden",
-			// no fixed heights here
 		},
 
 		actions: {
