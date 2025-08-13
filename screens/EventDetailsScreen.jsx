@@ -127,7 +127,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 					{Body}
 				</ScrollView>
 			) : (
-				<View style={{ flex: 1 }}>{Body}</View>
+				<View style={{ flex: 1, paddingBottom: 10 }}>{Body}</View>
 			)}
 		</SafeAreaView>
 	);
