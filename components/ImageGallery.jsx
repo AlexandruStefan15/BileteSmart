@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 const { width } = Dimensions.get("window");
-const IMAGE_SIZE = width / 2 - 21;
+const IMAGE_SIZE = width / 2 - 21.5;
 
 const ImageGallery = ({ images, onPressImage }) => {
 	if (!images || images.length === 0) {

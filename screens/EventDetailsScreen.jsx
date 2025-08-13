@@ -104,11 +104,11 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				<View style={styles.actions}>
 					{rooms.find((r) => r.free_seats > 0) ? (
 						<Button
-							styleText={styles.svgWrapper_button_text}
-							style={styles.svgWrapper_button}
+							style={styles.actions_button}
+							styleText={styles.actions_button_text}
 							onPress={handleSelectSector}
 						>
-							Selecteaza sectorul
+							Selectează sectorul
 						</Button>
 					) : (
 						<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>
@@ -210,14 +210,14 @@ const getStyles = () =>
 			// auto height
 		},
 
-		svgWrapper_button: {
-			borderRadius: 5,
+		actions_button: {
+			borderRadius: 6,
 			width: "100%",
 		},
 
-		svgWrapper_button_text: {
-			fontSize: 17,
-			fontWeight: "600",
+		actions_button_text: {
+			fontSize: 17.1,
+			fontWeight: "700",
 			letterSpacing: 0.5,
 		},
 

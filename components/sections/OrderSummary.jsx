@@ -39,7 +39,7 @@ const OrderSummary = ({ formRef }) => {
 								{seat.is_discounted ? "Redus" : "Intreg"}
 							</Text>
 						</View>
-						<Text style={{ fontSize: 15.5, fontWeight: "600", color: "#23527c" }}>
+						<Text style={{ fontSize: 16, fontWeight: "600", color: "#23527c" }}>
 							{seat.price} RON
 						</Text>
 					</View>
