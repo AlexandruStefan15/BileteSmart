@@ -1,10 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, FlatList, Image } from "react-native";
 
 const GalleryScreen = ({ navigation, route }) => {
+	const { images } = route.params;
+
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Text>Gallery screen</Text>
+			<FlatList
+				data={images}
+				renderItem={({ item: image }) => <Image source={{ uri: image.url }} style={styles.image} />}
+				keyExtractor={(image) => image.id.toString()}
+				style={styles.list}
+				contentContainerStyle={styles.contentContainerList}
+			/>
 		</SafeAreaView>
 	);
 };
@@ -12,8 +20,21 @@ const GalleryScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
+		backgroundColor: "#fff",
+	},
+
+	list: {
+		flex: 1,
+	},
+
+	contentContainerList: {
+		gap: 7,
+	},
+
+	image: {
+		width: "100%",
+		aspectRatio: 100 / 70,
+		resizeMode: "cover",
 	},
 });
 

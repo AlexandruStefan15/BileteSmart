@@ -115,7 +115,7 @@ const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 				<View style={styles.innerContent}>
 					<View style={{ gap: 8, marginBottom: 8 }}>
 						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>ID Order:</Text> #{order.id_order}
+							<Text style={{ fontWeight: "600" }}>ID Comanda:</Text> #{order.id_order}
 						</Text>
 						<Text style={styles.innerContent_text}>
 							<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}

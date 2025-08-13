@@ -28,7 +28,6 @@ import Header from "@/components/Header";
 import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
-import ImageCarousel from "@/components/ImageCarousel";
 import ImageGallery from "@/components/ImageGallery";
 
 const LocationScreen = ({ navigation, route }) => {
@@ -111,13 +110,19 @@ const LocationScreen = ({ navigation, route }) => {
 							</Text>
 						</View>
 					)}
-					<View style={styles.photoGallery}>
-						<Title style={[styles.title]}>Galerie foto</Title>
-						<ImageGallery
-							images={currentLocation.galleryImages}
-							onPressImage={() => navigation.navigate("GalleryScreen")}
-						/>
-					</View>
+					{currentLocation.galleryImages.length > 0 && (
+						<View style={styles.photoGallery}>
+							<Title style={[styles.title]}>Galerie foto</Title>
+							<ImageGallery
+								images={currentLocation.galleryImages}
+								onPressImage={() =>
+									navigation.navigate("GalleryScreen", {
+										images: currentLocation.galleryImages,
+									})
+								}
+							/>
+						</View>
+					)}
 				</View>
 			</ScrollView>
 		</SafeAreaView>
