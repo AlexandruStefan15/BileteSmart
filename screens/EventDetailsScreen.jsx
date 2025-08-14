@@ -26,7 +26,7 @@ import Button from "@/components/Button";
 // data
 import roomsWithSeats from "@/data/roomsWithSeats.json";
 
-const MIN_CARD = 260; // map's minimum workable height
+const MIN_CARD = 260; // minimum workable height
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const [cardH, setCardH] = useState(MIN_CARD);
@@ -66,7 +66,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			},
 		});
 
-	// Tiny screens fallback: enable scrolling only if the card collapsed to MIN_CARD
+	// small screens fallback: enable scrolling only if the card collapsed to MIN_CARD
 	const canScroll = cardH === MIN_CARD;
 
 	const Body = (
@@ -119,17 +119,18 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	);
 
 	return (
-		<SafeAreaView style={styles.screen}>
+		<>
 			<StatusBar barStyle="light-content" backgroundColor="#242424" />
-
-			{canScroll ? (
-				<ScrollView contentContainerStyle={{ paddingBottom: insets.bottom }} bounces={false}>
-					{Body}
-				</ScrollView>
-			) : (
-				<View style={{ flex: 1, paddingBottom: 10 }}>{Body}</View>
-			)}
-		</SafeAreaView>
+			<SafeAreaView style={styles.screen}>
+				{canScroll ? (
+					<ScrollView contentContainerStyle={{ paddingBottom: insets.bottom }} bounces={false}>
+						{Body}
+					</ScrollView>
+				) : (
+					<View style={{ flex: 1, paddingBottom: 5 }}>{Body}</View>
+				)}
+			</SafeAreaView>
+		</>
 	);
 };
 
@@ -207,7 +208,7 @@ const getStyles = () =>
 		},
 
 		actions: {
-			// auto height
+			flex: 0,
 		},
 
 		actions_button: {
