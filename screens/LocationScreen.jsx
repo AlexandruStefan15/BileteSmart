@@ -110,7 +110,7 @@ const LocationScreen = ({ navigation, route }) => {
 							</Text>
 						</View>
 					)}
-					{currentLocation.galleryImages.length > 0 && (
+					{currentLocation.galleryImages?.length > 0 && (
 						<View style={styles.photoGallery}>
 							<Title style={[styles.title]}>Galerie foto</Title>
 							<ImageGallery

@@ -137,7 +137,7 @@ const getStyles = (theme, variant) => {
 			position: "relative",
 			borderRadius: 10,
 			borderWidth: 1.3,
-			borderColor: "#dedede5e",
+			borderColor: "#dbdbdb5e",
 		},
 
 		title: {

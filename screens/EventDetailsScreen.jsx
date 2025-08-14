@@ -33,6 +33,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const [cardW, setCardW] = useState(MIN_CARD);
 	const insets = useSafeAreaInsets();
 	const { height: screenH } = useWindowDimensions();
+	const styles = getStyles();
 
 	const { resetSeats } = useSelectedSeats();
 	const { locationId, event, locationFieldPath } = route.params;
@@ -53,8 +54,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 		setCardH(h);
 		setCardW(w - 100);
 	}, []);
-
-	const styles = getStyles();
 
 	const handleSelectSector = () =>
 		navigation.navigate("RoomsPlanStack", {
