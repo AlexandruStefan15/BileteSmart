@@ -78,7 +78,7 @@ const LocationScreen = ({ navigation, route }) => {
 												params: {
 													locationId: currentLocation.id,
 													event: item,
-													locationFieldPath: currentLocation.field_path_d,
+													currentLocation,
 												},
 											})
 										}

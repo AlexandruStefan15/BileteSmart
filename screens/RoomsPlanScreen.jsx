@@ -13,7 +13,7 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 
 export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
-	const { locationId, eventId, locationFieldPath } = route.params;
+	const { locationId, eventId, currentLocation } = route.params;
 	const { sidebarX } = useCartSidebarStore();
 
 	return (
@@ -28,7 +28,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 			<SvgHallPlan
 				rooms={roomsWithSeats[1][129].rooms}
 				selectRoom={true}
-				field_path={locationFieldPath}
+				field={currentLocation.fieldSVG}
 				style={{ marginTop: 60 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />

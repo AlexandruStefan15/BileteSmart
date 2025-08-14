@@ -17,7 +17,7 @@ import FieldMarkerSvg from "./FieldMarkerSvg";
 const SvgHallPlan = ({
 	rooms,
 	currentRoom,
-	field_path,
+	field,
 	height = 355,
 	width = 250,
 	read_only,
@@ -89,8 +89,8 @@ const SvgHallPlan = ({
 	if (read_only) {
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
-				<Svg width={width} height={height} fill="none" viewBox="0 0 775 900">
-					<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
+				<Svg width={width} height={height} fill="none" viewBox={field.viewBox}>
+					<Path d={field.d} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 					{rooms.map((room) => (
 						<Path
 							key={room.id_room}
@@ -114,8 +114,8 @@ const SvgHallPlan = ({
 							{ flex: 1, justifyContent: "center", alignItems: "center" },
 						]}
 					>
-						<Svg width={"85%"} height={"100%"} fill="none" viewBox="0 0 775 851">
-							<Path d={field_path} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
+						<Svg width={"85%"} height={"100%"} fill="none" viewBox={field.viewBox}>
+							<Path d={field.d} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
 							{renderRoomPaths}
 						</Svg>
 					</Animated.View>

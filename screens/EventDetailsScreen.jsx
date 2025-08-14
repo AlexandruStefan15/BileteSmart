@@ -36,7 +36,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const styles = getStyles();
 
 	const { resetSeats } = useSelectedSeats();
-	const { locationId, event, locationFieldPath } = route.params;
+	const { currentLocation, locationId, event } = route.params;
 
 	// const rooms = roomsWithSeats[locationId][event.id_event].rooms;
 	const rooms = roomsWithSeats[1][129].rooms;
@@ -61,7 +61,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			params: {
 				eventId: event.id_event,
 				locationId,
-				locationFieldPath,
+				currentLocation,
 			},
 		});
 
@@ -92,7 +92,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 					{/* Pass the *actual* rendered height to the SVG plan */}
 					<SvgHallPlan
 						rooms={rooms}
-						field_path={locationFieldPath}
+						field={currentLocation.fieldSVG}
 						width={cardW}
 						height={cardH}
 						read_only
