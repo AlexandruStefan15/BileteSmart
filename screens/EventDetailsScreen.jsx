@@ -39,7 +39,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const { currentLocation, locationId, event } = route.params;
 
 	// const rooms = roomsWithSeats[locationId][event.id_event].rooms;
-	const rooms = roomsWithSeats[1][129].rooms;
+	const rooms = roomsWithSeats[locationId][event.id_event].rooms;
 
 	useFocusEffect(
 		React.useCallback(() => {
