@@ -85,7 +85,7 @@ const EventsScreen = ({ navigation }) => {
 														params: {
 															locationId: location.id,
 															event: event,
-															locationFieldPath: location.field_path_d,
+															currentLocation: location,
 														},
 													})
 												}
