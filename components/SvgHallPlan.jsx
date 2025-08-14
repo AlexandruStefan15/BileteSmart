@@ -90,7 +90,12 @@ const SvgHallPlan = ({
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
 				<Svg width={field.width || width} height={height} fill="none" viewBox={field.viewBox}>
-					<Path d={field.d} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
+					<Path
+						d={field.d}
+						stroke="black"
+						strokeWidth={field.strokeWidth || 3}
+						strokeMiterlimit={10}
+					/>
 					{rooms.map((room) => (
 						<Path
 							key={room.id_room}
@@ -115,7 +120,12 @@ const SvgHallPlan = ({
 						]}
 					>
 						<Svg width={"85%"} height={"100%"} fill="none" viewBox={field.viewBox}>
-							<Path d={field.d} stroke="black" strokeWidth={3} strokeMiterlimit={10} />
+							<Path
+								d={field.d}
+								stroke="black"
+								strokeWidth={field.strokeWidth || 3}
+								strokeMiterlimit={10}
+							/>
 							{renderRoomPaths}
 						</Svg>
 					</Animated.View>
