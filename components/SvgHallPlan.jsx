@@ -89,7 +89,12 @@ const SvgHallPlan = ({
 	if (read_only) {
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
-				<Svg width={field.width || width} height={height} fill="none" viewBox={field.viewBox}>
+				<Svg
+					width={width + (field.additionalWidth ? field.additionalWidth : 0)}
+					height={height}
+					fill="none"
+					viewBox={field.viewBox}
+				>
 					<Path
 						d={field.d}
 						stroke="black"
