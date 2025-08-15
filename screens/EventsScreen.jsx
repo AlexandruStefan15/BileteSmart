@@ -9,23 +9,21 @@ import EventCard from "@/components/EventCard";
 
 //data
 import { locations } from "@/data/locations"; // to be fetched
-
-//hooks
-import { useEventsByLocation } from "@/hooks/useEventsByLocation";
+import { eventsByLocation } from "@/data/events"; // to be fetched
 
 //store
 import { useDrawerStore } from "@/store/store";
 
 const EventsScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = React.useState(true);
-	const { eventsGrouped } = useEventsByLocation();
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
-	const hasNoEvents = Object.values(eventsGrouped).every(
+	const hasNoEvents = Object.values(eventsByLocation).every(
 		(eventsArray) => Array.isArray(eventsArray) && eventsArray.length === 0
 	);
 
 	React.useEffect(() => {
+		//simulate fetch
 		const timeout = setTimeout(() => {
 			setIsLoading(false);
 		}, 1000);
@@ -67,7 +65,7 @@ const EventsScreen = ({ navigation }) => {
 			<ScrollView>
 				<View style={styles.container}>
 					{locations.map((location) => {
-						const events = eventsGrouped[location.id] || [];
+						const events = eventsByLocation[location.id] || [];
 						if (events.length == 0) {
 							return null;
 						}
