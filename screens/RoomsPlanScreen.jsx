@@ -26,7 +26,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				displayBadge={props.displayBadge}
 			/>
 			<SvgHallPlan
-				rooms={roomsWithSeats[1][129].rooms}
+				rooms={roomsWithSeats[locationId][eventId].rooms}
 				selectRoom={true}
 				field={currentLocation.fieldSVG}
 				style={{ marginTop: 60 }}
