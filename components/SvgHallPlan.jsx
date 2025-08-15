@@ -90,7 +90,7 @@ const SvgHallPlan = ({
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
 				<Svg
-					width={width + (field.additionalWidth ? field.additionalWidth : 0)}
+					width={width + (field.additionalWidth || 0)}
 					height={height}
 					fill="none"
 					viewBox={field.viewBox}
