@@ -12,7 +12,7 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 import { useSelectedSeats, useDrawerStore, useCartSidebarStore } from "@/store/store";
 
 //icons
-import Ionicons from "react-native-vector-icons/Ionicons";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 
 const Header = ({
@@ -58,7 +58,7 @@ const Header = ({
 						style={styles.burgerMenu}
 					>
 						<View style={{ padding: 5, right: -1 }}>
-							<Ionicons name="cart-outline" size={28} color={"white"} />
+							<IoniconsIcon name="cart-outline" size={28} color={"white"} />
 						</View>
 						<Animated.View style={[styles.badge, badgeStyle]} />
 					</TouchableOpacity>
