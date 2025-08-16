@@ -3,16 +3,15 @@ import { View, StatusBar, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from "./BottomTabNavigator";
-import { useTheme } from "../hooks/useTheme";
 import { navigationRef } from "./navigationRef";
 
+//hooks
+import { useTheme } from "../hooks/useTheme";
 //stacks
 import EventDetailsNavigator from "./stacks/EventsStack/EventDetailsStack/EventDetailsNavigator";
-
 //screens
 import ContactScreen from "@/screens/ContactScreen";
 import TicketingScreen from "@/screens/TicketingScreen";
-
 //components
 import CustomDrawer from "@/components/CustomDrawer";
 
