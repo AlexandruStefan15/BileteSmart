@@ -78,7 +78,7 @@ const SvgHallPlan = ({
 					!room.read_only &&
 					navigation.navigate("SeatsPlanStack", {
 						screen: "SeatsPlanScreen",
-						params: { roomId: room.id_room },
+						params: { roomId: room.id_room, rooms },
 					})
 				}
 				onResponderMove={() => {}}

@@ -13,9 +13,8 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 
 export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
-	const { roomId } = route.params;
-	const currentRoom = roomsWithSeats[1][129].rooms.find((room) => room.id_room == roomId);
-	const currentRoom_fieldPosition = currentRoom.field_position;
+	const { roomId, rooms } = route.params;
+	const currentRoom = rooms.find((room) => room.id_room == roomId);
 	const { sidebarX } = useCartSidebarStore();
 
 	return (
@@ -31,7 +30,7 @@ export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 			<SvgHallPlan
 				currentRoom={currentRoom}
 				selectSeats={true}
-				fieldPosition={currentRoom_fieldPosition}
+				fieldPosition={currentRoom.field_position}
 				style={{ marginTop: 45 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
