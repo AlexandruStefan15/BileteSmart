@@ -43,8 +43,8 @@ const OrderHistoryList = ({ orders }) => {
 			data={sortedOrders}
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id_order.toString()}
-			initialCount={8}
-			step={8}
+			initialCount={10}
+			step={10}
 			windowSize={7}
 		/>
 	);
