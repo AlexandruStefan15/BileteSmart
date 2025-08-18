@@ -7,14 +7,14 @@ function extractPathsFromSVG(svgString) {
 	const paths = dom.window.document.querySelectorAll("path");
 
 	const seatsArray = Array.from(paths).map((path, index) => ({
-		id_seat: (40857 + index).toString(),
-		id_room: 4,
+		id_seat: (22857 + index).toString(),
+		id_room: 7,
 		path_d: path.getAttribute("d"),
 		price: 25,
 		row_no: "0",
 		col_no: "0",
 		seat_no: (index + 1).toString(),
-		room_name: "A4",
+		room_name: "B2",
 		is_valid: "1",
 		is_booking_blocked: "0",
 		is_for_child: "0",
