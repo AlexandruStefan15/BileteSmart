@@ -26,11 +26,12 @@ import Button from "@/components/Button";
 // data
 import roomsWithSeats from "@/data/roomsWithSeats.json";
 
-const MIN_CARD = 260; // minimum workable height
+const MIN_CARD = 280; // minimum workable height
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const [cardH, setCardH] = useState(MIN_CARD);
 	const [cardW, setCardW] = useState(MIN_CARD);
+	const [canScroll, setCanScroll] = useState(false);
 	const insets = useSafeAreaInsets();
 	const { height: screenH } = useWindowDimensions();
 	const styles = getStyles();
@@ -49,10 +50,14 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	);
 
 	const onCardLayout = useCallback((e) => {
-		const h = Math.max(MIN_CARD, Math.floor(e.nativeEvent.layout.height));
+		const h = Math.floor(e.nativeEvent.layout.height);
 		const w = Math.floor(e.nativeEvent.layout.width);
-		setCardH(h);
 		setCardW(w - 100);
+
+		if (h < MIN_CARD) {
+			setCardH(MIN_CARD);
+			setCanScroll(true);
+		} else setCardH(h);
 	}, []);
 
 	const handleSelectSector = () =>
@@ -64,9 +69,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				currentLocation,
 			},
 		});
-
-	// small screens fallback: enable scrolling only if the card collapsed to MIN_CARD
-	const canScroll = cardH === MIN_CARD;
 
 	const Body = (
 		<>
@@ -88,13 +90,13 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			{/* Body fills the rest of the screen */}
 			<View style={styles.body}>
 				{/* Card expands to all remaining vertical space */}
-				<View style={styles.card} onLayout={onCardLayout}>
+				<View style={[styles.card, { height: cardH }]} onLayout={onCardLayout}>
 					{/* Pass the *actual* rendered height to the SVG plan */}
 					<SvgHallPlan
 						rooms={rooms}
 						field={currentLocation.fieldSVG}
 						width={cardW}
-						height={cardH}
+						height={"100%"}
 						read_only
 					/>
 				</View>
@@ -122,7 +124,10 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			<StatusBar barStyle="light-content" backgroundColor="#242424" />
 			<SafeAreaView style={styles.screen}>
 				{canScroll ? (
-					<ScrollView contentContainerStyle={{ paddingBottom: insets.bottom }} bounces={false}>
+					<ScrollView
+						contentContainerStyle={{ paddingBottom: insets.bottom, flexGrow: 1 }}
+						bounces={false}
+					>
 						{Body}
 					</ScrollView>
 				) : (

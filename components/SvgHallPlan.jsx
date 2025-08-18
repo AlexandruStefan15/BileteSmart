@@ -18,7 +18,7 @@ const SvgHallPlan = ({
 	rooms,
 	currentRoom,
 	field,
-	height = 355,
+	height,
 	width = 250,
 	read_only,
 	selectRoom,
