@@ -33,7 +33,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const [cardW, setCardW] = useState(MIN_CARD);
 	const [canScroll, setCanScroll] = useState(false);
 	const insets = useSafeAreaInsets();
-	const { height: screenH } = useWindowDimensions();
 	const styles = getStyles();
 
 	const { resetSeats } = useSelectedSeats();
@@ -60,7 +59,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 		} else setCardH(h);
 	}, []);
 
-	const handleSelectSector = () =>
+	const handleSelectSector = () => {
 		navigation.navigate("RoomsPlanStack", {
 			screen: "RoomsPlanScreen",
 			params: {
@@ -69,6 +68,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				currentLocation,
 			},
 		});
+	};
 
 	const Body = (
 		<>
