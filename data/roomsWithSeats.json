@@ -13593,6 +13593,7 @@
 					"busy": 0,
 					"free_seats": 212,
 					"read_only": 0,
+					"field_position": "bottom",
 					"svgViewBox": "0 0 2225 1600",
 					"svgHeight": "270",
 
