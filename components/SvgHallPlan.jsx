@@ -13,10 +13,11 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 
 // components
 import FieldMarkerSvg from "./FieldMarkerSvg";
+import SvgGroup, { svgGroupIcons } from "./SvgGroup";
 
 const SvgHallPlan = ({
 	rooms,
-	currentRoom,
+	currentRoom, // only for SeatsPlanScreen
 	field,
 	height,
 	width,
@@ -105,9 +106,12 @@ const SvgHallPlan = ({
 						<Path
 							key={room.id_room}
 							d={room.path_d}
-							fill={room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF"}
+							fill={
+								room.fillColor || (room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF")
+							}
 						/>
 					))}
+					{rooms.find((room) => room.parkingCarIcon) && <SvgGroup {...svgGroupIcons.parkingCar} />}
 				</Svg>
 			</View>
 		);
