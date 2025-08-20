@@ -117,19 +117,20 @@ const getStyles = (theme, variant) => {
 
 			subtitle_item: {
 				flexDirection: "row",
-				gap: 2.2,
+				gap: 2.5,
+				alignItems: "center",
 			},
 
 			subtitleIcon_date: {
 				width: 17,
 				height: 17,
-				top: -0.7,
+				top: -2.8,
 			},
 
 			subtitleIcon_clock: {
 				width: 17.1,
 				height: 17.1,
-				top: -0.3,
+				top: -2.5,
 			},
 
 			subtitle_text: {
