@@ -42,7 +42,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				</Text>
 				<View style={styles.subtitle}>
 					<View style={styles.subtitle_item}>
-						<Image style={styles.subtitleIcon_date} source={images.schedule} />
+						<Image style={styles.subtitleIcon_date} source={images.calendar} />
 						<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
 					</View>
 					<View style={styles.subtitle_item}>
@@ -110,20 +110,20 @@ const getStyles = (theme, variant) => {
 			subtitle: {
 				flexDirection: "row",
 				alignItems: "center",
-				gap: 10,
+				gap: 11,
 				marginLeft: 2,
+				marginTop: 0.3,
 			},
 
 			subtitle_item: {
 				flexDirection: "row",
-
-				gap: 2,
+				gap: 2.2,
 			},
 
 			subtitleIcon_date: {
-				width: 19,
-				height: 19,
-				top: -0.3,
+				width: 17,
+				height: 17,
+				top: -0.7,
 			},
 
 			subtitleIcon_clock: {

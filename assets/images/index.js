@@ -19,7 +19,7 @@ const images = {
 	litigii: require("./litigii.png"),
 	metopia: require("./metopia.png"),
 	shoppingCart: require("./shoppingCart.png"),
-	schedule: require("./schedule.png"),
+	calendar: require("./calendar.png"),
 	romaniaFlag: require("./romaniaFlag.png"),
 	croatiaFlag: require("./croatiaFlag.png"),
 	clock: require("./clock.png"),
