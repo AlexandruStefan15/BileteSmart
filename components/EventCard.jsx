@@ -103,7 +103,7 @@ const getStyles = (theme, variant) => {
 				fontSize: 14.5,
 				fontWeight: 600,
 				marginLeft: 2,
-				marginTop: 5,
+				marginTop: 5.2,
 				fontFamily: "Poppins-SemiBold",
 			},
 
@@ -112,7 +112,7 @@ const getStyles = (theme, variant) => {
 				alignItems: "center",
 				gap: 11,
 				marginLeft: 2,
-				marginTop: 0.3,
+				marginTop: 0.45,
 			},
 
 			subtitle_item: {
@@ -124,13 +124,13 @@ const getStyles = (theme, variant) => {
 			subtitleIcon_date: {
 				width: 17,
 				height: 17,
-				top: -2.8,
+				top: -3.2,
 			},
 
 			subtitleIcon_clock: {
 				width: 17.1,
 				height: 17.1,
-				top: -2.5,
+				top: -2.7,
 			},
 
 			subtitle_text: {
