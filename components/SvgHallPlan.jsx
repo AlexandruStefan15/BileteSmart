@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { StyleSheet, View, Text, Button, Dimensions } from "react-native";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Path, G } from "react-native-svg";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -103,15 +103,17 @@ const SvgHallPlan = ({
 						strokeMiterlimit={10}
 					/>
 					{rooms.map((room) => (
-						<Path
-							key={room.id_room}
-							d={room.path_d}
-							fill={
-								room.fillColor || (room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF")
-							}
-						/>
+						<G key={room.id_room}>
+							<Path
+								key={room.id_room}
+								d={room.path_d}
+								fill={
+									room.fillColor || (room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF")
+								}
+							/>
+							{room.parkingCarIcon && <SvgGroup {...svgGroupIcons.parkingCar} />}
+						</G>
 					))}
-					{rooms.find((room) => room.parkingCarIcon) && <SvgGroup {...svgGroupIcons.parkingCar} />}
 				</Svg>
 			</View>
 		);

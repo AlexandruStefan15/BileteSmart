@@ -230,7 +230,8 @@ const getStyles = () =>
 			color: "red",
 			fontSize: 16,
 			textAlign: "center",
-			marginTop: 10,
+			marginTop: 12,
+			marginBottom: 1,
 		},
 	});
 
