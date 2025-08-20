@@ -40,12 +40,15 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
 					{eventData.title}
 				</Text>
-				<View style={styles.subtitleWrapper}>
-					<Image style={styles.subtitleIcon} source={images.schedule}></Image>
-					<Text style={styles.subtitle}>
-						{formatDate(eventData.date, "numeric")}{" "}
-						<Image style={styles.subtitleIcon} source={images.clock}></Image> {eventData.time}
-					</Text>
+				<View style={styles.subtitle}>
+					<View style={styles.subtitle_item}>
+						<Image style={styles.subtitleIcon_date} source={images.schedule} />
+						<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
+					</View>
+					<View style={styles.subtitle_item}>
+						<Image style={styles.subtitleIcon_clock} source={images.clock} />
+						<Text style={styles.subtitle_text}>{eventData.time}</Text>
+					</View>
 				</View>
 			</View>
 		);
@@ -104,29 +107,41 @@ const getStyles = (theme, variant) => {
 				fontFamily: "Poppins-SemiBold",
 			},
 
-			subtitleWrapper: {
+			subtitle: {
 				flexDirection: "row",
 				alignItems: "center",
-				gap: 4,
+				gap: 10,
 				marginLeft: 2,
 			},
 
-			subtitle: {
+			subtitle_item: {
+				flexDirection: "row",
+
+				gap: 2,
+			},
+
+			subtitleIcon_date: {
+				width: 19,
+				height: 19,
+				top: -0.3,
+			},
+
+			subtitleIcon_clock: {
+				width: 17.1,
+				height: 17.1,
+				top: -0.3,
+			},
+
+			subtitle_text: {
 				fontSize: 13.8,
 				color: "#858585",
 				fontWeight: 500,
 				marginLeft: 2,
 				marginBottom: 5,
-				lineHeight: 16.5,
+				lineHeight: 17,
 				textAlign: "left",
 				fontStyle: "normal",
 				letterSpacing: 0.2,
-			},
-
-			subtitleIcon: {
-				width: 19.7,
-				height: 19.7,
-				top: -2.3,
 			},
 		});
 
