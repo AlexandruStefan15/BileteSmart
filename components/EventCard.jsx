@@ -43,7 +43,8 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				<View style={styles.subtitleWrapper}>
 					<Image style={styles.subtitleIcon} source={images.schedule}></Image>
 					<Text style={styles.subtitle}>
-						{formatDate(eventData.date, "numeric")} | {eventData.time}
+						{formatDate(eventData.date, "numeric")}{" "}
+						<Image style={styles.subtitleIcon} source={images.clock}></Image> {eventData.time}
 					</Text>
 				</View>
 			</View>

@@ -22,6 +22,7 @@ const images = {
 	schedule: require("./schedule.png"),
 	romaniaFlag: require("./romaniaFlag.png"),
 	croatiaFlag: require("./croatiaFlag.png"),
+	clock: require("./clock.png"),
 };
 
 export { images };
