@@ -123,9 +123,10 @@ const getStyles = (theme, variant) => {
 			},
 
 			subtitleIcon_date: {
-				width: 19.5,
-				height: 19.5,
-				marginTop: -6,
+				width: 23,
+				height: 23,
+				marginTop: -5.5,
+				marginRight: -0.5,
 			},
 
 			subtitleIcon_clock: {
