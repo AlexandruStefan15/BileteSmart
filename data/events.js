@@ -13,6 +13,7 @@ export const eventsByLocation = {
 			date: "2025-05-03",
 			logo_images: [images.gloriaBistritaLogo, images.csmSlatinaLogo],
 			demo: "1",
+			location: "Bistrita",
 		},
 	],
 
@@ -28,6 +29,7 @@ export const eventsByLocation = {
 			date: "2025-04-26",
 			logo_images: [images.fcArges, images.csmGalati],
 			demo: "0",
+			location: "Pitesti",
 		},
 	],
 
@@ -43,6 +45,7 @@ export const eventsByLocation = {
 			date: "2025-08-06",
 			logo_images: [images.romaniaFlag, images.croatiaFlag],
 			demo: "0",
+			location: "Blaj",
 		},
 	],
 

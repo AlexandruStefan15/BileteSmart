@@ -49,6 +49,10 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						<Image style={styles.subtitleIcon_clock} source={images.clock} />
 						<Text style={styles.subtitle_text}>{eventData.time}</Text>
 					</View>
+					<View style={styles.subtitle_item}>
+						<Image style={styles.subtitleIcon_location} source={images.location} />
+						<Text style={styles.subtitle_text}>{eventData.location}</Text>
+					</View>
 				</View>
 			</View>
 		);
@@ -122,22 +126,30 @@ const getStyles = (theme, variant) => {
 				alignItems: "center",
 			},
 
+			subtitleIcon_location: {
+				width: 17.5,
+				aspectRatio: 1 / 1,
+				marginTop: -5.8,
+				marginRight: 0.5,
+			},
+
 			subtitleIcon_date: {
-				width: 23,
-				height: 23,
+				width: 23.5,
+				height: 23.5,
 				marginTop: -5.5,
-				marginRight: -1,
+				marginRight: -1.7,
 			},
 
 			subtitleIcon_clock: {
 				width: 17.7,
 				aspectRatio: 1 / 1,
-				marginTop: -5,
+				marginTop: -5.7,
+				marginRight: 0.5,
 			},
 
 			subtitle_text: {
 				fontSize: 13.8,
-				color: "#858585",
+				color: "#6f6f6fff",
 				fontWeight: 500,
 				marginLeft: 2,
 				marginBottom: 5,

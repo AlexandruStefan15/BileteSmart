@@ -93,6 +93,40 @@ export const locations = [
 			strokeWidth: 24,
 			additionalWidth: 12,
 		},
+		galleryImages: [
+			{
+				id: "1",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/1-2022-11-25-14-48-45-scaled.jpeg",
+			},
+			{
+				id: "2",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/2-2022-11-25-14-56-20-scaled.jpeg",
+			},
+			{
+				id: "3",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/3-2023-02-07-11-55-33-scaled.jpeg",
+			},
+			{
+				id: "4",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/4-2023-02-07-11-31-04-scaled.jpeg",
+			},
+			{
+				id: "5",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/5-2023-02-07-11-18-10-scaled.jpeg",
+			},
+			{
+				id: "6",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/6-2023-02-07-11-28-04-scaled.jpeg",
+			},
+			{
+				id: "7",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/7-2022-11-25-15-02-34-scaled.jpeg",
+			},
+			{
+				id: "8",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/02/8-2023-02-07-11-29-47-scaled.jpeg",
+			},
+		],
 	},
 
 	{
@@ -120,6 +154,36 @@ export const locations = [
 			strokeWidth: 8,
 			additionalWidth: 21, // eventDetailsScreen svg read only
 		},
+		galleryImages: [
+			{
+				id: "1",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/slvco_WhatsApp-Image-2023-09-19-at-10.25.56.jpeg",
+			},
+			{
+				id: "2",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/vuyqu_WhatsApp-Image-2023-09-19-at-10.25.56.jpeg",
+			},
+			{
+				id: "3",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-19-at-10.25.56.jpeg",
+			},
+			{
+				id: "4",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/uhynp_WhatsApp-Image-2023-09-19-at-10.25.56.jpeg",
+			},
+			{
+				id: "5",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/fzhbk_WhatsApp-Image-2023-09-19-at-10.25.56.jpeg",
+			},
+			{
+				id: "6",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/jlxbb_WhatsApp-Image-2023-09-19-at-10.25.56.jpeg",
+			},
+			{
+				id: "7",
+				url: "https://biletesmart.ro/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-19-at-12.18.09.jpeg",
+			},
+		],
 	},
 
 	{
@@ -145,5 +209,35 @@ export const locations = [
 			d: "M387.842 263.102H105.756M387.842 263.102V375.931M387.842 263.102H667.19M387.842 584.494H115.341M387.842 584.494V375.931M387.842 584.494C387.842 584.494 555.027 584.494 661.713 584.494M105.756 263.102H66.0443V304.815M105.756 263.102C156.422 274.043 205.718 324.645 209.826 388.24C210.928 405.3 211.196 453.886 208.457 475.084C203.664 501.069 182.439 559.877 115.341 584.494M115.341 584.494H66.0443V544.833M66.0443 304.815C96.8547 302.763 152.998 326.697 161.214 388.24C162.581 398.474 161.899 421.063 161.899 455.937C161.899 490.812 128.35 544.149 66.0443 544.833M66.0443 304.815V399.181M66.0443 544.833V450.467M387.842 375.931C368.671 375.931 339.901 391.666 339.23 423.798C338.546 456.621 367.302 473.032 387.842 473.032C408.383 473.032 436.454 457.989 436.454 423.798C436.454 394.394 409.752 375.931 387.842 375.931ZM460.418 580.391V587.913M709.64 304.815V263.102H667.19M709.64 304.815C674.037 305.498 615.155 331.483 613.786 397.129C613.301 420.374 613.101 433.371 614.47 457.305C615.84 481.238 638.434 542.781 709.64 544.833M709.64 304.815V398.497M709.64 544.833V584.494C709.64 584.494 667.19 584.494 661.713 584.494M709.64 544.833V450.467M667.19 263.102C622.686 272.675 565.858 328.064 565.858 394.394C565.858 415.592 565.858 432.004 565.858 451.834C565.858 510.642 606.254 566.715 661.713 584.494M596.669 417.644V434.055M179.016 417.644V434.055M315.951 580.391V587.913M66.0443 399.181H53.0354V401.232M66.0443 399.181V401.232M66.0443 450.467H53.0354V448.415M66.0443 450.467V448.415M53.0354 401.232H42.0806V448.415H53.0354M53.0354 401.232V448.415M66.0443 401.232H55.0895V448.415H66.0443M66.0443 401.232V448.415M131.089 423.114V425.849M645.281 423.114V425.849M709.64 398.497H722.649V400.548M709.64 398.497V400.548M709.64 450.467H722.649V448.415M709.64 450.467V448.415M709.64 448.415H720.595V400.548H709.64M709.64 448.415V400.548M722.649 400.548H733.604L734.289 448.415H722.649M722.649 400.548V448.415M1 199.507H774V651.507H1V199.507ZM33.1798 231.647H741.82V618.684H33.1798V231.647ZM443.986 616.633V608.427H492.598V616.633H443.986ZM363.879 593.383H411.806V601.589H363.879V593.383ZM283.087 608.427H331.699V616.633H283.087V608.427Z",
 			viewBox: "0 0 775 900",
 		},
+		galleryImages: [
+			{
+				id: "1",
+				url: "https://stiridinturda.ro/wp-content/uploads/2024/03/turda-arena-1.jpg",
+			},
+			{
+				id: "2",
+				url: "https://i.eurosport.com/2023/12/27/3850913-78251188-2560-1440.png",
+			},
+			{
+				id: "3",
+				url: "https://media.licdn.com/dms/image/v2/D4E12AQFrnbSef4nnmg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1713416553926?e=2147483647&v=beta&t=a_acYAB79rWf_OoqG8JwTyIuaeAIbeEMXMetIYq3XYg",
+			},
+			{
+				id: "4",
+				url: "https://cacheimg.gsp.ro/autocrop/smp-images-production/gsp.ro/27122023/39d386f6-8296-4c24-b1a5-49a8fc76fb77.jpg?width=1200&height=0",
+			},
+			{
+				id: "5",
+				url: "https://www.ziarul21.ro/wp-content/uploads/2023/07/turda-arena.jpg",
+			},
+			{
+				id: "6",
+				url: "https://ziarulfaclia.ro/nou/wp-content/uploads/2024/04/IMG_9562.jpg",
+			},
+			{
+				id: "7",
+				url: "https://www.transilvaniabusiness.ro/wp-content/uploads/2024/03/a.png",
+			},
+		],
 	},
 ];

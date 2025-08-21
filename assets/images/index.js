@@ -23,6 +23,7 @@ const images = {
 	romaniaFlag: require("./romaniaFlag.png"),
 	croatiaFlag: require("./croatiaFlag.png"),
 	clock: require("./clock.png"),
+	location: require("./location.png"),
 };
 
 export { images };
