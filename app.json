@@ -6,7 +6,7 @@
 		"orientation": "portrait",
 		"icon": "./assets/images/appIcon.png",
 		"splash": {
-			"image": "./assets/images/logo.png",
+			"image": "./assets/images/logoSplashScreen.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},
@@ -25,7 +25,12 @@
 				"foregroundImage": "./assets/images/appIcon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.pikolo1999.biletesmart"
+			"package": "com.pikolo1999.biletesmart",
+			"config": {
+				"googleMaps": {
+					"apiKey": "AIzaSyAVPyQKb0915cTjlnTZ5ikN2cBp8qxEJLM"
+				}
+			}
 		},
 		"web": {
 			"bundler": "metro",
@@ -35,8 +40,8 @@
 			[
 				"expo-splash-screen",
 				{
-					"image": "./assets/images/logo.png",
-					"imageWidth": 250,
+					"image": "./assets/images/logoSplashScreen.png",
+					"imageWidth": 200,
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff"
 				}

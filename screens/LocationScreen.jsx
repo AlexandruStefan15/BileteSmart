@@ -29,6 +29,7 @@ import Title from "@/components/Title";
 import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
 import ImageGallery from "@/components/ImageGallery";
+import LocationMap from "@/components/LocationMap";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
@@ -123,6 +124,7 @@ const LocationScreen = ({ navigation, route }) => {
 							/>
 						</View>
 					)}
+					<LocationMap />
 				</View>
 			</ScrollView>
 		</SafeAreaView>
