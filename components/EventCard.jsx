@@ -139,14 +139,14 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitleIcon_date: {
-				width: 23.5,
-				height: 23.5,
+				width: 23,
+				height: 23,
 				marginTop: -5.5,
 				marginRight: -1.7,
 			},
 
 			subtitleIcon_clock: {
-				width: 17.7,
+				width: 17,
 				aspectRatio: 1 / 1,
 				marginTop: -5.7,
 				marginRight: 0.5,
