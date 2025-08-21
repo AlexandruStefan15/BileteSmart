@@ -41,12 +41,18 @@
 				"expo-splash-screen",
 				{
 					"image": "./assets/images/logoSplashScreen.png",
-					"imageWidth": 200,
+					"imageWidth": 220,
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff"
 				}
 			],
-			"expo-secure-store"
+			"expo-secure-store",
+			[
+				"react-native-maps",
+				{
+					"googleMapsApiKey": "AIzaSyAVPyQKb0915cTjlnTZ5ikN2cBp8qxEJLM"
+				}
+			]
 		],
 		"extra": {
 			"eas": {
