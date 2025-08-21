@@ -25,8 +25,7 @@ export const eventsByLocation = {
 			title: "FC ARGES - CSM GALATI",
 			subtitle: "Complex Sportiv Polivalent Pitesti Arena",
 			event_img: "https://biletesmart.ro/poster/418617450564854125fc arges - csm galati v.jpg",
-			eventCard_img:
-				"https://baschet.ro/storage/23601/conversions/470893887_18311988190201095_3357285039577519802_n-large-3.jpg",
+			eventCard_img: "https://biletesmart.ro/poster/418617450564854125fc arges - csm galati v.jpg",
 			event_type: "Sportiv",
 			event_type_name: "Baschet Masculin SC 2024-2025",
 			time: "17:00",
