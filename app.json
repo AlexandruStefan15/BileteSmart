@@ -18,6 +18,9 @@
 			"bundleIdentifier": "com.pikolo1999.bilete-smart",
 			"infoPlist": {
 				"ITSAppUsesNonExemptEncryption": false
+			},
+			"config": {
+				"googleMapsApiKey": "AIzaSyCYppwOWJRojRzPe0kycGrgVopP77rfHzo"
 			}
 		},
 		"android": {
@@ -28,7 +31,7 @@
 			"package": "com.pikolo1999.biletesmart",
 			"config": {
 				"googleMaps": {
-					"apiKey": "AIzaSyAVPyQKb0915cTjlnTZ5ikN2cBp8qxEJLM"
+					"apiKey": "AIzaSyCYppwOWJRojRzPe0kycGrgVopP77rfHzo"
 				}
 			}
 		},
@@ -46,13 +49,7 @@
 					"backgroundColor": "#ffffff"
 				}
 			],
-			"expo-secure-store",
-			[
-				"react-native-maps",
-				{
-					"googleMapsApiKey": "AIzaSyAVPyQKb0915cTjlnTZ5ikN2cBp8qxEJLM"
-				}
-			]
+			"expo-secure-store"
 		],
 		"extra": {
 			"eas": {
