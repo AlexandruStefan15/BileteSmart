@@ -216,7 +216,7 @@ const getStyles = (variant) => {
 		teethWrapperRight: {
 			position: "absolute",
 			gap: 6,
-			right: -3.7,
+			right: -3.6,
 			top: 28,
 		},
 

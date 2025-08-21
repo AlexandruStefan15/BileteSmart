@@ -118,7 +118,7 @@ const getStyles = (theme, variant) => {
 
 			subtitle_item: {
 				flexDirection: "row",
-				gap: 2.2,
+				gap: 2.5,
 				alignItems: "center",
 			},
 
