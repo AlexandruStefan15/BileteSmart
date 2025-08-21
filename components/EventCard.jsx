@@ -132,7 +132,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitleIcon_location: {
-				width: 17.5,
+				width: 17,
 				aspectRatio: 1 / 1,
 				marginTop: -5.8,
 				marginRight: 0.5,
