@@ -61,6 +61,10 @@ export const locations = [
 			strokeWidth: 3,
 			additionalWidth: 0,
 		},
+		coordinates: {
+			latitude: 47.15457336635461,
+			longitude: 24.546535737742808,
+		},
 	},
 
 	{
@@ -127,6 +131,10 @@ export const locations = [
 				url: "https://biletesmart.ro/wp-content/uploads/2023/02/8-2023-02-07-11-29-47-scaled.jpeg",
 			},
 		],
+		coordinates: {
+			latitude: 44.83935341792023,
+			longitude: 24.893908310262496,
+		},
 	},
 
 	{
@@ -184,6 +192,10 @@ export const locations = [
 				url: "https://biletesmart.ro/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-19-at-12.18.09.jpeg",
 			},
 		],
+		coordinates: {
+			latitude: 46.169306302108275,
+			longitude: 23.926194912989352,
+		},
 	},
 
 	{
@@ -239,5 +251,9 @@ export const locations = [
 				url: "https://www.transilvaniabusiness.ro/wp-content/uploads/2024/03/a.png",
 			},
 		],
+		coordinates: {
+			latitude: 46.563088633467416,
+			longitude: 23.82199636769648,
+		},
 	},
 ];

@@ -124,7 +124,10 @@ const LocationScreen = ({ navigation, route }) => {
 							/>
 						</View>
 					)}
-					<LocationMap />
+					<View style={styles.mapLocation}>
+						<Title style={[styles.title]}>Locatie pe harta</Title>
+						<LocationMap coordinates={currentLocation.coordinates} />
+					</View>
 				</View>
 			</ScrollView>
 		</SafeAreaView>
@@ -168,6 +171,7 @@ const styles = StyleSheet.create({
 		fontWeight: 500,
 		fontSize: 20,
 		textAlign: "left",
+		marginBottom: 16,
 	},
 
 	info: {
@@ -213,6 +217,10 @@ const styles = StyleSheet.create({
 	},
 
 	photoGallery: {
+		marginTop: 12,
+	},
+
+	mapLocation: {
 		marginTop: 12,
 	},
 });
