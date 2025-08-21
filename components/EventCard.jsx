@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
 
 //constants
@@ -17,14 +17,20 @@ import { useCustomFonts } from "@/hooks/useCustomFonts";
 import Ripple from "react-native-material-ripple";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
+	const [cardHeight, setCardHeight] = useState(0);
 	const fonts = useCustomFonts();
-	const styles = getStyles("light", variant);
+	const styles = getStyles("light", variant, cardHeight);
+
+	const onCardLayout = (e) => {
+		const h = e.nativeEvent.layout.height;
+		setCardHeight(h);
+	};
 
 	if (!fonts) return null;
 
 	if (variant == 2)
 		return (
-			<View>
+			<View onLayout={onCardLayout}>
 				<Ripple
 					style={[styles.container, style]}
 					rippleColor="white"
@@ -33,7 +39,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					{...props}
 				>
 					<ImageBackground
-						source={{ uri: encodeURI(eventData.event_img) }}
+						source={{ uri: encodeURI(eventData.eventCard_img) }}
 						imageStyle={styles.image}
 					/>
 				</Ripple>
@@ -82,7 +88,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 	);
 }
 
-const getStyles = (theme, variant) => {
+const getStyles = (theme, variant, cardHeight) => {
 	if (variant == "2")
 		return StyleSheet.create({
 			container: {
@@ -97,10 +103,9 @@ const getStyles = (theme, variant) => {
 
 			image: {
 				resizeMode: "cover",
-				alignSelf: "flex-end",
 				position: "absolute",
 				top: 0,
-				height: 555,
+				height: cardHeight + 16,
 			},
 
 			title: {

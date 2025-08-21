@@ -7,6 +7,8 @@ export const eventsByLocation = {
 			title: "CS GLORIA 2018 BN - CSM SLATINA",
 			subtitle: "Complex Sportiv Polivalent TeraPlast Arena",
 			event_img: "https://biletesmart.ro/poster/82371745484927864603.05 GLORIA SLATINA.jpg",
+			eventCard_img:
+				"https://timponline.ro/wp-content/uploads/2025/04/494343811_661552870180862_5699633605865152324_n.jpg",
 			event_type: "Sportiv",
 			event_type_name: "Baschet Masculin SC 2024-2025",
 			time: "17:00",
@@ -23,6 +25,8 @@ export const eventsByLocation = {
 			title: "FC ARGES - CSM GALATI",
 			subtitle: "Complex Sportiv Polivalent Pitesti Arena",
 			event_img: "https://biletesmart.ro/poster/418617450564854125fc arges - csm galati v.jpg",
+			eventCard_img:
+				"https://baschet.ro/storage/23601/conversions/470893887_18311988190201095_3357285039577519802_n-large-3.jpg",
 			event_type: "Sportiv",
 			event_type_name: "Baschet Masculin SC 2024-2025",
 			time: "17:00",
@@ -39,6 +43,7 @@ export const eventsByLocation = {
 			title: "ROMANIA - CROATIA",
 			subtitle: "Sala Polivalentă Alba Blaj",
 			event_img: "https://biletesmart.ro/poster/740817538972569251ROMANIA - CROATIA.jpg",
+			eventCard_img: "https://biletesmart.ro/poster/740817538972569251ROMANIA - CROATIA.jpg",
 			event_type: "Sportiv",
 			event_type_name: "CEV EuroVolley 2026 Qualifiers",
 			time: "18:00",
