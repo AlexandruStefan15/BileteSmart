@@ -111,21 +111,21 @@ const getStyles = (theme, variant) => {
 				flexDirection: "row-reverse",
 				marginRight: "auto",
 				alignItems: "center",
-				gap: 11,
+				gap: 12,
 				marginLeft: 2,
 				marginTop: 0.45,
 			},
 
 			subtitle_item: {
 				flexDirection: "row",
-				gap: 2.5,
+				gap: 2,
 				alignItems: "center",
 			},
 
 			subtitleIcon_date: {
-				width: 16.6,
-				height: 16.6,
-				marginTop: -6.6,
+				width: 19.5,
+				height: 19.5,
+				marginTop: -6,
 			},
 
 			subtitleIcon_clock: {
