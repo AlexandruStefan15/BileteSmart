@@ -108,7 +108,8 @@ const getStyles = (theme, variant) => {
 			},
 
 			subtitle: {
-				flexDirection: "row",
+				flexDirection: "row-reverse",
+				marginRight: "auto",
 				alignItems: "center",
 				gap: 11,
 				marginLeft: 2,
@@ -117,20 +118,20 @@ const getStyles = (theme, variant) => {
 
 			subtitle_item: {
 				flexDirection: "row",
-				gap: 2.5,
+				gap: 2.2,
 				alignItems: "center",
 			},
 
 			subtitleIcon_date: {
-				width: 17,
-				height: 17,
-				top: -3.2,
+				width: 16.6,
+				height: 16.6,
+				marginTop: -6.6,
 			},
 
 			subtitleIcon_clock: {
-				width: 17.1,
-				height: 17.1,
-				top: -2.7,
+				width: 17.7,
+				aspectRatio: 1 / 1,
+				marginTop: -5,
 			},
 
 			subtitle_text: {
