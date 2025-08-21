@@ -126,7 +126,7 @@ const getStyles = (theme, variant) => {
 				width: 23,
 				height: 23,
 				marginTop: -5.5,
-				marginRight: -0.5,
+				marginRight: -1,
 			},
 
 			subtitleIcon_clock: {
