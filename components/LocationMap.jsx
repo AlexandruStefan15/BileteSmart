@@ -31,11 +31,11 @@ export default LocationMap;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		borderRadius: 8,
+		borderRadius: 10,
 		overflow: "hidden",
 	},
 	map: {
 		width: "100%",
-		height: 200,
+		height: 175,
 	},
 });
