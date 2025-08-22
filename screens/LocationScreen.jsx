@@ -126,7 +126,23 @@ const LocationScreen = ({ navigation, route }) => {
 					)}
 					<View style={styles.mapLocation}>
 						<Title style={[styles.title]}>Locatie pe harta</Title>
-						<LocationMap coordinates={currentLocation.coordinates} />
+						<Pressable
+							onPress={() =>
+								navigation.navigate("LocationMapScreen", {
+									coordinates: currentLocation.coordinates,
+								})
+							}
+						>
+							<LocationMap
+								coordinates={currentLocation.coordinates}
+								options={{
+									scrollEnabled: false,
+									zoomEnabled: false,
+									rotateEnabled: false,
+									pitchEnabled: false,
+								}}
+							/>
+						</Pressable>
 					</View>
 				</View>
 			</ScrollView>

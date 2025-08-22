@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
-const LocationMap = ({ coordinates, style }) => {
+const LocationMap = ({ coordinates, options, style, styleMap }) => {
 	const location = {
 		latitude: coordinates?.latitude || 44.4268,
 		longitude: coordinates?.longitude || 26.1025,
@@ -11,7 +11,7 @@ const LocationMap = ({ coordinates, style }) => {
 	return (
 		<View style={[styles.container, style]}>
 			<MapView
-				style={styles.map}
+				style={[styles.map, styleMap]}
 				provider={PROVIDER_GOOGLE}
 				initialRegion={{
 					latitude: location.latitude,
@@ -19,6 +19,7 @@ const LocationMap = ({ coordinates, style }) => {
 					latitudeDelta: 0.01,
 					longitudeDelta: 0.01,
 				}}
+				{...options}
 			>
 				<Marker coordinate={location} title="My Location" description="This is where I am" />
 			</MapView>
@@ -36,6 +37,6 @@ const styles = StyleSheet.create({
 	},
 	map: {
 		width: "100%",
-		height: 175,
+		height: 125,
 	},
 });
