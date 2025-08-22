@@ -125,7 +125,7 @@ const LocationScreen = ({ navigation, route }) => {
 						</View>
 					)}
 					<View style={styles.mapLocation}>
-						<Title style={[styles.title]}>Locatie pe harta</Title>
+						<Title style={[styles.title]}>Adresa locatiei</Title>
 						<Pressable
 							onPress={() =>
 								navigation.navigate("LocationMapScreen", {
@@ -179,12 +179,12 @@ const styles = StyleSheet.create({
 		borderColor: "#d3d2d2bd",
 		paddingBottom: 25,
 		fontSize: 22,
-		fontWeight: 500,
+		fontWeight: 600,
 	},
 
 	title: {
 		padding: 0,
-		fontWeight: 500,
+		fontWeight: 600,
 		fontSize: 20,
 		textAlign: "left",
 		marginBottom: 16,
