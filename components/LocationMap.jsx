@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
-const LocationMap = ({ coordinates, options, style, styleMap }) => {
+const LocationMap = ({ coordinates, options, styleContainer, styleMap }) => {
 	const location = {
 		latitude: coordinates?.latitude || 44.4268,
 		longitude: coordinates?.longitude || 26.1025,
 	};
 
 	return (
-		<View style={[styles.container, style]}>
+		<View style={[styles.container, styleContainer]}>
 			<MapView
 				style={[styles.map, styleMap]}
 				provider={PROVIDER_GOOGLE}
@@ -32,11 +32,10 @@ export default LocationMap;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		borderRadius: 10,
 		overflow: "hidden",
 	},
 	map: {
 		width: "100%",
-		height: 125,
+		height: 150,
 	},
 });

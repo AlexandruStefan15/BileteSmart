@@ -136,6 +136,7 @@ const LocationScreen = ({ navigation, route }) => {
 							}
 						>
 							<LocationMap
+								styleContainer={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }}
 								coordinates={currentLocation.coordinates}
 								options={{
 									scrollEnabled: false,
@@ -155,7 +156,6 @@ const LocationScreen = ({ navigation, route }) => {
 							<View style={styles.addressWrapper}>
 								<Image style={styles.address_icon} source={images.pin} />
 								<Text style={styles.address_text}>{currentLocation.address}</Text>
-								<MaterialIconsIcon name="keyboard-arrow-down" size={23} color={"grey"} />
 							</View>
 						</TouchableOpacity>
 					</View>
@@ -257,8 +257,10 @@ const styles = StyleSheet.create({
 
 	addressWrapper: {
 		flexDirection: "row",
-		marginTop: 10,
 		alignItems: "center",
+		backgroundColor: "white",
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
 	},
 
 	address_icon: {
@@ -268,7 +270,7 @@ const styles = StyleSheet.create({
 
 	address_text: {
 		flex: 1,
-		fontSize: 16,
+		fontSize: 15,
 		fontWeight: "500",
 		lineHeight: 22,
 	},
