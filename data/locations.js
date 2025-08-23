@@ -65,6 +65,7 @@ export const locations = [
 			latitude: 47.15457336635461,
 			longitude: 24.546535737742808,
 		},
+		address: "Str. Aerodromului, nr. 33, Bistrița",
 	},
 
 	{
@@ -135,6 +136,7 @@ export const locations = [
 			latitude: 44.83935341792023,
 			longitude: 24.893908310262496,
 		},
+		address: "Strada Basarabiei 35, Pitești 110161",
 	},
 
 	{
@@ -196,6 +198,7 @@ export const locations = [
 			latitude: 46.169306302108275,
 			longitude: 23.926194912989352,
 		},
+		address: "Piata 1848, Nr.16, Mun. Blaj",
 	},
 
 	{
@@ -255,5 +258,6 @@ export const locations = [
 			latitude: 46.563088633467416,
 			longitude: 23.82199636769648,
 		},
+		address: "Strada Stadionului 14, Turda, Cluj",
 	},
 ];

@@ -10,6 +10,7 @@ import {
 	ActivityIndicator,
 	StatusBar,
 	Pressable,
+	TouchableOpacity,
 } from "react-native";
 import { Colors } from "@/constants";
 import { images } from "@/assets/images";
@@ -19,6 +20,7 @@ import { eventsByLocation } from "@/data/events"; // to be fetched
 
 //icons
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 
 //hooks
 import { useFetchEvents } from "@/hooks/useFetchEvents";
@@ -124,7 +126,7 @@ const LocationScreen = ({ navigation, route }) => {
 							/>
 						</View>
 					)}
-					<View style={styles.mapLocation}>
+					<View style={styles.address_section}>
 						<Title style={[styles.title]}>Adresa locatiei</Title>
 						<Pressable
 							onPress={() =>
@@ -143,6 +145,19 @@ const LocationScreen = ({ navigation, route }) => {
 								}}
 							/>
 						</Pressable>
+						<TouchableOpacity
+							onPress={() =>
+								navigation.navigate("LocationMapScreen", {
+									coordinates: currentLocation.coordinates,
+								})
+							}
+						>
+							<View style={styles.addressWrapper}>
+								<Image style={styles.address_icon} source={images.pin} />
+								<Text style={styles.address_text}>{currentLocation.address}</Text>
+								<MaterialIconsIcon name="keyboard-arrow-down" size={23} color={"grey"} />
+							</View>
+						</TouchableOpacity>
 					</View>
 				</View>
 			</ScrollView>
@@ -236,8 +251,26 @@ const styles = StyleSheet.create({
 		marginTop: 12,
 	},
 
-	mapLocation: {
+	address_section: {
 		marginTop: 12,
+	},
+
+	addressWrapper: {
+		flexDirection: "row",
+		marginTop: 10,
+		alignItems: "center",
+	},
+
+	address_icon: {
+		width: 37,
+		height: 37,
+	},
+
+	address_text: {
+		flex: 1,
+		fontSize: 16,
+		fontWeight: "500",
+		lineHeight: 22,
 	},
 });
 

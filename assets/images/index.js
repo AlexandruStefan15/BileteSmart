@@ -24,6 +24,7 @@ const images = {
 	croatiaFlag: require("./croatiaFlag.png"),
 	clock: require("./clock.png"),
 	location: require("./location.png"),
+	pin: require("./pin.png"),
 };
 
 export { images };
