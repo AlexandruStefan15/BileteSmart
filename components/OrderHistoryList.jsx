@@ -128,7 +128,10 @@ const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 						</Text>
 						<Text style={styles.innerContent_text}>
 							<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
-							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")},{" "}
+							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")}
+						</Text>
+						<Text style={styles.innerContent_text}>
+							<Text style={{ fontWeight: "600" }}>Ora evenimentului</Text>{" "}
 							{order.date.trim().split(/\s+/)[1]}
 						</Text>
 						<Text style={styles.innerContent_text}>

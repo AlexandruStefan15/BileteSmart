@@ -120,7 +120,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				flexDirection: "row-reverse",
 				marginRight: "auto",
 				alignItems: "center",
-				gap: 12.5,
+				gap: 12,
 				marginLeft: 2,
 				marginTop: 0.45,
 			},
@@ -139,8 +139,8 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitleIcon_date: {
-				width: 23,
-				height: 23,
+				width: 22.5,
+				height: 22.5,
 				marginTop: -5.5,
 				marginRight: -1.7,
 			},

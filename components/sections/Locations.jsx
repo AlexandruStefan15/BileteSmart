@@ -28,14 +28,16 @@ const Locations = () => {
 					renderItem={({ item, index }) => (
 						<Ripple
 							onPress={() =>
-								navigation.navigate("LocationStack", {
-									screen: "LocationScreen",
-									params: { currentLocation: item },
-								})
+								setTimeout(() => {
+									navigation.navigate("LocationStack", {
+										screen: "LocationScreen",
+										params: { currentLocation: item },
+									});
+								}, 100)
 							}
 							style={styles.listItem}
 							rippleColor="white"
-							rippleDuration={320}
+							rippleDuration={300}
 							rippleCentered={false}
 						>
 							<LinearGradient
