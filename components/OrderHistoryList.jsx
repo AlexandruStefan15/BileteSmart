@@ -65,7 +65,7 @@ const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 	}));
 
 	const open = useCallback(() => {
-		contentHeight.value = withTiming(300, {
+		contentHeight.value = withTiming(350, {
 			duration: 300,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
