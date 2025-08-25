@@ -3,16 +3,14 @@ import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
 
 //constants
 import { Colors } from "@/constants";
-
 //utils
 import { formatDate } from "@/utils/helpers";
-
 //images
 import { images } from "@/assets/images/index";
-
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
-
+//icons
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 //components
 import Ripple from "react-native-material-ripple";
 
@@ -48,7 +46,12 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				</Text>
 				<View style={styles.subtitle}>
 					<View style={styles.subtitle_item}>
-						<Image style={styles.subtitleIcon_date} source={images.calendar} />
+						<FontAwesomeIcon
+							style={{ marginTop: -7 }}
+							name="calendar"
+							size={15.5}
+							color={Colors.primary}
+						/>
 						<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
 					</View>
 					<View style={styles.subtitle_item}>
