@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 	location_title: {
 		fontSize: 19.5,
 		fontWeight: "bold",
-		marginBottom: 12,
+		marginBottom: 14,
 		color: Colors.primary,
 		marginLeft: 2,
 	},
