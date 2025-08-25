@@ -139,14 +139,14 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitleIcon_date: {
-				width: 22.5,
-				height: 22.5,
-				marginTop: -5.5,
-				marginRight: -1.7,
+				width: 17,
+				aspectRatio: 1 / 1,
+				marginTop: -6.2,
+				marginRight: 0.5,
 			},
 
 			subtitleIcon_clock: {
-				width: 17,
+				width: 18,
 				aspectRatio: 1 / 1,
 				marginTop: -5.7,
 				marginRight: 0.5,
@@ -154,7 +154,7 @@ const getStyles = (theme, variant, cardHeight) => {
 
 			subtitle_text: {
 				fontSize: 13.8,
-				color: "#6f6f6fff",
+				color: "#365771", //"#6f6f6fff"
 				fontWeight: 500,
 				marginLeft: 2,
 				marginBottom: 5,

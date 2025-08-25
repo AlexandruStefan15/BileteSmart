@@ -106,13 +106,13 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	container: { gap: 25, paddingInline: 15, paddingBlock: 25 },
+	container: { gap: 25, paddingInline: 15, paddingBlock: 21 },
 
 	location_title: {
 		fontSize: 19.5,
 		fontWeight: "bold",
 		marginBottom: 14,
-		color: Colors.primary,
+		color: "black",
 		marginLeft: 2,
 	},
 });
