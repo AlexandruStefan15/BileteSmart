@@ -47,7 +47,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				<View style={styles.subtitle}>
 					<View style={styles.subtitle_item}>
 						<FontAwesomeIcon
-							style={{ marginTop: -7 }}
+							style={styles.subtitleIcon_date}
 							name="calendar"
 							size={15.5}
 							color={Colors.primary}
@@ -123,7 +123,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				flexDirection: "row-reverse",
 				marginRight: "auto",
 				alignItems: "center",
-				gap: 12,
+				gap: 12.5,
 				marginLeft: 2,
 				marginTop: 0.45,
 			},
@@ -142,17 +142,14 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitleIcon_date: {
-				width: 17,
-				aspectRatio: 1 / 1,
-				marginTop: -6.2,
-				marginRight: 0.5,
+				marginTop: -7,
+				marginRight: 1,
 			},
 
 			subtitleIcon_clock: {
 				width: 18,
 				aspectRatio: 1 / 1,
 				marginTop: -5.7,
-				marginRight: 0.5,
 			},
 
 			subtitle_text: {
