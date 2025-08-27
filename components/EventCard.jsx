@@ -172,7 +172,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			width: "100%",
 			position: "relative",
 			borderRadius: 10,
-			borderWidth: 1.3,
+			borderWidth: 1.2,
 			borderColor: "#dbdbdb5e",
 		},
 

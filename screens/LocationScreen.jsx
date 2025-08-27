@@ -228,6 +228,8 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		lineHeight: 22,
 		fontWeight: 400,
+		borderWidth: 1.1,
+		borderColor: "#dbdbdb5e",
 	},
 
 	description: {
@@ -259,8 +261,11 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		backgroundColor: "white",
+		borderTopWidth: 0,
 		borderBottomLeftRadius: 10,
 		borderBottomRightRadius: 10,
+		borderWidth: 1.1,
+		borderColor: "#dbdbdb5e",
 	},
 
 	address_icon: {
