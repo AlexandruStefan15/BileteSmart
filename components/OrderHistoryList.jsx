@@ -7,6 +7,7 @@ import Animated, {
 	withTiming,
 	Easing,
 	ReduceMotion,
+	useDerivedValue,
 } from "react-native-reanimated";
 
 // utils
@@ -52,45 +53,39 @@ const OrderHistoryList = ({ orders }) => {
 
 export default React.memo(OrderHistoryList);
 
-const AccordionItem = React.memo(({ order, onRequestOpen }) => {
+const AccordionItem = React.memo(({ order, onRequestOpen, duration = 500 }) => {
 	const navigation = useNavigation();
-	const expanded = useRef(false); // avoid state-caused re-renders
-	const contentHeight = useSharedValue(0);
-	const contentOpacity = useSharedValue(0);
+	const expanded = useRef(false); // logic only, JS side
+	const contentHeight = useSharedValue(0); // from onLayout
+	const progress = useSharedValue(0); // 0 closed, 1 open
 
-	const animatedContentStyle = useAnimatedStyle(() => ({
-		maxHeight: contentHeight.value,
-		opacity: contentOpacity.value,
+	const derivedHeight = useDerivedValue(() => contentHeight.value * progress.value);
+
+	const animatedContent = useAnimatedStyle(() => ({
+		// Either use derivedHeight.value or inline the math: measuredH.value * progress.value
+		maxHeight: derivedHeight.value,
+		opacity: progress.value,
 		overflow: "hidden",
 	}));
 
 	const open = useCallback(() => {
-		contentHeight.value = withTiming(350, {
-			duration: 300,
+		progress.value = withTiming(1, {
+			duration: duration,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
 		});
-		contentOpacity.value = withTiming(1, {
-			duration: 250,
-			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			reduceMotion: ReduceMotion.System,
-		});
+
 		expanded.current = true;
-	}, [contentHeight, contentOpacity]);
+	}, [progress]);
 
 	const close = useCallback(() => {
-		contentHeight.value = withTiming(0, {
+		progress.value = withTiming(0, {
 			duration: 300,
-			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			reduceMotion: ReduceMotion.System,
-		});
-		contentOpacity.value = withTiming(0, {
-			duration: 200,
 			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 			reduceMotion: ReduceMotion.System,
 		});
 		expanded.current = false;
-	}, [contentHeight, contentOpacity]);
+	}, [progress]);
 
 	const onHeaderPress = useCallback(() => {
 		if (expanded.current) {
@@ -111,8 +106,18 @@ const AccordionItem = React.memo(({ order, onRequestOpen }) => {
 				</Text>
 			</TouchableOpacity>
 
-			<Animated.View style={[styles.animatedContent, animatedContentStyle]}>
-				<View style={styles.innerContent}>
+			<Animated.View style={[styles.body, animatedContent]}>
+				<View
+					style={styles.innerContent}
+					onLayout={(e) => {
+						contentHeight.value = e.nativeEvent.layout.height;
+
+						/* if (expanded.current) {
+							// keep open row matched to content changes
+							progress.value = 1;
+						} */
+					}}
+				>
 					<View style={{ gap: 8, marginBottom: 8 }}>
 						<Text style={styles.innerContent_text}>
 							<Text style={{ fontWeight: "600" }}>ID Comanda:</Text> #{order.id_order}
@@ -183,7 +188,7 @@ const styles = StyleSheet.create({
 		color: "white",
 		textAlign: "center",
 	},
-	animatedContent: {
+	body: {
 		justifyContent: "center",
 		paddingInline: 12,
 		backgroundColor: "white",
@@ -200,7 +205,7 @@ const styles = StyleSheet.create({
 		gap: 5,
 	},
 	innerContent_text: {
-		fontSize: 14,
+		fontSize: 14.4,
 	},
 });
 
