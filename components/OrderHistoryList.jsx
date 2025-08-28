@@ -26,11 +26,11 @@ const OrderHistoryList = ({ orders }) => {
 	}, [orders]);
 
 	const handleRequestOpen = useCallback((id, controls) => {
-		// Close previously-open row (if different)
+		// Close previously-open item (if different)
 		if (openItemRef.current && openItemRef.current.id !== id) {
 			openItemRef.current.close?.();
 		}
-		// Track current open row
+		// Track current item
 		openItemRef.current = { id, close: controls.close };
 	}, []);
 

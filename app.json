@@ -5,11 +5,6 @@
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/appIcon.png",
-		"splash": {
-			"image": "./assets/images/logoSplashScreen.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
 		"scheme": "myapp",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
@@ -44,7 +39,6 @@
 				"expo-splash-screen",
 				{
 					"image": "./assets/images/logoSplashScreen.png",
-					"imageWidth": 230,
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff"
 				}
