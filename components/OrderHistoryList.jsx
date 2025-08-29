@@ -53,7 +53,7 @@ const OrderHistoryList = ({ orders }) => {
 
 export default React.memo(OrderHistoryList);
 
-const AccordionItem = React.memo(({ order, onRequestOpen, duration = 500 }) => {
+const AccordionItem = React.memo(({ order, onRequestOpen, duration = 300 }) => {
 	const navigation = useNavigation();
 	const expanded = useRef(false); // logic only, JS side
 	const contentHeight = useSharedValue(0); // from onLayout
@@ -62,8 +62,7 @@ const AccordionItem = React.memo(({ order, onRequestOpen, duration = 500 }) => {
 	const derivedHeight = useDerivedValue(() => contentHeight.value * progress.value);
 
 	const animatedContent = useAnimatedStyle(() => ({
-		// Either use derivedHeight.value or inline the math: measuredH.value * progress.value
-		maxHeight: derivedHeight.value,
+		maxHeight: derivedHeight.value, // Either use derivedHeight.value or inline the math: measuredH.value * progress.value
 		opacity: progress.value,
 		overflow: "hidden",
 	}));
