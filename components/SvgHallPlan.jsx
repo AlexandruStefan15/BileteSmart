@@ -175,7 +175,6 @@ const SvgHallPlan = ({
 						]}
 					>
 						<FieldMarkerSvg width={"90%"} />
-
 						<Svg
 							style={{}}
 							width={"90%"}
