@@ -52,7 +52,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 			const data = await response.json();
 
 			if (response.ok) {
-				Alert.alert("Success", data.message || "Message sent successfully!");
+				//Alert.alert("Success", data.message || "Message sent successfully!");
 				setLastName("");
 				setFirstName("");
 				setPhoneNr("");
@@ -149,8 +149,9 @@ const styles = StyleSheet.create({
 
 	formTitle: {
 		fontSize: 20,
-		fontWeight: "500",
+		fontWeight: "600",
 		marginBottom: 20,
+		textAlign: "center",
 	},
 
 	label: {

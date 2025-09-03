@@ -33,7 +33,7 @@ const Locations = () => {
 										screen: "LocationScreen",
 										params: { currentLocation: item },
 									});
-								}, 50)
+								}, 10)
 							}
 							style={styles.listItem}
 							rippleColor="white"

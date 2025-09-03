@@ -24,7 +24,7 @@ const OrderSummary = ({ formRef }) => {
 				{selectedSeats.map((seat, index) => (
 					<View key={index} style={[styles.row, { paddingBottom: 15 }]}>
 						<View style={{ flexShrink: 1, flexDirection: "row", alignItems: "center", gap: 15 }}>
-							<FontAwesomeIcon name="ticket" size={20} color="#23527c" />
+							<FontAwesomeIcon name="ticket" size={22} color="#23527c" />
 							<Text
 								style={{
 									fontSize: 15.5,
@@ -45,18 +45,18 @@ const OrderSummary = ({ formRef }) => {
 					</View>
 				))}
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Subtotal</Text>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>Subtotal</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>
 						{selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0)} RON
 					</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Taxa procesare tranzactie</Text>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>3 RON</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>Taxa procesare tranzactie</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>3 RON</Text>
 				</View>
 				<View style={styles.row}>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>Total</Text>
-					<Text style={{ fontSize: 16, fontWeight: "bold" }}>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>Total</Text>
+					<Text style={{ fontSize: 16, fontWeight: "600" }}>
 						{selectedSeats.reduce((total, seat) => total + parseFloat(seat.price), 0) + 3} RON
 					</Text>
 				</View>
