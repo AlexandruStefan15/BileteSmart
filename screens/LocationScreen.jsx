@@ -90,7 +90,7 @@ const LocationScreen = ({ navigation, route }) => {
 							/>
 						) : (
 							<Text style={styles.notFoundText}>
-								<FontAwesomeIcon name="calendar-o" size={18} color={Colors.primary} />
+								<FontAwesomeIcon name="calendar-o" size={18} color={Colors.primary} style={{}} />
 								{"  "}
 								Nu au fost găsite evenimente disponibile pentru această locație încă.
 							</Text>

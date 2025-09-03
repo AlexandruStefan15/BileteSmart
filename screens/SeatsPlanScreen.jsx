@@ -11,7 +11,7 @@ import { useCartSidebarStore } from "@/store/store";
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
-import Modal from "react-native-modal";
+import Modal from "@/components/Modal";
 
 export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 	const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -44,23 +44,13 @@ export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 				style={{ marginTop: 45 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
-			<Modal isVisible={isModalVisible}>
-				<View style={styles.modalContent}>
-					<View style={styles.header}>
-						<Text style={styles.title}>Selectează locurile</Text>
-						<Text style={styles.caption}>
-							Selectati locurile pe care doriti sa le rezervati. Biletele vor fi adaugate automat in
-							cosul de cumparaturi!
-						</Text>
-					</View>
-					<View style={[styles.separator]}></View>
-					<View style={styles.footer}>
-						<TouchableOpacity style={styles.button} onPress={closeModal}>
-							<Text>OK</Text>
-						</TouchableOpacity>
-					</View>
-				</View>
-			</Modal>
+			<Modal
+				isVisible={isModalVisible}
+				title="Selectează locurile"
+				subtitle="Selectati locurile pe care doriti sa le rezervati. Biletele vor fi adaugate automat in cosul de cumparaturi!"
+				onClose={closeModal}
+				useNativeDriver={true}
+			/>
 		</SafeAreaView>
 	);
 };
