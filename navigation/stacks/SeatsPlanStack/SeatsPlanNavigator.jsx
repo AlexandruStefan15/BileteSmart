@@ -5,21 +5,30 @@ import CheckoutScreen from "@/screens/CheckoutScreen";
 
 const Stack = createStackNavigator();
 
-const SeatsPlanNavigator = ({ seatCount, badgeStyle, displayBadge, openSidebar }) => (
+const SeatsPlanNavigator = ({
+	seatCount,
+	badgeStyle,
+	displayBadge,
+	openSidebar,
+	infoModalShowedOnce,
+	setInfoModalShowedOnce,
+}) => (
 	<Stack.Navigator>
 		<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
-			{(props) => (
+			{(navProps) => (
 				<SeatsPlanScreen
-					{...props}
+					{...navProps} // these are navigation props (dfferent than props passed in Navigator)
 					seatCount={seatCount}
 					badgeStyle={badgeStyle}
 					displayBadge={displayBadge}
 					openSidebar={openSidebar}
+					infoModalShowedOnce={infoModalShowedOnce}
+					setInfoModalShowedOnce={setInfoModalShowedOnce}
 				/>
 			)}
 		</Stack.Screen>
 		<Stack.Screen name="CheckoutScreen" options={{ headerShown: false }}>
-			{(props) => <CheckoutScreen {...props} />}
+			{(navProps) => <CheckoutScreen {...navProps} />}
 		</Stack.Screen>
 	</Stack.Navigator>
 );

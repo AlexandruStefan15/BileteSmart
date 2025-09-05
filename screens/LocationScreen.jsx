@@ -23,7 +23,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 
 //hooks
-import { useFetchEvents } from "@/hooks/useFetchEvents";
+import { useFetchEventsByLocation } from "@/hooks/useFetchEventsByLocation";
 
 //components
 import Header from "@/components/Header";
@@ -35,7 +35,7 @@ import LocationMap from "@/components/LocationMap";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
-	/* const { events, loading, error } = useFetchEvents(currentLocation.id); */
+	/* const { events, loading, error } = useFetchEventsByLocation(currentLocation.id); */
 	const events = eventsByLocation[currentLocation.id]; // to be fetched like above
 	const loading = !events; // Simulating loading state
 	const error = null; // Simulating no error state

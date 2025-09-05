@@ -13,7 +13,13 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Modal from "@/components/Modal";
 
-export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
+export default SeatsPlanScreen = ({
+	navigation,
+	route,
+	infoModalShowedOnce,
+	setInfoModalShowedOnce,
+	...props
+}) => {
 	const [isModalVisible, setIsModalVisible] = React.useState(false);
 	const { roomId, rooms } = route.params;
 	const currentRoom = rooms.find((room) => room.id_room == roomId);
@@ -24,7 +30,9 @@ export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 	};
 
 	useEffect(() => {
+		if (infoModalShowedOnce) return;
 		setIsModalVisible(true);
+		setInfoModalShowedOnce?.(true);
 	}, []);
 
 	return (
@@ -47,7 +55,7 @@ export default SeatsPlanScreen = ({ navigation, route, ...props }) => {
 			<Modal
 				isVisible={isModalVisible}
 				title="Selectează locurile"
-				subtitle="Selectati locurile pe care doriti sa le rezervati. Biletele vor fi adaugate automat in cosul de cumparaturi!"
+				subtitle="Selectati locurile pe care doriti sa le rezervati. Acestea vor fi adaugate automat in cosul de cumparaturi."
 				onClose={closeModal}
 				useNativeDriver={true}
 			/>

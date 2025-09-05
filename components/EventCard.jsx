@@ -123,7 +123,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				flexDirection: "row-reverse",
 				marginRight: "auto",
 				alignItems: "center",
-				gap: 12,
+				gap: 12.5,
 				marginLeft: 2,
 				marginTop: 0.45,
 			},

@@ -15,6 +15,7 @@ import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
 const Stack = createStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
+	const [infoModalShowedOnce, setInfoModalShowedOnce] = useState(false);
 	const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
 
@@ -50,6 +51,8 @@ export default function RoomsPlanNavigator({}) {
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
+							infoModalShowedOnce={infoModalShowedOnce}
+							setInfoModalShowedOnce={setInfoModalShowedOnce}
 						/>
 					)}
 				</Stack.Screen>

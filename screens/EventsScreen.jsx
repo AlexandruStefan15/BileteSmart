@@ -74,7 +74,7 @@ const EventsScreen = ({ navigation }) => {
 								{events.length > 0 &&
 									events.map((event) => (
 										<React.Fragment key={event.id_event}>
-											<Text style={styles.location_title}>{location.name}</Text>
+											{/* <Text style={styles.location_title}>{location.name}</Text> */}
 											<EventCard
 												variant="2"
 												onPress={() =>

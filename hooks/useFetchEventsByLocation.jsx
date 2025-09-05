@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const API_BASE = "https://biletesmart.ro/api/stadium/getEvents";
 
-export const useFetchEvents = (locationId) => {
+export const useFetchEventsByLocation = (locationId) => {
 	const [events, setEvents] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const navigation = useNavigation();
 
-	useEffect(() => {
-		if (!locationId) return;
+	const fetchEvents = useCallback(
+		async (id = locationId) => {
+			if (!id) return;
 
-		const fetchEvents = async () => {
 			try {
 				setLoading(true);
 				setError(null);
 
-				const response = await fetch(`${API_BASE}/${locationId}`);
+				const response = await fetch(`${API_BASE}/${id}`);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
@@ -30,10 +30,13 @@ export const useFetchEvents = (locationId) => {
 			} finally {
 				setLoading(false);
 			}
-		};
+		},
+		[locationId]
+	);
 
+	useEffect(() => {
 		fetchEvents();
-	}, [locationId, navigation]);
+	}, [fetchEvents, navigation]);
 
-	return { events, loading, error };
+	return { events, loading, error, fetchEvents };
 };
