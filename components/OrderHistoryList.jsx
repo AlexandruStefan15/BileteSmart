@@ -53,40 +53,67 @@ const OrderHistoryList = ({ orders }) => {
 
 export default React.memo(OrderHistoryList);
 
-const AccordionItem = React.memo(({ order, onRequestOpen, duration = 100 }) => {
+export const AccordionItem = React.memo(function AccordionItem({
+	order,
+	onRequestOpen,
+	duration = 200,
+}) {
 	const navigation = useNavigation();
-	const expanded = useSharedValue(false); // logic only, JS side
-	const contentHeight = useSharedValue(0); // from onLayout
 
-	const derivedHeight = useDerivedValue(() =>
-		withTiming(contentHeight.value * Number(expanded.value), {
-			duration,
-			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			reduceMotion: ReduceMotion.System,
-		})
+	// Measured height of the inner content
+	const contentHeight = useSharedValue(0);
+
+	// Animation driver: 0 (closed) → 1 (open)
+	const progress = useSharedValue(0);
+
+	// JS flags to avoid reading shared values in event handlers
+	const isOpenRef = useRef(false);
+	const pendingOpenRef = useRef(false);
+
+	const animateTo = useCallback(
+		(to) => {
+			progress.value = withTiming(to, {
+				duration,
+				easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+				reduceMotion: ReduceMotion.System,
+			});
+		},
+		[duration, progress]
 	);
 
-	const animatedContent = useAnimatedStyle(() => ({
-		maxHeight: derivedHeight.value,
-		overflow: "hidden",
-	}));
-
 	const open = useCallback(() => {
-		expanded.value = true;
-	}, []);
+		// If not measured yet, mark as pending and let onLayout start the animation
+		if (contentHeight.value === 0) {
+			pendingOpenRef.current = true;
+		} else {
+			animateTo(1);
+		}
+		isOpenRef.current = true;
+	}, [animateTo, contentHeight]);
 
 	const close = useCallback(() => {
-		expanded.value = false;
-	}, []);
+		pendingOpenRef.current = false;
+		animateTo(0);
+		isOpenRef.current = false;
+	}, [animateTo]);
 
 	const onHeaderPress = useCallback(() => {
-		if (expanded.value) {
+		if (isOpenRef.current) {
 			close();
 			return;
 		}
 		onRequestOpen?.(order.id_order, { close });
 		open();
-	}, [close, open, onRequestOpen, order.id_order]);
+	}, [close, onRequestOpen, open, order.id_order]);
+
+	// Pure math: height follows progress * measured height
+	const derivedHeight = useDerivedValue(() => contentHeight.value * progress.value);
+
+	const animatedContent = useAnimatedStyle(() => ({
+		maxHeight: derivedHeight.value, // cheaper than hard-setting height during growth
+		opacity: progress.value, // nice fade to match height
+		overflow: "hidden",
+	}));
 
 	return (
 		<View style={styles.itemContainer}>
@@ -105,6 +132,11 @@ const AccordionItem = React.memo(({ order, onRequestOpen, duration = 100 }) => {
 						const h = e.nativeEvent.layout.height;
 						if (h > 0) {
 							contentHeight.value = h;
+							// If the user tapped open before we had a height, start the open now
+							if (pendingOpenRef.current) {
+								pendingOpenRef.current = false;
+								animateTo(1);
+							}
 						}
 					}}
 				>
@@ -126,7 +158,7 @@ const AccordionItem = React.memo(({ order, onRequestOpen, duration = 100 }) => {
 							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")}
 						</Text>
 						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Ora evenimentului</Text>{" "}
+							<Text style={{ fontWeight: "600" }}>Ora evenimentului:</Text>{" "}
 							{order.date.trim().split(/\s+/)[1]}
 						</Text>
 						<Text style={styles.innerContent_text}>
