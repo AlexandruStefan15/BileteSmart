@@ -104,13 +104,7 @@ const SvgHallPlan = ({
 					/>
 					{rooms.map((room) => (
 						<G key={room.id_room}>
-							<Path
-								key={room.id_room}
-								d={room.path_d}
-								fill={
-									room.fillColor || (room.free_seats > 0 && !room.read_only ? "green" : "#BFBFBF")
-								}
-							/>
+							<Path key={room.id_room} d={room.path_d} fill={room.fillColor || "#BFBFBF"} />
 							{room.parkingCarIcon && <SvgGroup {...svgGroupIcons.parkingCar} />}
 						</G>
 					))}

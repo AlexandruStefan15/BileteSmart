@@ -221,9 +221,10 @@ const getStyles = () =>
 		},
 
 		actions_button_text: {
-			fontSize: 17.1,
+			fontSize: 16,
 			fontWeight: "700",
-			letterSpacing: 0.5,
+			letterSpacing: 0.3,
+			textTransform: "uppercase",
 		},
 
 		noAvailableSeatsText: {

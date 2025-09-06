@@ -221,6 +221,10 @@ const styles = StyleSheet.create({
 		gap: 0,
 	},
 
+	eventList: {
+		gap: 25,
+	},
+
 	notFoundText: {
 		fontSize: 16,
 		backgroundColor: "white",
