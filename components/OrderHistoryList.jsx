@@ -53,41 +53,34 @@ const OrderHistoryList = ({ orders }) => {
 
 export default React.memo(OrderHistoryList);
 
-const AccordionItem = React.memo(({ order, onRequestOpen, duration = 300 }) => {
+const AccordionItem = React.memo(({ order, onRequestOpen, duration = 100 }) => {
 	const navigation = useNavigation();
-	const expanded = useRef(false); // logic only, JS side
+	const expanded = useSharedValue(false); // logic only, JS side
 	const contentHeight = useSharedValue(0); // from onLayout
-	const progress = useSharedValue(0); // 0 closed, 1 open
 
-	const derivedHeight = useDerivedValue(() => contentHeight.value * progress.value);
+	const derivedHeight = useDerivedValue(() =>
+		withTiming(contentHeight.value * Number(expanded.value), {
+			duration,
+			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+			reduceMotion: ReduceMotion.System,
+		})
+	);
 
 	const animatedContent = useAnimatedStyle(() => ({
-		maxHeight: derivedHeight.value, // Either use derivedHeight.value or inline the math: measuredH.value * progress.value
-		opacity: progress.value,
+		maxHeight: derivedHeight.value,
 		overflow: "hidden",
 	}));
 
 	const open = useCallback(() => {
-		progress.value = withTiming(1, {
-			duration: duration,
-			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			reduceMotion: ReduceMotion.System,
-		});
-
-		expanded.current = true;
-	}, [progress]);
+		expanded.value = true;
+	}, []);
 
 	const close = useCallback(() => {
-		progress.value = withTiming(0, {
-			duration: 300,
-			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			reduceMotion: ReduceMotion.System,
-		});
-		expanded.current = false;
-	}, [progress]);
+		expanded.value = false;
+	}, []);
 
 	const onHeaderPress = useCallback(() => {
-		if (expanded.current) {
+		if (expanded.value) {
 			close();
 			return;
 		}
@@ -109,12 +102,10 @@ const AccordionItem = React.memo(({ order, onRequestOpen, duration = 300 }) => {
 				<View
 					style={styles.innerContent}
 					onLayout={(e) => {
-						contentHeight.value = e.nativeEvent.layout.height;
-
-						/* if (expanded.current) {
-							// keep open row matched to content changes
-							progress.value = 1;
-						} */
+						const h = e.nativeEvent.layout.height;
+						if (h > 0) {
+							contentHeight.value = h;
+						}
 					}}
 				>
 					<View style={{ gap: 8, marginBottom: 8 }}>
