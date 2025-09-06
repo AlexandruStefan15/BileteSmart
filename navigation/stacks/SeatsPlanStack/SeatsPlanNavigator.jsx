@@ -5,25 +5,18 @@ import CheckoutScreen from "@/screens/CheckoutScreen";
 
 const Stack = createStackNavigator();
 
-const SeatsPlanNavigator = ({
-	seatCount,
-	badgeStyle,
-	displayBadge,
-	openSidebar,
-	infoModalShowedOnce,
-	setInfoModalShowedOnce,
-}) => (
+const SeatsPlanNavigator = ({ ...props }) => (
 	<Stack.Navigator>
 		<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
 			{(navProps) => (
 				<SeatsPlanScreen
 					{...navProps}
-					seatCount={seatCount}
-					badgeStyle={badgeStyle}
-					displayBadge={displayBadge}
-					openSidebar={openSidebar}
-					infoModalShowedOnce={infoModalShowedOnce}
-					setInfoModalShowedOnce={setInfoModalShowedOnce}
+					seatCount={props.seatCount}
+					badgeStyle={props.badgeStyle}
+					displayBadge={props.displayBadge}
+					openSidebar={props.openSidebar}
+					infoModalShowedOnce={props.infoModalShowedOnce}
+					setInfoModalShowedOnce={props.setInfoModalShowedOnce}
 				/>
 			)}
 		</Stack.Screen>

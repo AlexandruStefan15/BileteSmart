@@ -70,7 +70,7 @@ const EventsScreen = ({ navigation }) => {
 							return null;
 						}
 						return (
-							<View key={location.id}>
+							<View style={styles.wrapper} key={location.id}>
 								{events.length > 0 &&
 									events.map((event) => (
 										<React.Fragment key={event.id_event}>
@@ -106,7 +106,11 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	container: { gap: 25, paddingInline: 15, paddingBlock: 21 },
+	container: { gap: 18, paddingInline: 18, paddingBlock: 22 },
+
+	wrapper: {
+		gap: 18,
+	},
 
 	location_title: {
 		fontSize: 19.5,

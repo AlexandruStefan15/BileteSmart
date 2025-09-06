@@ -28,7 +28,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	if (variant == 2)
 		return (
-			<View onLayout={onCardLayout}>
+			<View style={{}} onLayout={onCardLayout}>
 				<Ripple
 					style={[styles.container, style]}
 					rippleColor="white"
@@ -95,20 +95,19 @@ const getStyles = (theme, variant, cardHeight) => {
 	if (variant == "2")
 		return StyleSheet.create({
 			container: {
-				aspectRatio: 100 / 64,
+				aspectRatio: 100 / 63,
 				overflow: "hidden",
 				width: "100%",
 				position: "relative",
 				borderRadius: 13,
-				borderWidth: 1.3,
-				borderColor: "#dedede5e",
+				boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
 			},
 
 			image: {
 				resizeMode: "cover",
 				position: "absolute",
 				top: 0,
-				height: cardHeight + 16,
+				height: cardHeight + 110,
 			},
 
 			title: {
