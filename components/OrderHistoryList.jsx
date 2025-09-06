@@ -56,7 +56,7 @@ export default React.memo(OrderHistoryList);
 export const AccordionItem = React.memo(function AccordionItem({
 	order,
 	onRequestOpen,
-	duration = 200,
+	duration = 300,
 }) {
 	const navigation = useNavigation();
 
