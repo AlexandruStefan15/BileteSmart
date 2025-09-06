@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useCallback } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, PixelRatio, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated, {
 	useSharedValue,
@@ -53,6 +53,10 @@ const OrderHistoryList = ({ orders }) => {
 
 export default React.memo(OrderHistoryList);
 
+const SCALE = PixelRatio.get();
+const IS_ANDROID = Platform.OS === "android";
+const IS_IOS = Platform.OS === "ios";
+
 export const AccordionItem = React.memo(function AccordionItem({
 	order,
 	onRequestOpen,
@@ -60,13 +64,12 @@ export const AccordionItem = React.memo(function AccordionItem({
 }) {
 	const navigation = useNavigation();
 
-	// Measured height of the inner content
+	// Measured content height (px)
 	const contentHeight = useSharedValue(0);
-
 	// Animation driver: 0 (closed) → 1 (open)
 	const progress = useSharedValue(0);
 
-	// JS flags to avoid reading shared values in event handlers
+	// JS-side flags (don’t read shared values in handlers)
 	const isOpenRef = useRef(false);
 	const pendingOpenRef = useRef(false);
 
@@ -82,8 +85,8 @@ export const AccordionItem = React.memo(function AccordionItem({
 	);
 
 	const open = useCallback(() => {
-		// If not measured yet, mark as pending and let onLayout start the animation
 		if (contentHeight.value === 0) {
+			// Defer until we get a real height from onLayout
 			pendingOpenRef.current = true;
 		} else {
 			animateTo(1);
@@ -106,14 +109,19 @@ export const AccordionItem = React.memo(function AccordionItem({
 		open();
 	}, [close, onRequestOpen, open, order.id_order]);
 
-	// Pure math: height follows progress * measured height
-	const derivedHeight = useDerivedValue(() => contentHeight.value * progress.value);
-
-	const animatedContent = useAnimatedStyle(() => ({
-		maxHeight: derivedHeight.value, // cheaper than hard-setting height during growth
-		opacity: progress.value, // nice fade to match height
-		overflow: "hidden",
-	}));
+	// Animate HEIGHT only (no opacity) and snap to pixel grid to avoid “shake”
+	const animatedContent = useAnimatedStyle(() => {
+		"worklet";
+		const raw = contentHeight.value * progress.value;
+		const snapped = Math.round(raw * SCALE) / SCALE;
+		return {
+			height: snapped,
+			overflow: "hidden",
+			// Optional raster hints (captured booleans are safe)
+			...(IS_ANDROID ? { renderToHardwareTextureAndroid: true } : null),
+			...(IS_IOS ? { shouldRasterizeIOS: true } : null),
+		};
+	});
 
 	return (
 		<View style={styles.itemContainer}>
@@ -125,62 +133,68 @@ export const AccordionItem = React.memo(function AccordionItem({
 				</Text>
 			</TouchableOpacity>
 
-			<Animated.View style={[styles.body, animatedContent]}>
-				<View
-					style={styles.innerContent}
-					onLayout={(e) => {
-						const h = e.nativeEvent.layout.height;
-						if (h > 0) {
-							contentHeight.value = h;
-							// If the user tapped open before we had a height, start the open now
-							if (pendingOpenRef.current) {
-								pendingOpenRef.current = false;
-								animateTo(1);
+			{/* Static border wrapper so borders don't repaint each frame */}
+			<View style={styles.body}>
+				<Animated.View style={animatedContent}>
+					<View
+						collapsable={false}
+						style={styles.innerContent}
+						onLayout={(e) => {
+							const h = e.nativeEvent.layout.height;
+							if (h > 0) {
+								// Snap the measured height as well
+								const snapped = Math.round(h * SCALE) / SCALE;
+								contentHeight.value = snapped;
+
+								if (pendingOpenRef.current) {
+									pendingOpenRef.current = false;
+									animateTo(1);
+								}
 							}
-						}
-					}}
-				>
-					<View style={{ gap: 8, marginBottom: 8 }}>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>ID Comanda:</Text> #{order.id_order}
-						</Text>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}
-						</Text>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Prenume:</Text> {order.first_name}
-						</Text>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
-						</Text>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
-							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")}
-						</Text>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Ora evenimentului:</Text>{" "}
-							{order.date.trim().split(/\s+/)[1]}
-						</Text>
-						<Text style={styles.innerContent_text}>
-							<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
-						</Text>
-					</View>
-
-					<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
-
-					<Button
-						variant="2"
-						onPress={() => {
-							navigation.navigate("OrderedTicketsScreen", {
-								tickets: order.tickets,
-								event_title: order.movie,
-							});
 						}}
 					>
-						Vezi bilete
-					</Button>
-				</View>
-			</Animated.View>
+						<View style={{ gap: 8, marginBottom: 8 }}>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>ID Comanda:</Text> #{order.id_order}
+							</Text>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}
+							</Text>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>Prenume:</Text> {order.first_name}
+							</Text>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
+							</Text>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
+								{formatDate(order.date.trim().split(/\s+/)[0], "numeric")}
+							</Text>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>Ora evenimentului:</Text>{" "}
+								{order.date.trim().split(/\s+/)[1]}
+							</Text>
+							<Text style={styles.innerContent_text}>
+								<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
+							</Text>
+						</View>
+
+						<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
+
+						<Button
+							variant="2"
+							onPress={() => {
+								navigation.navigate("OrderedTicketsScreen", {
+									tickets: order.tickets,
+									event_title: order.movie,
+								});
+							}}
+						>
+							Vezi bilete
+						</Button>
+					</View>
+				</Animated.View>
+			</View>
 		</View>
 	);
 });
