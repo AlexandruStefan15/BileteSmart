@@ -173,7 +173,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			borderRadius: 10,
 			borderWidth: 1.2,
 			borderColor: "#dbdbdb5e",
-			boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+			boxShadow: "0 0.5px 7px rgba(0, 0, 0, 0.1)",
 		},
 
 		title: {
