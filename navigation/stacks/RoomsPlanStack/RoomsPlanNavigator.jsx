@@ -34,9 +34,9 @@ export default function RoomsPlanNavigator({}) {
 		<View style={{ flex: 1 }}>
 			<Stack.Navigator>
 				<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
-					{(props) => (
+					{(navProps) => (
 						<RoomsPlanScreen
-							{...props}
+							{...navProps}
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
@@ -45,9 +45,9 @@ export default function RoomsPlanNavigator({}) {
 				</Stack.Screen>
 
 				<Stack.Screen name="SeatsPlanStack" options={{ headerShown: false }}>
-					{(props) => (
+					{(navProps) => (
 						<SeatsPlanNavigator
-							{...props}
+							{...navProps}
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}

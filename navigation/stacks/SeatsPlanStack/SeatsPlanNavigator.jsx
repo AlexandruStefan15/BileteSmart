@@ -17,7 +17,7 @@ const SeatsPlanNavigator = ({
 		<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
 			{(navProps) => (
 				<SeatsPlanScreen
-					{...navProps} // these are navigation props (dfferent than props passed in Navigator)
+					{...navProps}
 					seatCount={seatCount}
 					badgeStyle={badgeStyle}
 					displayBadge={displayBadge}
