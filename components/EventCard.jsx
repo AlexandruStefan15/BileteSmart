@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
-import { Shadow } from "react-native-shadow-2";
+import { LinearGradient } from "expo-linear-gradient";
 
 //constants
 import { Colors } from "@/constants";
@@ -77,16 +77,23 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 		>
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
 				{/* <Text style={styles.title}>{eventData.title}</Text> */}
-				<View style={styles.badge}>
-					{formatDate(eventData.date)
-						.trim()
-						.split(" ")
-						.map((word, index) => (
-							<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
-								{word}
-							</Text>
-						))}
-				</View>
+				<LinearGradient
+					colors={["#000000ff", "#0e0e0e5e", "#b9212101"]}
+					start={{ x: 0, y: 1 }}
+					end={{ x: 0, y: 0 }}
+					style={{ height: "100%", width: "100%" }}
+				>
+					<View style={styles.badge}>
+						{formatDate(eventData.date)
+							.trim()
+							.split(" ")
+							.map((word, index) => (
+								<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
+									{word}
+								</Text>
+							))}
+					</View>
+				</LinearGradient>
 			</ImageBackground>
 		</Ripple>
 	);
@@ -187,6 +194,7 @@ const getStyles = (theme, variant, cardHeight) => {
 		},
 
 		badge: {
+			position: "absolute",
 			backgroundColor: "#242424de",
 			paddingInline: 18,
 			paddingTop: 7.5,

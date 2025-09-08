@@ -127,7 +127,7 @@ const LocationScreen = ({ navigation, route }) => {
 						</View>
 					)}
 					<View style={styles.address_section}>
-						<Title style={[styles.title]}>Adresa locatiei</Title>
+						<Title style={[styles.title]}>Adresa & locatie</Title>
 						<Pressable
 							onPress={() =>
 								navigation.navigate("LocationMapScreen", {
