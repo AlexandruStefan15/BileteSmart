@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
 	},
 
 	eventList: {
-		gap: 27,
-		marginBlock: 6,
+		paddingBlock: 5,
+		gap: 25,
 	},
 
 	notFoundText: {

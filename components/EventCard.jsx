@@ -172,12 +172,9 @@ const getStyles = (theme, variant, cardHeight) => {
 			width: "100%",
 			position: "relative",
 			borderRadius: 10,
-			borderLeftWidth: 1.2,
-			borderRightWidth: 1.2,
 			borderBottomWidth: 1.2,
-			borderColor: "#dbdbdbff",
-			boxShadow: "0px 0.2px 5px rgba(0, 0, 0, 0.1)",
-			paddingInline: 1,
+			borderColor: "rgba(0, 0, 0, 0.19)",
+			boxShadow: "0px 0.5px 6px rgba(0, 0, 0, 0.34)",
 		},
 
 		title: {
@@ -196,7 +193,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			paddingBottom: 13,
 			textAlign: "center",
 			position: "relative",
-			top: 1.5,
+			top: 0.5,
 			left: 11,
 			minWidth: 70,
 			alignSelf: "flex-start",
