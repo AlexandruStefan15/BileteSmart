@@ -76,7 +76,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 			{...props}
 		>
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
-				<Text style={styles.title}>{eventData.title}</Text>
+				{/* <Text style={styles.title}>{eventData.title}</Text> */}
 				<View style={styles.badge}>
 					{formatDate(eventData.date)
 						.trim()
@@ -167,7 +167,7 @@ const getStyles = (theme, variant, cardHeight) => {
 
 	return StyleSheet.create({
 		container: {
-			aspectRatio: 100 / 130,
+			aspectRatio: 100 / 125,
 			overflow: "hidden",
 			width: "100%",
 			position: "relative",
@@ -176,16 +176,17 @@ const getStyles = (theme, variant, cardHeight) => {
 			borderRightWidth: 1.2,
 			borderBottomWidth: 1.2,
 			borderColor: "#dbdbdbff",
-			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.1)",
+			boxShadow: "0px 0.2px 5px rgba(0, 0, 0, 0.1)",
 			paddingInline: 1,
 		},
 
 		title: {
 			fontSize: 15,
 			fontWeight: 500,
-			backgroundColor: "white",
+			backgroundColor: "black",
 			padding: 11,
 			textAlign: "center",
+			color: "white",
 		},
 
 		badge: {
@@ -219,8 +220,9 @@ const getStyles = (theme, variant, cardHeight) => {
 			resizeMode: "cover",
 			alignSelf: "flex-end",
 			position: "absolute",
-			top: 44,
-			height: 520,
+			top: 0,
+			flex: 1,
+			height: 560,
 		},
 	});
 };

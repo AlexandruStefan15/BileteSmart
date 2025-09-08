@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
 	},
 
 	eventList: {
-		gap: 29,
+		gap: 27,
 		marginBlock: 6,
 	},
 
