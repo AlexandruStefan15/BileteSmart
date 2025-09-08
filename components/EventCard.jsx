@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
+import { Shadow } from "react-native-shadow-2";
 
 //constants
 import { Colors } from "@/constants";
@@ -171,9 +172,12 @@ const getStyles = (theme, variant, cardHeight) => {
 			width: "100%",
 			position: "relative",
 			borderRadius: 10,
-			borderWidth: 1.2,
-			borderColor: "#dbdbdb5e",
-			boxShadow: "0 0.5px 7px rgba(0, 0, 0, 0.1)",
+			borderLeftWidth: 1.1,
+			borderRightWidth: 1.1,
+			borderBottomWidth: 1.1,
+			borderColor: "#dbdbdbf2",
+			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.1)",
+			paddingInline: 1,
 		},
 
 		title: {
