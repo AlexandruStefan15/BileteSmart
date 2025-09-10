@@ -29,9 +29,9 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	if (variant == 2)
 		return (
-			<View style={{}} onLayout={onCardLayout}>
+			<View style={styles.container} onLayout={onCardLayout}>
 				<Ripple
-					style={[styles.container, style]}
+					style={[styles.backgroundImage, style]}
 					rippleColor="white"
 					rippleDuration={320}
 					rippleCentered={false}
@@ -42,26 +42,28 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						imageStyle={styles.image}
 					/>
 				</Ripple>
-				<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-					{eventData.title}
-				</Text>
-				<View style={styles.subtitle}>
-					<View style={styles.subtitle_item}>
-						<FontAwesomeIcon
-							style={styles.subtitleIcon_date}
-							name="calendar"
-							size={15.5}
-							color={Colors.primary}
-						/>
-						<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
-					</View>
-					<View style={styles.subtitle_item}>
-						<Image style={styles.subtitleIcon_clock} source={images.clock} />
-						<Text style={styles.subtitle_text}>{eventData.time}</Text>
-					</View>
-					<View style={styles.subtitle_item}>
-						<Image style={styles.subtitleIcon_location} source={images.location} />
-						<Text style={styles.subtitle_text}>{eventData.location}</Text>
+				<View style={styles.footer}>
+					<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+						{eventData.title}
+					</Text>
+					<View style={styles.subtitle}>
+						<View style={styles.subtitle_item}>
+							<FontAwesomeIcon
+								style={styles.subtitleIcon_date}
+								name="calendar"
+								size={15.5}
+								color={Colors.primary}
+							/>
+							<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
+						</View>
+						<View style={styles.subtitle_item}>
+							<Image style={styles.subtitleIcon_clock} source={images.clock} />
+							<Text style={styles.subtitle_text}>{eventData.time}</Text>
+						</View>
+						<View style={styles.subtitle_item}>
+							<Image style={styles.subtitleIcon_location} source={images.location} />
+							<Text style={styles.subtitle_text}>{eventData.location}</Text>
+						</View>
 					</View>
 				</View>
 			</View>
@@ -77,22 +79,26 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 		>
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
 				{/* <Text style={styles.title}>{eventData.title}</Text> */}
+
+				<View style={styles.badge}>
+					{formatDate(eventData.date)
+						.trim()
+						.split(" ")
+						.map((word, index) => (
+							<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
+								{word}
+							</Text>
+						))}
+				</View>
 				<LinearGradient
-					colors={["#000000ff", "#0e0e0e5e", "#b9212101"]}
+					colors={["#000000ff", "#0e0e0ec4", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
 					start={{ x: 0, y: 1 }}
 					end={{ x: 0, y: 0 }}
-					style={{ height: "100%", width: "100%" }}
+					style={styles.gradientOverlay}
 				>
-					<View style={styles.badge}>
-						{formatDate(eventData.date)
-							.trim()
-							.split(" ")
-							.map((word, index) => (
-								<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
-									{word}
-								</Text>
-							))}
-					</View>
+					<Text style={[styles.title, { marginBottom: 10 }]} numberOfLines={2} ellipsizeMode="tail">
+						{eventData.title}
+					</Text>
 				</LinearGradient>
 			</ImageBackground>
 		</Ripple>
@@ -102,7 +108,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 const getStyles = (theme, variant, cardHeight) => {
 	if (variant == "2")
 		return StyleSheet.create({
-			container: {
+			backgroundImage: {
 				aspectRatio: 100 / 63,
 				overflow: "hidden",
 				width: "100%",
@@ -118,12 +124,15 @@ const getStyles = (theme, variant, cardHeight) => {
 				height: cardHeight + 110,
 			},
 
+			footer: { gap: 0.5 },
+
 			title: {
 				fontSize: 14.5,
 				fontWeight: 600,
 				marginLeft: 2,
-				marginTop: 5.2,
+				marginTop: 2,
 				fontFamily: "Poppins-SemiBold",
+				lineHeight: 27,
 			},
 
 			subtitle: {
@@ -132,7 +141,6 @@ const getStyles = (theme, variant, cardHeight) => {
 				alignItems: "center",
 				gap: 12.5,
 				marginLeft: 2,
-				marginTop: 0.45,
 			},
 
 			subtitle_item: {
@@ -181,26 +189,27 @@ const getStyles = (theme, variant, cardHeight) => {
 			borderRadius: 10,
 			borderBottomWidth: 1.2,
 			borderColor: "rgba(0, 0, 0, 0.19)",
-			boxShadow: "0px 0.5px 6px rgba(0, 0, 0, 0.34)",
+			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
 		},
 
 		title: {
-			fontSize: 15,
-			fontWeight: 500,
-			backgroundColor: "black",
+			fontSize: 16.5,
+			fontWeight: 600,
 			padding: 11,
-			textAlign: "center",
+			textAlign: "left",
+			marginTop: "auto",
 			color: "white",
+			marginLeft: 2,
+			fontFamily: "Poppins-SemiBold",
 		},
 
 		badge: {
 			position: "absolute",
-			backgroundColor: "#242424de",
+			backgroundColor: "#242424e0",
 			paddingInline: 18,
 			paddingTop: 7.5,
 			paddingBottom: 13,
 			textAlign: "center",
-			position: "relative",
 			top: 0.5,
 			left: 11,
 			minWidth: 70,
@@ -228,6 +237,10 @@ const getStyles = (theme, variant, cardHeight) => {
 			top: 0,
 			flex: 1,
 			height: 560,
+		},
+
+		gradientOverlay: {
+			height: "101%",
 		},
 	});
 };
