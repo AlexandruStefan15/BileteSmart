@@ -149,13 +149,13 @@ const styles = StyleSheet.create({
 
 	formTitle: {
 		fontSize: 20,
-		fontWeight: "600",
+		fontWeight: "bold",
 		marginBottom: 20,
 		textAlign: "center",
 	},
 
 	label: {
-		fontSize: 15,
+		fontSize: 14,
 		fontWeight: "500",
 		marginTop: 5,
 		marginBottom: 5,
@@ -163,9 +163,9 @@ const styles = StyleSheet.create({
 	},
 
 	input: {
-		borderWidth: 1,
+		borderWidth: 1.2,
 		borderColor: "#ccc",
-		borderRadius: 8,
+		borderRadius: 18,
 		padding: 10,
 		marginBottom: 10,
 		backgroundColor: "white",

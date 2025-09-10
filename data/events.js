@@ -11,7 +11,7 @@ export const eventsByLocation = {
 				"https://timponline.ro/wp-content/uploads/2025/04/494343811_661552870180862_5699633605865152324_n.jpg",
 			event_type: "Sportiv",
 			event_type_name: "Baschet Masculin SC 2024-2025",
-			logo_images: [images.gloriaBistritaLogo, images.csmSlatinaLogo],
+			logo_images: [images.gloriaBistritaLogo, images.csmSlatinaLogo], //links to images
 			time: "17:00",
 			date: "2025-05-03",
 			location: "Bistrita",
@@ -20,13 +20,15 @@ export const eventsByLocation = {
 		{
 			id_event: "138",
 			title: "CS GLORIA BISTRITA - STORHAMAR HANDBALL ELITE",
+			subtitle: "Complex Sportiv Polivalent TeraPlast Arena",
 			event_img:
 				"https://biletesmart.ro/poster/58081756829179541806.09.2025 GLORIA - STORHAMAR.jpg",
 			eventCard_img:
 				"https://biletesmart.ro/poster/58081756829179541806.09.2025 GLORIA - STORHAMAR.jpg",
-			subtitle: "Complex Sportiv Polivalent TeraPlast Arena",
+
 			event_type: "Sportiv",
 			event_type_name: "Champions League",
+			logo_images: [images.gloriaBistritaLogo, images.storhamarLogo],
 			time: "17:00",
 			date: "2025-09-06",
 			location: "Bistrita",

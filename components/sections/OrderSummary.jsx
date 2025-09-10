@@ -24,7 +24,7 @@ const OrderSummary = ({ formRef }) => {
 				{selectedSeats.map((seat, index) => (
 					<View key={index} style={[styles.row, { paddingBottom: 15 }]}>
 						<View style={{ flexShrink: 1, flexDirection: "row", alignItems: "center", gap: 15 }}>
-							<FontAwesomeIcon name="ticket" size={22} color="#23527c" />
+							<FontAwesomeIcon name="ticket" size={21} color="#23527c" />
 							<Text
 								style={{
 									fontSize: 15.5,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
-		fontSize: 19.2,
+		fontSize: 19.5,
 		fontWeight: "bold",
 		textAlign: "center",
 		marginBottom: 40,

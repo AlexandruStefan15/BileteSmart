@@ -25,6 +25,7 @@ const images = {
 	clock: require("./clock.png"),
 	location: require("./location.png"),
 	pin: require("./pin.png"),
+	storhamarLogo: require("./storhamar.png"),
 };
 
 export { images };
