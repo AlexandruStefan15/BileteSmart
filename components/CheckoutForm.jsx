@@ -38,8 +38,6 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 			return;
 		}
 
-		Alert.alert("Success", "Form submitted successfully!");
-
 		/* try {
 			const response = await fetch("https://your-api.com/checkout", {
 				method: "POST",
@@ -52,7 +50,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 			const data = await response.json();
 
 			if (response.ok) {
-				//Alert.alert("Success", data.message || "Message sent successfully!");
+				//Alert.alert("Success", "Form submitted successfully!");
 				setLastName("");
 				setFirstName("");
 				setPhoneNr("");
