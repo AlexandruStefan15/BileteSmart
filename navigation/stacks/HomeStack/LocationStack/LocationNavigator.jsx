@@ -23,7 +23,7 @@ const LocationNavigator = () => (
 		<Stack.Screen
 			name="LocationMapScreen"
 			component={LocationMapScreen}
-			options={{ headerTitle: "Hartă" }}
+			options={{ headerShown: false }}
 		></Stack.Screen>
 	</Stack.Navigator>
 );

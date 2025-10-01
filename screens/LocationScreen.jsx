@@ -132,6 +132,7 @@ const LocationScreen = ({ navigation, route }) => {
 							onPress={() =>
 								navigation.navigate("LocationMapScreen", {
 									coordinates: currentLocation.coordinates,
+									address: currentLocation.address,
 								})
 							}
 						>
@@ -145,19 +146,11 @@ const LocationScreen = ({ navigation, route }) => {
 									pitchEnabled: false,
 								}}
 							/>
-						</Pressable>
-						<TouchableOpacity
-							onPress={() =>
-								navigation.navigate("LocationMapScreen", {
-									coordinates: currentLocation.coordinates,
-								})
-							}
-						>
 							<View style={styles.addressWrapper}>
 								<Image style={styles.address_icon} source={images.pin} />
 								<Text style={styles.address_text}>{currentLocation.address}</Text>
 							</View>
-						</TouchableOpacity>
+						</Pressable>
 					</View>
 				</View>
 			</ScrollView>

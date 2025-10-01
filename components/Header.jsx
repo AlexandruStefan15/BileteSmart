@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
 import { Dimensions } from "react-native";
@@ -26,6 +26,7 @@ const Header = ({
 	badgeStyle,
 	displayBadge = {},
 	arrowColor = "white",
+	styleTitle,
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
@@ -47,35 +48,49 @@ const Header = ({
 			<Animated.View style={[styles.container3, style]}>
 				<View style={styles.backButton}>
 					<TouchableOpacity style={{}} onPress={() => navigation.goBack()}>
-						<FeatherIcon name="arrow-left" size={26} color={"white"} />
+						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />
 					</TouchableOpacity>
 				</View>
-				{showCart && (
-					<TouchableOpacity
-						onPress={() => {
-							openSidebar();
-						}}
-						style={styles.burgerMenu}
-					>
-						<View style={{ padding: 5, right: -1 }}>
-							<IoniconsIcon name="cart-outline" size={28} color={"white"} />
-						</View>
-						<Animated.View style={[styles.badge, badgeStyle]} />
-					</TouchableOpacity>
-				)}
+				<View style={styles.content}>
+					{title && (
+						<Text style={[styles.title, { color: arrowColor }]} numberOfLines={1}>
+							{title}
+						</Text>
+					)}
+					{showCart && (
+						<TouchableOpacity
+							onPress={() => {
+								openSidebar();
+							}}
+							style={styles.cart}
+						>
+							<View style={{ padding: 5, right: -1 }}>
+								<IoniconsIcon name="cart-outline" size={28} color={"white"} />
+							</View>
+							<Animated.View style={[styles.badge, badgeStyle]} />
+						</TouchableOpacity>
+					)}
+				</View>
 			</Animated.View>
 		);
 
 	if (variant == 2)
 		return (
 			<Animated.View style={[styles.container2, style]}>
-				<View style={styles.backButton}>
+				<View style={styles.backButton2}>
 					<TouchableOpacity
-						style={{ padding: 15, left: -17, top: 2 }}
+						style={{ marginTop: 2, padding: 15 }}
 						onPress={() => navigation.goBack()}
 					>
 						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />
 					</TouchableOpacity>
+				</View>
+				<View style={styles.content}>
+					{title && (
+						<Text style={[styles.title, { color: arrowColor }, styleTitle]} numberOfLines={1}>
+							{title}
+						</Text>
+					)}
 				</View>
 			</Animated.View>
 		);
@@ -130,9 +145,8 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
-		fontSize: 20,
-		fontWeight: "bold",
-		marginHorizontal: "auto",
+		fontSize: 19.7,
+		fontWeight: "500",
 	},
 
 	// variant 2 styles
@@ -140,7 +154,8 @@ const styles = StyleSheet.create({
 	container2: {
 		position: "absolute",
 		top: 0,
-		flexDirection: "row-reverse",
+		gap: 0,
+		flexDirection: "row",
 		paddingHorizontal: 20,
 		paddingVertical: 0,
 		justifyContent: "space-between",
@@ -150,8 +165,8 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 	},
 
-	backButton: {
-		marginRight: "auto",
+	backButton2: {
+		marginLeft: -15,
 	},
 
 	// variant 3 styles
@@ -159,6 +174,7 @@ const styles = StyleSheet.create({
 	container3: {
 		position: "absolute",
 		top: 0,
+		gap: 17,
 		flexDirection: "row",
 		paddingHorizontal: 20,
 		paddingVertical: 13,
@@ -167,6 +183,17 @@ const styles = StyleSheet.create({
 		zIndex: 10,
 		width: "100%",
 		backgroundColor: Colors.tertiary,
+	},
+
+	content: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		flex: 1,
+	},
+
+	cart: {
+		marginLeft: "auto",
 	},
 
 	badge: {
