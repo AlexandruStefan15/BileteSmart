@@ -7,6 +7,9 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by loc
 //store
 import { useCartSidebarStore } from "@/store/store";
 
+//constants
+import { Colors } from "@/constants/Colors";
+
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
@@ -19,7 +22,8 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<Header
-				variant="3"
+				variant="2"
+				style={{ backgroundColor: Colors.tertiary }}
 				showCart={true}
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}

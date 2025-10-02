@@ -4,6 +4,9 @@ import { StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from "react-na
 //data
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 
+//constants
+import { Colors } from "@/constants/Colors";
+
 //store
 import { useCartSidebarStore } from "@/store/store";
 
@@ -38,7 +41,8 @@ export default SeatsPlanScreen = ({
 	return (
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 			<Header
-				variant="3"
+				variant="2"
+				style={{ backgroundColor: Colors.tertiary }}
 				showCart={true}
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}

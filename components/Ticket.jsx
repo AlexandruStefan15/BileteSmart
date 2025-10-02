@@ -87,7 +87,7 @@ const Ticket = ({ data, variant = "" }) => {
 				selected={data.is_discounted === "1" ? "Redus" : "Intreg"}
 				onChange={handleTypeChange}
 				selectStyles={styles.selectType}
-				textStyles={{ color: "lightgrey", fontWeight: "bold", fontSize: 13.8 }}
+				textStyles={{ color: "#d3d3d3ed", fontWeight: "bold", fontSize: 13.8 }}
 			/>
 			<View style={styles.teethWrapperRight}>
 				{teeth.map((_, index) => (
@@ -201,7 +201,7 @@ const getStyles = (variant) => {
 			width: "84%",
 			padding: 16,
 			backgroundColor: "#363736",
-			gap: 2.5,
+			gap: 0,
 			paddingHorizontal: 28,
 			borderRadius: 10,
 			paddingLeft: 30,
@@ -246,7 +246,7 @@ const getStyles = (variant) => {
 
 		priceText: {
 			fontWeight: "600",
-			fontSize: 17,
+			fontSize: 17.5,
 			marginTop: 12,
 			color: "#74b7dd",
 		},

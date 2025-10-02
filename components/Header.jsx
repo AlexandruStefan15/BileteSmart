@@ -30,6 +30,7 @@ const Header = ({
 	backButtonSize = 26,
 }) => {
 	const { selectedSeats } = useSelectedSeats();
+	const styles = getStyles(variant);
 	const navigation = useNavigation();
 	const didMount = useRef(false);
 	const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
@@ -44,41 +45,10 @@ const Header = ({
 		}
 	}, [selectedSeats.length]);
 
-	if (variant == 3)
-		return (
-			<Animated.View style={[styles.container3, style]}>
-				<View style={styles.backButton}>
-					<TouchableOpacity style={{}} onPress={() => navigation.goBack()}>
-						<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
-					</TouchableOpacity>
-				</View>
-				<View style={styles.content}>
-					{title && (
-						<Text style={[styles.title, { color: arrowColor }]} numberOfLines={1}>
-							{title}
-						</Text>
-					)}
-					{showCart && (
-						<TouchableOpacity
-							onPress={() => {
-								openSidebar();
-							}}
-							style={styles.cart}
-						>
-							<View style={{ padding: 5, right: -1 }}>
-								<IoniconsIcon name="cart-outline" size={28} color={"white"} />
-							</View>
-							<Animated.View style={[styles.badge, badgeStyle]} />
-						</TouchableOpacity>
-					)}
-				</View>
-			</Animated.View>
-		);
-
 	if (variant == 2)
 		return (
-			<Animated.View style={[styles.container2, style]}>
-				<View style={styles.backButton2}>
+			<Animated.View style={[styles.container, style]}>
+				<View style={styles.backButton}>
 					<TouchableOpacity
 						style={{ marginTop: 2, padding: 15 }}
 						onPress={() => navigation.goBack()}
@@ -91,6 +61,19 @@ const Header = ({
 						<Text style={[styles.title, { color: arrowColor }, styleTitle]} numberOfLines={1}>
 							{title}
 						</Text>
+					)}
+					{showCart && (
+						<TouchableOpacity
+							onPress={() => {
+								openSidebar();
+							}}
+							style={styles.cart}
+						>
+							<View style={{ padding: 5 }}>
+								<IoniconsIcon name="cart-outline" size={28} color={"white"} />
+							</View>
+							<Animated.View style={[styles.badge, badgeStyle]} />
+						</TouchableOpacity>
 					)}
 				</View>
 			</Animated.View>
@@ -121,92 +104,79 @@ const Header = ({
 	);
 };
 
-const styles = StyleSheet.create({
-	container: {
-		position: "fixed",
-		flexDirection: "row-reverse",
-		paddingHorizontal: 20,
-		paddingVertical: 14,
-		justifyContent: "space-between",
-		alignItems: "center",
-		backgroundColor: "white",
-		zIndex: 10,
-		width: "100%",
-		shadowColor: "#000",
-		shadowOffset: { width: 0, height: 3 },
-		shadowOpacity: 0.1,
-		shadowRadius: 6,
-		elevation: 3,
-	},
+const getStyles = (variant) => {
+	if (variant == "2")
+		return StyleSheet.create({
+			container: {
+				position: "absolute",
+				top: 0,
+				gap: 0,
+				flexDirection: "row",
+				paddingHorizontal: 20,
+				paddingVertical: 0,
+				justifyContent: "space-between",
+				alignItems: "center",
+				zIndex: 10,
+				width: "100%",
+				backgroundColor: "transparent",
+			},
 
-	burgerMenu_icon: {
-		padding: 8,
-		borderRadius: 10,
-		backgroundColor: Colors.light.background.primary,
-	},
+			content: {
+				flexDirection: "row",
+				justifyContent: "space-between",
+				alignItems: "center",
+				flex: 1,
+			},
 
-	title: {
-		fontSize: 19.7,
-		fontWeight: "500",
-	},
+			cart: {
+				marginLeft: "auto",
+			},
 
-	// variant 2 styles
+			backButton: {
+				marginLeft: -15,
+			},
 
-	container2: {
-		position: "absolute",
-		top: 0,
-		gap: 0,
-		flexDirection: "row",
-		paddingHorizontal: 20,
-		paddingVertical: 0,
-		justifyContent: "space-between",
-		alignItems: "center",
-		zIndex: 10,
-		width: "100%",
-		backgroundColor: "transparent",
-	},
+			badge: {
+				width: 10,
+				height: 10,
+				backgroundColor: "red",
+				borderRadius: 40,
+				position: "absolute",
+				right: 2,
+				top: 7,
+				zIndex: 999,
+			},
+		});
 
-	backButton2: {
-		marginLeft: -15,
-	},
+	return StyleSheet.create({
+		container: {
+			position: "fixed",
+			flexDirection: "row-reverse",
+			paddingHorizontal: 20,
+			paddingVertical: 14,
+			justifyContent: "space-between",
+			alignItems: "center",
+			backgroundColor: "white",
+			zIndex: 10,
+			width: "100%",
+			shadowColor: "#000",
+			shadowOffset: { width: 0, height: 3 },
+			shadowOpacity: 0.1,
+			shadowRadius: 6,
+			elevation: 3,
+		},
 
-	// variant 3 styles
+		burgerMenu_icon: {
+			padding: 8,
+			borderRadius: 10,
+			backgroundColor: Colors.light.background.primary,
+		},
 
-	container3: {
-		position: "absolute",
-		top: 0,
-		gap: 17,
-		flexDirection: "row",
-		paddingHorizontal: 20,
-		paddingVertical: 13,
-		justifyContent: "space-between",
-		alignItems: "center",
-		zIndex: 10,
-		width: "100%",
-		backgroundColor: Colors.tertiary,
-	},
-
-	content: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-		flex: 1,
-	},
-
-	cart: {
-		marginLeft: "auto",
-	},
-
-	badge: {
-		width: 10,
-		height: 10,
-		backgroundColor: "red",
-		borderRadius: 40,
-		position: "absolute",
-		right: 2,
-		top: 7,
-		zIndex: 999,
-	},
-});
+		title: {
+			fontSize: 19.7,
+			fontWeight: "500",
+		},
+	});
+};
 
 export default Header;
