@@ -27,6 +27,7 @@ const Header = ({
 	displayBadge = {},
 	arrowColor = "white",
 	styleTitle,
+	backButtonSize = 26,
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const navigation = useNavigation();
@@ -48,7 +49,7 @@ const Header = ({
 			<Animated.View style={[styles.container3, style]}>
 				<View style={styles.backButton}>
 					<TouchableOpacity style={{}} onPress={() => navigation.goBack()}>
-						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />
+						<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
 					</TouchableOpacity>
 				</View>
 				<View style={styles.content}>
@@ -82,7 +83,7 @@ const Header = ({
 						style={{ marginTop: 2, padding: 15 }}
 						onPress={() => navigation.goBack()}
 					>
-						<FeatherIcon name="arrow-left" size={26} color={arrowColor} />
+						<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
 					</TouchableOpacity>
 				</View>
 				<View style={styles.content}>

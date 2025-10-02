@@ -18,9 +18,12 @@ const LocationMapScreen = ({ navigation, route }) => {
 				style={{
 					backgroundColor: "white",
 					boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
+					paddingHorizontal: 16,
+					gap: 2,
 				}}
 				styleTitle={{ color: "black", fontSize: 17, fontWeight: "600" }}
 				arrowColor="black"
+				backButtonSize={24.5}
 			/>
 			<LocationMap coordinates={coordinates} styleMap={{ height: "100%" }} />
 		</SafeAreaView>

@@ -127,8 +127,9 @@ const LocationScreen = ({ navigation, route }) => {
 						</View>
 					)}
 					<View style={styles.address_section}>
-						<Title style={[styles.title]}>Adresa & locatie</Title>
+						<Title style={[styles.title]}>Adresa locatiei</Title>
 						<Pressable
+							style={styles.adressContainer}
 							onPress={() =>
 								navigation.navigate("LocationMapScreen", {
 									coordinates: currentLocation.coordinates,
@@ -254,6 +255,15 @@ const styles = StyleSheet.create({
 		marginTop: 12,
 	},
 
+	adressContainer: {
+		outlineWidth: 1.1,
+		outlineColor: "#dbdbdb5e",
+		outlineStyle: "solid",
+		borderRadius: 10,
+		overflow: "hidden",
+		boxShadow: "0px 0px 1.75px rgba(0, 0, 0, 0.27)",
+	},
+
 	addressWrapper: {
 		flexDirection: "row",
 		alignItems: "center",
@@ -261,18 +271,16 @@ const styles = StyleSheet.create({
 		borderTopWidth: 0,
 		borderBottomLeftRadius: 10,
 		borderBottomRightRadius: 10,
-		borderWidth: 1.1,
-		borderColor: "#dbdbdb5e",
 	},
 
 	address_icon: {
-		width: 37,
-		height: 37,
+		width: 33,
+		height: 33,
 	},
 
 	address_text: {
 		flex: 1,
-		fontSize: 15,
+		fontSize: 14.5,
 		fontWeight: "500",
 		lineHeight: 22,
 	},
