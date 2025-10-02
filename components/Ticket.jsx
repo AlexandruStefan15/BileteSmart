@@ -204,6 +204,7 @@ const getStyles = (variant) => {
 			gap: 2.5,
 			paddingHorizontal: 28,
 			borderRadius: 10,
+			paddingLeft: 30,
 		},
 
 		teethWrapperLeft: {
@@ -253,7 +254,7 @@ const getStyles = (variant) => {
 		selectType: {
 			position: "absolute",
 			zIndex: 999,
-			right: 40,
+			right: 38,
 			top: 49,
 			backgroundColor: "#2e2d2d",
 			borderColor: "transparent",

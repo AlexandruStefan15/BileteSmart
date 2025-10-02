@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
 	title: {
 		padding: 0,
 		fontWeight: 600,
-		fontSize: 20,
+		fontSize: 20.5,
 		textAlign: "left",
 		marginBottom: 16,
 	},
