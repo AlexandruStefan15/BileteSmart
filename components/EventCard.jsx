@@ -11,7 +11,7 @@ import { images } from "@/assets/images/index";
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
 //icons
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import EntypoIcon from "react-native-vector-icons/Entypo";
 //components
 import Ripple from "react-native-material-ripple";
 
@@ -48,7 +48,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</Text>
 					<View style={styles.subtitle}>
 						<View style={styles.subtitle_item}>
-							<FontAwesomeIcon
+							<EntypoIcon
 								style={styles.subtitleIcon_date}
 								name="calendar"
 								size={15.5}
