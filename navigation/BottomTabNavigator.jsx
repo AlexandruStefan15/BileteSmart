@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Keyboard } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 // Constants
@@ -8,7 +7,7 @@ import { Colors } from "@/constants";
 import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
 import TicketsNavigator from "./stacks/TicketsNavigator";
-import ProfileNavigator from "./stacks/ProfileStack/ProfileNavigator";
+import MyAccountNavigator from "./stacks/MyAccountNavigator";
 // Icons
 import Icon from "react-native-vector-icons/Feather";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -72,10 +71,10 @@ const BottomTabNavigator = () => {
 				})}
 			/>
 			<Tab.Screen
-				name="Profil"
-				component={ProfileNavigator}
+				name="Contul meu"
+				component={MyAccountNavigator}
 				options={({ route }) => ({
-					tabBarStyle: getTabBarStyle(route, "ProfileScreen"),
+					tabBarStyle: getTabBarStyle(route, "MyAccountScreen"),
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesomeIcon name="user" size={size} color={color} />
 					),

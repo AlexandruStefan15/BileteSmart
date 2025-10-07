@@ -6,9 +6,12 @@ import { useFocusEffect } from "@react-navigation/native";
 //store
 import { useDrawerStore } from "@/store/store";
 
+//components
 import Header from "@/components/Header";
+import ProfileBanner from "@/components/sections/ProfileBanner";
+import NavigationMenu from "@/components/NavigationMenu";
 
-const ProfileScreen = ({ navigation }) => {
+const MyAccountScreen = ({ navigation }) => {
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
 	useFocusEffect(
@@ -20,10 +23,10 @@ const ProfileScreen = ({ navigation }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header title="Home" />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+				<ProfileBanner />
 				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-					<Text>Profile screen</Text>
+					<NavigationMenu style={{ width: "85%" }} />
 				</View>
 			</ScrollView>
 		</SafeAreaView>
@@ -37,4 +40,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ProfileScreen;
+export default MyAccountScreen;
