@@ -43,7 +43,6 @@ const NavigationMenu = ({ data = menuItems, style }) => {
 						key={item.id}
 						style={styles.item}
 						onPress={() => navigation.navigate(item.screen)}
-						activeOpacity={0.7}
 					>
 						<View style={styles.left}>
 							<IconComponent name={item.icon} size={20} color="#000" />

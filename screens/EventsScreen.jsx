@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 	container: { gap: 18, paddingInline: 18, paddingBlock: 22 },
 
 	wrapper: {
-		gap: 18,
+		gap: 20,
 	},
 
 	location_title: {
