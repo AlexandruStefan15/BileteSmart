@@ -137,7 +137,7 @@ const getStyles = () =>
 		},
 
 		banner: {
-			paddingTop: 65,
+			paddingTop: 75,
 			paddingBottom: 30,
 			paddingHorizontal: 20,
 			alignItems: "center",

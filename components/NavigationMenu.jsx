@@ -16,19 +16,19 @@ const IconLibs = {
 };
 
 const menuItems = [
-	{ id: 1, title: "Schimba datele", screen: "EditAccountDataScreen", icon: "user", lib: "fa" },
-	{ id: 2, title: "Abonamente", screen: "SubscriptionsScreen", icon: "credit-card", lib: "fa" },
-	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryScreen", icon: "history", lib: "fa" },
-	{ id: 4, title: "Preferinte", screen: "PreferencesScreen", icon: "settings", lib: "mi" },
+	{ id: 1, title: "Schimba datele", screen: "EditAccountDataScreen", icon: "user", iconLib: "fa" },
+	{ id: 2, title: "Abonamente", screen: "SubscriptionsScreen", icon: "credit-card", iconLib: "fa" },
+	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryScreen", icon: "history", iconLib: "fa" },
+	{ id: 4, title: "Preferinte", screen: "PreferencesScreen", icon: "settings", iconLib: "mi" },
 	{
 		id: 5,
 		title: "Schimba parola",
 		screen: "ChangePasswordScreen",
 		icon: "lock",
-		lib: "fa",
+		iconLib: "fa",
 	},
-	{ id: 6, title: "Sterge contul", screen: "DeleteAccountScreen", icon: "trash", lib: "fa" },
-	{ id: 7, title: "Deconectare", screen: "Logout", icon: "logout", lib: "mi" },
+	{ id: 6, title: "Sterge contul", screen: "DeleteAccountScreen", icon: "trash", iconLib: "fa" },
+	{ id: 7, title: "Deconectare", screen: "Logout", icon: "logout", iconLib: "mi" },
 ];
 
 const NavigationMenu = ({ data = menuItems, style }) => {
@@ -37,7 +37,7 @@ const NavigationMenu = ({ data = menuItems, style }) => {
 	return (
 		<View style={[styles.container, style]}>
 			{data.map((item) => {
-				const IconComponent = IconLibs[item.lib] || FontAwesome; // fallback
+				const IconComponent = IconLibs[item.iconLib] || FontAwesome; // fallback
 				return (
 					<TouchableOpacity
 						key={item.id}

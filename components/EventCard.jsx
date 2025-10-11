@@ -14,6 +14,7 @@ import { useCustomFonts } from "@/hooks/useCustomFonts";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 //components
 import Ripple from "react-native-material-ripple";
+import Icon from "./Icon";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
 	const [cardHeight, setCardHeight] = useState(0);
@@ -48,9 +49,10 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</Text>
 					<View style={styles.subtitle}>
 						<View style={styles.subtitle_item}>
-							<EntypoIcon
+							<Icon
 								style={styles.subtitleIcon_date}
-								name="calendar"
+								lib="fa5"
+								name="calendar-alt"
 								size={15.5}
 								color={Colors.primary}
 							/>
@@ -139,7 +141,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				flexDirection: "row-reverse",
 				marginRight: "auto",
 				alignItems: "center",
-				gap: 13,
+				gap: 14,
 				marginLeft: 2,
 			},
 

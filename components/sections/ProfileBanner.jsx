@@ -1,18 +1,23 @@
 import React from "react";
 import { StyleSheet, View, Image, Text, Pressable, Dimensions } from "react-native";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
 
-const ProfileBanner = () => {
+const ProfileBanner = ({ settingsButton }) => {
 	const windowHeight = Dimensions.get("window").height;
+	const { height: safeFrameHeight } = useSafeAreaFrame();
+	const styles = getStyles(safeFrameHeight);
 
 	return (
 		<View style={styles.section}>
 			<View style={styles.settingsButton}>
-				<Pressable onPress={() => {}}>
-					<FeatherIcon name="settings" size={24.5} color="#000" />
-				</Pressable>
+				{settingsButton && (
+					<Pressable onPress={() => {}}>
+						<FeatherIcon name="settings" size={24.5} color="#000" />
+					</Pressable>
+				)}
 			</View>
 			<View style={styles.container}>
 				<View style={styles.imageBox}>
@@ -21,41 +26,42 @@ const ProfileBanner = () => {
 						style={{ width: "100%", height: "100%", resizeMode: "contain", postion: "absolute" }}
 					/>
 				</View>
-				<Text style={styles.profileName}>My Account</Text>
+				<Text style={styles.profileName}>Alex Nastase</Text>
 			</View>
 		</View>
 	);
 };
 
-const styles = StyleSheet.create({
-	section: {
-		paddingVertical: 55,
-		backgroundColor: "#edededff",
-	},
+const getStyles = (safeFrameHeight) =>
+	StyleSheet.create({
+		section: {
+			paddingVertical: (55 * safeFrameHeight) / 800 < 55 ? (54 * safeFrameHeight) / 800 : 64,
+			backgroundColor: "#edededff",
+		},
 
-	settingsButton: {
-		position: "absolute",
-		top: 20,
-		right: 23,
-	},
+		settingsButton: {
+			position: "absolute",
+			top: 20,
+			right: 23,
+		},
 
-	container: {
-		alignItems: "center",
-		gap: 15,
-	},
+		container: {
+			alignItems: "center",
+			gap: 15,
+		},
 
-	imageBox: {
-		position: "relative",
-		width: 98,
-		height: 98,
-		overflow: "hidden",
-		borderRadius: 20,
-	},
+		imageBox: {
+			position: "relative",
+			width: 100,
+			height: 100,
+			overflow: "hidden",
+			borderRadius: 20,
+		},
 
-	profileName: {
-		fontSize: 18,
-		fontWeight: "bold",
-	},
-});
+		profileName: {
+			fontSize: 18,
+			fontWeight: "bold",
+		},
+	});
 
 export default ProfileBanner;
