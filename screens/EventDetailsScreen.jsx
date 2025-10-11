@@ -1,16 +1,7 @@
 import React, { useState, useCallback } from "react";
-import {
-	StyleSheet,
-	View,
-	SafeAreaView,
-	Text,
-	Image,
-	StatusBar,
-	ScrollView,
-	useWindowDimensions,
-} from "react-native";
+import { StyleSheet, View, Text, Image, StatusBar, ScrollView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 
 // store
 import { useSelectedSeats } from "@/store/store";

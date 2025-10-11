@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -7,7 +8,6 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useDrawerStore } from "@/store/store";
 
 //components
-import Header from "@/components/Header";
 import ProfileBanner from "@/components/sections/ProfileBanner";
 import NavigationMenu from "@/components/NavigationMenu";
 
@@ -26,7 +26,9 @@ const MyAccountScreen = ({ navigation }) => {
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<ProfileBanner />
 				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-					<NavigationMenu style={{ width: "85%" }} />
+					<NavigationMenu
+						style={{ width: "85%", boxShadow: "0px 0px 1.75px rgba(0, 0, 0, 0.27)" }}
+					/>
 				</View>
 			</ScrollView>
 		</SafeAreaView>

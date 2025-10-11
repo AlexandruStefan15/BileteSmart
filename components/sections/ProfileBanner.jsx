@@ -1,10 +1,12 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, Pressable } from "react-native";
+import { StyleSheet, View, Image, Text, Pressable, Dimensions } from "react-native";
 
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
 
 const ProfileBanner = () => {
+	const windowHeight = Dimensions.get("window").height;
+
 	return (
 		<View style={styles.section}>
 			<View style={styles.settingsButton}>
@@ -27,8 +29,8 @@ const ProfileBanner = () => {
 
 const styles = StyleSheet.create({
 	section: {
-		paddingVertical: 52,
-		backgroundColor: "#f1f1f1ff",
+		paddingVertical: 55,
+		backgroundColor: "#edededff",
 	},
 
 	settingsButton: {

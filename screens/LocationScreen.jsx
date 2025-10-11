@@ -2,7 +2,6 @@ import React from "react";
 import {
 	StyleSheet,
 	View,
-	SafeAreaView,
 	ScrollView,
 	Text,
 	Image,
@@ -12,6 +11,7 @@ import {
 	Pressable,
 	TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "@/constants";
 import { images } from "@/assets/images";
 

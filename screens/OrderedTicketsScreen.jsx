@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, FlatList } from "react-native";
+import { StyleSheet, View, ScrollView, Text, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 //constants
 import { Colors } from "@/constants";

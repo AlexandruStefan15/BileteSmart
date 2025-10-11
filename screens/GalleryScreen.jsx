@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, FlatList, Image } from "react-native";
+import { StyleSheet, View, FlatList, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const GalleryScreen = ({ navigation, route }) => {
 	const { images } = route.params;

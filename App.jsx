@@ -3,6 +3,7 @@ import RootNavigator from "./navigation/RootNavigator";
 import { useTheme } from "./hooks/useTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 function App() {
 	const { theme, setTheme } = useTheme();
@@ -10,7 +11,9 @@ function App() {
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
 			<ThemeContext.Provider value={{ theme, setTheme }}>
-				<RootNavigator />
+				<SafeAreaProvider>
+					<RootNavigator />
+				</SafeAreaProvider>
 			</ThemeContext.Provider>
 		</GestureHandlerRootView>
 	);

@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, BackHandler } from "react-native";
+import { StyleSheet, View, ScrollView, Text, BackHandler } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 //components
 import Header from "@/components/Header";

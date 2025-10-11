@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 //data
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched

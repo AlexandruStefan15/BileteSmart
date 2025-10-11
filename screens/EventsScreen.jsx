@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView, Text, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ScrollView, Text, ActivityIndicator } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";
 
