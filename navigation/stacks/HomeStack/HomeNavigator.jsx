@@ -1,11 +1,11 @@
 // HomeNavigator.jsx
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { forwardRef } from "react";
 
 import HomeScreen from "@/screens/HomeScreen";
 import LocationNavigator from "@/navigation/stacks/HomeStack/LocationStack/LocationNavigator";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeNavigator = forwardRef((props, ref) => {
 	return (

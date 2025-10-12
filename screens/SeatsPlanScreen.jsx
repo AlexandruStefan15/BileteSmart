@@ -35,8 +35,12 @@ export default SeatsPlanScreen = ({
 
 	useEffect(() => {
 		if (infoModalShowedOnce) return;
-		setIsModalVisible(true);
-		setInfoModalShowedOnce?.(true);
+		const timer = setTimeout(() => {
+			setIsModalVisible(true);
+			setInfoModalShowedOnce?.(true);
+		}, 1000);
+
+		return () => clearTimeout(timer);
 	}, []);
 
 	return (

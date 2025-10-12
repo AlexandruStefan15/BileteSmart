@@ -47,7 +47,7 @@ const getStyles = (safeFrameHeight) =>
 
 		container: {
 			alignItems: "center",
-			gap: 15,
+			gap: 14,
 		},
 
 		imageBox: {

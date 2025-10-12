@@ -1,12 +1,12 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //screens
 import LocationScreen from "@/screens/LocationScreen";
 import GalleryScreen from "@/screens/GalleryScreen";
 import LocationMapScreen from "@/screens/LocationMapScreen";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const LocationNavigator = () => (
 	<Stack.Navigator>

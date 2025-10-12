@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
 	useSharedValue,
 	withTiming,
@@ -12,7 +12,7 @@ import { View } from "react-native";
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
 import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function RoomsPlanNavigator({}) {
 	const [infoModalShowedOnce, setInfoModalShowedOnce] = useState(false);
