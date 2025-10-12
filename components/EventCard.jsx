@@ -83,7 +83,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				{/* <Text style={styles.title}>{eventData.title}</Text> */}
 
 				<View style={styles.badge}>
-					{formatDate(eventData.date)
+					{formatDate(eventData.date, "short")
 						.trim()
 						.split(" ")
 						.map((word, index) => (
@@ -93,7 +93,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						))}
 				</View>
 				<LinearGradient
-					colors={["#000000ff", "#0e0e0ec4", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
+					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
 					start={{ x: 0, y: 1 }}
 					end={{ x: 0, y: 0 }}
 					style={styles.gradientOverlay}
@@ -207,21 +207,23 @@ const getStyles = (theme, variant, cardHeight) => {
 
 		badge: {
 			position: "absolute",
-			backgroundColor: "#242424e0",
-			paddingInline: 18,
-			paddingTop: 7.5,
-			paddingBottom: 13,
+			backgroundColor: "white",
 			textAlign: "center",
-			top: 0.5,
-			left: 11,
-			minWidth: 70,
+			top: 14,
+			left: 14,
+			minWidth: 63,
 			alignSelf: "flex-start",
+			borderRadius: 12,
+			justifyContent: "center",
+			alignItems: "center",
+			overflow: "hidden",
+			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
 		},
 
 		badge_text: {
 			fontSize: 14,
 			fontWeight: 400,
-			color: "white",
+			color: "#1a75cf",
 			textAlign: "center",
 			fontWeight: "500",
 		},
@@ -229,7 +231,22 @@ const getStyles = (theme, variant, cardHeight) => {
 		badge_text0: {
 			fontSize: 25,
 			fontWeight: "bold",
-			marginBottom: -3,
+			marginBottom: 0,
+			width: "100%",
+			paddingVertical: 2,
+			paddingTop: 2.5,
+		},
+
+		badge_text1: {
+			paddingVertical: 5,
+			backgroundColor: "#e7f0fe",
+			width: "100%",
+			fontWeight: "700",
+			fontSize: 13.5,
+		},
+
+		badge_text2: {
+			display: "none",
 		},
 
 		image: {

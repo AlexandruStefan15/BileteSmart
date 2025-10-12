@@ -15,7 +15,7 @@ const ProfileBanner = ({ settingsButton }) => {
 			<View style={styles.settingsButton}>
 				{settingsButton && (
 					<Pressable onPress={() => {}}>
-						<FeatherIcon name="settings" size={24.5} color="#000" />
+						<FeatherIcon name="settings" size={24} color="#000" />
 					</Pressable>
 				)}
 			</View>
@@ -41,8 +41,8 @@ const getStyles = (safeFrameHeight) =>
 
 		settingsButton: {
 			position: "absolute",
-			top: 20,
-			right: 23,
+			top: 19,
+			right: 22,
 		},
 
 		container: {

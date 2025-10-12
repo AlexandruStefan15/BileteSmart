@@ -27,21 +27,29 @@ export function formatRomanianDate(dateStr) {
 
 export function formatDate(dateString, variant) {
 	const date = new Date(dateString);
+	let formattedDate = "";
 
-	if (variant == "numeric")
-		return date.toLocaleDateString("ro-RO", { day: "numeric", month: "numeric", year: "numeric" });
+	if (variant === "numeric") {
+		formattedDate = date.toLocaleDateString("ro-RO", {
+			day: "numeric",
+			month: "numeric",
+			year: "numeric",
+		});
+	} else if (variant === "short") {
+		formattedDate = date.toLocaleDateString("ro-RO", {
+			day: "numeric",
+			month: "short",
+			year: "numeric",
+		});
+	} else {
+		formattedDate = date.toLocaleDateString("ro-RO", {
+			day: "numeric",
+			month: "long",
+			year: "numeric",
+		});
+	}
 
-	if (variant == "short")
-		return date.toLocaleDateString("ro-RO", { day: "numeric", month: "short", year: "numeric" });
-
-	return date.toLocaleDateString("ro-RO", {
-		day: "numeric",
-		month: "long",
-		year: "numeric",
-	});
-
-	// console.log(formatDateToRomanian("2025-04-26"));
-	// Output: "26 aprilie 2025"
+	return formattedDate.toUpperCase();
 }
 
 export function removeFirstWord(str) {

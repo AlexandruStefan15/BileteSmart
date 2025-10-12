@@ -38,7 +38,7 @@ export default SeatsPlanScreen = ({
 		const timer = setTimeout(() => {
 			setIsModalVisible(true);
 			setInfoModalShowedOnce?.(true);
-		}, 1000);
+		}, 800);
 
 		return () => clearTimeout(timer);
 	}, []);
