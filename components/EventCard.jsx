@@ -211,7 +211,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			textAlign: "center",
 			top: 14,
 			left: 14,
-			minWidth: 63,
+			minWidth: 62,
 			alignSelf: "flex-start",
 			borderRadius: 12,
 			justifyContent: "center",
@@ -229,7 +229,7 @@ const getStyles = (theme, variant, cardHeight) => {
 		},
 
 		badge_text0: {
-			fontSize: 25,
+			fontSize: 22.5,
 			fontWeight: "bold",
 			marginBottom: 0,
 			width: "100%",
@@ -242,7 +242,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			backgroundColor: "#e7f0fe",
 			width: "100%",
 			fontWeight: "700",
-			fontSize: 13.5,
+			fontSize: 11.5,
 		},
 
 		badge_text2: {
