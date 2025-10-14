@@ -46,11 +46,11 @@ Form.Field = ({ name, placeholder, validate, secureTextEntry = false, style, ...
 	return (
 		<View style={styles.field}>
 			<TextInput
+				style={[styles.input, errors[name] && styles.inputError, style]}
 				value={values[name] || ""}
 				onChangeText={onChangeText}
 				placeholder={placeholder}
 				secureTextEntry={secureTextEntry}
-				style={[styles.input, errors[name] && styles.inputError, style]}
 				placeholderTextColor="#888"
 			/>
 			{errors[name] && <Text style={styles.error}>{errors[name]}</Text>}
