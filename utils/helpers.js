@@ -36,11 +36,13 @@ export function formatDate(dateString, variant) {
 			year: "numeric",
 		});
 	} else if (variant === "short") {
-		formattedDate = date.toLocaleDateString("ro-RO", {
-			day: "numeric",
-			month: "short",
-			year: "numeric",
-		});
+		formattedDate = date
+			.toLocaleDateString("ro-RO", {
+				day: "numeric",
+				month: "short",
+				year: "numeric",
+			})
+			.replace(/\./g, "");
 	} else {
 		formattedDate = date.toLocaleDateString("ro-RO", {
 			day: "numeric",

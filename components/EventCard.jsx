@@ -80,8 +80,6 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 			{...props}
 		>
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
-				{/* <Text style={styles.title}>{eventData.title}</Text> */}
-
 				<View style={styles.badge}>
 					{formatDate(eventData.date, "short")
 						.trim()
@@ -129,7 +127,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			footer: { gap: 0.5 },
 
 			title: {
-				fontSize: 14.5,
+				fontSize: 14.7,
 				fontWeight: 600,
 				marginLeft: 2,
 				marginTop: 2,
@@ -141,7 +139,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				flexDirection: "row-reverse",
 				marginRight: "auto",
 				alignItems: "center",
-				gap: 14,
+				gap: 13,
 				marginLeft: 2,
 			},
 
@@ -170,9 +168,9 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitle_text: {
-				fontSize: 13.8,
+				fontSize: 13.5,
 				color: "#365771", //"#6f6f6fff"
-				fontWeight: 500,
+				fontWeight: 600,
 				marginLeft: 2,
 				marginBottom: 5,
 				lineHeight: 17,
@@ -209,9 +207,9 @@ const getStyles = (theme, variant, cardHeight) => {
 			position: "absolute",
 			backgroundColor: "white",
 			textAlign: "center",
-			top: 14,
-			left: 14,
-			minWidth: 62,
+			top: 13,
+			left: 13,
+			minWidth: 58,
 			alignSelf: "flex-start",
 			borderRadius: 12,
 			justifyContent: "center",
@@ -226,6 +224,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			color: "#1a75cf",
 			textAlign: "center",
 			fontWeight: "500",
+			paddingInline: 12,
 		},
 
 		badge_text0: {
@@ -241,7 +240,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			paddingVertical: 5,
 			backgroundColor: "#e7f0fe",
 			width: "100%",
-			fontWeight: "700",
+			fontWeight: "800",
 			fontSize: 11.5,
 		},
 
