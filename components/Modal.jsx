@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import ReactNativeModal from "react-native-modal";
 
-const Modal = ({ ...props }) => {
+const Modal = ({ isVisible, style, ...props }) => {
 	return (
-		<ReactNativeModal {...props}>
-			<View style={styles.modalContent}>
+		<ReactNativeModal isVisible={isVisible} {...props}>
+			<View style={[styles.modalContent, style]}>
 				<View style={styles.header}>
 					<Text style={styles.title}>{props.title}</Text>
 					<Text style={styles.subtitle}>{props.subtitle}</Text>
@@ -115,3 +115,24 @@ const styles = StyleSheet.create({
 });
 
 export default Modal;
+
+/* 
+example props:
+
+<ReactNativeModal
+  isVisible={isVisible}
+  onBackdropPress={() => setIsVisible(false)}
+  onBackButtonPress={() => setIsVisible(false)}
+  style={[styles.modal, styles]}
+  animationIn="fadeInUp"
+  animationOut="fadeOutDown"
+  animationInTiming={250}
+  animationOutTiming={250}
+  backdropTransitionInTiming={1}
+  backdropTransitionOutTiming={1}
+  useNativeDriver={true}
+  hideModalContentWhileAnimating={false}
+>
+...modal content here...
+</ReactNativeModal>
+*/
