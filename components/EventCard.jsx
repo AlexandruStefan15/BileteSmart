@@ -10,8 +10,6 @@ import { formatDate } from "@/utils/helpers";
 import { images } from "@/assets/images/index";
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
-//icons
-import EntypoIcon from "react-native-vector-icons/Entypo";
 //components
 import Ripple from "react-native-material-ripple";
 import Icon from "./Icon";
