@@ -121,7 +121,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				resizeMode: "cover",
 				position: "absolute",
 				top: 0,
-				height: cardHeight + 108,
+				height: cardHeight + 107,
 			},
 
 			footer: { gap: 0.5 },
