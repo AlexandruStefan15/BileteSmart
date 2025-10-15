@@ -76,64 +76,57 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 		<View style={[styles.container, style]}>
 			<Text style={styles.formTitle}>Informatii Personale</Text>
 
-			{/* <Text style={styles.label}>Nume</Text> */}
-			<Input label={"Nume"} value={lastName} onChangeText={setLastName} />
-			{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
+			<View style={{ gap: 17 }}>
+				<Input label={"Nume"} value={lastName} onChangeText={setLastName} />
+				{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
 
-			<Text style={styles.label}>Prenume</Text>
-			<TextInput style={styles.input} value={firstName} onChangeText={setFirstName} />
-			{errors.firstName && <Text style={styles.error}>{errors.firstName}</Text>}
+				<Input label={"Prenume"} value={firstName} onChangeText={setFirstName} />
+				{errors.firstName && <Text style={styles.error}>{errors.firstName}</Text>}
 
-			<Text style={styles.label}>Telefon</Text>
-			<TextInput
-				style={styles.input}
-				value={phoneNr}
-				onChangeText={setPhoneNr}
-				keyboardType="number-pad"
-			/>
-			{errors.phoneNr && <Text style={styles.error}>{errors.phoneNr}</Text>}
-
-			<Text style={styles.label}>Email</Text>
-			<TextInput
-				style={styles.input}
-				value={email}
-				onChangeText={setEmail}
-				keyboardType="email-address"
-			/>
-			{errors.email && <Text style={styles.error}>{errors.email}</Text>}
-
-			<Text style={styles.label}>Confirma email</Text>
-			<TextInput
-				style={styles.input}
-				value={confirmEmail}
-				onChangeText={setConfirmEmail}
-				keyboardType="email-address"
-			/>
-			{errors.confirmEmail && <Text style={styles.error}>{errors.confirmEmail}</Text>}
-
-			<View style={styles.termsAndConditions}>
-				<Checkbox
-					isChecked={localChecked}
-					disableText
-					fillColor="#23527c"
-					size={19}
-					useBuiltInState={false}
-					iconImageStyle={styles.iconImageStyle}
-					innerIconStyle={{ borderRadius: 3 }}
-					iconStyle={{ borderRadius: 3 }}
-					onPress={() => setLocalChecked(!localChecked)}
+				<Input
+					label={"Telefon"}
+					value={phoneNr}
+					onChangeText={setPhoneNr}
+					keyboardType="number-pad"
 				/>
-				<View style={{ flexDirection: "row", flexShrink: 1 }}>
-					<Text onPress={() => setLocalChecked(!localChecked)} style={styles.label}>
-						Sunt de acord cu{" "}
-					</Text>
-					<TouchableOpacity>
-						<Text style={[styles.label, { color: "#23527c" }]}>termenii si Conditiile.</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+				{errors.phoneNr && <Text style={styles.error}>{errors.phoneNr}</Text>}
 
-			{errors.terms && <Text style={styles.error}>{errors.terms}</Text>}
+				<Input label={"Email"} value={email} onChangeText={setEmail} keyboardType="email-address" />
+				{errors.email && <Text style={styles.error}>{errors.email}</Text>}
+
+				<Input
+					label={"Confirma email"}
+					style={styles.input}
+					value={confirmEmail}
+					onChangeText={setConfirmEmail}
+					keyboardType="email-address"
+				/>
+				{errors.confirmEmail && <Text style={styles.error}>{errors.confirmEmail}</Text>}
+
+				<View style={styles.termsAndConditions}>
+					<Checkbox
+						isChecked={localChecked}
+						disableText
+						fillColor="#23527c"
+						size={19}
+						useBuiltInState={false}
+						iconImageStyle={styles.iconImageStyle}
+						innerIconStyle={{ borderRadius: 3 }}
+						iconStyle={{ borderRadius: 3 }}
+						onPress={() => setLocalChecked(!localChecked)}
+					/>
+					<View style={{ flexDirection: "row", flexShrink: 1 }}>
+						<Text onPress={() => setLocalChecked(!localChecked)} style={styles.label}>
+							Sunt de acord cu{" "}
+						</Text>
+						<TouchableOpacity>
+							<Text style={[styles.label, { color: "#23527c" }]}>termenii si Conditiile.</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+
+				{errors.terms && <Text style={styles.error}>{errors.terms}</Text>}
+			</View>
 		</View>
 	);
 });
@@ -150,16 +143,8 @@ const styles = StyleSheet.create({
 	formTitle: {
 		fontSize: 20,
 		fontWeight: "bold",
-		marginBottom: 20,
+		marginBottom: 27,
 		textAlign: "center",
-	},
-
-	label: {
-		fontSize: 14,
-		fontWeight: "500",
-		marginTop: 5,
-		marginBottom: 5,
-		flexShrink: 1,
 	},
 
 	input: {
