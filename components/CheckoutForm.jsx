@@ -4,6 +4,8 @@ import Checkbox from "react-native-bouncy-checkbox";
 
 //store
 import { useSelectedSeats } from "@/store/store";
+//components
+import Input from "./Input";
 
 const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
@@ -74,8 +76,8 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 		<View style={[styles.container, style]}>
 			<Text style={styles.formTitle}>Informatii Personale</Text>
 
-			<Text style={styles.label}>Nume</Text>
-			<TextInput style={styles.input} value={lastName} onChangeText={setLastName} />
+			{/* <Text style={styles.label}>Nume</Text> */}
+			<Input label={"Nume"} value={lastName} onChangeText={setLastName} />
 			{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
 
 			<Text style={styles.label}>Prenume</Text>
