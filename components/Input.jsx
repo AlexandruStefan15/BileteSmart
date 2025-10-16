@@ -41,7 +41,7 @@ const AnimatedInput = ({
 
 	const animatedLabelStyle_default = useAnimatedStyle(() => ({
 		top: interpolate(progress.value, [0, 1], [15, 5]),
-		left: interpolate(progress.value, [0, 1], [12, 14.5]),
+		left: interpolate(progress.value, [0, 1], [13, 14.5]),
 		fontSize: interpolate(progress.value, [0, 1], [14, 12]),
 		fontWeight: progress.value > 0.5 ? "500" : "500",
 		color: progress.value > 0 ? inputStyle?.backgroundColor || "grey" : "#696969ff",
@@ -55,6 +55,7 @@ const AnimatedInput = ({
 	}));
 
 	if (variant === "2") {
+		// simpler input without animated label
 		return (
 			<TextInput
 				ref={inputRef}
@@ -115,6 +116,7 @@ const getStyles = (variant, inputBackgroundColor = "#f5f5f5") => {
 		});
 
 	if (variant === "2")
+		// simpler input without animated label
 		return StyleSheet.create({
 			input: {
 				fontSize: 16,

@@ -70,7 +70,7 @@ const Header = ({
 							style={styles.cart}
 						>
 							<View style={{ padding: 5 }}>
-								<IoniconsIcon name="cart-outline" size={28} color={"white"} />
+								<IoniconsIcon name="cart-outline" size={27} color={"white"} />
 							</View>
 							<Animated.View style={[styles.badge, badgeStyle]} />
 						</TouchableOpacity>
@@ -137,12 +137,12 @@ const getStyles = (variant) => {
 			},
 
 			badge: {
-				width: 10,
-				height: 10,
+				width: 9,
+				height: 9,
 				backgroundColor: "red",
 				borderRadius: 40,
 				position: "absolute",
-				right: 2,
+				right: 3,
 				top: 7,
 				zIndex: 999,
 			},

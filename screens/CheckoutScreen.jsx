@@ -29,7 +29,7 @@ const CheckoutScreen = () => {
 		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
 			<ScrollView>
 				<Header variant="2" arrowColor="black" />
-				<CheckoutForm ref={formRef} style={{ marginTop: 35 }} />
+				<CheckoutForm ref={formRef} style={{ marginTop: 40 }} />
 				<OrderSummary formRef={formRef} />
 			</ScrollView>
 		</SafeAreaView>

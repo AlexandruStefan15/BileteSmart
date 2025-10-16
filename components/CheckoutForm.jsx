@@ -77,31 +77,50 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 			<Text style={styles.formTitle}>Informatii Personale</Text>
 
 			<View style={{ gap: 17 }}>
-				<Input label={"Nume"} value={lastName} onChangeText={setLastName} />
-				{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
+				<View style={styles.formField}>
+					<Input label={"Nume"} value={lastName} onChangeText={setLastName} />
+					{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
+				</View>
 
-				<Input label={"Prenume"} value={firstName} onChangeText={setFirstName} />
-				{errors.firstName && <Text style={styles.error}>{errors.firstName}</Text>}
+				<View style={styles.formField}>
+					<Input label={"Prenume"} value={firstName} onChangeText={setFirstName} />
+					{errors.firstName && <Text style={styles.error}>{errors.firstName}</Text>}
+				</View>
 
-				<Input
-					label={"Telefon"}
-					value={phoneNr}
-					onChangeText={setPhoneNr}
-					keyboardType="number-pad"
-				/>
-				{errors.phoneNr && <Text style={styles.error}>{errors.phoneNr}</Text>}
+				<View style={styles.formField}>
+					<Input
+						label={"Telefon"}
+						value={phoneNr}
+						onChangeText={setPhoneNr}
+						keyboardType="number-pad"
+					/>
+					{errors.phoneNr && <Text style={styles.error}>{errors.phoneNr}</Text>}
+				</View>
 
-				<Input label={"Email"} value={email} onChangeText={setEmail} keyboardType="email-address" />
-				{errors.email && <Text style={styles.error}>{errors.email}</Text>}
+				<View style={styles.formField}>
+					<Input
+						label={"Email"}
+						value={email}
+						onChangeText={(text) => {
+							setEmail(text);
+						}}
+						keyboardType="email-address"
+					/>
+					{errors.email && <Text style={styles.error}>{errors.email}</Text>}
+				</View>
 
-				<Input
-					label={"Confirma email"}
-					style={styles.input}
-					value={confirmEmail}
-					onChangeText={setConfirmEmail}
-					keyboardType="email-address"
-				/>
-				{errors.confirmEmail && <Text style={styles.error}>{errors.confirmEmail}</Text>}
+				<View style={styles.formField}>
+					<Input
+						label={"Confirma email"}
+						style={styles.input}
+						value={confirmEmail}
+						onChangeText={(text) => {
+							setConfirmEmail(text);
+						}}
+						keyboardType="email-address"
+					/>
+					{errors.confirmEmail && <Text style={styles.error}>{errors.confirmEmail}</Text>}
+				</View>
 
 				<View style={styles.termsAndConditions}>
 					<Checkbox
@@ -157,7 +176,9 @@ const styles = StyleSheet.create({
 	},
 	error: {
 		color: "red",
-		marginBottom: 10,
+		marginBottom: 5,
+		marginTop: 3,
+		marginLeft: 3,
 	},
 
 	//terms and conditions
