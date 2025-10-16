@@ -28,7 +28,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 		if (email !== confirmEmail) newErrors.confirmEmail = "Emailurile nu se potrivesc";
 		if (!localChecked) newErrors.terms = "Trebuie sa accepti termenii si conditiile";
 		if (phoneNr && !/^\d{10,15}$/.test(phoneNr)) {
-			newErrors.phoneNr = "Numarul de telefon trebuie sa contina minim 10 cifre";
+			newErrors.phoneNr = "Numarul de telefon nu este valid.";
 		}
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;

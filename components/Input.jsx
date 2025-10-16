@@ -9,7 +9,7 @@ import Animated, {
 	runOnUI,
 } from "react-native-reanimated";
 
-const AnimatedInput = ({
+export default function Input({
 	label,
 	value,
 	onChangeText,
@@ -20,7 +20,7 @@ const AnimatedInput = ({
 	placeholder,
 	variant = "default",
 	...props
-}) => {
+}) {
 	const progress = useSharedValue(value ? 1 : 0);
 	const inputRef = useRef(null);
 	const styles = getStyles(variant, inputStyle?.backgroundColor);
@@ -89,7 +89,7 @@ const AnimatedInput = ({
 			/>
 		</View>
 	);
-};
+}
 
 const getStyles = (variant, inputBackgroundColor = "#f5f5f5") => {
 	if (variant === "default")
@@ -125,5 +125,3 @@ const getStyles = (variant, inputBackgroundColor = "#f5f5f5") => {
 			},
 		});
 };
-
-export default AnimatedInput;

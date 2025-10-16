@@ -2,6 +2,9 @@
 import React, { createContext, useContext, useState } from "react";
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from "react-native";
 
+//components
+import Input from "./Input";
+
 // Create context
 const FormContext = createContext(null);
 
@@ -22,6 +25,7 @@ const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 	const handleSubmit = () => {
 		const hasErrors = Object.values(errors).some((e) => e != "");
 		if (!hasErrors && onSubmit) onSubmit(values);
+		else Alert.alert("Eroare", "Va rugam sa revizuiti formularul si sa corectati erorile.");
 	};
 
 	return (
@@ -32,8 +36,27 @@ const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 	);
 };
 
-Form.Field = ({ name, placeholder, validate, secureTextEntry = false, style, ...props }) => {
-	const { values, errors, handleChange, setErrors } = useFormContext();
+Form.Field = ({
+	name,
+	placeholder,
+	validate,
+	secureTextEntry = false,
+	style,
+	children,
+	...props
+}) => {
+	const { errors } = useFormContext();
+
+	return (
+		<View style={styles.field} {...props}>
+			{children}
+			{errors[name] && <Text style={styles.error}>{errors[name]}</Text>}
+		</View>
+	);
+};
+
+Form.Input = ({ name, validate, ...props }) => {
+	const { values, handleChange, setErrors } = useFormContext();
 
 	const onChangeText = (text) => {
 		handleChange(name, text);
@@ -44,17 +67,14 @@ Form.Field = ({ name, placeholder, validate, secureTextEntry = false, style, ...
 	};
 
 	return (
-		<View style={styles.field}>
-			<TextInput
-				style={[styles.input, errors[name] && styles.inputError, style]}
-				value={values[name] || ""}
-				onChangeText={onChangeText}
-				placeholder={placeholder}
-				secureTextEntry={secureTextEntry}
-				placeholderTextColor="#888"
-			/>
-			{errors[name] && <Text style={styles.error}>{errors[name]}</Text>}
-		</View>
+		<Input
+			value={values[name] || ""}
+			onChangeText={onChangeText}
+			placeholder={placeholder}
+			secureTextEntry={secureTextEntry}
+			placeholderTextColor="#888"
+			{...props}
+		/>
 	);
 };
 
@@ -74,14 +94,6 @@ const styles = StyleSheet.create({
 	},
 	field: {
 		marginBottom: 10,
-	},
-	input: {
-		borderWidth: 1,
-		borderColor: "#ccc",
-		borderRadius: 8,
-		padding: 12,
-		fontSize: 16,
-		color: "#000",
 	},
 	inputError: {
 		borderColor: "#e63946",

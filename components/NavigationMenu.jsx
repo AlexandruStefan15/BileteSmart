@@ -16,13 +16,19 @@ const IconLibs = {
 };
 
 const menuItems = [
-	{ id: 1, title: "Schimba datele", screen: "EditAccountDataScreen", icon: "user", iconLib: "fa" },
+	{
+		id: 1,
+		title: "Datele mele",
+		screen: "ChangeAccountDataScreen",
+		icon: "user",
+		iconLib: "fa",
+	},
 	{ id: 2, title: "Abonamente", screen: "SubscriptionsScreen", icon: "credit-card", iconLib: "fa" },
 	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryScreen", icon: "history", iconLib: "fa" },
-	{ id: 4, title: "Preferinte", screen: "PreferencesScreen", icon: "settings", iconLib: "mi" },
+	{ id: 4, title: "Preferințe", screen: "PreferencesScreen", icon: "settings", iconLib: "mi" },
 	{
 		id: 5,
-		title: "Schimba parola",
+		title: "Schimbă parola",
 		screen: "ChangePasswordScreen",
 		icon: "lock",
 		iconLib: "fa",
