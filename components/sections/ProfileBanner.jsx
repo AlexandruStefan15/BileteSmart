@@ -5,7 +5,7 @@ import { useSafeAreaFrame } from "react-native-safe-area-context";
 //icons
 import FeatherIcon from "react-native-vector-icons/Feather";
 
-const ProfileBanner = ({ settingsButton }) => {
+const ProfileBanner = ({ showSettingsButton }) => {
 	const windowHeight = Dimensions.get("window").height;
 	const { height: safeFrameHeight } = useSafeAreaFrame();
 	const styles = getStyles(safeFrameHeight);
@@ -13,9 +13,9 @@ const ProfileBanner = ({ settingsButton }) => {
 	return (
 		<View style={styles.section}>
 			<View style={styles.settingsButton}>
-				{settingsButton && (
+				{showSettingsButton && (
 					<Pressable onPress={() => {}}>
-						<FeatherIcon name="settings" size={24} color="#000" />
+						<FeatherIcon name="settings" size={23} color="#000" />
 					</Pressable>
 				)}
 			</View>
@@ -35,7 +35,7 @@ const ProfileBanner = ({ settingsButton }) => {
 const getStyles = (safeFrameHeight) =>
 	StyleSheet.create({
 		section: {
-			paddingVertical: (55 * safeFrameHeight) / 800 < 55 ? (54 * safeFrameHeight) / 800 : 64,
+			paddingVertical: (55 * safeFrameHeight) / 800 < 55 ? (56 * safeFrameHeight) / 800 : 64,
 			backgroundColor: "#edededff",
 		},
 

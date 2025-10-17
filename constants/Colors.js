@@ -13,7 +13,7 @@ export const Colors = {
 			accent: "#0a7ea4",
 		},
 		background: {
-			primary: "#f7f7f7ff",
+			primary: "#f5f5f5ff",
 			secondary: "#f2f2f2",
 		},
 		tint: "#0a7ea4",

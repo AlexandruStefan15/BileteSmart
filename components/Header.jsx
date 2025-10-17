@@ -45,6 +45,40 @@ const Header = ({
 		}
 	}, [selectedSeats.length]);
 
+	if (variant == "3")
+		return (
+			<Animated.View style={[styles.container, style]}>
+				<View style={styles.backButton}>
+					<TouchableOpacity
+						style={{ marginTop: 2, padding: 15 }}
+						onPress={() => navigation.goBack()}
+					>
+						<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
+					</TouchableOpacity>
+				</View>
+				<View style={styles.content}>
+					{title && (
+						<Text style={[styles.title, { color: arrowColor }, styleTitle]} numberOfLines={1}>
+							{title}
+						</Text>
+					)}
+					{showCart && (
+						<TouchableOpacity
+							onPress={() => {
+								openSidebar();
+							}}
+							style={styles.cart}
+						>
+							<View style={{ padding: 5 }}>
+								<IoniconsIcon name="cart-outline" size={27} color={"white"} />
+							</View>
+							<Animated.View style={[styles.badge, badgeStyle]} />
+						</TouchableOpacity>
+					)}
+				</View>
+			</Animated.View>
+		);
+
 	if (variant == 2)
 		return (
 			<Animated.View style={[styles.container, style]}>
@@ -105,6 +139,39 @@ const Header = ({
 };
 
 const getStyles = (variant) => {
+	if (variant == "3")
+		return StyleSheet.create({
+			container: {
+				backgroundColor: "white",
+				boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
+				position: "absolute",
+				top: 0,
+				gap: 2,
+				flexDirection: "row",
+				paddingHorizontal: 16,
+				paddingVertical: 0,
+				justifyContent: "space-between",
+				alignItems: "center",
+				zIndex: 10,
+				width: "100%",
+				backgroundColor: "white",
+				paddingLeft: 1,
+			},
+
+			content: {
+				flexDirection: "row",
+				justifyContent: "space-between",
+				alignItems: "center",
+				flex: 1,
+			},
+
+			title: {
+				color: "black",
+				fontSize: 19,
+				fontWeight: "500",
+			},
+		});
+
 	if (variant == "2")
 		return StyleSheet.create({
 			container: {
@@ -114,6 +181,7 @@ const getStyles = (variant) => {
 				flexDirection: "row",
 				paddingHorizontal: 20,
 				paddingVertical: 0,
+				paddingLeft: 2,
 				justifyContent: "space-between",
 				alignItems: "center",
 				zIndex: 10,
@@ -130,10 +198,6 @@ const getStyles = (variant) => {
 
 			cart: {
 				marginLeft: "auto",
-			},
-
-			backButton: {
-				marginLeft: -15,
 			},
 
 			badge: {

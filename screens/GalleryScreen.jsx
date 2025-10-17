@@ -10,19 +10,7 @@ const GalleryScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header
-				title={"Galerie foto"}
-				variant="2"
-				style={{
-					backgroundColor: "white",
-					boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
-					paddingHorizontal: 16,
-					gap: 2,
-				}}
-				styleTitle={{ color: "black", fontSize: 19, fontWeight: "500" }}
-				arrowColor="black"
-				backButtonSize={24.5}
-			/>
+			<Header title={"Galerie foto"} variant="3" arrowColor="black" backButtonSize={24.5} />
 			<FlatList
 				data={images}
 				renderItem={({ item: image }) => <Image source={{ uri: image.url }} style={styles.image} />}
