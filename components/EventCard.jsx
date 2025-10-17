@@ -28,13 +28,20 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	if (variant == 2)
 		return (
-			<Ripple style={styles.container} onLayout={onCardLayout}>
-				<View style={[styles.imageBox, style]} {...props}>
-					<ImageBackground
-						source={{ uri: encodeURI(eventData.eventCard_img) }}
-						imageStyle={styles.image}
-					/>
-				</View>
+			<Ripple style={styles.container} onLayout={onCardLayout} {...props}>
+				<LinearGradient
+					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
+					start={{ x: 0, y: 1 }}
+					end={{ x: 0, y: 0 }}
+					style={styles.gradientOverlay}
+				>
+					<View style={[styles.imageBox, style]}>
+						<ImageBackground
+							source={{ uri: encodeURI(eventData.eventCard_img) }}
+							imageStyle={styles.image}
+						/>
+					</View>
+				</LinearGradient>
 				<View style={styles.footer}>
 					<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
 						{eventData.title}
@@ -101,7 +108,7 @@ const getStyles = (theme, variant, cardHeight) => {
 	if (variant == "2")
 		return StyleSheet.create({
 			container: {
-				boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+				boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",
 				overflow: "hidden",
 				borderRadius: 10,
 			},
@@ -181,6 +188,13 @@ const getStyles = (theme, variant, cardHeight) => {
 				fontStyle: "normal",
 				letterSpacing: 0.2,
 			},
+
+			/* gradientOverlay: {
+				height: "100%",
+				position: "absolute",
+				top: 0,
+				left: 0,
+			}, */
 		});
 
 	return StyleSheet.create({
