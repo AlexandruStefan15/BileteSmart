@@ -107,10 +107,10 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	container: { gap: 18, paddingInline: 18, paddingBlock: 22 },
+	container: { gap: 22, paddingInline: 18, paddingBlock: 22 },
 
 	wrapper: {
-		gap: 20,
+		gap: 22,
 	},
 
 	location_title: {

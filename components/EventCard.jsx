@@ -28,19 +28,13 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	if (variant == 2)
 		return (
-			<View style={styles.container} onLayout={onCardLayout}>
-				<Ripple
-					style={[styles.backgroundImage, style]}
-					rippleColor="white"
-					rippleDuration={320}
-					rippleCentered={false}
-					{...props}
-				>
+			<Ripple style={styles.container} onLayout={onCardLayout}>
+				<View style={[styles.imageBox, style]} {...props}>
 					<ImageBackground
 						source={{ uri: encodeURI(eventData.eventCard_img) }}
 						imageStyle={styles.image}
 					/>
-				</Ripple>
+				</View>
 				<View style={styles.footer}>
 					<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
 						{eventData.title}
@@ -51,7 +45,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 								style={styles.subtitleIcon_date}
 								lib="fa5"
 								name="calendar-alt"
-								size={15.5}
+								size={15}
 								color={Colors.primary}
 							/>
 							<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
@@ -66,7 +60,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						</View>
 					</View>
 				</View>
-			</View>
+			</Ripple>
 		);
 
 	return (
@@ -106,13 +100,19 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 const getStyles = (theme, variant, cardHeight) => {
 	if (variant == "2")
 		return StyleSheet.create({
-			backgroundImage: {
-				aspectRatio: 100 / 63,
+			container: {
+				boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+				overflow: "hidden",
+				borderRadius: 10,
+			},
+
+			imageBox: {
+				aspectRatio: 100 / 48,
 				overflow: "hidden",
 				width: "100%",
 				position: "relative",
-				borderRadius: 13,
-				boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+				borderBottomRightRadius: 0,
+				borderBottomLeftRadius: 0,
 			},
 
 			image: {
@@ -122,12 +122,17 @@ const getStyles = (theme, variant, cardHeight) => {
 				height: cardHeight + 107,
 			},
 
-			footer: { gap: 0.5 },
+			footer: {
+				gap: 3.7,
+				paddingBlock: 7.5,
+				paddingTop: 6.5,
+				paddingInline: 11,
+				backgroundColor: "white",
+			},
 
 			title: {
-				fontSize: 14.7,
-				fontWeight: 600,
-				marginLeft: 2,
+				fontSize: 15.2,
+				marginLeft: 3,
 				marginTop: 2,
 				fontFamily: "Poppins-SemiBold",
 				lineHeight: 27,
@@ -160,13 +165,13 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			subtitleIcon_clock: {
-				width: 18,
+				width: 17,
 				aspectRatio: 1 / 1,
-				marginTop: -5.7,
+				marginTop: -5.2,
 			},
 
 			subtitle_text: {
-				fontSize: 13.5,
+				fontSize: 13.2,
 				color: "#365771", //"#6f6f6fff"
 				fontWeight: 600,
 				marginLeft: 2,
