@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ImageBackground, Image } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, Image, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 //constants
@@ -29,7 +29,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	if (variant == 2)
 		return (
-			<Ripple style={styles.container} onLayout={onCardLayout} {...props}>
+			<Pressable style={styles.container} onLayout={onCardLayout} {...props}>
 				<LinearGradient
 					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
 					start={{ x: 0, y: 1 }}
@@ -66,7 +66,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						</View>
 					</View>
 				</View>
-			</Ripple>
+			</Pressable>
 		);
 
 	return (
@@ -113,7 +113,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			imageBox: {
-				aspectRatio: 100 / 51,
+				aspectRatio: 100 / 50,
 				overflow: "hidden",
 				width: "100%",
 				position: "relative",
@@ -139,9 +139,9 @@ const getStyles = (theme, variant, cardHeight) => {
 
 			title: {
 				fontSize: 15.2,
-				marginLeft: 2,
-				marginBlock: 2,
-				fontFamily: "Poppins-SemiBold",
+				marginLeft: 2.5,
+				marginBlock: 2.5,
+				fontWeight: "700",
 				lineHeight: 27,
 			},
 
