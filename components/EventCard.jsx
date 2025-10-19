@@ -6,6 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "@/constants";
 //utils
 import { formatDate } from "@/utils/helpers";
+import { formatRomanianDate } from "@/utils/helpers";
 //images
 import { images } from "@/assets/images/index";
 //hooks
@@ -49,20 +50,18 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					<View style={styles.subtitle}>
 						<View style={styles.subtitle_item}>
 							<Icon
-								style={styles.subtitleIcon_date}
-								lib="fa5"
-								name="calendar-alt"
-								size={15}
-								color={Colors.primary}
+								style={styles.subtitleIcon}
+								lib="io"
+								name="calendar-outline"
+								size={16}
+								color="#555"
 							/>
-							<Text style={styles.subtitle_text}>{formatDate(eventData.date, "numeric")}</Text>
+							<Text style={styles.subtitle_text}>
+								{formatRomanianDate(eventData.date, true)} | {eventData.time}
+							</Text>
 						</View>
 						<View style={styles.subtitle_item}>
-							<Image style={styles.subtitleIcon_clock} source={images.clock} />
-							<Text style={styles.subtitle_text}>{eventData.time}</Text>
-						</View>
-						<View style={styles.subtitle_item}>
-							<Image style={styles.subtitleIcon_location} source={images.location} />
+							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16} color="#555" />
 							<Text style={styles.subtitle_text}>{eventData.location}</Text>
 						</View>
 					</View>
@@ -114,7 +113,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			imageBox: {
-				aspectRatio: 100 / 48,
+				aspectRatio: 100 / 51,
 				overflow: "hidden",
 				width: "100%",
 				position: "relative",
@@ -132,6 +131,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			footer: {
 				gap: 3.7,
 				paddingBlock: 7.5,
+				paddingBottom: 8,
 				paddingTop: 6.5,
 				paddingInline: 11,
 				backgroundColor: "white",
@@ -139,50 +139,36 @@ const getStyles = (theme, variant, cardHeight) => {
 
 			title: {
 				fontSize: 15.2,
-				marginLeft: 3,
-				marginTop: 2,
+				marginLeft: 2,
+				marginBlock: 2,
 				fontFamily: "Poppins-SemiBold",
 				lineHeight: 27,
 			},
 
 			subtitle: {
-				flexDirection: "row-reverse",
 				marginRight: "auto",
-				alignItems: "center",
-				gap: 13,
+				alignItems: "flex-start",
+				gap: 8,
 				marginLeft: 2,
 			},
 
 			subtitle_item: {
 				flexDirection: "row",
-				gap: 2,
+				gap: 4,
 				alignItems: "center",
 			},
 
-			subtitleIcon_location: {
-				width: 17,
-				aspectRatio: 1 / 1,
-				marginTop: -5.2,
-				marginRight: 0.5,
-			},
-
-			subtitleIcon_date: {
+			subtitleIcon: {
 				marginTop: -6.5,
 				marginRight: 1,
 			},
 
-			subtitleIcon_clock: {
-				width: 17,
-				aspectRatio: 1 / 1,
-				marginTop: -5.2,
-			},
-
 			subtitle_text: {
 				fontSize: 13.2,
-				color: "#365771", //"#6f6f6fff"
+				color: "#555",
 				fontWeight: 600,
 				marginLeft: 2,
-				marginBottom: 5,
+				bottom: 2.5,
 				lineHeight: 17,
 				textAlign: "left",
 				fontStyle: "normal",

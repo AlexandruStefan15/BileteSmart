@@ -1,4 +1,4 @@
-export function formatRomanianDate(dateStr) {
+export function formatRomanianDate(dateStr, showYear = false) {
 	const date = new Date(dateStr);
 
 	const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
@@ -21,6 +21,11 @@ export function formatRomanianDate(dateStr) {
 	const dayOfWeek = days[date.getDay()];
 	const dayOfMonth = date.getDate();
 	const month = months[date.getMonth()];
+	const year = date.getFullYear();
+
+	if (showYear) {
+		return `${dayOfWeek} ${dayOfMonth} ${month} ${year}`;
+	}
 
 	return `${dayOfWeek} ${dayOfMonth} ${month}`;
 }
