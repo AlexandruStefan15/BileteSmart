@@ -30,19 +30,18 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 	if (variant == 2)
 		return (
 			<Pressable style={styles.container} onLayout={onCardLayout} {...props}>
-				<LinearGradient
-					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
-					start={{ x: 0, y: 1 }}
-					end={{ x: 0, y: 0 }}
-					style={styles.gradientOverlay}
-				>
-					<View style={[styles.imageBox, style]}>
-						<ImageBackground
-							source={{ uri: encodeURI(eventData.eventCard_img) }}
-							imageStyle={styles.image}
-						/>
-					</View>
-				</LinearGradient>
+				<View style={[styles.imageBox, style]}>
+					<ImageBackground
+						source={{ uri: encodeURI(eventData.eventCard_img) }}
+						imageStyle={styles.image}
+					/>
+					<LinearGradient
+						colors={["#0000000b", "#0e0e0e0a"]}
+						start={{ x: 0, y: 1 }}
+						end={{ x: 0, y: 0 }}
+						style={styles.gradientOverlay}
+					/>
+				</View>
 				<View style={styles.footer}>
 					<Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
 						{eventData.title}
@@ -176,12 +175,10 @@ const getStyles = (theme, variant, cardHeight) => {
 				letterSpacing: 0.2,
 			},
 
-			/* gradientOverlay: {
+			gradientOverlay: {
+				zIndex: 9999,
 				height: "100%",
-				position: "absolute",
-				top: 0,
-				left: 0,
-			}, */
+			},
 		});
 
 	return StyleSheet.create({

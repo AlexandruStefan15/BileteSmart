@@ -45,6 +45,17 @@ const BottomTabNavigator = () => {
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,
 				})}
+				listeners={({ navigation, route }) => ({
+					tabPress: () => {
+						const state = route.state;
+						if (state && state.routes.length > 1) {
+							// stack has more than 1 screen => pop to top
+							navigation.navigate("Acasa", {
+								screen: state.routes[0].name,
+							});
+						}
+					},
+				})}
 			/>
 			<Tab.Screen
 				name="Evenimente"
@@ -55,6 +66,17 @@ const BottomTabNavigator = () => {
 					tabBarActiveTintColor: Colors.primary,
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,
+				})}
+				listeners={({ navigation, route }) => ({
+					tabPress: () => {
+						const state = route.state;
+						if (state && state.routes.length > 1) {
+							// stack has more than 1 screen => pop to top
+							navigation.navigate("Evenimente", {
+								screen: state.routes[0].name,
+							});
+						}
+					},
 				})}
 			/>
 			<Tab.Screen
@@ -69,6 +91,17 @@ const BottomTabNavigator = () => {
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,
 				})}
+				listeners={({ navigation, route }) => ({
+					tabPress: () => {
+						const state = route.state;
+						if (state && state.routes.length > 1) {
+							// stack has more than 1 screen => pop to top
+							navigation.navigate("Bilete", {
+								screen: state.routes[0].name,
+							});
+						}
+					},
+				})}
 			/>
 			<Tab.Screen
 				name="Contul meu"
@@ -81,6 +114,17 @@ const BottomTabNavigator = () => {
 					tabBarActiveTintColor: Colors.primary,
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,
+				})}
+				listeners={({ navigation, route }) => ({
+					tabPress: () => {
+						const state = route.state;
+						if (state && state.routes.length > 1) {
+							// stack has more than 1 screen => pop to top
+							navigation.navigate("Contul meu", {
+								screen: state.routes[0].name,
+							});
+						}
+					},
 				})}
 			/>
 		</Tab.Navigator>
