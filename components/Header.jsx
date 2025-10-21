@@ -144,7 +144,7 @@ const getStyles = (variant) => {
 			container: {
 				backgroundColor: "white",
 				boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
-				position: "absolute",
+				position: "relative",
 				top: 0,
 				gap: 2,
 				flexDirection: "row",

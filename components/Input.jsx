@@ -10,14 +10,11 @@ import Animated, {
 } from "react-native-reanimated";
 
 export default function Input({
-	label,
+	label = "placeholder label",
 	value,
 	onChangeText,
-	style,
 	inputStyle,
 	labelStyle,
-	secureTextEntry = false,
-	placeholder,
 	variant = "default",
 	...props
 }) {
@@ -43,15 +40,8 @@ export default function Input({
 		top: interpolate(progress.value, [0, 1], [15, 5]),
 		left: interpolate(progress.value, [0, 1], [13, 14.5]),
 		fontSize: interpolate(progress.value, [0, 1], [14, 12]),
-		fontWeight: progress.value > 0.5 ? "500" : "500",
-		color: progress.value > 0 ? inputStyle?.backgroundColor || "grey" : "#696969ff",
-	}));
-
-	const animatedLabelStyle_3 = useAnimatedStyle(() => ({
-		top: interpolate(progress.value, [0, 1], [15, -8]),
-		fontSize: interpolate(progress.value, [0, 1], [16, 12]),
-		backgroundColor: progress.value > 0 ? inputStyle?.backgroundColor || "white" : "transparent",
-		fontWeight: progress.value > 0.5 ? "500" : "normal",
+		fontWeight: progress.value > 0.5 ? "500" : labelStyle?.fontWeight || styles.label.fontWeight,
+		color: progress.value > 0 ? "grey" : labelStyle?.color || styles.label.color,
 	}));
 
 	if (variant === "2") {
@@ -63,15 +53,14 @@ export default function Input({
 				onChangeText={onChangeText}
 				onFocus={handleFocus}
 				onBlur={handleBlur}
-				secureTextEntry={secureTextEntry}
-				style={[styles.input, style, inputStyle]}
-				placeholder={placeholder}
+				style={[styles.input, inputStyle]}
 				{...props}
 			/>
 		);
 	}
 
 	return (
+		// Default variant with animated label
 		<View style={[styles.inputWrapper]}>
 			<Animated.Text style={[styles.label, animatedLabelStyle_default, labelStyle]}>
 				{label}
@@ -82,10 +71,9 @@ export default function Input({
 				onChangeText={onChangeText}
 				onFocus={handleFocus}
 				onBlur={handleBlur}
-				secureTextEntry={secureTextEntry}
 				style={[styles.input, inputStyle]}
-				placeholder=""
 				{...props}
+				placeholder={""}
 			/>
 		</View>
 	);
@@ -99,12 +87,15 @@ const getStyles = (variant, inputBackgroundColor = "#f5f5f5") => {
 				borderRadius: 8,
 				paddingHorizontal: 12,
 				position: "relative",
+				borderWidth: 1,
+				borderColor: "#ccc",
 			},
 			label: {
 				position: "absolute",
 				left: 12,
 				borderRadius: 3,
-				color: "grey",
+				color: "#696969ff",
+				fontWeight: "400",
 			},
 			input: {
 				fontSize: 16,

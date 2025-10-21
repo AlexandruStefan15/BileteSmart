@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //components
@@ -9,21 +9,42 @@ import Form from "@/components/Form";
 const ChangeAccountDataScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header
-				title={"Datele mele"}
-				variant="2"
-				style={{
-					backgroundColor: "white",
-					boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
-					paddingHorizontal: 16,
-					gap: 2,
-					position: "relative",
-				}}
-				styleTitle={{ color: "black", fontSize: 19, fontWeight: "500" }}
-				arrowColor="black"
-				backButtonSize={24.5}
-			/>
-			<Text>hiasd asd asd adas </Text>
+			<Header title={"Schimba datele"} variant="3" arrowColor="black" backButtonSize={24.5} />
+			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
+				<Form onSubmit={(v) => console.log(v)}>
+					<Form.Field>
+						<Form.Input
+							name="Nume"
+							label="Nume"
+							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+						/>
+					</Form.Field>
+					<Form.Field>
+						<Form.Input
+							name="Prenume"
+							label="Prenume"
+							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+						/>
+					</Form.Field>
+					<Form.Field>
+						<Form.Input
+							name="Telefon"
+							label="Telefon"
+							keyboardType="number-pad"
+							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+						/>
+					</Form.Field>
+					<Form.Field>
+						<Form.Input
+							name="Email"
+							label="Email"
+							keyboardType="email-address"
+							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+						/>
+					</Form.Field>
+					<Form.SubmitButton title="Actualizeaza" />
+				</Form>
+			</ScrollView>
 		</SafeAreaView>
 	);
 };
@@ -31,6 +52,7 @@ const ChangeAccountDataScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
+		backgroundColor: "white",
 	},
 });
 

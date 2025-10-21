@@ -140,7 +140,8 @@ const getStyles = (theme, variant, cardHeight) => {
 			title: {
 				fontSize: 15.2,
 				marginLeft: 2.5,
-				marginBlock: 2.5,
+				marginBottom: 2.5,
+				marginTop: 2,
 				fontWeight: "700",
 				lineHeight: 27,
 			},

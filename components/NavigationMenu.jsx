@@ -18,7 +18,7 @@ const IconLibs = {
 const menuItems = [
 	{
 		id: 1,
-		title: "Datele mele",
+		title: "Schimba datele",
 		screen: "ChangeAccountDataScreen",
 		icon: "user",
 		iconLib: "fa",
@@ -37,11 +37,11 @@ const menuItems = [
 	{ id: 7, title: "Deconectare", screen: "Logout", icon: "logout", iconLib: "mi" },
 ];
 
-const NavigationMenu = ({ data = menuItems, style }) => {
+const NavigationMenu = ({ data = menuItems, style, ...props }) => {
 	const navigation = useNavigation();
 
 	return (
-		<View style={[styles.container, style]}>
+		<View style={[styles.container, style]} {...props}>
 			{data.map((item) => {
 				const IconComponent = IconLibs[item.iconLib] || FontAwesome; // fallback
 				return (

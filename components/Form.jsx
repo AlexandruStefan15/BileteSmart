@@ -1,6 +1,6 @@
 // Form.js
 import React, { createContext, useContext, useState } from "react";
-import { View, TextInput, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
 //components
 import Input from "./Input";
@@ -29,28 +29,20 @@ const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 	};
 
 	return (
-		<FormContext.Provider value={{ values, errors, setErrors, handleChange }}>
-			<View style={[styles.form, style]}>{children}</View>
-			<Form.SubmitButton onPress={handleSubmit} />
+		<FormContext.Provider value={{ values, errors, setErrors, handleChange, handleSubmit }}>
+			<View style={[styles.form, style]} {...props}>
+				{children}
+			</View>
 		</FormContext.Provider>
 	);
 };
 
-Form.Field = ({
-	name,
-	placeholder,
-	validate,
-	secureTextEntry = false,
-	style,
-	children,
-	...props
-}) => {
+Form.Field = ({ style, children, ...props }) => {
 	const { errors } = useFormContext();
 
 	return (
 		<View style={styles.field} {...props}>
 			{children}
-			{errors[name] && <Text style={styles.error}>{errors[name]}</Text>}
 		</View>
 	);
 };
@@ -66,31 +58,37 @@ Form.Input = ({ name, validate, ...props }) => {
 		}
 	};
 
+	return <Input value={values[name] || ""} onChangeText={onChangeText} {...props} />;
+};
+
+Form.Error = ({ name, style, ...props }) => {
+	const { errors } = useFormContext();
+	if (!errors[name]) return null;
 	return (
-		<Input
-			value={values[name] || ""}
-			onChangeText={onChangeText}
-			placeholder={placeholder}
-			secureTextEntry={secureTextEntry}
-			placeholderTextColor="#888"
-			{...props}
-		/>
+		<Text style={[styles.error, style]} {...props}>
+			{errors[name]}
+		</Text>
 	);
 };
 
 // Submit button (compound child)
-Form.SubmitButton = ({ title = "Submit", onPress, style, ...props }) => (
-	<TouchableOpacity style={[styles.button, style]} onPress={onPress} {...props}>
-		<Text style={styles.buttonText}>{title}</Text>
-	</TouchableOpacity>
-);
+Form.SubmitButton = ({ title = "Submit", style, ...props }) => {
+	const { handleSubmit } = useFormContext();
+
+	return (
+		<TouchableOpacity style={[styles.button, style]} onPress={handleSubmit} {...props}>
+			<Text style={styles.buttonText}>{title}</Text>
+		</TouchableOpacity>
+	);
+};
 
 export default Form;
 
 // Styles
 const styles = StyleSheet.create({
 	form: {
-		gap: 12,
+		padding: 25,
+		gap: 10,
 	},
 	field: {
 		marginBottom: 10,
@@ -108,7 +106,6 @@ const styles = StyleSheet.create({
 		paddingVertical: 14,
 		borderRadius: 8,
 		alignItems: "center",
-		marginTop: 10,
 	},
 	buttonText: {
 		color: "#fff",

@@ -112,7 +112,6 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 				<View style={styles.formField}>
 					<Input
 						label={"Confirma email"}
-						style={styles.input}
 						value={confirmEmail}
 						onChangeText={(text) => {
 							setConfirmEmail(text);
@@ -185,9 +184,9 @@ const styles = StyleSheet.create({
 
 	termsAndConditions: {
 		marginTop: 5,
+		marginLeft: 5,
 		flexDirection: "row",
 		gap: 10,
-
 		alignItems: "center",
 	},
 });
