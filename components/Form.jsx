@@ -119,7 +119,7 @@ const getStyles = (screenWidth) =>
 
 		label: {
 			fontSize: 15,
-			color: "#666",
+			color: "#232323ff",
 			fontWeight: "500",
 			marginLeft: 1,
 		},

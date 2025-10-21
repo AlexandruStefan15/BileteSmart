@@ -29,8 +29,8 @@ const menuItems = [
 		id: 4,
 		title: "Evenimente salvate",
 		screen: "SavedEventsScreen",
-		icon: "settings",
-		iconLib: "mi",
+		icon: "bookmark-o",
+		iconLib: "fa",
 	},
 	{
 		id: 5,
