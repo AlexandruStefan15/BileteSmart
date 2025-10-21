@@ -1,22 +1,26 @@
 // Form.js
 import React, { createContext, useContext, useState } from "react";
-import { View, TextInput, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+	View,
+	TextInput,
+	Text,
+	TouchableOpacity,
+	StyleSheet,
+	Alert,
+	Dimensions,
+} from "react-native";
 
 //components
 import Input from "./Input";
 
-// Create context
-const FormContext = createContext(null);
-
-const useFormContext = () => {
-	const ctx = useContext(FormContext);
-	if (!ctx) throw new Error("Form compound components must be used within <Form>");
-	return ctx;
-};
+//context
+import { FormContext, useFormContext } from "@/context/FormContext";
 
 const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 	const [values, setValues] = useState(initialValues);
 	const [errors, setErrors] = useState({});
+	const screenWidth = Dimensions.get("window").width;
+	const styles = getStyles(screenWidth);
 
 	const handleChange = (name, value) => {
 		setValues((prev) => ({ ...prev, [name]: value }));
@@ -29,7 +33,7 @@ const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 	};
 
 	return (
-		<FormContext.Provider value={{ values, errors, setErrors, handleChange, handleSubmit }}>
+		<FormContext.Provider value={{ values, errors, setErrors, handleChange, handleSubmit, styles }}>
 			<View style={[styles.form, style]} {...props}>
 				{children}
 			</View>
@@ -38,7 +42,7 @@ const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 };
 
 Form.Field = ({ style, children, ...props }) => {
-	const { errors } = useFormContext();
+	const { errors, styles } = useFormContext();
 
 	return (
 		<View style={styles.field} {...props}>
@@ -47,8 +51,17 @@ Form.Field = ({ style, children, ...props }) => {
 	);
 };
 
+Form.Label = ({ children, style, ...props }) => {
+	const { styles } = useFormContext();
+	return (
+		<Text style={[styles.label, style]} {...props}>
+			{children}
+		</Text>
+	);
+};
+
 Form.Input = ({ name, validate, ...props }) => {
-	const { values, handleChange, setErrors } = useFormContext();
+	const { values, handleChange, setErrors, styles } = useFormContext();
 
 	const onChangeText = (text) => {
 		handleChange(name, text);
@@ -58,11 +71,18 @@ Form.Input = ({ name, validate, ...props }) => {
 		}
 	};
 
-	return <Input value={values[name] || ""} onChangeText={onChangeText} {...props} />;
+	return (
+		<Input
+			value={values[name] || ""}
+			onChangeText={onChangeText}
+			inputStyle={styles.input}
+			{...props}
+		/>
+	);
 };
 
 Form.Error = ({ name, style, ...props }) => {
-	const { errors } = useFormContext();
+	const { errors, styles } = useFormContext();
 	if (!errors[name]) return null;
 	return (
 		<Text style={[styles.error, style]} {...props}>
@@ -73,7 +93,7 @@ Form.Error = ({ name, style, ...props }) => {
 
 // Submit button (compound child)
 Form.SubmitButton = ({ title = "Submit", style, ...props }) => {
-	const { handleSubmit } = useFormContext();
+	const { handleSubmit, styles } = useFormContext();
 
 	return (
 		<TouchableOpacity style={[styles.button, style]} onPress={handleSubmit} {...props}>
@@ -85,31 +105,47 @@ Form.SubmitButton = ({ title = "Submit", style, ...props }) => {
 export default Form;
 
 // Styles
-const styles = StyleSheet.create({
-	form: {
-		padding: 25,
-		gap: 10,
-	},
-	field: {
-		marginBottom: 10,
-	},
-	inputError: {
-		borderColor: "#e63946",
-	},
-	error: {
-		color: "#e63946",
-		marginTop: 4,
-		fontSize: 13,
-	},
-	button: {
-		backgroundColor: "#305a82",
-		paddingVertical: 14,
-		borderRadius: 8,
-		alignItems: "center",
-	},
-	buttonText: {
-		color: "#fff",
-		fontWeight: "600",
-		fontSize: 16,
-	},
-});
+const getStyles = (screenWidth) =>
+	StyleSheet.create({
+		form: {
+			padding: 24,
+			gap: 16,
+			width: screenWidth - 20,
+		},
+
+		field: {
+			gap: 6,
+		},
+
+		label: {
+			fontSize: 15,
+			color: "#666",
+			fontWeight: "500",
+			marginLeft: 1,
+		},
+
+		input: {},
+
+		inputError: {
+			borderColor: "#e63946",
+		},
+
+		error: {
+			color: "#e63946",
+			marginTop: 4,
+			fontSize: 13,
+		},
+
+		button: {
+			backgroundColor: "#305a82",
+			paddingVertical: 14,
+			borderRadius: 8,
+			alignItems: "center",
+		},
+
+		buttonText: {
+			color: "#fff",
+			fontWeight: "600",
+			fontSize: 16,
+		},
+	});

@@ -78,17 +78,23 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 
 			<View style={{ gap: 17 }}>
 				<View style={styles.formField}>
-					<Input label={"Nume"} value={lastName} onChangeText={setLastName} />
+					<Input variant="animated" label={"Nume"} value={lastName} onChangeText={setLastName} />
 					{errors.lastName && <Text style={styles.error}>{errors.lastName}</Text>}
 				</View>
 
 				<View style={styles.formField}>
-					<Input label={"Prenume"} value={firstName} onChangeText={setFirstName} />
+					<Input
+						variant="animated"
+						label={"Prenume"}
+						value={firstName}
+						onChangeText={setFirstName}
+					/>
 					{errors.firstName && <Text style={styles.error}>{errors.firstName}</Text>}
 				</View>
 
 				<View style={styles.formField}>
 					<Input
+						variant="animated"
 						label={"Telefon"}
 						value={phoneNr}
 						onChangeText={setPhoneNr}
@@ -99,6 +105,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 
 				<View style={styles.formField}>
 					<Input
+						variant="animated"
 						label={"Email"}
 						value={email}
 						onChangeText={(text) => {
@@ -111,6 +118,7 @@ const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
 
 				<View style={styles.formField}>
 					<Input
+						variant="animated"
 						label={"Confirma email"}
 						value={confirmEmail}
 						onChangeText={(text) => {

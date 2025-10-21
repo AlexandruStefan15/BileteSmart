@@ -53,7 +53,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 								style={styles.subtitleIcon}
 								lib="io"
 								name="calendar-outline"
-								size={16}
+								size={16.2}
 								color="#555"
 							/>
 							<Text style={styles.subtitle_text}>
@@ -61,7 +61,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 							</Text>
 						</View>
 						<View style={styles.subtitle_item}>
-							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16} color="#555" />
+							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16.2} color="#555" />
 							<Text style={styles.subtitle_text}>{eventData.location}</Text>
 						</View>
 					</View>

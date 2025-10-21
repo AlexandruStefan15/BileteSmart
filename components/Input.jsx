@@ -15,7 +15,7 @@ export default function Input({
 	onChangeText,
 	inputStyle,
 	labelStyle,
-	variant = "default",
+	variant = "normal",
 	...props
 }) {
 	const progress = useSharedValue(value ? 1 : 0);
@@ -36,51 +36,49 @@ export default function Input({
 		}
 	};
 
-	const animatedLabelStyle_default = useAnimatedStyle(() => ({
-		top: interpolate(progress.value, [0, 1], [15, 5]),
-		left: interpolate(progress.value, [0, 1], [13, 14.5]),
-		fontSize: interpolate(progress.value, [0, 1], [14, 12]),
-		fontWeight: progress.value > 0.5 ? "500" : labelStyle?.fontWeight || styles.label.fontWeight,
-		color: progress.value > 0 ? "grey" : labelStyle?.color || styles.label.color,
-	}));
+	if (variant == "animated") {
+		const animatedLabelStyle = useAnimatedStyle(() => ({
+			top: interpolate(progress.value, [0, 1], [15, 5]),
+			left: interpolate(progress.value, [0, 1], [13, 14.5]),
+			fontSize: interpolate(progress.value, [0, 1], [14, 12]),
+			fontWeight: progress.value > 0.5 ? "500" : labelStyle?.fontWeight || styles.label.fontWeight,
+			color: progress.value > 0 ? "grey" : labelStyle?.color || styles.label.color,
+		}));
 
-	if (variant === "2") {
-		// simpler input without animated label
 		return (
-			<TextInput
-				ref={inputRef}
-				value={value}
-				onChangeText={onChangeText}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
-				style={[styles.input, inputStyle]}
-				{...props}
-			/>
+			// animated label variant
+			<View style={[styles.inputWrapper]}>
+				<Animated.Text style={[styles.label, animatedLabelStyle, labelStyle]}>
+					{label}
+				</Animated.Text>
+				<TextInput
+					ref={inputRef}
+					value={value}
+					onChangeText={onChangeText}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+					style={[styles.input, inputStyle]}
+					{...props}
+					placeholder={""}
+				/>
+			</View>
 		);
 	}
 
 	return (
-		// Default variant with animated label
-		<View style={[styles.inputWrapper]}>
-			<Animated.Text style={[styles.label, animatedLabelStyle_default, labelStyle]}>
-				{label}
-			</Animated.Text>
-			<TextInput
-				ref={inputRef}
-				value={value}
-				onChangeText={onChangeText}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
-				style={[styles.input, inputStyle]}
-				{...props}
-				placeholder={""}
-			/>
-		</View>
+		// normal variant
+		<TextInput
+			ref={inputRef}
+			value={value}
+			onChangeText={onChangeText}
+			style={[styles.input, inputStyle]}
+			{...props}
+		/>
 	);
 }
 
 const getStyles = (variant, inputBackgroundColor = "#f5f5f5") => {
-	if (variant === "default")
+	if (variant == "animated")
 		return StyleSheet.create({
 			inputWrapper: {
 				backgroundColor: inputBackgroundColor,
@@ -106,13 +104,18 @@ const getStyles = (variant, inputBackgroundColor = "#f5f5f5") => {
 			},
 		});
 
-	if (variant === "2")
-		// simpler input without animated label
-		return StyleSheet.create({
-			input: {
-				fontSize: 16,
-				color: "#000",
-				padding: 0,
-			},
-		});
+	// normal variant
+	return StyleSheet.create({
+		input: {
+			backgroundColor: inputBackgroundColor,
+			fontSize: 16,
+			color: "black",
+			paddingVertical: 12,
+			paddingHorizontal: 10,
+			borderRadius: 8,
+			borderWidth: 1,
+			borderColor: "#ccc",
+			textAlignVertical: "center",
+		},
+	});
 };

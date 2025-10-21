@@ -25,7 +25,13 @@ const menuItems = [
 	},
 	{ id: 2, title: "Abonamente", screen: "SubscriptionsScreen", icon: "credit-card", iconLib: "fa" },
 	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryScreen", icon: "history", iconLib: "fa" },
-	{ id: 4, title: "Salvate", screen: "SavedEventsScreen", icon: "settings", iconLib: "mi" },
+	{
+		id: 4,
+		title: "Evenimente salvate",
+		screen: "SavedEventsScreen",
+		icon: "settings",
+		iconLib: "mi",
+	},
 	{
 		id: 5,
 		title: "Schimbă parola",
