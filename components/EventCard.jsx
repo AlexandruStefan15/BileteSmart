@@ -4,13 +4,21 @@ import { LinearGradient } from "expo-linear-gradient";
 
 //constants
 import { Colors } from "@/constants";
+
 //utils
 import { formatDate } from "@/utils/helpers";
 import { formatRomanianDate } from "@/utils/helpers";
+
 //images
 import { images } from "@/assets/images/index";
+
+//svgs
+import CalendarIcon from "@/assets/svgs/calendar.svg";
+import MapPinIcon from "@/assets/svgs/mapPin.svg";
+
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
+
 //components
 import Ripple from "react-native-material-ripple";
 import Icon from "./Icon";
@@ -48,19 +56,13 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</Text>
 					<View style={styles.subtitle}>
 						<View style={styles.subtitle_item}>
-							<Icon
-								style={styles.subtitleIcon}
-								lib="io"
-								name="calendar-outline"
-								size={16.2}
-								color="#555"
-							/>
+							<CalendarIcon style={styles.subtitleIcon} width={17} />
 							<Text style={styles.subtitle_text}>
 								{formatRomanianDate(eventData.date, true)} | {eventData.time}
 							</Text>
 						</View>
 						<View style={styles.subtitle_item}>
-							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16.2} color="#555" />
+							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16.5} color="#555" />
 							<Text style={styles.subtitle_text}>{eventData.location}</Text>
 						</View>
 					</View>
@@ -166,7 +168,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			subtitle_text: {
 				fontSize: 13.2,
 				color: "#555",
-				fontWeight: 600,
+				fontWeight: 500,
 				marginLeft: 2,
 				bottom: 2.5,
 				lineHeight: 17,
