@@ -22,7 +22,27 @@ const LocationsScreen = ({ route, navigation }) => {
 		<SafeAreaView style={styles.screen}>
 			<Header />
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<View style={styles.container}></View>
+				<View style={styles.container}>
+					<FlatList
+						contentContainerStyle={styles.locationList}
+						data={locations}
+						scrollEnabled={false}
+						keyExtractor={(item) => item.id}
+						renderItem={({ item, index }) => (
+							<EventCard
+								eventData={item}
+								onPress={() => /* navigation.navigate("EventDetailsStack", {
+										screen: "EventDetailsScreen",
+										params: {
+											locationId: currentLocation.id,
+											event: item,
+											currentLocation,
+										},
+									}) */ {}}
+							/>
+						)}
+					/>
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
@@ -32,6 +52,8 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 	},
+
+	container: { paddingInline: 18, paddingBlock: 22 },
 });
 
 export default LocationsScreen;
