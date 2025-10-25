@@ -32,13 +32,10 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	list: {
-		marginTop: 10,
-	},
+	list: {},
 
 	contentContainerList: {
 		padding: 16,
-		paddingBlock: 5,
 		gap: 15,
 	},
 });

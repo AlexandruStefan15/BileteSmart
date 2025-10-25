@@ -9,6 +9,7 @@ import { navigationRef } from "./navigationRef";
 import { useTheme } from "../hooks/useTheme";
 //stacks
 import EventDetailsNavigator from "./stacks/EventsStack/EventDetailsStack/EventDetailsNavigator";
+import OrderHistoryNavigator from "./stacks/OrderHistoryNavigator";
 //screens
 import ContactScreen from "@/screens/ContactScreen";
 import TicketingScreen from "@/screens/TicketingScreen";
@@ -42,6 +43,11 @@ const RootNavigator = () => {
 					/>
 					<Stack.Screen name="Contact" component={ContactScreen} />
 					<Stack.Screen name="Ticketing" component={TicketingScreen} />
+					<Stack.Screen
+						name="OrderHistoryStack"
+						component={OrderHistoryNavigator}
+						options={{ headerShown: false }}
+					/>
 				</Stack.Navigator>
 				<CustomDrawer />
 			</View>

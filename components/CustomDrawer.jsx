@@ -10,6 +10,9 @@ import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { useDrawerStore } from "@/store/store";
 import { navigationRef } from "@/navigation/navigationRef";
 
+//colors
+import { Colors } from "@/constants";
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const drawerWidth = SCREEN_WIDTH * 0.75;
@@ -55,9 +58,9 @@ const CustomDrawer = ({ navigation }) => {
 			{isDrawerOpen && <Pressable style={styles.overlay} onPress={closeDrawer} />}
 			<GestureDetector gesture={panGesture}>
 				<Animated.View style={[styles.drawer, animatedStyle]}>
-					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Acasa")}>
+					{/* <TouchableOpacity style={styles.link} onPress={() => handleNavigate("Acasa")}>
 						<Text style={styles.text}>Acasa</Text>
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Evenimente")}>
 						<Text style={styles.text}>Evenimente</Text>
 					</TouchableOpacity>
@@ -66,6 +69,12 @@ const CustomDrawer = ({ navigation }) => {
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Ticketing")}>
 						<Text style={styles.text}>Ticketing</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("OrderHistoryStack")}>
+						<Text style={styles.text}>Comenzile mele</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.link} onPress={() => {}}>
+						<Text style={styles.text}>Deconectare</Text>
 					</TouchableOpacity>
 				</Animated.View>
 			</GestureDetector>
