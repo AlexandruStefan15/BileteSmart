@@ -44,7 +44,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						imageStyle={styles.image}
 					/>
 					<LinearGradient
-						colors={["#00000008", "#0e0e0e01"]}
+						colors={["#00000008", "#0e0e0e0a"]}
 						start={{ x: 0, y: 1 }}
 						end={{ x: 0, y: 0 }}
 						style={styles.gradientOverlay}
@@ -114,7 +114,7 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			imageBox: {
-				aspectRatio: 100 / 50,
+				aspectRatio: 96 / 50,
 				overflow: "hidden",
 				width: "100%",
 				position: "relative",
@@ -214,11 +214,12 @@ const getStyles = (theme, variant, cardHeight) => {
 			left: 13,
 			minWidth: 58,
 			alignSelf: "flex-start",
-			borderRadius: 12,
+			borderRadius: 11,
 			justifyContent: "center",
 			alignItems: "center",
 			overflow: "hidden",
-			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
+			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.68)",
+			minWidth: 60,
 		},
 
 		badge_text: {
@@ -236,11 +237,11 @@ const getStyles = (theme, variant, cardHeight) => {
 			marginBottom: 0,
 			width: "100%",
 			paddingVertical: 2,
-			paddingTop: 2.5,
+			paddingTop: 3,
 		},
 
 		badge_text1: {
-			paddingVertical: 5,
+			paddingVertical: 5.2,
 			backgroundColor: "#e7f0fe",
 			width: "100%",
 			fontWeight: "800",

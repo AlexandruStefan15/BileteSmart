@@ -6,11 +6,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 //store
 import { useDrawerStore } from "@/store/store";
 
-//components
-import Header from "@/components/Header";
-
 //data
 import { locations } from "@/data/locations"; // to be fetched
+
+//components
+import Header from "@/components/Header";
+import LocationCard from "@/components/LocationCard";
 
 const LocationsScreen = ({ route, navigation }) => {
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
@@ -32,20 +33,17 @@ const LocationsScreen = ({ route, navigation }) => {
 						scrollEnabled={false}
 						keyExtractor={(item) => item.id}
 						renderItem={({ item, index }) => (
-							/* <EventCard
-								eventData={item}
+							<LocationCard
+								location={item}
 								onPress={() =>
-									navigation.navigate("EventDetailsStack", {
-										screen: "EventDetailsScreen",
-										params: {
-											locationId: currentLocation.id,
-											event: item,
-											currentLocation,
-										},
-									})
+									setTimeout(() => {
+										navigation.navigate("LocationStack", {
+											screen: "LocationScreen",
+											params: { currentLocation: item },
+										});
+									}, 100)
 								}
-							/> */
-							<Text>{item.name}</Text>
+							/>
 						)}
 					/>
 				</View>
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 
-	container: { paddingInline: 18, paddingBlock: 22 },
+	container: { paddingInline: 0, paddingBlock: 0 },
 });
 
 export default LocationsScreen;

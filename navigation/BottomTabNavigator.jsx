@@ -8,10 +8,8 @@ import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
 import MyAccountNavigator from "./stacks/MyAccountNavigator";
 import LocationsNavigator from "./stacks/LocationsNavigator";
-// Icons
-import Icon from "react-native-vector-icons/Feather";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+// Components
+import Icon from "@/components/Icon";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +38,7 @@ const BottomTabNavigator = () => {
 				component={HomeNavigator}
 				options={({ route }) => ({
 					tabBarStyle: getTabBarStyle(route, "HomeScreen"),
-					tabBarIcon: ({ color, size }) => <Icon name="home" size={size} color={color} />,
+					tabBarIcon: ({ color, size }) => <Icon lib="fe" name="home" size={size} color={color} />,
 					tabBarActiveTintColor: Colors.primary,
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,
@@ -62,7 +60,7 @@ const BottomTabNavigator = () => {
 				component={EventsNavigator}
 				options={({ route }) => ({
 					tabBarStyle: getTabBarStyle(route, "EventsScreen"),
-					tabBarIcon: ({ color, size }) => <MaterialIcon name="event" size={size} color={color} />,
+					tabBarIcon: ({ color, size }) => <Icon lib="mi" name="event" size={size} color={color} />,
 					tabBarActiveTintColor: Colors.primary,
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,
@@ -85,7 +83,7 @@ const BottomTabNavigator = () => {
 				options={({ route }) => ({
 					tabBarStyle: getTabBarStyle(route, "LocationsScreen"),
 					tabBarIcon: ({ color, size }) => (
-						<FontAwesomeIcon name="ticket" size={size} color={color} />
+						<Icon lib="fa6" name="map-location-dot" size={size} color={color} />
 					),
 					tabBarActiveTintColor: Colors.primary,
 					tabBarInactiveTintColor: "gray",
@@ -96,7 +94,7 @@ const BottomTabNavigator = () => {
 						const state = route.state;
 						if (state && state.routes.length > 1) {
 							// stack has more than 1 screen => pop to top
-							navigation.navigate("Bilete", {
+							navigation.navigate("Locatii", {
 								screen: state.routes[0].name,
 							});
 						}
@@ -108,9 +106,7 @@ const BottomTabNavigator = () => {
 				component={MyAccountNavigator}
 				options={({ route }) => ({
 					tabBarStyle: getTabBarStyle(route, "MyAccountScreen"),
-					tabBarIcon: ({ color, size }) => (
-						<FontAwesomeIcon name="user" size={size} color={color} />
-					),
+					tabBarIcon: ({ color, size }) => <Icon lib="fa" name="user" size={size} color={color} />,
 					tabBarActiveTintColor: Colors.primary,
 					tabBarInactiveTintColor: "gray",
 					tabBarShowLabel: true,

@@ -156,7 +156,7 @@ const getStyles = (variant) => {
 			},
 
 			right: {
-				backgroundColor: "#e7e7e7ff",
+				backgroundColor: "#e9e9e9ff",
 				paddingInline: 12,
 				paddingBlock: 7,
 				gap: 3,
