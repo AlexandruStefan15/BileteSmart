@@ -24,7 +24,7 @@ const menuItems = [
 		iconLib: "fa",
 	},
 	{ id: 2, title: "Abonamente", screen: "SubscriptionsScreen", icon: "credit-card", iconLib: "fa" },
-	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryScreen", icon: "history", iconLib: "fa" },
+	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryStack", icon: "history", iconLib: "fa" },
 	{
 		id: 4,
 		title: "Evenimente salvate",

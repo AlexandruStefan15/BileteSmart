@@ -1,7 +1,10 @@
-import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import { StyleSheet, View, FlatList, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+//store
+import { useDrawerStore } from "@/store/store";
 
 //components
 import Header from "@/components/Header";
@@ -29,17 +32,20 @@ const LocationsScreen = ({ route, navigation }) => {
 						scrollEnabled={false}
 						keyExtractor={(item) => item.id}
 						renderItem={({ item, index }) => (
-							<EventCard
+							/* <EventCard
 								eventData={item}
-								onPress={() => /* navigation.navigate("EventDetailsStack", {
+								onPress={() =>
+									navigation.navigate("EventDetailsStack", {
 										screen: "EventDetailsScreen",
 										params: {
 											locationId: currentLocation.id,
 											event: item,
 											currentLocation,
 										},
-									}) */ {}}
-							/>
+									})
+								}
+							/> */
+							<Text>{item.name}</Text>
 						)}
 					/>
 				</View>

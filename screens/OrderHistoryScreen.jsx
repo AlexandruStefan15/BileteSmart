@@ -14,7 +14,7 @@ import { useOrdersByEmail } from "@/hooks/useOrdersByEmail";
 import Header from "@/components/Header";
 import OrderHistoryList from "@/components/OrderHistoryList";
 
-const TicketsScreen = ({ navigation, route }) => {
+const OrderHistoryScreen = ({ navigation, route }) => {
 	const { orders, loading, error, refetch } = useOrdersByEmail("zyx_sprite@yahoo.com");
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
@@ -31,8 +31,8 @@ const TicketsScreen = ({ navigation, route }) => {
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header />
-			<OrderHistoryList orders={orders} />
+			<Header title={"Istoric comenzi"} variant="3" arrowColor="black" backButtonSize={24.5} />
+			<OrderHistoryList orders={orders} contentContainerStyle={{ paddingTop: 20 }} />
 		</SafeAreaView>
 	);
 };
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default TicketsScreen;
+export default OrderHistoryScreen;

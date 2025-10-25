@@ -3,6 +3,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MyAccountScreen from "@/screens/MyAccountScreen";
 import ChangeAccountDataScreen from "@/screens/ChangeAccountDataScreen";
 
+//navigators
+import OrderHistoryNavigator from "./OrderHistoryNavigator";
+
 const Stack = createNativeStackNavigator();
 
 const MyAccountNavigator = () => (
@@ -15,6 +18,11 @@ const MyAccountNavigator = () => (
 		<Stack.Screen
 			name="ChangeAccountDataScreen"
 			component={ChangeAccountDataScreen}
+			options={{ headerShown: false }}
+		/>
+		<Stack.Screen
+			name="OrderHistoryStack"
+			component={OrderHistoryNavigator}
 			options={{ headerShown: false }}
 		/>
 	</Stack.Navigator>

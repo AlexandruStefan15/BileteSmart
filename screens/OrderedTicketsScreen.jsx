@@ -6,15 +6,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "@/constants";
 
 //components
-import Header from "@/components/Header";
 import Ticket from "@/components/Ticket";
+import Header from "@/components/Header";
 
 const OrderedTicketsScreen = ({ navigation, route }) => {
 	const { tickets, event_title } = route.params;
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			{/* <Header variant="2" arrowColor="black" style={{ position: "relative" }} /> */}
+			<Header title={"Bilete"} variant="3" arrowColor="black" backButtonSize={24.5} />
 			<FlatList
 				data={tickets}
 				renderItem={({ item: ticket }) => <Ticket data={{ ...ticket, event_title }} variant="2" />}

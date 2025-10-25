@@ -1,20 +1,24 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import TicketsScreen from "@/screens/TicketsScreen";
+import OrderHistoryScreen from "@/screens/OrderHistoryScreen";
 import OrderedTicketsScreen from "@/screens/OrderedTicketsScreen";
 
 const Stack = createNativeStackNavigator();
 
-const TicketsNavigator = () => (
+const OrderHistoryNavigator = () => (
 	<Stack.Navigator>
-		<Stack.Screen name="TicketsScreen" component={TicketsScreen} options={{ headerShown: false }} />
+		<Stack.Screen
+			name="OrderHistoryScreen"
+			component={OrderHistoryScreen}
+			options={{ headerShown: false }}
+		/>
 		<Stack.Screen
 			name="OrderedTicketsScreen"
 			component={OrderedTicketsScreen}
-			options={{ headerTitle: "Bilete" }}
+			options={{ headerShown: false }}
 		/>
 	</Stack.Navigator>
 );
 
-export default TicketsNavigator;
+export default OrderHistoryNavigator;

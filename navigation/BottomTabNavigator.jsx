@@ -6,8 +6,8 @@ import { Colors } from "@/constants";
 // Navigators
 import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
-import TicketsNavigator from "./stacks/TicketsNavigator";
 import MyAccountNavigator from "./stacks/MyAccountNavigator";
+import LocationsNavigator from "./stacks/LocationsNavigator";
 // Icons
 import Icon from "react-native-vector-icons/Feather";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -79,11 +79,11 @@ const BottomTabNavigator = () => {
 					},
 				})}
 			/>
-			<Tab.Screen
-				name="Bilete"
-				component={TicketsNavigator}
+			<Tab.Screen //Locations
+				name="Locatii"
+				component={LocationsNavigator}
 				options={({ route }) => ({
-					tabBarStyle: getTabBarStyle(route, "TicketsScreen"),
+					tabBarStyle: getTabBarStyle(route, "LocationsScreen"),
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesomeIcon name="ticket" size={size} color={color} />
 					),

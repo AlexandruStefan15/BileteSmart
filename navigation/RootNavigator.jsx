@@ -35,7 +35,7 @@ const RootNavigator = () => {
 						component={BottomTabNavigator}
 						options={{ /* header: () => <Header />, */ headerShown: false }}
 					/>
-					<Stack.Screen
+					<Stack.Screen // placed here in order to hide bottomTabNavigator
 						name="EventDetailsStack"
 						component={EventDetailsNavigator}
 						options={{ headerShown: false }}

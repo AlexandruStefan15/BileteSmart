@@ -18,7 +18,7 @@ import QRCodeModalButton from "./QRCodeModalButton";
 import Button from "./Button";
 import SeeMoreFlatList from "@/components/SeeMoreFlatList";
 
-const OrderHistoryList = ({ orders }) => {
+const OrderHistoryList = ({ orders, style, contentContainerStyle }) => {
 	const openItemRef = useRef(null); // { id: number|string, close: () => void }
 
 	const sortedOrders = useMemo(() => {
@@ -47,6 +47,8 @@ const OrderHistoryList = ({ orders }) => {
 			initialCount={10}
 			step={10}
 			windowSize={7}
+			style={style}
+			contentContainerStyle={contentContainerStyle}
 		/>
 	);
 };
