@@ -156,6 +156,9 @@ export const validation = {
 		if (!text.trim()) return "Campul este obligatoriu.";
 		if (text && !/^\d{10,15}$/.test(text)) return "Numarul de telefon nu este valid.";
 	},
-	email: (text) => (text && !/\S+@\S+\.\S+/.test(text) ? "Emailul nu este valid" : ""),
+	email: (text) => {
+		if (!text.trim()) return "Campul este obligatoriu.";
+		if (text && !/\S+@\S+\.\S+/.test(text)) return "Emailul nu este valid";
+	},
 	matchEmail: (text, values) => text !== values.email && "Emailurile nu coincid", // values.email NOT values.Email
 };

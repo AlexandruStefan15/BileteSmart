@@ -16,10 +16,10 @@ const ChangeAccountDataScreen = ({ navigation, route }) => {
 			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
 				<Form
 					initialValues={{
-						Nume: "Nastase",
-						Prenume: "Alexandru",
-						Telefon: "0731306547",
-						Email: "alex@example.com",
+						nume: "Nastase",
+						prenume: "Alexandru",
+						telefon: "0731306547",
+						email: "alex@example.com",
 					}}
 					onSubmit={(v) => console.log(v)}
 				>
@@ -34,34 +34,37 @@ const ChangeAccountDataScreen = ({ navigation, route }) => {
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Nume</Form.Label>
-						<Form.Input inputStyle={styles.input} name="Nume" validate={validation.requiredInput} />
+						<Form.Input inputStyle={styles.input} name="nume" validate={validation.requiredInput} />
+						<Form.Error name={"nume"} />
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Prenume</Form.Label>
 						<Form.Input
 							inputStyle={styles.input}
-							name="Prenume"
+							name="prenume"
 							validate={validation.requiredInput}
 						/>
+						<Form.Error name={"prenume"} />
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Telefon</Form.Label>
 						<Form.Input
 							inputStyle={styles.input}
-							name="Telefon"
+							name="telefon"
 							keyboardType="number-pad"
 							validate={validation.phoneNr}
 						/>
-						<Form.Error name={"Telefon"} />
+						<Form.Error name={"telefon"} />
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Email</Form.Label>
 						<Form.Input
 							inputStyle={styles.input}
-							name="Email"
+							name="email"
 							keyboardType="email-address"
 							validate={validation.email}
 						/>
+						<Form.Error name={"email"} />
 					</Form.Field>
 					<Form.SubmitButton style={{ marginTop: 15 }} title="Actualizeaza contul" />
 				</Form>

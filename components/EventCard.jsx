@@ -71,13 +71,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 		);
 
 	return (
-		<Ripple
-			style={[styles.container, style]}
-			rippleColor="white"
-			rippleDuration={320}
-			rippleCentered={false}
-			{...props}
-		>
+		<Pressable style={[styles.container, style]} {...props}>
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
 				<View style={styles.badge}>
 					{formatDate(eventData.date, "short")
@@ -100,7 +94,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					</Text>
 				</LinearGradient>
 			</ImageBackground>
-		</Ripple>
+		</Pressable>
 	);
 }
 
@@ -108,13 +102,13 @@ const getStyles = (theme, variant, cardHeight) => {
 	if (variant == "2")
 		return StyleSheet.create({
 			container: {
-				boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",
+				boxShadow: "0 2px 6px rgba(0, 0, 0, 0.17)",
 				overflow: "hidden",
 				borderRadius: 10,
 			},
 
 			imageBox: {
-				aspectRatio: 96 / 50,
+				aspectRatio: 97 / 50,
 				overflow: "hidden",
 				width: "100%",
 				position: "relative",
@@ -126,7 +120,7 @@ const getStyles = (theme, variant, cardHeight) => {
 				resizeMode: "cover",
 				position: "absolute",
 				top: 0,
-				height: cardHeight + 107,
+				height: cardHeight + 100,
 			},
 
 			footer: {
