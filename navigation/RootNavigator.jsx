@@ -9,7 +9,7 @@ import { navigationRef } from "./navigationRef";
 import { useTheme } from "../hooks/useTheme";
 //stacks
 import EventDetailsNavigator from "./stacks/EventsStack/EventDetailsStack/EventDetailsNavigator";
-import OrderHistoryNavigator from "./stacks/OrderHistoryNavigator";
+import MyOrdersNavigator from "./stacks/MyOrdersNavigator";
 //screens
 import ContactScreen from "@/screens/ContactScreen";
 import TicketingScreen from "@/screens/TicketingScreen";
@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
 	const { theme } = useTheme();
-
+	//only componentes inside Stack.Navigator can use useNavigation(), this is why i use navigationRef
 	return (
 		<NavigationContainer ref={navigationRef}>
 			<StatusBar
@@ -44,8 +44,8 @@ const RootNavigator = () => {
 					<Stack.Screen name="Contact" component={ContactScreen} />
 					<Stack.Screen name="Ticketing" component={TicketingScreen} />
 					<Stack.Screen
-						name="OrderHistoryStack"
-						component={OrderHistoryNavigator}
+						name="MyOrdersStack"
+						component={MyOrdersNavigator}
 						options={{ headerShown: false }}
 					/>
 				</Stack.Navigator>

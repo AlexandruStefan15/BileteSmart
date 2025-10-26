@@ -4,7 +4,7 @@ import MyAccountScreen from "@/screens/MyAccountScreen";
 import ChangeAccountDataScreen from "@/screens/ChangeAccountDataScreen";
 
 //navigators
-import OrderHistoryNavigator from "./OrderHistoryNavigator";
+import MyOrdersNavigator from "./MyOrdersNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,8 +21,8 @@ const MyAccountNavigator = () => (
 			options={{ headerShown: false }}
 		/>
 		<Stack.Screen
-			name="OrderHistoryStack"
-			component={OrderHistoryNavigator}
+			name="MyOrdersStack"
+			component={MyOrdersNavigator}
 			options={{ headerShown: false }}
 		/>
 	</Stack.Navigator>

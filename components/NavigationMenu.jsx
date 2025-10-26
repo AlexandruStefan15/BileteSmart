@@ -18,13 +18,13 @@ const IconLibs = {
 const menuItems = [
 	{
 		id: 1,
-		title: "Schimba datele",
+		title: "Datele mele",
 		screen: "ChangeAccountDataScreen",
 		icon: "user",
 		iconLib: "fa",
 	},
 	{ id: 2, title: "Abonamente", screen: "SubscriptionsScreen", icon: "credit-card", iconLib: "fa" },
-	{ id: 3, title: "Istoric comenzi", screen: "OrderHistoryStack", icon: "history", iconLib: "fa" },
+	{ id: 3, title: "Comenzile mele", screen: "MyOrdersStack", icon: "history", iconLib: "fa" },
 	{
 		id: 4,
 		title: "Evenimente salvate",

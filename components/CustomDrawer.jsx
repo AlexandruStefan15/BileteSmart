@@ -70,7 +70,7 @@ const CustomDrawer = ({ navigation }) => {
 					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("Ticketing")}>
 						<Text style={styles.text}>Ticketing</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("OrderHistoryStack")}>
+					<TouchableOpacity style={styles.link} onPress={() => handleNavigate("MyOrdersStack")}>
 						<Text style={styles.text}>Comenzile mele</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.link} onPress={() => {}}>

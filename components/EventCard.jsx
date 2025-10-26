@@ -44,7 +44,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						imageStyle={styles.image}
 					/>
 					<LinearGradient
-						colors={["#00000010", "#0e0e0e29"]}
+						colors={["#0e0e0e0d", "#0e0e0e1a"]}
 						start={{ x: 0, y: 1 }}
 						end={{ x: 0, y: 0 }}
 						style={styles.gradientOverlay}

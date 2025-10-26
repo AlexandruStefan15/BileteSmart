@@ -1,16 +1,16 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import OrderHistoryScreen from "@/screens/OrderHistoryScreen";
+import MyOrdersScreen from "@/screens/MyOrdersScreen";
 import OrderedTicketsScreen from "@/screens/OrderedTicketsScreen";
 
 const Stack = createNativeStackNavigator();
 
-const OrderHistoryNavigator = () => (
+const MyOrdersNavigator = () => (
 	<Stack.Navigator>
 		<Stack.Screen
-			name="OrderHistoryScreen"
-			component={OrderHistoryScreen}
+			name="MyOrdersScreen"
+			component={MyOrdersScreen}
 			options={{ headerShown: false }}
 		/>
 		<Stack.Screen
@@ -21,4 +21,4 @@ const OrderHistoryNavigator = () => (
 	</Stack.Navigator>
 );
 
-export default OrderHistoryNavigator;
+export default MyOrdersNavigator;

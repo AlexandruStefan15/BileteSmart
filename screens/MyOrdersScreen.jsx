@@ -14,7 +14,7 @@ import { useOrdersByEmail } from "@/hooks/useOrdersByEmail";
 import Header from "@/components/Header";
 import OrderHistoryList from "@/components/OrderHistoryList";
 
-const OrderHistoryScreen = ({ navigation, route }) => {
+const MyOrdersScreen = ({ navigation, route }) => {
 	const { orders, loading, error, refetch } = useOrdersByEmail("zyx_sprite@yahoo.com");
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
@@ -27,11 +27,12 @@ const OrderHistoryScreen = ({ navigation, route }) => {
 
 	if (loading)
 		return <ActivityIndicator style={styles.activityIndicator} color={"#365771"} size="large" />;
-	/* if (error) return <Text>Oops, something went wrong. Please try again later.</Text>; */
+
+	if (error) return <Text>Oops, something went wrong. Please try again later.</Text>;
 
 	return (
 		<SafeAreaView style={styles.screen}>
-			<Header title={"Istoric comenzi"} variant="3" arrowColor="black" backButtonSize={24.5} />
+			<Header title={"Comenzile mele"} variant="3" arrowColor="black" backButtonSize={24.5} />
 			<OrderHistoryList orders={orders} contentContainerStyle={{ paddingTop: 20 }} />
 		</SafeAreaView>
 	);
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default OrderHistoryScreen;
+export default MyOrdersScreen;
