@@ -66,8 +66,8 @@ Form.Input = ({ name, validate, ...props }) => {
 	const onChangeText = (text) => {
 		handleChange(name, text);
 		if (validate) {
-			const err = validate(text);
-			setErrors((prev) => ({ ...prev, [name]: err }));
+			const err = validate(text, values);
+			setErrors((prev) => ({ ...prev, [name]: err || "" }));
 		}
 	};
 
@@ -149,3 +149,13 @@ const getStyles = (screenWidth) =>
 			fontSize: 16,
 		},
 	});
+
+export const validation = {
+	requiredInput: (text) => (!text ? "Campul este obligatoriu" : ""),
+	phoneNr: (text) => {
+		if (!text.trim()) return "Campul este obligatoriu.";
+		if (text && !/^\d{10,15}$/.test(text)) return "Numarul de telefon nu este valid.";
+	},
+	email: (text) => (text && !/\S+@\S+\.\S+/.test(text) ? "Emailul nu este valid" : ""),
+	matchEmail: (text, values) => text !== values.email && "Emailurile nu coincid", // values.email NOT values.Email
+};

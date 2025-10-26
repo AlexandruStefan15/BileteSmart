@@ -7,7 +7,7 @@ import { Colors } from "@/constants";
 
 //components
 import Header from "@/components/Header";
-import Form from "@/components/Form";
+import Form, { validation } from "@/components/Form";
 
 const ChangeAccountDataScreen = ({ navigation, route }) => {
 	return (
@@ -34,18 +34,14 @@ const ChangeAccountDataScreen = ({ navigation, route }) => {
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Nume</Form.Label>
-						<Form.Input
-							inputStyle={styles.input}
-							name="Nume"
-							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
-						/>
+						<Form.Input inputStyle={styles.input} name="Nume" validate={validation.requiredInput} />
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Prenume</Form.Label>
 						<Form.Input
 							inputStyle={styles.input}
 							name="Prenume"
-							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+							validate={validation.requiredInput}
 						/>
 					</Form.Field>
 					<Form.Field>
@@ -54,8 +50,9 @@ const ChangeAccountDataScreen = ({ navigation, route }) => {
 							inputStyle={styles.input}
 							name="Telefon"
 							keyboardType="number-pad"
-							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+							validate={validation.phoneNr}
 						/>
+						<Form.Error name={"Telefon"} />
 					</Form.Field>
 					<Form.Field>
 						<Form.Label>Email</Form.Label>
@@ -63,7 +60,7 @@ const ChangeAccountDataScreen = ({ navigation, route }) => {
 							inputStyle={styles.input}
 							name="Email"
 							keyboardType="email-address"
-							validate={(val) => (!val ? "Campul este obligatoriu" : "")}
+							validate={validation.email}
 						/>
 					</Form.Field>
 					<Form.SubmitButton style={{ marginTop: 15 }} title="Actualizeaza contul" />
