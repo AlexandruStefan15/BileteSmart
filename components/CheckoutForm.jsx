@@ -163,7 +163,6 @@ const styles = StyleSheet.create({
 	container: {
 		padding: 21,
 		paddingRight: 25,
-		backgroundColor: "white",
 	},
 
 	formTitle: {

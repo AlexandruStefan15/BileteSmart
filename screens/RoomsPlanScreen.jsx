@@ -29,6 +29,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}
 				displayBadge={props.displayBadge}
+				backButtonSize={25.5}
 			/>
 			<SvgHallPlan
 				rooms={roomsWithSeats[locationId][eventId].rooms}

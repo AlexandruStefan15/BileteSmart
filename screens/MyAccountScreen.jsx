@@ -24,11 +24,15 @@ const MyAccountScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<ProfileBanner showSettingsButton={true} />
-				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-					<NavigationMenu
-						style={{ width: "85%", boxShadow: "0px 0px 1.75px rgba(0, 0, 0, 0.27)" }}
-					/>
+				<ProfileBanner />
+				<View
+					style={{
+						flex: 1,
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<NavigationMenu style={{ width: "85%" }} />
 				</View>
 			</ScrollView>
 		</SafeAreaView>

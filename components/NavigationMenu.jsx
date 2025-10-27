@@ -34,13 +34,20 @@ const menuItems = [
 	},
 	{
 		id: 5,
+		title: "Locatii preferate",
+		screen: "",
+		icon: "heart",
+		iconLib: "fa",
+	},
+	{
+		id: 6,
 		title: "Schimbă parola",
 		screen: "ChangePasswordScreen",
 		icon: "lock",
 		iconLib: "fa",
 	},
-	{ id: 6, title: "Sterge contul", screen: "DeleteAccountScreen", icon: "trash", iconLib: "fa" },
-	{ id: 7, title: "Deconectare", screen: "Logout", icon: "logout", iconLib: "mi" },
+	{ id: 7, title: "Sterge contul", screen: "DeleteAccountScreen", icon: "trash", iconLib: "fa" },
+	{ id: 8, title: "Deconectare", screen: "Logout", icon: "logout", iconLib: "mi" },
 ];
 
 const NavigationMenu = ({ data = menuItems, style, ...props }) => {
@@ -78,6 +85,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		paddingVertical: 6,
 		gap: 2,
+		boxShadow: "0px 0px 1.75px rgba(0, 0, 0, 0.27)",
 		// Shadow for iOS
 		shadowColor: "#000",
 	},

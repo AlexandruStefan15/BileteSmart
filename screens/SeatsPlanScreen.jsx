@@ -53,6 +53,7 @@ export default SeatsPlanScreen = ({
 				badgeStyle={props.badgeStyle}
 				displayBadge={props.displayBadge}
 				openSidebar={props.openSidebar}
+				backButtonSize={25.5}
 			/>
 			<SvgHallPlan
 				currentRoom={currentRoom}

@@ -27,7 +27,7 @@ const Header = ({
 	displayBadge = {},
 	arrowColor = "white",
 	styleTitle,
-	backButtonSize = 26,
+	backButtonSize = 25,
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const styles = getStyles(variant);
@@ -104,7 +104,7 @@ const Header = ({
 							style={styles.cart}
 						>
 							<View style={{ padding: 5 }}>
-								<IoniconsIcon name="cart-outline" size={27} color={"white"} />
+								<IoniconsIcon name="cart-outline" size={26} color={"white"} />
 							</View>
 							<Animated.View style={[styles.badge, badgeStyle]} />
 						</TouchableOpacity>
@@ -146,15 +146,14 @@ const getStyles = (variant) => {
 				boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
 				position: "relative",
 				top: 0,
-				gap: 2,
+				gap: 1,
 				flexDirection: "row",
 				paddingHorizontal: 16,
-				paddingVertical: 0,
+				paddingVertical: 0.5,
 				justifyContent: "space-between",
 				alignItems: "center",
 				zIndex: 10,
 				width: "100%",
-				backgroundColor: "white",
 				paddingLeft: 1,
 			},
 
@@ -167,7 +166,7 @@ const getStyles = (variant) => {
 
 			title: {
 				color: "black",
-				fontSize: 19,
+				fontSize: 18.5,
 				fontWeight: "500",
 			},
 		});
@@ -180,7 +179,7 @@ const getStyles = (variant) => {
 				gap: 0,
 				flexDirection: "row",
 				paddingHorizontal: 20,
-				paddingVertical: 0,
+				paddingVertical: 1,
 				paddingLeft: 2,
 				justifyContent: "space-between",
 				alignItems: "center",
@@ -207,7 +206,7 @@ const getStyles = (variant) => {
 				borderRadius: 40,
 				position: "absolute",
 				right: 3,
-				top: 7,
+				top: 6,
 				zIndex: 999,
 			},
 		});

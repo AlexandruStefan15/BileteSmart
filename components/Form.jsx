@@ -96,7 +96,7 @@ Form.SubmitButton = ({ title = "Submit", style, ...props }) => {
 	const { handleSubmit, styles } = useFormContext();
 
 	return (
-		<TouchableOpacity style={[styles.button, style]} onPress={handleSubmit} {...props}>
+		<TouchableOpacity style={[styles.submitButton, style]} onPress={handleSubmit} {...props}>
 			<Text style={styles.buttonText}>{title}</Text>
 		</TouchableOpacity>
 	);
@@ -136,7 +136,7 @@ const getStyles = (screenWidth) =>
 			fontSize: 13,
 		},
 
-		button: {
+		submitButton: {
 			backgroundColor: "#305a82",
 			paddingVertical: 14,
 			borderRadius: 8,

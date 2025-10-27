@@ -15,7 +15,7 @@ const ProfileBanner = ({ showSettingsButton }) => {
 			<View style={styles.settingsButton}>
 				{showSettingsButton && (
 					<Pressable onPress={() => {}}>
-						<FeatherIcon name="settings" size={23} color="#000" />
+						<FeatherIcon name="settings" size={22} color="#000" />
 					</Pressable>
 				)}
 			</View>
@@ -35,8 +35,7 @@ const ProfileBanner = ({ showSettingsButton }) => {
 const getStyles = (safeFrameHeight) =>
 	StyleSheet.create({
 		section: {
-			paddingVertical: (55 * safeFrameHeight) / 800 < 55 ? (56 * safeFrameHeight) / 800 : 64,
-			backgroundColor: "#edededff",
+			paddingTop: (55 * safeFrameHeight) / 800 < 55 ? (55 * safeFrameHeight) / 800 : 64,
 		},
 
 		settingsButton: {

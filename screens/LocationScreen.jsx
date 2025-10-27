@@ -227,8 +227,9 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		lineHeight: 22,
 		fontWeight: 400,
-		borderWidth: 1.1,
-		borderColor: "#dbdbdb5e",
+		/* borderWidth: 1.1,
+		borderColor: "#dbdbdb5e", */
+		boxShadow: "0 1px 6px rgba(0, 0, 0, 0.1)",
 	},
 
 	description: {
@@ -256,12 +257,8 @@ const styles = StyleSheet.create({
 	},
 
 	adressContainer: {
-		outlineWidth: 1.1,
-		outlineColor: "#dbdbdb5e",
-		outlineStyle: "solid",
 		borderRadius: 10,
-		overflow: "hidden",
-		boxShadow: "0px 0px 1.75px rgba(0, 0, 0, 0.27)",
+		boxShadow: "0px 0px 3.5px rgba(0, 0, 0, 0.27)",
 	},
 
 	addressWrapper: {

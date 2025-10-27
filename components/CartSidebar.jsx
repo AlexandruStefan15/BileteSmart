@@ -36,6 +36,8 @@ export default React.memo(function CartSidebar({
 	navigation,
 	...props
 }) {
+	const { selectedSeats } = useSelectedSeats();
+
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
 	}));
@@ -75,8 +77,8 @@ export default React.memo(function CartSidebar({
 						marginInline: "auto",
 					}}
 				>
-					<Text style={styles.cartTitle}>Coșul meu</Text>
-					<Image source={images.shoppingCart} style={{ width: 25, height: 25 }} />
+					<Text style={styles.cartTitle}>Coșul meu ({selectedSeats.length})</Text>
+					{/* <Image source={images.shoppingCart} style={{ width: 24, height: 24 }} /> */}
 				</View>
 			</View>
 			<View style={styles.content}>
@@ -134,11 +136,11 @@ const styles = StyleSheet.create({
 	header: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		borderBottomWidth: 0.5,
-		borderColor: "black",
+		boxShadow: "0 1px 6px rgba(0, 0, 0, 0.15)",
 		alignItems: "center",
 		paddingInline: 15,
 		paddingBlock: 20,
+		zIndex: 9,
 	},
 
 	closeBtn: {
@@ -166,10 +168,9 @@ const styles = StyleSheet.create({
 		paddingInline: 15,
 		paddingTop: 10,
 		paddingBottom: 18,
-		borderColor: "grey",
-		borderTopWidth: 0.5,
 		width: "100%",
 		gap: 3,
+		boxShadow: "0 1px 6px rgba(0, 0, 0, 0.15)",
 	},
 
 	checkoutButton: {

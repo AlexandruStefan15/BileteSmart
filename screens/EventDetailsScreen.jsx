@@ -63,7 +63,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 
 	const Body = (
 		<>
-			<Header variant="2" style={{ marginTop: 3 }} />
+			<Header variant="2" style={{ marginTop: 3 }} backButtonSize={25.5} />
 
 			{/* Banner takes its natural height */}
 			<View style={styles.banner}>
@@ -137,7 +137,7 @@ const getStyles = () =>
 		},
 
 		banner: {
-			paddingTop: 70,
+			paddingTop: 69,
 			paddingBottom: 30,
 			paddingHorizontal: 20,
 			alignItems: "center",
