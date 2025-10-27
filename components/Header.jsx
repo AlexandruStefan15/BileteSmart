@@ -149,7 +149,7 @@ const getStyles = (variant) => {
 				gap: 1,
 				flexDirection: "row",
 				paddingHorizontal: 16,
-				paddingVertical: 0.5,
+				paddingVertical: 1,
 				justifyContent: "space-between",
 				alignItems: "center",
 				zIndex: 10,

@@ -48,8 +48,33 @@ const CustomDrawer = ({ navigation }) => {
 
 	const handleNavigate = (screen) => {
 		closeDrawer();
-		if (navigationRef.isReady()) {
-			navigationRef.navigate(screen);
+
+		if (!navigationRef.isReady()) return;
+
+		switch (screen) {
+			case "MyOrdersStack":
+				navigationRef.navigate("Tabs", {
+					screen: "Contul meu",
+					params: {
+						screen: "MyOrdersStack",
+					},
+				});
+				break;
+
+			case "Evenimente":
+				navigationRef.navigate("Tabs", { screen: "Evenimente" });
+				break;
+
+			case "Contact":
+				navigationRef.navigate("Contact");
+				break;
+
+			case "Ticketing":
+				navigationRef.navigate("Ticketing");
+				break;
+
+			default:
+				navigationRef.navigate("Tabs", { screen });
 		}
 	};
 

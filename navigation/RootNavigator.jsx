@@ -43,11 +43,11 @@ const RootNavigator = () => {
 					/>
 					<Stack.Screen name="Contact" component={ContactScreen} />
 					<Stack.Screen name="Ticketing" component={TicketingScreen} />
-					<Stack.Screen
+					{/* <Stack.Screen
 						name="MyOrdersStack"
 						component={MyOrdersNavigator}
 						options={{ headerShown: false }}
-					/>
+					/> */}
 				</Stack.Navigator>
 				<CustomDrawer />
 			</View>
