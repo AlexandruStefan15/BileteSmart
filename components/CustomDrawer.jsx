@@ -61,20 +61,11 @@ const CustomDrawer = ({ navigation }) => {
 				});
 				break;
 
-			case "Evenimente":
-				navigationRef.navigate("Tabs", { screen: "Evenimente" });
-				break;
-
-			case "Contact":
-				navigationRef.navigate("Contact");
-				break;
-
-			case "Ticketing":
-				navigationRef.navigate("Ticketing");
-				break;
-
 			default:
-				navigationRef.navigate("Tabs", { screen });
+				navigationRef.navigate(screen);
+
+			/* default:
+				navigationRef.navigate("Tabs", { screen }); */
 		}
 	};
 
