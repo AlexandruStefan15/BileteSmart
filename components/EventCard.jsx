@@ -76,9 +76,9 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 		<Pressable style={[styles.container, style]} {...props}>
 			<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
 				<Icon
-					lib="fa"
-					name={isEventSaved(eventData.id_event) ? "bookmark" : "bookmark-o"}
-					size={24}
+					lib="mi"
+					name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
+					size={27.5}
 					color="white"
 				/>
 			</Pressable>
@@ -272,11 +272,11 @@ const getStyles = (theme, variant, cardHeight) => {
 		saveButton: {
 			position: "absolute",
 			zIndex: 99,
-			right: 20,
-			top: 20,
-			backgroundColor: "black",
-			paddingInline: 11,
-			paddingBlock: 8,
+			right: 19,
+			top: 19,
+			backgroundColor: "#000000c6",
+			paddingInline: 9,
+			paddingBlock: 9,
 			borderRadius: 60,
 		},
 	});
