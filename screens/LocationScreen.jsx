@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
 
 	adressContainer: {
 		borderRadius: 10,
-		boxShadow: "0px 0px 3.5px rgba(0, 0, 0, 0.27)",
+		boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.27)",
 	},
 
 	addressWrapper: {
