@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 		inset: 0,
 		zIndex: 999,
 		/* ...StyleSheet.absoluteFillObject, */
-		backgroundColor: "rgba(0, 0, 0, 0.46)",
+		backgroundColor: "rgba(0, 0, 0, 0.5)",
 		justifyContent: "center",
 		alignItems: "center",
 	},

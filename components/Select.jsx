@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
 	pickerText: {
 		color: "white",
 		textAlign: "center",
+		lineHeight: 16,
 	},
 
 	modal: {
