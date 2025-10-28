@@ -26,6 +26,11 @@ export const useSavedEventsStore = create(
 			// Clear all
 			clearSavedEvents: () => set({ savedEvents: [] }),
 
+			//check if an event is saved
+			isEventSaved: (id_event) => {
+				return get().savedEvents.some((e) => e.id_event === id_event);
+			},
+
 			// Sync from backend after login
 			loadFromBackend: async (userEmail) => {
 				try {
