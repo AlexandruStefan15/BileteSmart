@@ -14,19 +14,21 @@ import { images } from "@/assets/images/index";
 
 //svgs
 import CalendarIcon from "@/assets/svgs/calendar.svg";
-import MapPinIcon from "@/assets/svgs/mapPin.svg";
 
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
 
+//store
+import { useSavedEventsStore } from "@/store";
+
 //components
-import Ripple from "react-native-material-ripple";
 import Icon from "./Icon";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
 	const [cardHeight, setCardHeight] = useState(0);
-	const fonts = useCustomFonts();
+	const { toggleSaveEvent, isEventSaved } = useSavedEventsStore();
 	const styles = getStyles("light", variant, cardHeight);
+	const fonts = useCustomFonts();
 
 	const onCardLayout = (e) => {
 		const h = e.nativeEvent.layout.height;
@@ -72,6 +74,14 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	return (
 		<Pressable style={[styles.container, style]} {...props}>
+			<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
+				<Icon
+					lib="fa"
+					name={isEventSaved(eventData.id_event) ? "bookmark" : "bookmark-o"}
+					size={24}
+					color="white"
+				/>
+			</Pressable>
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
 				<View style={styles.badge}>
 					{formatDate(eventData.date, "short")
@@ -257,6 +267,17 @@ const getStyles = (theme, variant, cardHeight) => {
 
 		gradientOverlay: {
 			height: "101%",
+		},
+
+		saveButton: {
+			position: "absolute",
+			zIndex: 99,
+			right: 20,
+			top: 20,
+			backgroundColor: "black",
+			paddingInline: 11,
+			paddingBlock: 8,
+			borderRadius: 60,
 		},
 	});
 };
