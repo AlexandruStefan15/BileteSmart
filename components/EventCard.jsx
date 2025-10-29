@@ -64,7 +64,13 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 							</Text>
 						</View>
 						<View style={styles.subtitle_item}>
-							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16.5} color="#555" />
+							<Icon
+								style={styles.subtitleIcon}
+								lib="fe"
+								name="map-pin"
+								size={16.5}
+								color="#555"
+							/>
 							<Text style={styles.subtitle_text}>{eventData.location}</Text>
 						</View>
 					</View>
@@ -82,24 +88,41 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					color="white"
 				/>
 			</Pressable>
-			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
+			<ImageBackground
+				source={{ uri: encodeURI(eventData.event_img) }}
+				imageStyle={styles.image}
+			>
 				<View style={styles.badge}>
 					{formatDate(eventData.date, "short")
 						.trim()
 						.split(" ")
 						.map((word, index) => (
-							<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
+							<Text
+								style={[styles[`badge_text`], styles[`badge_text${index}`]]}
+								key={index}
+							>
 								{word}
 							</Text>
 						))}
 				</View>
 				<LinearGradient
-					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
+					colors={[
+						"#000000ff",
+						"#0e0e0ec6",
+						"#0e0e0e06",
+						"#0e0e0e06",
+						"#0e0e0e06",
+						"#00000005",
+					]}
 					start={{ x: 0, y: 1 }}
 					end={{ x: 0, y: 0 }}
 					style={styles.gradientOverlay}
 				>
-					<Text style={[styles.title, { marginBottom: 10 }]} numberOfLines={2} ellipsizeMode="tail">
+					<Text
+						style={[styles.title, { marginBottom: 10 }]}
+						numberOfLines={2}
+						ellipsizeMode="tail"
+					>
 						{eventData.title}
 					</Text>
 				</LinearGradient>
@@ -275,8 +298,8 @@ const getStyles = (theme, variant, cardHeight) => {
 			right: 19,
 			top: 19,
 			backgroundColor: "#000000c6",
-			paddingInline: 9,
-			paddingBlock: 9,
+			paddingInline: 8,
+			paddingBlock: 8,
 			borderRadius: 60,
 		},
 	});
