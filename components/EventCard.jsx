@@ -78,7 +78,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				<Icon
 					lib="mi"
 					name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
-					size={27.5}
+					size={27}
 					color="white"
 				/>
 			</Pressable>
