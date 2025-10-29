@@ -44,7 +44,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					<Icon
 						lib="mi"
 						name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
-						size={25}
+						size={24}
 						color="white"
 					/>
 				</Pressable>
@@ -54,7 +54,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						imageStyle={styles.image}
 					/>
 					<LinearGradient
-						colors={["#0e0e0e0d", "#0e0e0e1a"]}
+						colors={["#0e0e0e0c", "#0e0e0e10"]}
 						start={{ x: 0, y: 1 }}
 						end={{ x: 0, y: 0 }}
 						style={styles.gradientOverlay}
@@ -86,7 +86,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				<Icon
 					lib="mi"
 					name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
-					size={27}
+					size={25}
 					color="white"
 				/>
 			</Pressable>
@@ -197,9 +197,9 @@ const getStyles = (theme, variant, cardHeight) => {
 			saveButton: {
 				position: "absolute",
 				zIndex: 99,
-				right: 12,
-				top: 12,
-				backgroundColor: "#000000c6",
+				right: 10,
+				top: 10,
+				backgroundColor: "#000000c1",
 				paddingInline: 8.5,
 				paddingBlock: 8.5,
 				borderRadius: 60,
@@ -233,8 +233,8 @@ const getStyles = (theme, variant, cardHeight) => {
 			position: "absolute",
 			backgroundColor: "white",
 			textAlign: "center",
-			top: 13,
-			left: 13,
+			top: 12,
+			left: 12,
 			minWidth: 58,
 			alignSelf: "flex-start",
 			borderRadius: 11,
@@ -291,9 +291,9 @@ const getStyles = (theme, variant, cardHeight) => {
 		saveButton: {
 			position: "absolute",
 			zIndex: 99,
-			right: 16,
-			top: 16,
-			backgroundColor: "#000000c6",
+			right: 12,
+			top: 12,
+			backgroundColor: "#000000c1",
 			paddingInline: 8.5,
 			paddingBlock: 8.5,
 			borderRadius: 60,
