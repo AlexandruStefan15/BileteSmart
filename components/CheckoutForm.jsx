@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 	formTitle: {
 		fontSize: 20,
 		fontWeight: "bold",
-		marginBottom: 27,
+		marginBottom: 30,
 		textAlign: "center",
 	},
 
