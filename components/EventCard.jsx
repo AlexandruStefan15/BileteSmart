@@ -40,6 +40,14 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 	if (variant == 2)
 		return (
 			<Pressable style={styles.container} onLayout={onCardLayout} {...props}>
+				<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
+					<Icon
+						lib="mi"
+						name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
+						size={25}
+						color="white"
+					/>
+				</Pressable>
 				<View style={[styles.imageBox, style]}>
 					<ImageBackground
 						source={{ uri: encodeURI(eventData.eventCard_img) }}
@@ -64,13 +72,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 							</Text>
 						</View>
 						<View style={styles.subtitle_item}>
-							<Icon
-								style={styles.subtitleIcon}
-								lib="fe"
-								name="map-pin"
-								size={16.5}
-								color="#555"
-							/>
+							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16.5} color="#555" />
 							<Text style={styles.subtitle_text}>{eventData.location}</Text>
 						</View>
 					</View>
@@ -88,41 +90,24 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 					color="white"
 				/>
 			</Pressable>
-			<ImageBackground
-				source={{ uri: encodeURI(eventData.event_img) }}
-				imageStyle={styles.image}
-			>
+			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
 				<View style={styles.badge}>
 					{formatDate(eventData.date, "short")
 						.trim()
 						.split(" ")
 						.map((word, index) => (
-							<Text
-								style={[styles[`badge_text`], styles[`badge_text${index}`]]}
-								key={index}
-							>
+							<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
 								{word}
 							</Text>
 						))}
 				</View>
 				<LinearGradient
-					colors={[
-						"#000000ff",
-						"#0e0e0ec6",
-						"#0e0e0e06",
-						"#0e0e0e06",
-						"#0e0e0e06",
-						"#00000005",
-					]}
+					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
 					start={{ x: 0, y: 1 }}
 					end={{ x: 0, y: 0 }}
 					style={styles.gradientOverlay}
 				>
-					<Text
-						style={[styles.title, { marginBottom: 10 }]}
-						numberOfLines={2}
-						ellipsizeMode="tail"
-					>
+					<Text style={[styles.title, { marginBottom: 10 }]} numberOfLines={2} ellipsizeMode="tail">
 						{eventData.title}
 					</Text>
 				</LinearGradient>
@@ -207,6 +192,17 @@ const getStyles = (theme, variant, cardHeight) => {
 			gradientOverlay: {
 				zIndex: 9999,
 				height: "100%",
+			},
+
+			saveButton: {
+				position: "absolute",
+				zIndex: 99,
+				right: 12,
+				top: 12,
+				backgroundColor: "#000000c6",
+				paddingInline: 8.5,
+				paddingBlock: 8.5,
+				borderRadius: 60,
 			},
 		});
 
@@ -295,11 +291,11 @@ const getStyles = (theme, variant, cardHeight) => {
 		saveButton: {
 			position: "absolute",
 			zIndex: 99,
-			right: 19,
-			top: 19,
+			right: 16,
+			top: 16,
 			backgroundColor: "#000000c6",
-			paddingInline: 8,
-			paddingBlock: 8,
+			paddingInline: 8.5,
+			paddingBlock: 8.5,
 			borderRadius: 60,
 		},
 	});
