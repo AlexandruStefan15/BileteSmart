@@ -16,6 +16,7 @@ import Button from "@/components/Button";
 
 // data
 import roomsWithSeats from "@/data/roomsWithSeats.json";
+import { locations } from "@/data/locations"; // to be fetched
 
 const MIN_CARD = 280; // minimum workable height
 
@@ -27,15 +28,16 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const styles = getStyles();
 
 	const { resetSeats } = useSelectedSeats();
-	const { currentLocation, locationId, event } = route.params;
+	const { event, currentLocation } = route.params;
+	const location =
+		currentLocation || locations.find((location) => location.id == event.location.id);
 
 	// const rooms = roomsWithSeats[locationId][event.id_event].rooms;
-	const rooms = roomsWithSeats[locationId][event.id_event].rooms;
+	const rooms = roomsWithSeats[location.id][event.id_event].rooms;
 
 	useFocusEffect(
 		React.useCallback(() => {
 			resetSeats();
-			return () => {};
 		}, [resetSeats])
 	);
 
@@ -55,8 +57,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			screen: "RoomsPlanScreen",
 			params: {
 				eventId: event.id_event,
-				locationId,
-				currentLocation,
+				currentLocation: location,
 			},
 		});
 	};
@@ -85,7 +86,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 					{/* Pass the *actual* rendered height to the SVG plan */}
 					<SvgHallPlan
 						rooms={rooms}
-						field={currentLocation.fieldSVG}
+						field={location.fieldSVG}
 						width={cardW}
 						height={"100%"}
 						read_only

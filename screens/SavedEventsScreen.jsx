@@ -20,7 +20,20 @@ const SavedEventsScreen = ({ navigation, route }) => {
 			<Header title={"Evenimente salvate"} variant="3" arrowColor="black" backButtonSize={24.5} />
 			<FlatList
 				data={savedEvents}
-				renderItem={({ item: event }) => <EventCard eventData={event} variant="2" />}
+				renderItem={({ item: event }) => (
+					<EventCard
+						eventData={event}
+						variant="2"
+						onPress={() => {
+							navigation.navigate("EventDetailsStack", {
+								screen: "EventDetailsScreen",
+								params: {
+									event,
+								},
+							});
+						}}
+					/>
+				)}
 				keyExtractor={(event) => event.id_event.toString()}
 				style={styles.list}
 				contentContainerStyle={styles.contentContainerList}

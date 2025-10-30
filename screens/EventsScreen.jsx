@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Text, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ScrollView, Text, ActivityIndicator, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";
@@ -9,8 +9,7 @@ import Header from "@/components/Header";
 import EventCard from "@/components/EventCard";
 
 //data
-import { locations } from "@/data/locations"; // to be fetched
-import { eventsByLocation } from "@/data/events"; // to be fetched
+import { events } from "@/data/events"; // to be fetched
 
 //store
 import { useDrawerStore } from "@/store/store";
@@ -18,10 +17,7 @@ import { useDrawerStore } from "@/store/store";
 const EventsScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = React.useState(true);
 	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
-
-	const hasNoEvents = Object.values(eventsByLocation).every(
-		(eventsArray) => Array.isArray(eventsArray) && eventsArray.length === 0
-	);
+	const hasNoEvents = events.length == 0;
 
 	React.useEffect(() => {
 		//simulate fetch
@@ -63,40 +59,26 @@ const EventsScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header />
-			<ScrollView>
-				<View style={styles.container}>
-					{locations.map((location) => {
-						const events = eventsByLocation[location.id] || [];
-						if (events.length == 0) {
-							return null;
-						}
-						return (
-							<View style={styles.wrapper} key={location.id}>
-								{events.length > 0 &&
-									events.map((event) => (
-										<React.Fragment key={event.id_event}>
-											{/* <Text style={styles.location_title}>{location.name}</Text> */}
-											<EventCard
-												variant="2"
-												onPress={() =>
-													navigation.navigate("EventDetailsStack", {
-														screen: "EventDetailsScreen",
-														params: {
-															locationId: location.id,
-															event: event,
-															currentLocation: location,
-														},
-													})
-												}
-												eventData={event}
-											/>
-										</React.Fragment>
-									))}
-							</View>
-						);
-					})}
-				</View>
-			</ScrollView>
+			<FlatList
+				data={events}
+				keyExtractor={(event) => event.id_event.toString()}
+				style={styles.list}
+				contentContainerStyle={styles.contentContainerList}
+				renderItem={({ item: event }) => (
+					<EventCard
+						eventData={event}
+						variant="2"
+						onPress={() => {
+							navigation.navigate("EventDetailsStack", {
+								screen: "EventDetailsScreen",
+								params: {
+									event,
+								},
+							});
+						}}
+					/>
+				)}
+			/>
 		</SafeAreaView>
 	);
 };
@@ -107,10 +89,11 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors["light"].background.primary,
 	},
 
-	container: { gap: 18, paddingInline: 20, paddingBlock: 20 },
+	list: { paddingInline: 18 },
 
-	wrapper: {
-		gap: 18,
+	contentContainerList: {
+		gap: 17,
+		paddingBlock: 17,
 	},
 
 	location_title: {

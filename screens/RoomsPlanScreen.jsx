@@ -17,7 +17,7 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 
 export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
-	const { locationId, eventId, currentLocation } = route.params;
+	const { eventId, currentLocation } = route.params;
 	const { sidebarX } = useCartSidebarStore();
 
 	return (
@@ -32,7 +32,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				backButtonSize={25.5}
 			/>
 			<SvgHallPlan
-				rooms={roomsWithSeats[locationId][eventId].rooms}
+				rooms={roomsWithSeats[currentLocation.id][eventId].rooms}
 				selectRoom={true}
 				field={currentLocation.fieldSVG}
 				style={{ marginTop: 60 }}

@@ -73,7 +73,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						</View>
 						<View style={styles.subtitle_item}>
 							<Icon style={styles.subtitleIcon} lib="fe" name="map-pin" size={16.5} color="#555" />
-							<Text style={styles.subtitle_text}>{eventData.location}</Text>
+							<Text style={styles.subtitle_text}>{eventData.location.city}</Text>
 						</View>
 					</View>
 				</View>

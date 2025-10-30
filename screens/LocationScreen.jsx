@@ -16,7 +16,7 @@ import { Colors } from "@/constants";
 import { images } from "@/assets/images";
 
 //data
-import { eventsByLocation } from "@/data/events"; // to be fetched
+import { eventsByLocation } from "@/data/eventsByLocation"; // to be fetched
 
 //icons
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -79,7 +79,6 @@ const LocationScreen = ({ navigation, route }) => {
 											navigation.navigate("EventDetailsStack", {
 												screen: "EventDetailsScreen",
 												params: {
-													locationId: currentLocation.id,
 													event: item,
 													currentLocation,
 												},
