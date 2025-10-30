@@ -1,0 +1,49 @@
+import React from "react";
+import { StyleSheet, View, ScrollView, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+//constants
+import { Colors } from "@/constants";
+
+//store
+import { useSavedEventsStore } from "@/store";
+
+//components
+import EventCard from "@/components/EventCard";
+import Header from "@/components/Header";
+
+const SavedEventsScreen = ({ navigation, route }) => {
+	const { savedEvents } = useSavedEventsStore();
+
+	return (
+		<SafeAreaView style={styles.screen}>
+			<Header title={"Evenimente salvate"} variant="3" arrowColor="black" backButtonSize={24.5} />
+			<FlatList
+				data={savedEvents}
+				renderItem={({ item: event }) => <EventCard eventData={event} variant="2" />}
+				keyExtractor={(event) => event.id_event.toString()}
+				style={styles.list}
+				contentContainerStyle={styles.contentContainerList}
+				/* scrollEnabled={false} */
+			/>
+		</SafeAreaView>
+	);
+};
+
+const styles = StyleSheet.create({
+	screen: {
+		flex: 1,
+		backgroundColor: Colors["light"].background,
+	},
+
+	list: {
+		paddingInline: 20,
+	},
+
+	contentContainerList: {
+		paddingBlock: 20,
+		gap: 20,
+	},
+});
+
+export default SavedEventsScreen;

@@ -51,8 +51,8 @@ const getStyles = (safeFrameHeight) =>
 
 		imageBox: {
 			position: "relative",
-			width: 100,
-			height: 100,
+			width: 102,
+			height: 102,
 			overflow: "hidden",
 			borderRadius: 20,
 		},

@@ -43,7 +43,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 				<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
 					<Icon
 						lib="mi"
-						name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
+						name={isEventSaved(eventData.id_event) ? "bookmark" : "bookmark-border"}
 						size={24}
 						color="white"
 					/>
@@ -54,7 +54,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 						imageStyle={styles.image}
 					/>
 					<LinearGradient
-						colors={["#0e0e0e0c", "#0e0e0e10"]}
+						colors={["#0e0e0e0c", "#0e0e0e14"]}
 						start={{ x: 0, y: 1 }}
 						end={{ x: 0, y: 0 }}
 						style={styles.gradientOverlay}
@@ -85,7 +85,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 			<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
 				<Icon
 					lib="mi"
-					name={isEventSaved(eventData.id_event) ? "bookmark-border" : "bookmark"}
+					name={isEventSaved(eventData.id_event) ? "bookmark" : "bookmark-border"}
 					size={25}
 					color="white"
 				/>
