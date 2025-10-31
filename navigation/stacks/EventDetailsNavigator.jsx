@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //screens & navigators
 import EventDetailsScreen from "@/screens/EventDetailsScreen";
-import RoomsPlanNavigator from "../../RoomsPlanStack/RoomsPlanNavigator";
+import RoomsPlanNavigator from "./RoomsPlanStack/RoomsPlanNavigator";
 
 const Stack = createNativeStackNavigator();
 

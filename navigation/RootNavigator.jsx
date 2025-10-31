@@ -8,7 +8,7 @@ import { navigationRef } from "./navigationRef";
 //hooks
 import { useTheme } from "../hooks/useTheme";
 //stacks
-import EventDetailsNavigator from "./stacks/EventsStack/EventDetailsStack/EventDetailsNavigator";
+import EventDetailsNavigator from "./stacks/EventDetailsNavigator";
 import MyOrdersNavigator from "./stacks/MyOrdersNavigator";
 //screens
 import ContactScreen from "@/screens/ContactScreen";
@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
 	const { theme } = useTheme();
-	//only componentes inside Stack.Navigator can use useNavigation(), this is why i use navigationRef
+	//only componentes inside Stack.Navigator can use useNavigation(), this is why i use navigationRef for CustomDrawer
 	return (
 		<NavigationContainer ref={navigationRef}>
 			<StatusBar

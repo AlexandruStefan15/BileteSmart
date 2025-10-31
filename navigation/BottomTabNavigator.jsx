@@ -4,7 +4,7 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 // Constants
 import { Colors } from "@/constants";
 // Navigators
-import EventsNavigator from "./stacks/EventsStack/EventsNavigator";
+import EventsNavigator from "./stacks/EventsNavigator";
 import HomeNavigator from "./stacks/HomeStack/HomeNavigator";
 import MyAccountNavigator from "./stacks/MyAccountNavigator";
 import LocationsNavigator from "./stacks/LocationsNavigator";
