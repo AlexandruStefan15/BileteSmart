@@ -1,5 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+//screens
 import EventsScreen from "@/screens/EventsScreen";
 
 const Stack = createNativeStackNavigator();

@@ -1,9 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-//screens & navigators
+//screens
 import EventDetailsScreen from "@/screens/EventDetailsScreen";
-import RoomsPlanNavigator from "./RoomsPlanStack/RoomsPlanNavigator";
+
+//stacks
+import RoomsPlanNavigator from "./RoomsPlanNavigator";
 
 const Stack = createNativeStackNavigator();
 

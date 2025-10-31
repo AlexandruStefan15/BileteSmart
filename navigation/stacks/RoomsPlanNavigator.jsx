@@ -10,7 +10,9 @@ import { View } from "react-native";
 
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
-import SeatsPlanNavigator from "../SeatsPlanStack/SeatsPlanNavigator";
+
+//stacks
+import SeatsPlanNavigator from "./SeatsPlanNavigator";
 
 const Stack = createNativeStackNavigator();
 

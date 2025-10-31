@@ -1,8 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+//screens
 import LocationsScreen from "@/screens/LocationsScreen";
-import LocationNavigator from "./HomeStack/LocationStack/LocationNavigator";
+
+//stacks
+import LocationNavigator from "./LocationNavigator";
 
 const Stack = createNativeStackNavigator();
 

@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { forwardRef } from "react";
 
 import HomeScreen from "@/screens/HomeScreen";
-import LocationNavigator from "@/navigation/stacks/HomeStack/LocationStack/LocationNavigator";
+import LocationNavigator from "@/navigation/stacks/LocationNavigator";
 
 const Stack = createNativeStackNavigator();
 
