@@ -5,7 +5,7 @@ import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";
 
 //store
-import { useDrawerStore } from "@/store/store";
+import { useDrawerStore } from "@/store";
 
 //components
 import ProfileBanner from "@/components/sections/ProfileBanner";

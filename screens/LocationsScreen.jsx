@@ -4,7 +4,7 @@ import { StyleSheet, View, FlatList, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //store
-import { useDrawerStore } from "@/store/store";
+import { useDrawerStore } from "@/store";
 
 //data
 import { locations } from "@/data/locations"; // to be fetched

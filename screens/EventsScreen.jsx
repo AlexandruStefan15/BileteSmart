@@ -12,7 +12,7 @@ import EventCard from "@/components/EventCard";
 import { events } from "@/data/events"; // to be fetched
 
 //store
-import { useDrawerStore } from "@/store/store";
+import { useDrawerStore } from "@/store";
 
 const EventsScreen = ({ navigation }) => {
 	const [isLoading, setIsLoading] = React.useState(true);

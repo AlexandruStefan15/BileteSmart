@@ -9,7 +9,7 @@ import { Colors } from "@/constants";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 //store
-import { useSelectedSeats, useDrawerStore, useCartSidebarStore } from "@/store/store";
+import { useSelectedSeats, useDrawerStore, useCartSidebarStore } from "@/store";
 
 //icons
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
@@ -28,6 +28,7 @@ const Header = ({
 	arrowColor = "white",
 	styleTitle,
 	backButtonSize = 25,
+	backButtonVariant = "",
 }) => {
 	const { selectedSeats } = useSelectedSeats();
 	const styles = getStyles(variant);
@@ -48,7 +49,7 @@ const Header = ({
 	if (variant == "3")
 		return (
 			<Animated.View style={[styles.container, style]}>
-				<View style={styles.backButton}>
+				<View style={[styles.backButton]}>
 					<TouchableOpacity
 						style={{ marginTop: 2, padding: 15 }}
 						onPress={() => navigation.goBack()}
@@ -82,14 +83,31 @@ const Header = ({
 	if (variant == 2)
 		return (
 			<Animated.View style={[styles.container, style]}>
-				<View style={styles.backButton}>
-					<TouchableOpacity
-						style={{ marginTop: 2, padding: 15 }}
-						onPress={() => navigation.goBack()}
-					>
-						<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
-					</TouchableOpacity>
-				</View>
+				{backButtonVariant == "2" ? (
+					<View style={[styles.backButton]}>
+						<TouchableOpacity
+							style={{
+								backgroundColor: "#13141761",
+								top: 15,
+								left: 14,
+								borderRadius: 30,
+								padding: 5.5,
+							}}
+							onPress={() => navigation.goBack()}
+						>
+							<FeatherIcon name="arrow-left" size={20} color={arrowColor} />
+						</TouchableOpacity>
+					</View>
+				) : (
+					<View style={[styles.backButton]}>
+						<TouchableOpacity
+							style={{ marginTop: 2, padding: 15 }}
+							onPress={() => navigation.goBack()}
+						>
+							<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
+						</TouchableOpacity>
+					</View>
+				)}
 				<View style={styles.content}>
 					{title && (
 						<Text style={[styles.title, { color: arrowColor }, styleTitle]} numberOfLines={1}>

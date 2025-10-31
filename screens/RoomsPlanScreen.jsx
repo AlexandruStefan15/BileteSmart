@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
 //store
-import { useCartSidebarStore } from "@/store/store";
+import { useCartSidebarStore } from "@/store";
 
 //constants
 import { Colors } from "@/constants/Colors";

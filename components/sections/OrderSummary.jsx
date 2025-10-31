@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 //store
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats } from "@/store";
 
 //constants
 import { Colors } from "@/constants/Colors";

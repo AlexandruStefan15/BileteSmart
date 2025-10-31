@@ -6,7 +6,7 @@ import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
 // store
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats } from "@/store";
 
 // hooks
 import { useHandGestures } from "@/hooks/useHandGestures";

@@ -43,7 +43,7 @@ const LocationScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-				<Header variant="2" />
+				<Header variant="2" backButtonVariant="2" />
 				<View style={styles.banner}>
 					<Image
 						source={currentLocation.images.banner}
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		borderRadius: 21,
 		backgroundColor: "white",
-		marginTop: -35,
+		marginTop: -33,
 		backgroundColor: Colors["light"].background.primary,
 		padding: 20,
 		marginBottom: 5,

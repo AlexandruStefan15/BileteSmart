@@ -7,7 +7,7 @@ import Animated, {
 	runOnJS,
 } from "react-native-reanimated";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import { useDrawerStore } from "@/store/store";
+import { useDrawerStore } from "@/store";
 import { navigationRef } from "@/navigation/navigationRef";
 
 //colors

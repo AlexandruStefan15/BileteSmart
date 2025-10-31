@@ -9,7 +9,7 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 import { Colors } from "@/constants/Colors";
 
 //store
-import { useCartSidebarStore } from "@/store/store";
+import { useCartSidebarStore } from "@/store";
 
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";

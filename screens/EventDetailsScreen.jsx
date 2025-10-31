@@ -4,7 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 
 // store
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats } from "@/store";
 
 // utils
 import { formatRomanianDate } from "@/utils/helpers";

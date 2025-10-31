@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "reac
 import Checkbox from "react-native-bouncy-checkbox";
 
 //store
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats } from "@/store";
 //components
 import Input from "./Input";
 

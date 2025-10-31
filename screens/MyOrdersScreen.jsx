@@ -5,7 +5,7 @@ import { Colors } from "@/constants";
 import { useFocusEffect } from "@react-navigation/native";
 
 //store
-import { useDrawerStore } from "@/store/store";
+import { useDrawerStore } from "@/store";
 
 //hooks
 import { useOrdersByEmail } from "@/hooks/useOrdersByEmail";

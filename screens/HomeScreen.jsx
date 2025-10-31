@@ -8,7 +8,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Colors } from "@/constants";
 
 //store
-import { useDrawerStore } from "@/store/store";
+import { useDrawerStore } from "@/store";
 
 //components
 import HeroBanner from "@/components/sections/HeroBanner";

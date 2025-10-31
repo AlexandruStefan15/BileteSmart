@@ -12,7 +12,7 @@ import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
 import { navigationRef } from "@/navigation/navigationRef";
 
 //store
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats } from "@/store";
 
 //colors
 import { Colors } from "@/constants/Colors";

@@ -8,7 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { FlatList } from "react-native-gesture-handler";
 
-import { useSelectedSeats } from "@/store/store";
+import { useSelectedSeats } from "@/store";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
 //components
