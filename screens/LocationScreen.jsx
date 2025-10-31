@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		borderRadius: 21,
 		backgroundColor: "white",
-		marginTop: -33,
+		marginTop: -34,
 		backgroundColor: Colors["light"].background.primary,
 		padding: 20,
 		marginBottom: 5,

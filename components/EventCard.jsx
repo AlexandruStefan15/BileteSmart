@@ -142,9 +142,9 @@ const getStyles = (theme, variant, cardHeight) => {
 			},
 
 			footer: {
-				gap: 3.7,
+				gap: 4,
 				paddingBlock: 7.5,
-				paddingBottom: 8,
+				paddingBottom: 10,
 				paddingTop: 6.5,
 				paddingInline: 11,
 				backgroundColor: "white",

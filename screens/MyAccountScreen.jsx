@@ -25,13 +25,7 @@ const MyAccountScreen = ({ navigation }) => {
 		<SafeAreaView style={styles.screen}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<ProfileBanner />
-				<View
-					style={{
-						flex: 1,
-						justifyContent: "center",
-						alignItems: "center",
-					}}
-				>
+				<View style={styles.wrapper}>
 					<NavigationMenu style={{ width: "85%" }} />
 				</View>
 			</ScrollView>
@@ -43,6 +37,12 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		backgroundColor: Colors["light"].background.primary,
+	},
+
+	wrapper: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
 	},
 });
 
