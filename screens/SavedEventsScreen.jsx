@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, FlatList } from "react-native";
+import { StyleSheet, View, ScrollView, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //constants
@@ -14,6 +14,16 @@ import Header from "@/components/Header";
 
 const SavedEventsScreen = ({ navigation, route }) => {
 	const { savedEvents } = useSavedEventsStore();
+
+	if (savedEvents.length == 0)
+		return (
+			<SafeAreaView style={styles.screen}>
+				<Header title={"Evenimente salvate"} variant="3" arrowColor="black" backButtonSize={24.5} />
+				<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+					<Text>Nu aveti evenimente salvate.</Text>
+				</View>
+			</SafeAreaView>
+		);
 
 	return (
 		<SafeAreaView style={styles.screen}>
