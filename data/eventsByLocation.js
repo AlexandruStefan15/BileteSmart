@@ -14,7 +14,10 @@ export const eventsByLocation = {
 			logo_images: [images.gloriaBistritaLogo, images.csmSlatinaLogo], //links to images
 			time: "17:00",
 			date: "2025-05-03",
-			locationCity: "Bistrita",
+			location: {
+				id: 1,
+				city: "Bistrita",
+			},
 			demo: "1",
 		},
 		{
@@ -31,7 +34,10 @@ export const eventsByLocation = {
 			logo_images: [images.gloriaBistritaLogo, images.storhamarLogo],
 			time: "17:00",
 			date: "2025-09-06",
-			locationCity: "Bistrita",
+			location: {
+				id: 1,
+				city: "Bistrita",
+			},
 			demo: "0",
 		},
 	],
@@ -48,7 +54,10 @@ export const eventsByLocation = {
 			logo_images: [images.fcArges, images.csmGalati],
 			time: "17:00",
 			date: "2025-04-26",
-			locationCity: "Pitesti",
+			location: {
+				id: 2,
+				city: "Pitesti",
+			},
 			demo: "0",
 		},
 	],
@@ -65,7 +74,10 @@ export const eventsByLocation = {
 			logo_images: [images.romaniaFlag, images.croatiaFlag],
 			time: "18:00",
 			date: "2025-08-06",
-			locationCity: "Blaj",
+			location: {
+				id: 3,
+				city: "Blaj",
+			},
 			demo: "0",
 		},
 	],
