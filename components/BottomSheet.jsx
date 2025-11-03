@@ -14,6 +14,7 @@ const BottomSheet = forwardRef(
 	({ activeHeight, children, backgroundColor, backDropColor, closeOnExternalInteraction }, ref) => {
 		const inset = useSafeAreaInsets();
 		const { height } = Dimensions.get("screen");
+		const collapsedOffset = height - 105;
 		const newActiveHeight = height - activeHeight;
 		const topAnimation = useSharedValue(height);
 		const context = useSharedValue(0);
@@ -76,8 +77,8 @@ const BottomSheet = forwardRef(
 				}
 			})
 			.onEnd(() => {
-				if (topAnimation.value > newActiveHeight + 50) {
-					topAnimation.value = withSpring(height, {
+				if (topAnimation.value > newActiveHeight + 80) {
+					topAnimation.value = withSpring(collapsedOffset, {
 						damping: 100,
 						stiffness: 400,
 					});

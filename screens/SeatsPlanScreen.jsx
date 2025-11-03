@@ -145,5 +145,5 @@ const styles = StyleSheet.create({
 		width: "100%",
 	},
 
-	footer: { alignItems: "center", padding: 15 },
+	buttonsContainer: { alignItems: "center", padding: 15 },
 });
