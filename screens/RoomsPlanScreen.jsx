@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, Button, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //data
@@ -15,10 +15,18 @@ import { Colors } from "@/constants/Colors";
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
+import BottomSheet from "@/components/BottomSheet";
 
-export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
+export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...props }) => {
 	const { eventId, currentLocation } = route.params;
-	const { sidebarX } = useCartSidebarStore();
+	const { sidebarX, openSidebar } = useCartSidebarStore();
+	const { height: screenHeight } = Dimensions.get("screen");
+
+	useEffect(() => {
+		return () => {
+			closeBottomSheet?.();
+		};
+	}, [closeBottomSheet]);
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -38,6 +46,16 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				style={{ marginTop: 60 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
+			<BottomSheet
+				activeHeight={screenHeight * 0.2}
+				backgroundColor={"#2e2e2eff"}
+				backDropColor={"black"}
+				sharedTopAnimation={props.sharedTopAnimation}
+			>
+				<View style={styles.buttonsContainer}>
+					<Button title="Vezi cosul" onPress={openSidebar} />
+				</View>
+			</BottomSheet>
 		</SafeAreaView>
 	);
 };

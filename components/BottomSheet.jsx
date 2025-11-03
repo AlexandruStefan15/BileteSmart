@@ -11,12 +11,22 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BottomSheet = forwardRef(
-	({ activeHeight, children, backgroundColor, backDropColor, closeOnExternalInteraction }, ref) => {
+	(
+		{
+			activeHeight,
+			children,
+			backgroundColor,
+			backDropColor,
+			closeOnExternalInteraction,
+			sharedTopAnimation,
+		},
+		ref
+	) => {
 		const inset = useSafeAreaInsets();
 		const { height } = Dimensions.get("screen");
 		const collapsedOffset = height - 105;
 		const newActiveHeight = height - activeHeight;
-		const topAnimation = useSharedValue(height);
+		const topAnimation = sharedTopAnimation || useSharedValue(height);
 		const context = useSharedValue(0);
 
 		const expand = useCallback(() => {

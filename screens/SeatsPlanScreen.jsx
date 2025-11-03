@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef, useImperativeHandle } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -18,80 +18,80 @@ import CartSidebar from "@/components/CartSidebar";
 import Modal from "@/components/Modal";
 import BottomSheet from "@/components/BottomSheet";
 
-export default SeatsPlanScreen = ({
-	navigation,
-	route,
-	infoModalShowedOnce,
-	setInfoModalShowedOnce,
-	...props
-}) => {
-	const [isModalVisible, setIsModalVisible] = React.useState(false);
-	const { roomId, rooms } = route.params;
-	const currentRoom = rooms.find((room) => room.id_room == roomId);
-	const { sidebarX, openSidebar } = useCartSidebarStore();
-	const { selectedSeats } = useSelectedSeats();
-	const bottomSheetRef = useRef(null);
-	const { height } = Dimensions.get("screen");
+const SeatsPlanScreen = forwardRef(
+	({ navigation, route, infoModalShowedOnce, setInfoModalShowedOnce, ...props }, ref) => {
+		/* const [isModalVisible, setIsModalVisible] = React.useState(false); */
+		const { roomId, rooms } = route.params;
+		const currentRoom = rooms.find((room) => room.id_room == roomId);
+		const { sidebarX, openSidebar } = useCartSidebarStore();
+		const { selectedSeats } = useSelectedSeats();
+		const bottomSheetRef = useRef(null);
+		const { height: screenHeight } = Dimensions.get("screen");
 
-	const closeModal = () => {
-		setIsModalVisible(false);
-	};
+		/* const closeModal = () => {
+			setIsModalVisible(false);
+		}; */
 
-	useEffect(() => {
-		if (infoModalShowedOnce) return;
-		const timer = setTimeout(() => {
-			setIsModalVisible(true);
-			setInfoModalShowedOnce?.(true);
-		}, 800);
+		useImperativeHandle(ref, () => ({
+			closeBottomSheet: () => bottomSheetRef.current?.close(),
+		}));
 
-		return () => clearTimeout(timer);
-	}, []);
+		/* useEffect(() => {
+			if (infoModalShowedOnce) return;
+			const timer = setTimeout(() => {
+				setIsModalVisible(true);
+				setInfoModalShowedOnce?.(true);
+			}, 800);
 
-	useEffect(() => {
-		if (selectedSeats.length > 0) bottomSheetRef.current.expand();
-		else bottomSheetRef.current.close();
-		/* console.log(props.seatCount.value); */
-	}, [selectedSeats.length]);
+			return () => clearTimeout(timer);
+		}, []); */
 
-	return (
-		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Header
-				variant="2"
-				style={{ backgroundColor: Colors.tertiary }}
-				showCart={true}
-				seatCount={props.seatCount}
-				badgeStyle={props.badgeStyle}
-				displayBadge={props.displayBadge}
-				openSidebar={props.openSidebar}
-				backButtonSize={25.5}
-			/>
-			<SvgHallPlan
-				currentRoom={currentRoom}
-				selectSeats={true}
-				fieldPosition={currentRoom.field_position}
-				style={{ marginTop: 45 }}
-			/>
-			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
-			<Modal
-				isVisible={isModalVisible}
-				title="Selectează locurile"
-				subtitle="Selectati locurile pe care doriti sa le rezervati. Acestea vor fi adaugate automat in cosul de cumparaturi."
-				onClose={closeModal}
-				useNativeDriver={true}
-			/>
-			<BottomSheet
-				ref={bottomSheetRef}
-				activeHeight={height * 0.2}
-				backgroundColor={"#2e2e2eff"}
-				backDropColor={"black"}
-			>
-				<View style={styles.buttonsContainer}>
-					<Button title="Vezi cosul" onPress={openSidebar} />
-				</View>
-			</BottomSheet>
-		</SafeAreaView>
-	);
-};
+		useEffect(() => {
+			if (selectedSeats.length > 0) bottomSheetRef.current.expand();
+			else bottomSheetRef.current.close();
+		}, [selectedSeats.length]);
+
+		return (
+			<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+				<Header
+					variant="2"
+					style={{ backgroundColor: Colors.tertiary }}
+					showCart={true}
+					seatCount={props.seatCount}
+					badgeStyle={props.badgeStyle}
+					displayBadge={props.displayBadge}
+					openSidebar={props.openSidebar}
+					backButtonSize={25.5}
+				/>
+				<SvgHallPlan
+					currentRoom={currentRoom}
+					selectSeats={true}
+					fieldPosition={currentRoom.field_position}
+					style={{ marginTop: 45 }}
+				/>
+				<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
+				{/* <Modal
+					isVisible={isModalVisible}
+					title="Selectează locurile"
+					subtitle="Selectati locurile pe care doriti sa le rezervati. Acestea vor fi adaugate automat in cosul de cumparaturi."
+					onClose={closeModal}
+					useNativeDriver={true}
+				/> */}
+				<BottomSheet
+					ref={bottomSheetRef}
+					activeHeight={screenHeight * 0.2}
+					backgroundColor={"#2e2e2eff"}
+					backDropColor={"black"}
+					sharedTopAnimation={props.sharedTopAnimation}
+				>
+					<View style={styles.buttonsContainer}>
+						<Button title="Vezi cosul" onPress={openSidebar} />
+					</View>
+				</BottomSheet>
+			</SafeAreaView>
+		);
+	}
+);
 
 const styles = StyleSheet.create({
 	modalContent: {
@@ -147,3 +147,5 @@ const styles = StyleSheet.create({
 
 	buttonsContainer: { alignItems: "center", padding: 15 },
 });
+
+export default SeatsPlanScreen;

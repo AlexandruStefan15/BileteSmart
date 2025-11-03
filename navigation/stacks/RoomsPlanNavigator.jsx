@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
 	useSharedValue,
@@ -6,7 +6,7 @@ import {
 	useDerivedValue,
 	useAnimatedStyle,
 } from "react-native-reanimated";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
@@ -16,10 +16,13 @@ import SeatsPlanNavigator from "./SeatsPlanNavigator";
 
 const Stack = createNativeStackNavigator();
 
-export default function RoomsPlanNavigator({}) {
+export const RoomsPlanNavigator = forwardRef(({}, ref) => {
 	const [infoModalShowedOnce, setInfoModalShowedOnce] = useState(false);
 	const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
+	const seatsPlanNavRef = useRef();
+
+	const bottomSheetTop = useSharedValue(Dimensions.get("screen").height);
 
 	const showBadge = useDerivedValue(() => {
 		return seatCount.value > 0 && displayBadge.value;
@@ -32,6 +35,10 @@ export default function RoomsPlanNavigator({}) {
 		};
 	});
 
+	useImperativeHandle(ref, () => ({
+		closeBottomSheet: () => seatsPlanNavRef.current?.closeBottomSheet(),
+	}));
+
 	return (
 		<View style={{ flex: 1 }}>
 			<Stack.Navigator>
@@ -42,6 +49,8 @@ export default function RoomsPlanNavigator({}) {
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
+							closeBottomSheet={() => seatsPlanNavRef.current?.closeBottomSheet()}
+							sharedTopAnimation={bottomSheetTop}
 						/>
 					)}
 				</Stack.Screen>
@@ -50,15 +59,19 @@ export default function RoomsPlanNavigator({}) {
 					{(navProps) => (
 						<SeatsPlanNavigator
 							{...navProps}
+							ref={seatsPlanNavRef}
 							seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
 							infoModalShowedOnce={infoModalShowedOnce}
 							setInfoModalShowedOnce={setInfoModalShowedOnce}
+							sharedTopAnimation={bottomSheetTop}
 						/>
 					)}
 				</Stack.Screen>
 			</Stack.Navigator>
 		</View>
 	);
-}
+});
+
+export default RoomsPlanNavigator;
