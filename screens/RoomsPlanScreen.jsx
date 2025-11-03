@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Button, Dimensions } from "react-native";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //data
@@ -16,6 +16,8 @@ import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import BottomSheet from "@/components/BottomSheet";
+import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 
 export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...props }) => {
 	const { eventId, currentLocation } = route.params;
@@ -53,11 +55,20 @@ export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...prop
 				sharedTopAnimation={props.sharedTopAnimation}
 			>
 				<View style={styles.buttonsContainer}>
-					<Button title="Vezi cosul" onPress={openSidebar} />
+					<Button
+						style={{ marginInline: "auto", paddingInline: 62 }}
+						variant="3"
+						onPress={openSidebar}
+						iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
+					>
+						Vezi cosul
+					</Button>
 				</View>
 			</BottomSheet>
 		</SafeAreaView>
 	);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	buttonsContainer: { paddingBlock: 13 },
+});

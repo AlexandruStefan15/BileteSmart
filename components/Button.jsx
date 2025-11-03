@@ -1,11 +1,21 @@
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { Colors } from "@/constants";
 
-export default function Button({ children, variant = "", style, styleText = {}, ...props }) {
+import { Colors } from "@/constants";
+import Icon from "./Icon";
+
+export default function Button({
+	children,
+	variant = "",
+	style,
+	styleText = {},
+	iconRight,
+	...props
+}) {
 	return (
 		<TouchableOpacity style={[styles[`button${variant}`], style]} {...props}>
 			<Text style={[styles[`buttonText${variant}`], styleText]}>{children}</Text>
+			{iconRight}
 		</TouchableOpacity>
 	);
 }
@@ -37,6 +47,27 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontWeight: "600",
 		fontSize: 13.5,
+		textTransform: "uppercase",
+	},
+
+	//variant 3
+	button3: {
+		backgroundColor: "#2196f3",
+		paddingBlock: 10,
+		borderRadius: 6,
+		paddingInline: 0,
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "center",
+		gap: 5,
+		alignSelf: "flex-start",
+		paddingInline: 20,
+	},
+
+	buttonText3: {
+		color: "white",
+		fontWeight: 700,
+		fontSize: 15,
 		textTransform: "uppercase",
 	},
 });

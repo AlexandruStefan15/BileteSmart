@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Button } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //data
@@ -20,6 +20,8 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Modal from "@/components/Modal";
 import BottomSheet from "@/components/BottomSheet";
+import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 
 const SeatsPlanScreen = forwardRef(
 	({ navigation, route, infoModalShowedOnce, setInfoModalShowedOnce, ...props }, ref) => {
@@ -35,7 +37,6 @@ const SeatsPlanScreen = forwardRef(
 		/* const closeModal = () => {
 			setIsModalVisible(false);
 		}; */
-		console.log();
 
 		useImperativeHandle(ref, () => ({
 			closeBottomSheet: () => bottomSheetRef.current?.close(),
@@ -91,7 +92,14 @@ const SeatsPlanScreen = forwardRef(
 					sharedTopAnimation={props.sharedTopAnimation}
 				>
 					<View style={styles.buttonsContainer}>
-						<Button title="Vezi cosul" onPress={openSidebar} />
+						<Button
+							style={{ marginInline: "auto", paddingInline: 62 }}
+							variant="3"
+							onPress={openSidebar}
+							iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
+						>
+							Vezi cosul
+						</Button>
 					</View>
 				</BottomSheet>
 			</SafeAreaView>
@@ -146,12 +154,12 @@ const styles = StyleSheet.create({
 		width: "100%",
 	},
 
-	button: {
-		backgroundColor: "#2196f3",
-		width: "100%",
+	buttonsContainer: {
+		paddingBlock: 13,
+		paddingInline: 10,
+		justifyContent: "center",
+		alignItems: "center",
 	},
-
-	buttonsContainer: { alignItems: "center", padding: 15 },
 });
 
 export default SeatsPlanScreen;

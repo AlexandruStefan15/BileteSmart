@@ -29,7 +29,7 @@ const BottomSheet = forwardRef(
 		const inset = useSafeAreaInsets();
 		const { height } = Dimensions.get("screen");
 		const collapsedOffset = height - 105;
-		const newActiveHeight = height - activeHeight;
+		const newActiveHeight = height - activeHeight - 5;
 		const topAnimation = sharedTopAnimation || useSharedValue(height);
 		const context = useSharedValue(0);
 		const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
@@ -62,6 +62,7 @@ const BottomSheet = forwardRef(
 				damping: 100,
 				stiffness: 400,
 			});
+			runOnJS(setCollapsed)(false);
 		}, []);
 
 		useImperativeHandle(
@@ -120,7 +121,6 @@ const BottomSheet = forwardRef(
 						damping: 100,
 						stiffness: 400,
 					});
-					runOnJS(setCollapsed)(false);
 				}
 			});
 
