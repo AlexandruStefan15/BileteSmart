@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //data
@@ -9,13 +9,14 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 import { Colors } from "@/constants/Colors";
 
 //store
-import { useCartSidebarStore } from "@/store";
+import { useCartSidebarStore, useSelectedSeats } from "@/store";
 
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Modal from "@/components/Modal";
+import BottomSheet from "@/components/BottomSheet";
 
 export default SeatsPlanScreen = ({
 	navigation,
@@ -27,7 +28,10 @@ export default SeatsPlanScreen = ({
 	const [isModalVisible, setIsModalVisible] = React.useState(false);
 	const { roomId, rooms } = route.params;
 	const currentRoom = rooms.find((room) => room.id_room == roomId);
-	const { sidebarX } = useCartSidebarStore();
+	const { sidebarX, openSidebar } = useCartSidebarStore();
+	const { selectedSeats } = useSelectedSeats();
+	const bottomSheetRef = useRef(null);
+	const { height } = Dimensions.get("screen");
 
 	const closeModal = () => {
 		setIsModalVisible(false);
@@ -42,6 +46,12 @@ export default SeatsPlanScreen = ({
 
 		return () => clearTimeout(timer);
 	}, []);
+
+	useEffect(() => {
+		if (selectedSeats.length > 0) bottomSheetRef.current.expand();
+		else bottomSheetRef.current.close();
+		/* console.log(props.seatCount.value); */
+	}, [selectedSeats.length]);
 
 	return (
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -69,6 +79,16 @@ export default SeatsPlanScreen = ({
 				onClose={closeModal}
 				useNativeDriver={true}
 			/>
+			<BottomSheet
+				ref={bottomSheetRef}
+				activeHeight={height * 0.2}
+				backgroundColor={"#2e2e2eff"}
+				backDropColor={"black"}
+			>
+				<View style={styles.buttonsContainer}>
+					<Button title="Vezi cosul" onPress={openSidebar} />
+				</View>
+			</BottomSheet>
 		</SafeAreaView>
 	);
 };
