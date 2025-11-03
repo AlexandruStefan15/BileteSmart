@@ -8,6 +8,9 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 //constants
 import { Colors } from "@/constants/Colors";
 
+//context
+import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
+
 //store
 import { useCartSidebarStore, useSelectedSeats } from "@/store";
 
@@ -25,12 +28,14 @@ const SeatsPlanScreen = forwardRef(
 		const currentRoom = rooms.find((room) => room.id_room == roomId);
 		const { sidebarX, openSidebar } = useCartSidebarStore();
 		const { selectedSeats } = useSelectedSeats();
+		const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
 		const bottomSheetRef = useRef(null);
 		const { height: screenHeight } = Dimensions.get("screen");
 
 		/* const closeModal = () => {
 			setIsModalVisible(false);
 		}; */
+		console.log();
 
 		useImperativeHandle(ref, () => ({
 			closeBottomSheet: () => bottomSheetRef.current?.close(),
@@ -47,8 +52,9 @@ const SeatsPlanScreen = forwardRef(
 		}, []); */
 
 		useEffect(() => {
-			if (selectedSeats.length > 0) bottomSheetRef.current.expand();
-			else bottomSheetRef.current.close();
+			if (selectedSeats.length > 0 && !isBottomSheetCollapsed.current)
+				bottomSheetRef.current.expand();
+			if (selectedSeats.length == 0) bottomSheetRef.current.close();
 		}, [selectedSeats.length]);
 
 		return (

@@ -8,6 +8,9 @@ import {
 } from "react-native-reanimated";
 import { View, Dimensions } from "react-native";
 
+//context
+import { BottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
+
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
 
@@ -21,6 +24,7 @@ export const RoomsPlanNavigator = forwardRef(({}, ref) => {
 	const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
 	const seatsPlanNavRef = useRef();
+	const isBottomSheetCollapsed = useRef(false);
 
 	const bottomSheetTop = useSharedValue(Dimensions.get("screen").height);
 
@@ -40,37 +44,39 @@ export const RoomsPlanNavigator = forwardRef(({}, ref) => {
 	}));
 
 	return (
-		<View style={{ flex: 1 }}>
-			<Stack.Navigator>
-				<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
-					{(navProps) => (
-						<RoomsPlanScreen
-							{...navProps}
-							seatCount={seatCount}
-							badgeStyle={badgeStyle}
-							displayBadge={displayBadge}
-							closeBottomSheet={() => seatsPlanNavRef.current?.closeBottomSheet()}
-							sharedTopAnimation={bottomSheetTop}
-						/>
-					)}
-				</Stack.Screen>
+		<BottomSheetMinimizedContext.Provider value={{ isBottomSheetCollapsed }}>
+			<View style={{ flex: 1 }}>
+				<Stack.Navigator>
+					<Stack.Screen name="RoomsPlanScreen" options={{ headerShown: false }}>
+						{(navProps) => (
+							<RoomsPlanScreen
+								{...navProps}
+								seatCount={seatCount}
+								badgeStyle={badgeStyle}
+								displayBadge={displayBadge}
+								closeBottomSheet={() => seatsPlanNavRef.current?.closeBottomSheet()}
+								sharedTopAnimation={bottomSheetTop}
+							/>
+						)}
+					</Stack.Screen>
 
-				<Stack.Screen name="SeatsPlanStack" options={{ headerShown: false }}>
-					{(navProps) => (
-						<SeatsPlanNavigator
-							{...navProps}
-							ref={seatsPlanNavRef}
-							seatCount={seatCount}
-							badgeStyle={badgeStyle}
-							displayBadge={displayBadge}
-							infoModalShowedOnce={infoModalShowedOnce}
-							setInfoModalShowedOnce={setInfoModalShowedOnce}
-							sharedTopAnimation={bottomSheetTop}
-						/>
-					)}
-				</Stack.Screen>
-			</Stack.Navigator>
-		</View>
+					<Stack.Screen name="SeatsPlanStack" options={{ headerShown: false }}>
+						{(navProps) => (
+							<SeatsPlanNavigator
+								{...navProps}
+								ref={seatsPlanNavRef}
+								seatCount={seatCount}
+								badgeStyle={badgeStyle}
+								displayBadge={displayBadge}
+								infoModalShowedOnce={infoModalShowedOnce}
+								setInfoModalShowedOnce={setInfoModalShowedOnce}
+								sharedTopAnimation={bottomSheetTop}
+							/>
+						)}
+					</Stack.Screen>
+				</Stack.Navigator>
+			</View>
+		</BottomSheetMinimizedContext.Provider>
 	);
 });
 

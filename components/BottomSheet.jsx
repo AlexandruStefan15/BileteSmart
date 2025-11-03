@@ -6,9 +6,13 @@ import Animated, {
 	useAnimatedStyle,
 	withSpring,
 	interpolate,
+	runOnJS,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+//context
+import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
 
 const BottomSheet = forwardRef(
 	(
@@ -28,6 +32,11 @@ const BottomSheet = forwardRef(
 		const newActiveHeight = height - activeHeight;
 		const topAnimation = sharedTopAnimation || useSharedValue(height);
 		const context = useSharedValue(0);
+		const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
+
+		const setCollapsed = (value) => {
+			isBottomSheetCollapsed.current = value;
+		};
 
 		const expand = useCallback(() => {
 			"worklet";
@@ -35,6 +44,16 @@ const BottomSheet = forwardRef(
 				damping: 100,
 				stiffness: 400,
 			});
+			runOnJS(setCollapsed)(false);
+		}, []);
+
+		const collapse = useCallback(() => {
+			"worklet";
+			topAnimation.value = withSpring(collapsedOffset, {
+				damping: 100,
+				stiffness: 400,
+			});
+			runOnJS(setCollapsed)(true);
 		}, []);
 
 		const close = useCallback(() => {
@@ -49,9 +68,10 @@ const BottomSheet = forwardRef(
 			ref,
 			() => ({
 				expand,
+				collapse,
 				close,
 			}),
-			[expand, close]
+			[expand, collapse, close]
 		);
 
 		const animationStyle = useAnimatedStyle(() => {
@@ -87,16 +107,20 @@ const BottomSheet = forwardRef(
 				}
 			})
 			.onEnd(() => {
-				if (topAnimation.value > newActiveHeight + 80) {
+				if (topAnimation.value > newActiveHeight + 50) {
+					//collapse
 					topAnimation.value = withSpring(collapsedOffset, {
 						damping: 100,
 						stiffness: 400,
 					});
+					runOnJS(setCollapsed)(true);
 				} else {
+					//remain open
 					topAnimation.value = withSpring(newActiveHeight, {
 						damping: 100,
 						stiffness: 400,
 					});
+					runOnJS(setCollapsed)(false);
 				}
 			});
 
