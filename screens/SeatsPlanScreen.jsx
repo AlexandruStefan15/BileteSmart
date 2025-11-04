@@ -8,9 +8,6 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 //constants
 import { Colors } from "@/constants/Colors";
 
-//context
-import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
-
 //store
 import { useCartSidebarStore, useSelectedSeats } from "@/store";
 
@@ -19,20 +16,15 @@ import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Modal from "@/components/Modal";
-import BottomSheet from "@/components/BottomSheet";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 
 const SeatsPlanScreen = forwardRef(
 	({ navigation, route, infoModalShowedOnce, setInfoModalShowedOnce, ...props }, ref) => {
 		/* const [isModalVisible, setIsModalVisible] = React.useState(false); */
 		const { roomId, rooms } = route.params;
 		const currentRoom = rooms.find((room) => room.id_room == roomId);
-		const { sidebarX, openSidebar } = useCartSidebarStore();
-		const { selectedSeats } = useSelectedSeats();
-		const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
+		const { sidebarX } = useCartSidebarStore();
 		const bottomSheetRef = useRef(null);
-		const { height: screenHeight } = Dimensions.get("screen");
 
 		/* const closeModal = () => {
 			setIsModalVisible(false);
@@ -51,12 +43,6 @@ const SeatsPlanScreen = forwardRef(
 
 			return () => clearTimeout(timer);
 		}, []); */
-
-		useEffect(() => {
-			if (selectedSeats.length > 0 && !isBottomSheetCollapsed.current)
-				bottomSheetRef.current.expand();
-			if (selectedSeats.length == 0) bottomSheetRef.current.close();
-		}, [selectedSeats.length]);
 
 		return (
 			<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -77,6 +63,7 @@ const SeatsPlanScreen = forwardRef(
 					style={{ marginTop: 45 }}
 				/>
 				<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
+				<SeeTheCartBottomSheet ref={bottomSheetRef} sharedTopAnimation={props.sharedTopAnimation} />
 				{/* <Modal
 					isVisible={isModalVisible}
 					title="Selectează locurile"
@@ -84,35 +71,6 @@ const SeatsPlanScreen = forwardRef(
 					onClose={closeModal}
 					useNativeDriver={true}
 				/> */}
-				<BottomSheet
-					ref={bottomSheetRef}
-					activeHeight={screenHeight * 0.32}
-					backgroundColor={"#2e2e2eff"}
-					backDropColor={"black"}
-					sharedTopAnimation={props.sharedTopAnimation}
-				>
-					<View style={bottomSheetStyles.container}>
-						<View style={bottomSheetStyles.row}>
-							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_left]}>
-								Numarul de bilete
-							</Text>
-							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>2</Text>
-						</View>
-						<View style={bottomSheetStyles.separator} />
-						<View style={bottomSheetStyles.row}>
-							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_left]}>Total</Text>
-							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>25 lei</Text>
-						</View>
-						<Button
-							style={bottomSheetStyles.button}
-							variant="3"
-							onPress={openSidebar}
-							iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
-						>
-							Vezi cosul
-						</Button>
-					</View>
-				</BottomSheet>
 			</SafeAreaView>
 		);
 	}
@@ -133,46 +91,5 @@ const styles = StyleSheet.create({
 		lineHeight: 20,
 	}, */
 });
-
-const bottomSheetStyles = {
-	container: {
-		paddingInline: 28,
-		paddingBlock: 20,
-	},
-
-	row: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		paddingBlock: 10,
-	},
-
-	row_left: {},
-
-	row_right: {
-		fontWeight: "bold",
-		fontSize: 18,
-		color: "white",
-	},
-
-	text: {
-		color: "lightgrey",
-		fontWeight: 400,
-		fontSize: 16,
-		lineHeight: 24,
-	},
-
-	separator: {
-		width: "100%",
-		backgroundColor: "#80808057",
-		height: 1,
-		marginBlock: 3,
-	},
-
-	button: {
-		marginTop: 15,
-		paddingBlock: 16,
-		borderRadius: 12,
-	},
-};
 
 export default SeatsPlanScreen;

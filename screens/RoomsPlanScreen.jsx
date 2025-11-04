@@ -15,14 +15,11 @@ import { Colors } from "@/constants/Colors";
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
-import BottomSheet from "@/components/BottomSheet";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 
 export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...props }) => {
 	const { eventId, currentLocation } = route.params;
-	const { sidebarX, openSidebar } = useCartSidebarStore();
-	const { height: screenHeight } = Dimensions.get("screen");
+	const { sidebarX } = useCartSidebarStore();
 
 	useEffect(() => {
 		return () => {
@@ -48,23 +45,7 @@ export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...prop
 				style={{ marginTop: 60 }}
 			/>
 			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
-			<BottomSheet
-				activeHeight={screenHeight * 0.2}
-				backgroundColor={"#2e2e2eff"}
-				backDropColor={"black"}
-				sharedTopAnimation={props.sharedTopAnimation}
-			>
-				<View style={styles.buttonsContainer}>
-					<Button
-						style={{ marginInline: "auto", paddingInline: 62 }}
-						variant="3"
-						onPress={openSidebar}
-						iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
-					>
-						Vezi cosul
-					</Button>
-				</View>
-			</BottomSheet>
+			<SeeTheCartBottomSheet sharedTopAnimation={props.sharedTopAnimation} />
 		</SafeAreaView>
 	);
 };

@@ -1,13 +1,38 @@
-import React, { forwardRef } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { forwardRef, useRef, useEffect, useImperativeHandle } from "react";
+import { StyleSheet, View, Dimensions, Text } from "react-native";
+
+//context
+import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
+
+//store
+import { useCartSidebarStore, useSelectedSeats } from "@/store";
 
 //components
 import BottomSheet from "./BottomSheet";
+import Button from "./Button";
+import Icon from "./Icon";
 
 const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
+	const { openSidebar } = useCartSidebarStore();
+	const { selectedSeats } = useSelectedSeats();
+	const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
+	const bottomSheetRef = useRef(null);
+	const { height: screenHeight } = Dimensions.get("screen");
+
+	useImperativeHandle(ref, () => ({
+		close: () => bottomSheetRef.current?.close(),
+		expand: () => bottomSheetRef.current?.expand(),
+	}));
+
+	useEffect(() => {
+		if (selectedSeats.length > 0 && !isBottomSheetCollapsed.current)
+			bottomSheetRef.current.expand();
+		if (selectedSeats.length == 0) bottomSheetRef.current.close();
+	}, [selectedSeats.length]);
+
 	return (
 		<BottomSheet
-			ref={ref}
+			ref={bottomSheetRef}
 			activeHeight={screenHeight * 0.32}
 			backgroundColor={"#2e2e2eff"}
 			backDropColor={"black"}
