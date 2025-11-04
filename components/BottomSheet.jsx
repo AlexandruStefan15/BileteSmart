@@ -29,7 +29,7 @@ const BottomSheet = forwardRef(
 		const inset = useSafeAreaInsets();
 		const { height } = Dimensions.get("screen");
 		const collapsedOffset = height - 105;
-		const newActiveHeight = height - activeHeight - 5;
+		const newActiveHeight = height - activeHeight - 35;
 		const topAnimation = sharedTopAnimation || useSharedValue(height);
 		const context = useSharedValue(0);
 		const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
 	line: {
 		width: 50,
 		height: 4,
-		backgroundColor: "black",
-		borderRadius: 20,
+		backgroundColor: "grey",
+		borderRadius: 35,
 	},
 	backDrop: {
 		position: "absolute",

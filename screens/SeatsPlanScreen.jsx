@@ -86,14 +86,39 @@ const SeatsPlanScreen = forwardRef(
 				/> */}
 				<BottomSheet
 					ref={bottomSheetRef}
-					activeHeight={screenHeight * 0.2}
+					activeHeight={screenHeight * 0.25}
 					backgroundColor={"#2e2e2eff"}
 					backDropColor={"black"}
 					sharedTopAnimation={props.sharedTopAnimation}
 				>
-					<View style={styles.buttonsContainer}>
+					<View style={styles.bottomSheetContainer}>
+						<View style={styles.bottomSheetContainer_row}>
+							<Text
+								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_left]}
+							>
+								Numarul de bilete
+							</Text>
+							<Text
+								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_right]}
+							>
+								2
+							</Text>
+						</View>
+						<View style={styles.bottomSheetContainer_separator} />
+						<View style={styles.bottomSheetContainer_row}>
+							<Text
+								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_left]}
+							>
+								Total
+							</Text>
+							<Text
+								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_right]}
+							>
+								25 lei
+							</Text>
+						</View>
 						<Button
-							style={{ marginInline: "auto", paddingInline: 62 }}
+							style={styles.bottomSheetContainer_button}
 							variant="3"
 							onPress={openSidebar}
 							iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
@@ -108,57 +133,53 @@ const SeatsPlanScreen = forwardRef(
 );
 
 const styles = StyleSheet.create({
-	modalContent: {
+	/* modalContent: {
 		backgroundColor: "white",
 		borderRadius: 20,
 		paddingInline: 1,
 		paddingBottom: 3,
-	},
+	}, */
 
-	header: {
-		paddingBlock: 20,
-		borderColor: "#eee",
-		gap: 10,
-	},
-
-	title: {
+	/* title: {
 		fontSize: 19.5,
 		fontWeight: "bold",
 		textAlign: "center",
 		marginTop: 9,
 		lineHeight: 20,
+	}, */
+
+	bottomSheetContainer: {
+		paddingInline: 21,
+		paddingBlock: 20,
 	},
 
-	caption: {
-		fontSize: 15.5,
-		textAlign: "center",
-		maxWidth: 220,
-		alignSelf: "center",
-		lineHeight: 20,
+	bottomSheetContainer_row: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		paddingBlock: 10,
 	},
 
-	labelText: {
+	bottomSheetContainer_text: {
+		color: "lightgrey",
+		fontWeight: 400,
 		fontSize: 16,
-		textAlign: "center",
-		paddingBlock: 12,
-		marginBlock: 9,
-		paddingInline: 16,
-		marginInline: 12,
-		fontWeight: "600",
-		borderRadius: 13,
+		lineHeight: 24,
 	},
 
-	separator: {
-		borderTopWidth: 1,
-		borderColor: "#ccccccad",
+	bottomSheetContainer_row_right: {
+		fontWeight: "bold",
+		fontSize: 18,
+	},
+
+	bottomSheetContainer_separator: {
 		width: "100%",
+		backgroundColor: "#80808057",
+		height: 1,
+		marginBlock: 3,
 	},
 
-	buttonsContainer: {
-		paddingBlock: 13,
-		paddingInline: 10,
-		justifyContent: "center",
-		alignItems: "center",
+	bottomSheetContainer_button: {
+		marginTop: 15,
 	},
 });
 
