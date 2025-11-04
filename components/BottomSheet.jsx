@@ -108,7 +108,7 @@ const BottomSheet = forwardRef(
 				}
 			})
 			.onEnd(() => {
-				if (topAnimation.value > newActiveHeight + 50) {
+				if (topAnimation.value > newActiveHeight + 75) {
 					//collapse
 					topAnimation.value = withSpring(collapsedOffset, {
 						damping: 100,

@@ -101,7 +101,7 @@ const CartSidebarFooter = React.memo(() => {
 
 	return (
 		<View style={styles.footer}>
-			<View style={{ padding: 15, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
+			<View style={{ padding: 12.5, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
 				<Text style={{ fontWeight: "600", fontSize: 16 }}>Total: {totalPrice} RON</Text>
 			</View>
 			<TouchableOpacity
@@ -174,8 +174,9 @@ const styles = StyleSheet.create({
 	},
 
 	checkoutButton: {
-		backgroundColor: Colors.tertiary,
-		padding: 15.5,
+		backgroundColor: Colors.fifth,
+		paddingBlock: 17,
+		paddingInline: 15.5,
 		borderRadius: 5,
 	},
 	checkoutButton_text: {

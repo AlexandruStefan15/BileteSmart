@@ -55,9 +55,10 @@ const getStyles = (variant) => {
 			},
 			buttonText: {
 				color: "white",
-				fontWeight: "700",
-				fontSize: 15,
+				fontWeight: "bold",
+				fontSize: 15.5,
 				textTransform: "uppercase",
+				letterSpacing: 0.24,
 			},
 		});
 

@@ -86,39 +86,25 @@ const SeatsPlanScreen = forwardRef(
 				/> */}
 				<BottomSheet
 					ref={bottomSheetRef}
-					activeHeight={screenHeight * 0.25}
+					activeHeight={screenHeight * 0.32}
 					backgroundColor={"#2e2e2eff"}
 					backDropColor={"black"}
 					sharedTopAnimation={props.sharedTopAnimation}
 				>
-					<View style={styles.bottomSheetContainer}>
-						<View style={styles.bottomSheetContainer_row}>
-							<Text
-								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_left]}
-							>
+					<View style={bottomSheetStyles.container}>
+						<View style={bottomSheetStyles.row}>
+							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_left]}>
 								Numarul de bilete
 							</Text>
-							<Text
-								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_right]}
-							>
-								2
-							</Text>
+							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>2</Text>
 						</View>
-						<View style={styles.bottomSheetContainer_separator} />
-						<View style={styles.bottomSheetContainer_row}>
-							<Text
-								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_left]}
-							>
-								Total
-							</Text>
-							<Text
-								style={[styles.bottomSheetContainer_text, styles.bottomSheetContainer_row_right]}
-							>
-								25 lei
-							</Text>
+						<View style={bottomSheetStyles.separator} />
+						<View style={bottomSheetStyles.row}>
+							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_left]}>Total</Text>
+							<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>25 lei</Text>
 						</View>
 						<Button
-							style={styles.bottomSheetContainer_button}
+							style={bottomSheetStyles.button}
 							variant="3"
 							onPress={openSidebar}
 							iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
@@ -139,7 +125,6 @@ const styles = StyleSheet.create({
 		paddingInline: 1,
 		paddingBottom: 3,
 	}, */
-
 	/* title: {
 		fontSize: 19.5,
 		fontWeight: "bold",
@@ -147,40 +132,47 @@ const styles = StyleSheet.create({
 		marginTop: 9,
 		lineHeight: 20,
 	}, */
+});
 
-	bottomSheetContainer: {
-		paddingInline: 21,
+const bottomSheetStyles = {
+	container: {
+		paddingInline: 28,
 		paddingBlock: 20,
 	},
 
-	bottomSheetContainer_row: {
+	row: {
 		flexDirection: "row",
 		justifyContent: "space-between",
 		paddingBlock: 10,
 	},
 
-	bottomSheetContainer_text: {
+	row_left: {},
+
+	row_right: {
+		fontWeight: "bold",
+		fontSize: 18,
+		color: "white",
+	},
+
+	text: {
 		color: "lightgrey",
 		fontWeight: 400,
 		fontSize: 16,
 		lineHeight: 24,
 	},
 
-	bottomSheetContainer_row_right: {
-		fontWeight: "bold",
-		fontSize: 18,
-	},
-
-	bottomSheetContainer_separator: {
+	separator: {
 		width: "100%",
 		backgroundColor: "#80808057",
 		height: 1,
 		marginBlock: 3,
 	},
 
-	bottomSheetContainer_button: {
+	button: {
 		marginTop: 15,
+		paddingBlock: 16,
+		borderRadius: 12,
 	},
-});
+};
 
 export default SeatsPlanScreen;
