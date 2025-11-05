@@ -14,18 +14,9 @@ import { Colors } from "@/constants/Colors";
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
-import CartSidebar from "@/components/CartSidebar";
-import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 
-export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...props }) => {
+export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 	const { eventId, currentLocation } = route.params;
-	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
-
-	/* useEffect(() => {
-		return () => {
-			closeBottomSheet?.();
-		};
-	}, []); */
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -44,8 +35,6 @@ export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...prop
 				field={currentLocation.fieldSVG}
 				style={{ marginTop: 60 }}
 			/>
-			<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
-			<SeeTheCartBottomSheet sharedTopAnimation={props.sharedTopAnimation} />
 		</SafeAreaView>
 	);
 };

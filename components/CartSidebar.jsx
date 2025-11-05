@@ -106,11 +106,7 @@ const CartSidebarFooter = React.memo(() => {
 			</View>
 			<TouchableOpacity
 				style={styles.checkoutButton}
-				onPress={() =>
-					navigationRef.navigate("SeatsPlanStack", {
-						screen: "CheckoutScreen",
-					})
-				}
+				onPress={() => navigationRef.navigate("CheckoutScreen")}
 			>
 				<Text style={styles.checkoutButton_text}>Checkout</Text>
 			</TouchableOpacity>

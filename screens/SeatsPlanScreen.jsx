@@ -14,25 +14,17 @@ import { useCartSidebarStore } from "@/store";
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
-import CartSidebar from "@/components/CartSidebar";
 import Modal from "@/components/Modal";
-import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 
 const SeatsPlanScreen = forwardRef(
 	({ navigation, route, infoModalShowedOnce, setInfoModalShowedOnce, ...props }, ref) => {
-		const sidebarX = useCartSidebarStore((s) => s.sidebarX);
 		/* const [isModalVisible, setIsModalVisible] = React.useState(false); */
 		const { roomId, rooms } = route.params;
 		const currentRoom = rooms.find((room) => room.id_room == roomId);
-		const bottomSheetRef = useRef(null);
 
 		/* const closeModal = () => {
 			setIsModalVisible(false);
 		}; */
-
-		useImperativeHandle(ref, () => ({
-			closeBottomSheet: () => bottomSheetRef.current?.close(),
-		}));
 
 		/* useEffect(() => {
 			if (infoModalShowedOnce) return;
@@ -62,8 +54,7 @@ const SeatsPlanScreen = forwardRef(
 					fieldPosition={currentRoom.field_position}
 					style={{ marginTop: 45 }}
 				/>
-				<CartSidebar sidebarX={sidebarX} displayBadge={props.displayBadge} />
-				<SeeTheCartBottomSheet ref={bottomSheetRef} sharedTopAnimation={props.sharedTopAnimation} />
+
 				{/* <Modal
 					isVisible={isModalVisible}
 					title="Selectează locurile"

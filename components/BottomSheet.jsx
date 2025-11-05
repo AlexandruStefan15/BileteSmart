@@ -11,9 +11,6 @@ import Animated, {
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-//context
-import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
-
 const BottomSheet = forwardRef(
 	(
 		{
@@ -22,7 +19,7 @@ const BottomSheet = forwardRef(
 			backgroundColor,
 			backDropColor,
 			closeOnExternalInteraction,
-			sharedTopAnimation,
+			isBottomSheetCollapsed,
 		},
 		ref
 	) => {
@@ -30,9 +27,8 @@ const BottomSheet = forwardRef(
 		const { height } = Dimensions.get("screen");
 		const collapsedOffset = height - 105;
 		const newActiveHeight = height - activeHeight - 35;
-		const topAnimation = sharedTopAnimation || useSharedValue(height);
+		const topAnimation = useSharedValue(height);
 		const context = useSharedValue(0);
-		const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
 
 		const setCollapsed = (value) => {
 			isBottomSheetCollapsed.current = value;

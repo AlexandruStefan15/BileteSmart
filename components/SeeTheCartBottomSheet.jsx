@@ -1,9 +1,6 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useMemo } from "react";
 import { StyleSheet, View, Dimensions, Text } from "react-native";
 
-//context
-import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
-
 //store
 import { useCartSidebarStore, useSelectedSeatsStore } from "@/store";
 
@@ -12,10 +9,9 @@ import BottomSheet from "./BottomSheet";
 import Button from "./Button";
 import Icon from "./Icon";
 
-const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
+const SeeTheCartBottomSheet = forwardRef(({ isBottomSheetCollapsed }, ref) => {
 	const openSidebar = useCartSidebarStore((s) => s.openSidebar);
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
-	const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
 	const bottomSheetRef = useRef(null);
 	const { height: screenHeight } = Dimensions.get("screen");
 
@@ -41,7 +37,7 @@ const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
 			activeHeight={screenHeight * 0.325}
 			backgroundColor={"#2e2e2eff"}
 			backDropColor={"black"}
-			sharedTopAnimation={sharedTopAnimation}
+			isBottomSheetCollapsed={isBottomSheetCollapsed}
 		>
 			<View style={bottomSheetStyles.container}>
 				<View style={bottomSheetStyles.row}>

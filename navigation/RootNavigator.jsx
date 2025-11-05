@@ -13,6 +13,7 @@ import MyOrdersNavigator from "./stacks/MyOrdersNavigator";
 //screens
 import ContactScreen from "@/screens/ContactScreen";
 import TicketingScreen from "@/screens/TicketingScreen";
+import CheckoutScreen from "@/screens/CheckoutScreen";
 //components
 import CustomDrawer from "@/components/CustomDrawer";
 
@@ -41,6 +42,7 @@ const RootNavigator = () => {
 						component={EventDetailsNavigator}
 						options={{ headerShown: false }}
 					/>
+					<Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
 					<Stack.Screen name="Contact" component={ContactScreen} />
 					<Stack.Screen name="Ticketing" component={TicketingScreen} />
 				</Stack.Navigator>
