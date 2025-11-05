@@ -58,7 +58,11 @@ const SeeTheCartBottomSheet = forwardRef(({ isBottomSheetCollapsed }, ref) => {
 				<Button
 					style={bottomSheetStyles.button}
 					variant="3"
-					onPress={openSidebar}
+					onPress={() => {
+						setTimeout(() => {
+							openSidebar();
+						}, 200);
+					}}
 					iconRight={<Icon lib="io" name="cart-outline" size={23} color={"white"} />}
 				>
 					Vezi cosul
@@ -91,7 +95,7 @@ const bottomSheetStyles = {
 	text: {
 		color: "lightgrey",
 		fontWeight: 400,
-		fontSize: 16,
+		fontSize: 16.1,
 		lineHeight: 24,
 	},
 

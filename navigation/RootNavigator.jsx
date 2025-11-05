@@ -42,7 +42,11 @@ const RootNavigator = () => {
 						component={EventDetailsNavigator}
 						options={{ headerShown: false }}
 					/>
-					<Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
+					<Stack.Screen
+						name="CheckoutScreen"
+						component={CheckoutScreen}
+						options={{ headerShown: false }}
+					/>
 					<Stack.Screen name="Contact" component={ContactScreen} />
 					<Stack.Screen name="Ticketing" component={TicketingScreen} />
 				</Stack.Navigator>

@@ -29,13 +29,7 @@ import TicketList from "./TicketList";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
-export default React.memo(function CartSidebar({
-	sidebarX,
-	resetBadge,
-	children,
-	navigation,
-	...props
-}) {
+export default React.memo(function CartSidebar({ sidebarX, children, navigation, ...props }) {
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 
 	const sidebarStyle = useAnimatedStyle(() => ({
