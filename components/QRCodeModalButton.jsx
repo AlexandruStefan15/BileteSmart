@@ -32,7 +32,7 @@ const QRCodeModalButton = ({ id, style, variant = "" }) => {
 			await Share.open({
 				url: uri,
 				message: "Hi, here's your ticket QR code 🎟️",
-				social: Share.Social.WHATSAPP,
+				/* social: Share.Social.WHATSAPP, */
 			});
 		} catch (error) {
 			if (error?.message?.includes("User did not share")) {
@@ -70,8 +70,8 @@ const QRCodeModalButton = ({ id, style, variant = "" }) => {
 							</ViewShot>
 						</Pressable>
 						<TouchableOpacity onPress={handleShare} style={styles.whatsappButton}>
-							<Icon style={styles.shareIcon} lib="fa" name="whatsapp" size={24} color="white" />
-							<Text style={styles.buttonText}>Share on WhatsApp</Text>
+							<Icon style={styles.shareIcon} lib="en" name="share" size={24} color="white" />
+							<Text style={styles.buttonText}>Distribuie</Text>
 						</TouchableOpacity>
 					</Pressable>
 				</Modal>
