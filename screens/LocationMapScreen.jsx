@@ -16,7 +16,7 @@ const LocationMapScreen = ({ navigation, route }) => {
 			<Header
 				title={address}
 				variant="3"
-				styleTitle={{ color: "black", fontSize: 17, fontWeight: "600" }}
+				styleTitle={{ color: "black", fontSize: 16, fontWeight: "600" }}
 				arrowColor="black"
 				backButtonSize={24.5}
 			/>

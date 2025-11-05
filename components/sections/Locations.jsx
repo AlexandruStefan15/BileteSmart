@@ -37,7 +37,7 @@ const Locations = () => {
 							}
 							style={styles.listItem}
 							rippleColor="white"
-							rippleDuration={300}
+							rippleDuration={285}
 							rippleCentered={false}
 						>
 							<LinearGradient

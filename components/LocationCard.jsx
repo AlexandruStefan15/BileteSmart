@@ -12,7 +12,7 @@ const LocationCard = ({ location = locations[0], onPress }) => {
 				onPress={onPress}
 				style={styles.listItem}
 				rippleColor="white"
-				rippleDuration={300}
+				rippleDuration={285}
 				rippleCentered={false}
 			>
 				<Image source={location.images.banner} style={styles.img} />

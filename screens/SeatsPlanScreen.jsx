@@ -8,9 +8,6 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 //constants
 import { Colors } from "@/constants/Colors";
 
-//store
-import { useCartSidebarStore } from "@/store";
-
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
 import Header from "@/components/Header";
@@ -41,11 +38,10 @@ const SeatsPlanScreen = forwardRef(
 				<Header
 					variant="2"
 					style={{ backgroundColor: Colors.tertiary }}
-					showCart={true}
+					/* showCart={true}
 					seatCount={props.seatCount}
 					badgeStyle={props.badgeStyle}
-					displayBadge={props.displayBadge}
-					openSidebar={props.openSidebar}
+					displayBadge={props.displayBadge}*/
 					backButtonSize={25.5}
 				/>
 				<SvgHallPlan

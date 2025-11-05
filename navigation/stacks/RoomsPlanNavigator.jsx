@@ -48,9 +48,9 @@ export const RoomsPlanNavigator = ({}) => {
 					{(navProps) => (
 						<RoomsPlanScreen
 							{...navProps}
-							seatCount={seatCount}
+							/* seatCount={seatCount}
 							badgeStyle={badgeStyle}
-							displayBadge={displayBadge}
+							displayBadge={displayBadge} */
 						/>
 					)}
 				</Stack.Screen>
@@ -59,11 +59,11 @@ export const RoomsPlanNavigator = ({}) => {
 					{(navProps) => (
 						<SeatsPlanNavigator
 							{...navProps}
-							seatCount={seatCount}
+							/* seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
 							infoModalShowedOnce={infoModalShowedOnce}
-							setInfoModalShowedOnce={setInfoModalShowedOnce}
+							setInfoModalShowedOnce={setInfoModalShowedOnce} */
 						/>
 					)}
 				</Stack.Screen>

@@ -11,12 +11,12 @@ const SeatsPlanNavigator = forwardRef(({ ...props }, ref) => {
 				{(navProps) => (
 					<SeatsPlanScreen
 						{...navProps}
-						seatCount={props.seatCount}
+						/* seatCount={props.seatCount}
 						badgeStyle={props.badgeStyle}
 						displayBadge={props.displayBadge}
 						openSidebar={props.openSidebar}
 						infoModalShowedOnce={props.infoModalShowedOnce}
-						setInfoModalShowedOnce={props.setInfoModalShowedOnce}
+						setInfoModalShowedOnce={props.setInfoModalShowedOnce} */
 					/>
 				)}
 			</Stack.Screen>

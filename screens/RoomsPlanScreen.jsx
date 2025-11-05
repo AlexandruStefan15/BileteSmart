@@ -5,9 +5,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 //data
 import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by locationId and eventId
 
-//store
-import { useCartSidebarStore } from "@/store";
-
 //constants
 import { Colors } from "@/constants/Colors";
 
@@ -23,10 +20,10 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 			<Header
 				variant="2"
 				style={{ backgroundColor: Colors.tertiary }}
-				showCart={true}
+				/* showCart={true}
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}
-				displayBadge={props.displayBadge}
+				displayBadge={props.displayBadge} */
 				backButtonSize={25.5}
 			/>
 			<SvgHallPlan
