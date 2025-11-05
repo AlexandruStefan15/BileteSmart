@@ -130,7 +130,7 @@ export const AccordionItem = React.memo(function AccordionItem({
 			<TouchableOpacity style={styles.header} onPress={onHeaderPress}>
 				<Text style={styles.headerText}>{order.movie}</Text>
 				<Text style={styles.headerSubText}>
-					Achizitionat in {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")} la{" "}
+					Plasata pe {formatDate(order.buy_date.trim().split(/\s+/)[0], "numeric")} la{" "}
 					{order.buy_date.trim().split(/\s+/)[1]}
 				</Text>
 			</TouchableOpacity>
