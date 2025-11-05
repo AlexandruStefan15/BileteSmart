@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useSelectedSeats = create((set) => ({
+export const useSelectedSeatsStore = create((set) => ({
 	selectedSeats: [],
 
 	toggleSeat: (seat) =>

@@ -19,7 +19,7 @@ import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 
 export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...props }) => {
 	const { eventId, currentLocation } = route.params;
-	const { sidebarX } = useCartSidebarStore();
+	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
 
 	/* useEffect(() => {
 		return () => {

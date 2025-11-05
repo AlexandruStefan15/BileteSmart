@@ -12,7 +12,7 @@ import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
 import { navigationRef } from "@/navigation/navigationRef";
 
 //store
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 
 //colors
 import { Colors } from "@/constants/Colors";
@@ -36,7 +36,7 @@ export default React.memo(function CartSidebar({
 	navigation,
 	...props
 }) {
-	const { selectedSeats } = useSelectedSeats();
+	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
@@ -90,7 +90,7 @@ export default React.memo(function CartSidebar({
 });
 
 const CartSidebarFooter = React.memo(() => {
-	const { selectedSeats } = useSelectedSeats();
+	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 
 	const totalPrice = useMemo(
 		() => selectedSeats.reduce((sum, seat) => sum + parseFloat(seat.price), 0),
@@ -183,6 +183,6 @@ const styles = StyleSheet.create({
 		color: "white",
 		textAlign: "center",
 		fontWeight: "bold",
-		fontSize: 16,
+		fontSize: 16.5,
 	},
 });

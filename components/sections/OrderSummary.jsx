@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 //store
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 
 //constants
 import { Colors } from "@/constants/Colors";
@@ -11,7 +11,7 @@ import { Colors } from "@/constants/Colors";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const OrderSummary = ({ formRef }) => {
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
+	const selectedSeats = useSelectedSeatsStore((state) => state.selectedSeats);
 
 	return (
 		<View style={[styles.container]}>
@@ -75,7 +75,9 @@ const OrderSummary = ({ formRef }) => {
 						onPress={() => formRef?.current?.submit()}
 						style={{ backgroundColor: Colors.fifth, padding: 17, borderRadius: 6 }}
 					>
-						<Text style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16 }}>
+						<Text
+							style={{ color: "white", fontWeight: "bold", textAlign: "center", fontSize: 16.5 }}
+						>
 							Finalizează Comanda
 						</Text>
 					</TouchableOpacity>

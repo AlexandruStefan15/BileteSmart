@@ -26,7 +26,7 @@ import Icon from "./Icon";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
 	const [cardHeight, setCardHeight] = useState(0);
-	const { toggleSaveEvent, isEventSaved } = useSavedEventsStore();
+	const { toggleSaveEvent, isEventSaved } = useSavedEventsStore(); // explanation*
 	const styles = getStyles("light", variant, cardHeight);
 	const fonts = useCustomFonts();
 
@@ -300,3 +300,25 @@ const getStyles = (theme, variant, cardHeight) => {
 		},
 	});
 };
+
+/* 
+explanation* 
+
+using:
+const toggleSaveEvent = useSavedEventsStore((s) => s.toggleSaveEvent);
+const isEventSaved = useSavedEventsStore((s) => s.isEventSaved);
+
+Here, you’re creating two separate subscriptions to the store — one for each selector.
+That’s usually fine if those functions don’t depend on each other’s internal state.
+
+However:
+isEventSaved() uses get().savedEvents inside the store definition.
+When toggleSaveEvent() updates savedEvents, it may not trigger a re-render in components that use only functions as selectors (since Zustand re-renders based on shallow state equality).
+So your component doesn’t re-render — meaning the icon never updates, even though the data inside the store changes correctly.
+
+solution: const { toggleSaveEvent, isEventSaved } = useSavedEventsStore();
+
+Here, you’re subscribing to the entire store, so every time anything changes (including savedEvents), your component re-renders — and thus, the icon updates properly.
+
+That’s why it “works” even though it’s less performant (more frequent re-renders). 
+*/

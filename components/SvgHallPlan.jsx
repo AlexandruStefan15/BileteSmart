@@ -6,7 +6,7 @@ import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 
 // store
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 
 // hooks
 import { useHandGestures } from "@/hooks/useHandGestures";
@@ -27,8 +27,8 @@ const SvgHallPlan = ({
 	fieldPosition,
 	style,
 }) => {
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
-	const toggleSeat = useSelectedSeats((state) => state.toggleSeat);
+	const selectedSeats = useSelectedSeatsStore((state) => state.selectedSeats);
+	const toggleSeat = useSelectedSeatsStore((state) => state.toggleSeat);
 	const [selectedRoomId, setSelectedRoomId] = useState(null);
 	const { gesture, animatedStyle } = useHandGestures();
 	const navigation = useNavigation();

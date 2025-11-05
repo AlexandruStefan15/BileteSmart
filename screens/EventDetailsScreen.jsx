@@ -4,7 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 
 // store
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 
 // utils
 import { formatRomanianDate } from "@/utils/helpers";
@@ -21,14 +21,14 @@ import { locations } from "@/data/locations"; // to be fetched
 const MIN_CARD = 280; // minimum workable height
 
 const EventDetailsScreen = ({ navigation, route }) => {
+	const resetSeats = useSelectedSeatsStore((s) => s.resetSeats);
 	const [cardH, setCardH] = useState(MIN_CARD);
 	const [cardW, setCardW] = useState(MIN_CARD);
 	const [canScroll, setCanScroll] = useState(false);
 	const insets = useSafeAreaInsets();
 	const styles = getStyles();
-
-	const { resetSeats } = useSelectedSeats();
 	const { event, currentLocation } = route.params;
+
 	const location =
 		currentLocation || locations.find((location) => location.id == event.location.id);
 

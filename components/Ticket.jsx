@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 //store
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 
 //constants
 import { Colors } from "@/constants/Colors";
@@ -20,7 +20,7 @@ import QRCodeModalButton from "./QRCodeModalButton";
 const teeth = Array.from({ length: 6 });
 
 const Ticket = ({ data, variant = "" }) => {
-	const updateSeatType = useSelectedSeats((state) => state.updateSeatType);
+	const updateSeatType = useSelectedSeatsStore((state) => state.updateSeatType);
 	const styles = getStyles(variant);
 	const fonts = useCustomFonts();
 

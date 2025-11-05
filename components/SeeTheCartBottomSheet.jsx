@@ -1,11 +1,11 @@
-import React, { forwardRef, useRef, useEffect, useImperativeHandle } from "react";
+import React, { forwardRef, useRef, useEffect, useImperativeHandle, useMemo } from "react";
 import { StyleSheet, View, Dimensions, Text } from "react-native";
 
 //context
 import { useBottomSheetMinimizedContext } from "@/context/BottomSheetMinimizedContext";
 
 //store
-import { useCartSidebarStore, useSelectedSeats } from "@/store";
+import { useCartSidebarStore, useSelectedSeatsStore } from "@/store";
 
 //components
 import BottomSheet from "./BottomSheet";
@@ -13,11 +13,16 @@ import Button from "./Button";
 import Icon from "./Icon";
 
 const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
-	const { openSidebar } = useCartSidebarStore();
-	const { selectedSeats } = useSelectedSeats();
+	const openSidebar = useCartSidebarStore((s) => s.openSidebar);
+	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 	const { isBottomSheetCollapsed } = useBottomSheetMinimizedContext();
 	const bottomSheetRef = useRef(null);
 	const { height: screenHeight } = Dimensions.get("screen");
+
+	const totalPrice = useMemo(
+		() => selectedSeats.reduce((sum, seat) => sum + parseFloat(seat.price), 0),
+		[selectedSeats]
+	);
 
 	useImperativeHandle(ref, () => ({
 		close: () => bottomSheetRef.current?.close(),
@@ -33,7 +38,7 @@ const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
 	return (
 		<BottomSheet
 			ref={bottomSheetRef}
-			activeHeight={screenHeight * 0.32}
+			activeHeight={screenHeight * 0.325}
 			backgroundColor={"#2e2e2eff"}
 			backDropColor={"black"}
 			sharedTopAnimation={sharedTopAnimation}
@@ -43,12 +48,16 @@ const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
 					<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_left]}>
 						Numarul de bilete
 					</Text>
-					<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>2</Text>
+					<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>
+						{selectedSeats.length}
+					</Text>
 				</View>
 				<View style={bottomSheetStyles.separator} />
 				<View style={bottomSheetStyles.row}>
 					<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_left]}>Total</Text>
-					<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>25 lei</Text>
+					<Text style={[bottomSheetStyles.text, bottomSheetStyles.row_right]}>
+						{totalPrice} lei
+					</Text>
 				</View>
 				<Button
 					style={bottomSheetStyles.button}
@@ -65,7 +74,7 @@ const SeeTheCartBottomSheet = forwardRef(({ sharedTopAnimation }, ref) => {
 
 const bottomSheetStyles = {
 	container: {
-		paddingInline: 28,
+		paddingInline: 24,
 		paddingBlock: 20,
 	},
 
@@ -98,7 +107,7 @@ const bottomSheetStyles = {
 	},
 
 	button: {
-		marginTop: 15,
+		marginTop: 21,
 		paddingBlock: 16,
 		borderRadius: 12,
 	},

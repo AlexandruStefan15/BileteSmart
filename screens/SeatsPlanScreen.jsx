@@ -9,7 +9,7 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched
 import { Colors } from "@/constants/Colors";
 
 //store
-import { useCartSidebarStore, useSelectedSeats } from "@/store";
+import { useCartSidebarStore } from "@/store";
 
 //compoenents
 import SvgHallPlan from "@/components/SvgHallPlan";
@@ -20,10 +20,10 @@ import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 
 const SeatsPlanScreen = forwardRef(
 	({ navigation, route, infoModalShowedOnce, setInfoModalShowedOnce, ...props }, ref) => {
+		const sidebarX = useCartSidebarStore((s) => s.sidebarX);
 		/* const [isModalVisible, setIsModalVisible] = React.useState(false); */
 		const { roomId, rooms } = route.params;
 		const currentRoom = rooms.find((room) => room.id_room == roomId);
-		const { sidebarX } = useCartSidebarStore();
 		const bottomSheetRef = useRef(null);
 
 		/* const closeModal = () => {

@@ -19,10 +19,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function HomeScreen({ navigation }) {
+	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 	const { theme } = useContext(ThemeContext);
 	const styles = getStyles(theme || "light");
-
-	const closeDrawer = useDrawerStore((state) => state.closeDrawer);
 
 	useFocusEffect(
 		React.useCallback(() => {

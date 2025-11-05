@@ -8,7 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { FlatList } from "react-native-gesture-handler";
 
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
 //components
@@ -16,8 +16,8 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import Ticket from "./Ticket";
 
 const TicketList = React.memo(({ style }) => {
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
-	const removeSeat = useSelectedSeats((state) => state.removeSeat);
+	const selectedSeats = useSelectedSeatsStore((state) => state.selectedSeats);
+	const removeSeat = useSelectedSeatsStore((state) => state.removeSeat);
 
 	const keyExtractor = React.useCallback((seat) => seat.id_seat.toString(), []);
 	const renderItem = React.useCallback(

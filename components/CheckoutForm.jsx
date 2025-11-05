@@ -3,12 +3,12 @@ import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "reac
 import Checkbox from "react-native-bouncy-checkbox";
 
 //store
-import { useSelectedSeats } from "@/store";
+import { useSelectedSeatsStore } from "@/store";
 //components
 import Input from "./Input";
 
 const CheckoutForm = forwardRef(({ onSubmit, style }, ref) => {
-	const selectedSeats = useSelectedSeats((state) => state.selectedSeats);
+	const selectedSeats = useSelectedSeatsStore((state) => state.selectedSeats); // you need when you send the form
 	const [lastName, setLastName] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [phoneNr, setPhoneNr] = useState("");

@@ -9,7 +9,7 @@ import { Colors } from "@/constants";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 //store
-import { useSelectedSeats, useDrawerStore, useCartSidebarStore } from "@/store";
+import { useSelectedSeatsStore, useDrawerStore, useCartSidebarStore } from "@/store";
 
 //icons
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
@@ -30,12 +30,12 @@ const Header = ({
 	backButtonSize = 25,
 	backButtonVariant = "",
 }) => {
-	const { selectedSeats } = useSelectedSeats();
+	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
+	const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
+	const openSidebar = useCartSidebarStore((state) => state.openSidebar);
 	const styles = getStyles(variant);
 	const navigation = useNavigation();
 	const didMount = useRef(false);
-	const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
-	const openSidebar = useCartSidebarStore((state) => state.openSidebar);
 
 	useEffect(() => {
 		if (didMount.current) {

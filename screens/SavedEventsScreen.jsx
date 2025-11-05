@@ -13,7 +13,7 @@ import EventCard from "@/components/EventCard";
 import Header from "@/components/Header";
 
 const SavedEventsScreen = ({ navigation, route }) => {
-	const { savedEvents } = useSavedEventsStore();
+	const savedEvents = useSavedEventsStore((s) => s.savedEvents);
 
 	if (savedEvents.length == 0)
 		return (
