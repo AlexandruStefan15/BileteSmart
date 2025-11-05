@@ -21,11 +21,11 @@ export default RoomsPlanScreen = ({ navigation, route, closeBottomSheet, ...prop
 	const { eventId, currentLocation } = route.params;
 	const { sidebarX } = useCartSidebarStore();
 
-	useEffect(() => {
+	/* useEffect(() => {
 		return () => {
 			closeBottomSheet?.();
 		};
-	}, [closeBottomSheet]);
+	}, []); */
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>

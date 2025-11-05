@@ -19,7 +19,7 @@ import SeatsPlanNavigator from "./SeatsPlanNavigator";
 
 const Stack = createNativeStackNavigator();
 
-export const RoomsPlanNavigator = forwardRef(({}, ref) => {
+export const RoomsPlanNavigator = ({}) => {
 	const [infoModalShowedOnce, setInfoModalShowedOnce] = useState(false);
 	const seatCount = useSharedValue(0);
 	const displayBadge = useSharedValue(true);
@@ -39,10 +39,6 @@ export const RoomsPlanNavigator = forwardRef(({}, ref) => {
 		};
 	});
 
-	useImperativeHandle(ref, () => ({
-		closeBottomSheet: () => seatsPlanNavRef.current?.closeBottomSheet(),
-	}));
-
 	return (
 		<BottomSheetMinimizedContext.Provider value={{ isBottomSheetCollapsed }}>
 			<View style={{ flex: 1 }}>
@@ -54,7 +50,6 @@ export const RoomsPlanNavigator = forwardRef(({}, ref) => {
 								seatCount={seatCount}
 								badgeStyle={badgeStyle}
 								displayBadge={displayBadge}
-								closeBottomSheet={() => seatsPlanNavRef.current?.closeBottomSheet()}
 								sharedTopAnimation={bottomSheetTop}
 							/>
 						)}
@@ -75,9 +70,18 @@ export const RoomsPlanNavigator = forwardRef(({}, ref) => {
 						)}
 					</Stack.Screen>
 				</Stack.Navigator>
+				<View
+					style={{
+						position: "absolute",
+						width: 100,
+						height: 100,
+						backgroundColor: "red",
+						inset: 0,
+					}}
+				/>
 			</View>
 		</BottomSheetMinimizedContext.Provider>
 	);
-});
+};
 
 export default RoomsPlanNavigator;
