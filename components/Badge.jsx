@@ -63,8 +63,8 @@ const getStyles = (variant) => {
 			badge: {
 				position: "absolute",
 				zIndex: 99,
-				right: 10,
-				top: 10,
+				right: 12,
+				top: 12,
 				backgroundColor: "#0000008e",
 				paddingInline: 9,
 				paddingBlock: 8.5,

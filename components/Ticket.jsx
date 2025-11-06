@@ -26,7 +26,6 @@ const Ticket = ({ data, variant = "" }) => {
 	const updateSeatType = useSelectedSeatsStore((state) => state.updateSeatType);
 	const styles = getStyles(variant);
 	const fonts = useCustomFonts();
-	const { row, seat } = parseSeatLabel(data.seats_label);
 
 	const handleTypeChange = useCallback(
 		(value) => updateSeatType(data.id_seat, value),
@@ -35,7 +34,9 @@ const Ticket = ({ data, variant = "" }) => {
 
 	if (!fonts) return null;
 
-	if (variant == 2)
+	if (variant == 2) {
+		const { row, seat } = parseSeatLabel(data.seats_label);
+
 		return (
 			<View style={styles.container}>
 				<Text style={[styles.text, styles.ticketNumber]}>Nr. bilet: {data.ticket_codes}</Text>
@@ -72,6 +73,7 @@ const Ticket = ({ data, variant = "" }) => {
 				</View>
 			</View>
 		);
+	}
 
 	return (
 		<View style={styles.container}>
