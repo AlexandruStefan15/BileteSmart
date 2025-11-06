@@ -13,6 +13,9 @@ import { formatDate } from "@/utils/helpers";
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
 
+//helpers
+import { parseSeatLabel } from "@/utils/helpers";
+
 //components
 import Select from "./Select";
 import QRCodeModalButton from "./QRCodeModalButton";
@@ -23,6 +26,7 @@ const Ticket = ({ data, variant = "" }) => {
 	const updateSeatType = useSelectedSeatsStore((state) => state.updateSeatType);
 	const styles = getStyles(variant);
 	const fonts = useCustomFonts();
+	const { row, seat } = parseSeatLabel(data.seats_label);
 
 	const handleTypeChange = useCallback(
 		(value) => updateSeatType(data.id_seat, value),
@@ -45,16 +49,21 @@ const Ticket = ({ data, variant = "" }) => {
 					{data.buy_date.trim().split(/\s+/)[1]}
 				</Text>
 				<View style={styles.middle}>
-					<QRCodeModalButton style={styles.qrCode} variant="2" id={data.ticket_codes} />
+					<QRCodeModalButton
+						style={styles.qrCode}
+						variant="2"
+						id={data.ticket_codes}
+						ticketInfo={{ room: data.room, row, seat }}
+					/>
 				</View>
 				<View style={styles.right}>
 					<View style={styles.right_item}>
 						<Text style={[styles.right_text, styles.right_top]}>Loc</Text>
-						<Text style={[styles.right_text, styles.place]}>4</Text>
+						<Text style={[styles.right_text, styles.place]}>{seat}</Text>
 					</View>
 					<View style={styles.right_item}>
 						<Text style={[styles.right_text, styles.right_top]}>Rand</Text>
-						<Text style={[styles.right_text, styles.row]}>2</Text>
+						<Text style={[styles.right_text, styles.row]}>{row}</Text>
 					</View>
 					<View style={styles.right_item}>
 						<Text style={[styles.right_text, styles.right_top]}>Sec.</Text>
@@ -171,6 +180,7 @@ const getStyles = (variant) => {
 				transform: [{ rotate: "-90deg" }],
 				alignItems: "center",
 				paddingInline: 5,
+				gap: 1,
 			},
 
 			right_text: {

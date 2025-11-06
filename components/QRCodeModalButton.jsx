@@ -18,7 +18,7 @@ import Button from "./Button";
 
 const { width: screenWidth } = Dimensions.get("window");
 
-const QRCodeModalButton = ({ id, style, variant = "" }) => {
+const QRCodeModalButton = ({ id, style, variant = "", ticketInfo }) => {
 	const [visible, setVisible] = useState(false);
 	const styles = getStyles(variant);
 	const viewShotRef = useRef(null);
@@ -28,12 +28,18 @@ const QRCodeModalButton = ({ id, style, variant = "" }) => {
 			// Capture the QR code view as an image
 			const uri = await viewShotRef.current.capture();
 
-			// Share directly to WhatsApp
-			await Share.open({
-				url: uri,
-				message: "Hi, here's your ticket QR code 🎟️",
-				/* social: Share.Social.WHATSAPP, */
-			});
+			if (ticketInfo)
+				await Share.open({
+					url: uri,
+					message: `Salut, ti-am trimis codul QR aferent biletului tau 🎟️ \n\nSector: ${ticketInfo.room}\nRand: ${ticketInfo.row}\nLoc: ${ticketInfo.seat}`,
+					/* social: Share.Social.WHATSAPP, */
+				});
+			else
+				await Share.open({
+					url: uri,
+					message: ``,
+					/* social: Share.Social.WHATSAPP, */
+				});
 		} catch (error) {
 			if (error?.message?.includes("User did not share")) {
 				// user cancelled share — ignore silently
@@ -43,7 +49,7 @@ const QRCodeModalButton = ({ id, style, variant = "" }) => {
 	};
 
 	return (
-		<View style={[styles.container, style]}>
+		<View style={[styles.wrapper, style]}>
 			{variant == "2" ? (
 				<>
 					<Pressable onPress={() => setVisible(true)}>
@@ -84,7 +90,7 @@ export default QRCodeModalButton;
 
 const getStyles = (variant) => {
 	return StyleSheet.create({
-		container: {},
+		wrapper: {},
 
 		modalOverlay: {
 			flex: 1,

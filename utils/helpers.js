@@ -64,3 +64,16 @@ export function removeFirstWord(str) {
 	words.shift(); // remove the first word
 	return words.join(" ");
 }
+
+export function parseSeatLabel(seatsLabel) {
+	if (typeof seatsLabel !== "string" || !seatsLabel.includes("/")) {
+		throw new Error('Invalid seats_label format. Expected "row/seat", e.g. "8/18".');
+	}
+
+	const [row, seat] = seatsLabel.split("/").map(Number);
+
+	return {
+		row,
+		seat,
+	};
+}
