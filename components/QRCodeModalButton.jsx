@@ -25,13 +25,14 @@ const QRCodeModalButton = ({ id, style, variant = "", ticketInfo }) => {
 
 	const handleShare = async () => {
 		try {
-			// Capture the QR code view as an image
 			const uri = await viewShotRef.current.capture();
 
 			if (ticketInfo)
 				await Share.open({
 					url: uri,
-					message: `Salut, ti-am trimis codul QR aferent biletului tau 🎟️ \n\nSector: ${ticketInfo.room}\nRand: ${ticketInfo.row}\nLoc: ${ticketInfo.seat}`,
+					message: `Salut, ti-am trimis codul QR aferent biletului tau 🎟️ \n\nSectorul: ${
+						ticketInfo.room || "-"
+					}\nRandul: ${ticketInfo.row}\nLocul: ${ticketInfo.seat}`,
 					/* social: Share.Social.WHATSAPP, */
 				});
 			else
@@ -42,7 +43,7 @@ const QRCodeModalButton = ({ id, style, variant = "", ticketInfo }) => {
 				});
 		} catch (error) {
 			if (error?.message?.includes("User did not share")) {
-				// user cancelled share — ignore silently
+				// user cancelled share -> ignore silently
 				return;
 			}
 		}
