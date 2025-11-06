@@ -16,8 +16,6 @@ const Badge = ({ variant = "calendar", data, iconSize = 24, style }) => {
 	const { toggleLikeLocation, isLocationLiked, likedLocations } = useLikedLocationsStore();
 	const styles = getStyles(variant);
 
-	console.log(likedLocations);
-
 	if (variant == "like")
 		return (
 			<Pressable style={[styles.badge, style]} onPress={() => toggleLikeLocation(data)}>

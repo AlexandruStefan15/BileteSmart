@@ -4,6 +4,7 @@ import MyAccountScreen from "@/screens/MyAccountScreen";
 import ChangeAccountDataScreen from "@/screens/ChangeAccountDataScreen";
 import SavedEventsScreen from "@/screens/SavedEventsScreen";
 import LikedLocationsScreen from "@/screens/LikedLocationsScreen";
+import SubscriptionsScreen from "@/screens/SubscriptionsScreen";
 
 //navigators
 import MyOrdersNavigator from "./MyOrdersNavigator";
@@ -15,6 +16,11 @@ const MyAccountNavigator = () => (
 		<Stack.Screen
 			name="MyAccountScreen"
 			component={MyAccountScreen}
+			options={{ headerShown: false }}
+		/>
+		<Stack.Screen
+			name="SubscriptionsScreen"
+			component={SubscriptionsScreen}
 			options={{ headerShown: false }}
 		/>
 		<Stack.Screen
