@@ -30,6 +30,9 @@ const SavedEventsScreen = ({ navigation, route }) => {
 			<Header title={"Evenimente salvate"} variant="3" arrowColor="black" backButtonSize={24.5} />
 			<FlatList
 				data={savedEvents}
+				style={styles.list}
+				contentContainerStyle={styles.contentContainerList}
+				keyExtractor={(event) => event.id_event.toString()}
 				renderItem={({ item: event }) => (
 					<EventCard
 						eventData={event}
@@ -44,10 +47,6 @@ const SavedEventsScreen = ({ navigation, route }) => {
 						}}
 					/>
 				)}
-				keyExtractor={(event) => event.id_event.toString()}
-				style={styles.list}
-				contentContainerStyle={styles.contentContainerList}
-				/* scrollEnabled={false} */
 			/>
 		</SafeAreaView>
 	);
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
 
 	contentContainerList: {
 		paddingBlock: 20,
-		gap: 20,
+		gap: 17,
 	},
 });
 

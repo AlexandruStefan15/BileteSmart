@@ -41,7 +41,7 @@ const LocationsScreen = ({ route, navigation }) => {
 											screen: "LocationScreen",
 											params: { currentLocation: item },
 										});
-									}, 0)
+									}, 40)
 								}
 							/>
 						)}

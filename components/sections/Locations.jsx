@@ -33,11 +33,11 @@ const Locations = () => {
 										screen: "LocationScreen",
 										params: { currentLocation: item },
 									});
-								}, 50)
+								}, 40)
 							}
 							style={styles.listItem}
 							rippleColor="white"
-							rippleDuration={285}
+							rippleDuration={300}
 							rippleCentered={false}
 						>
 							<LinearGradient

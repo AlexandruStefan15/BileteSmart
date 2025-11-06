@@ -10,6 +10,7 @@ import { useTheme } from "../hooks/useTheme";
 //stacks
 import EventDetailsNavigator from "./stacks/EventDetailsNavigator";
 import MyOrdersNavigator from "./stacks/MyOrdersNavigator";
+import LocationNavigator from "./stacks/LocationNavigator";
 //screens
 import ContactScreen from "@/screens/ContactScreen";
 import TicketingScreen from "@/screens/TicketingScreen";
@@ -40,6 +41,11 @@ const RootNavigator = () => {
 					<Stack.Screen // placed here in order to hide bottomTabNavigator
 						name="EventDetailsStack"
 						component={EventDetailsNavigator}
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen // placed here in order to hide bottomTabNavigator
+						name="LocationStack"
+						component={LocationNavigator}
 						options={{ headerShown: false }}
 					/>
 					<Stack.Screen

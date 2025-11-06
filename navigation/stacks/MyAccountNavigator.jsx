@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MyAccountScreen from "@/screens/MyAccountScreen";
 import ChangeAccountDataScreen from "@/screens/ChangeAccountDataScreen";
 import SavedEventsScreen from "@/screens/SavedEventsScreen";
+import LikedLocationsScreen from "@/screens/LikedLocationsScreen";
 
 //navigators
 import MyOrdersNavigator from "./MyOrdersNavigator";
@@ -29,6 +30,11 @@ const MyAccountNavigator = () => (
 		<Stack.Screen
 			name="SavedEventsScreen"
 			component={SavedEventsScreen}
+			options={{ headerShown: false }}
+		/>
+		<Stack.Screen
+			name="LikedLocationsScreen"
+			component={LikedLocationsScreen}
 			options={{ headerShown: false }}
 		/>
 	</Stack.Navigator>

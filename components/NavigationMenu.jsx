@@ -35,7 +35,7 @@ const menuItems = [
 	{
 		id: 5,
 		title: "Locatii preferate",
-		screen: "",
+		screen: "LikedLocationsScreen",
 		icon: "heart",
 		iconLib: "fa",
 	},

@@ -18,15 +18,12 @@ import CalendarIcon from "@/assets/svgs/calendar.svg";
 //hooks
 import { useCustomFonts } from "@/hooks/useCustomFonts";
 
-//store
-import { useSavedEventsStore } from "@/store";
-
 //components
 import Icon from "./Icon";
+import Badge from "./Badge";
 
 export default function EventCard({ eventData, style, variant = "", ...props }) {
 	const [cardHeight, setCardHeight] = useState(0);
-	const { toggleSaveEvent, isEventSaved } = useSavedEventsStore(); // explanation*
 	const styles = getStyles("light", variant, cardHeight);
 	const fonts = useCustomFonts();
 
@@ -40,14 +37,7 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 	if (variant == 2)
 		return (
 			<Pressable style={styles.container} onLayout={onCardLayout} {...props}>
-				<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
-					<Icon
-						lib="mi"
-						name={isEventSaved(eventData.id_event) ? "bookmark" : "bookmark-border"}
-						size={24}
-						color="white"
-					/>
-				</Pressable>
+				<Badge variant="save" data={eventData} />
 				<View style={[styles.imageBox, style]}>
 					<ImageBackground
 						source={{ uri: encodeURI(eventData.eventCard_img) }}
@@ -82,25 +72,9 @@ export default function EventCard({ eventData, style, variant = "", ...props }) 
 
 	return (
 		<Pressable style={[styles.container, style]} {...props}>
-			<Pressable style={styles.saveButton} onPress={() => toggleSaveEvent(eventData)}>
-				<Icon
-					lib="mi"
-					name={isEventSaved(eventData.id_event) ? "bookmark" : "bookmark-border"}
-					size={25}
-					color="white"
-				/>
-			</Pressable>
+			<Badge variant="save" data={eventData} iconSize={25} />
 			<ImageBackground source={{ uri: encodeURI(eventData.event_img) }} imageStyle={styles.image}>
-				<View style={styles.badge}>
-					{formatDate(eventData.date, "short")
-						.trim()
-						.split(" ")
-						.map((word, index) => (
-							<Text style={[styles[`badge_text`], styles[`badge_text${index}`]]} key={index}>
-								{word}
-							</Text>
-						))}
-				</View>
+				<Badge variant="calendar" data={eventData} />
 				<LinearGradient
 					colors={["#000000ff", "#0e0e0ec6", "#0e0e0e06", "#0e0e0e06", "#0e0e0e06", "#00000005"]}
 					start={{ x: 0, y: 1 }}
@@ -193,17 +167,6 @@ const getStyles = (theme, variant, cardHeight) => {
 				zIndex: 9999,
 				height: "100%",
 			},
-
-			saveButton: {
-				position: "absolute",
-				zIndex: 99,
-				right: 10,
-				top: 10,
-				backgroundColor: "#000000c1",
-				paddingInline: 8.5,
-				paddingBlock: 8.5,
-				borderRadius: 60,
-			},
 		});
 
 	return StyleSheet.create({
@@ -227,52 +190,6 @@ const getStyles = (theme, variant, cardHeight) => {
 			color: "white",
 			marginLeft: 2,
 			fontFamily: "Poppins-SemiBold",
-		},
-
-		badge: {
-			position: "absolute",
-			backgroundColor: "white",
-			textAlign: "center",
-			top: 12,
-			left: 12,
-			minWidth: 58,
-			alignSelf: "flex-start",
-			borderRadius: 11,
-			justifyContent: "center",
-			alignItems: "center",
-			overflow: "hidden",
-			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.68)",
-			minWidth: 60,
-		},
-
-		badge_text: {
-			fontSize: 14,
-			fontWeight: 400,
-			color: "#1a75cf",
-			textAlign: "center",
-			fontWeight: "500",
-			paddingInline: 12,
-		},
-
-		badge_text0: {
-			fontSize: 22.5,
-			fontWeight: "bold",
-			marginBottom: 0,
-			width: "100%",
-			paddingVertical: 2,
-			paddingTop: 3,
-		},
-
-		badge_text1: {
-			paddingVertical: 5.2,
-			backgroundColor: "#e7f0fe",
-			width: "100%",
-			fontWeight: "800",
-			fontSize: 11.5,
-		},
-
-		badge_text2: {
-			display: "none",
 		},
 
 		image: {
@@ -300,25 +217,3 @@ const getStyles = (theme, variant, cardHeight) => {
 		},
 	});
 };
-
-/* 
-explanation* 
-
-using:
-const toggleSaveEvent = useSavedEventsStore((s) => s.toggleSaveEvent);
-const isEventSaved = useSavedEventsStore((s) => s.isEventSaved);
-
-Here, you’re creating two separate subscriptions to the store — one for each selector.
-That’s usually fine if those functions don’t depend on each other’s internal state.
-
-However:
-isEventSaved() uses get().savedEvents inside the store definition.
-When toggleSaveEvent() updates savedEvents, it may not trigger a re-render in components that use only functions as selectors (since Zustand re-renders based on shallow state equality).
-So your component doesn’t re-render — meaning the icon never updates, even though the data inside the store changes correctly.
-
-solution: const { toggleSaveEvent, isEventSaved } = useSavedEventsStore();
-
-Here, you’re subscribing to the entire store, so every time anything changes (including savedEvents), your component re-renders — and thus, the icon updates properly.
-
-That’s why it “works” even though it’s less performant (more frequent re-renders). 
-*/

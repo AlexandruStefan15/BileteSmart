@@ -2,17 +2,20 @@ import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { locations } from "@/data/locations";
 import Ripple from "react-native-material-ripple";
 
-const LocationCard = ({ location = locations[0], onPress }) => {
+//components
+import Badge from "./Badge";
+
+const LocationCard = ({ location, onPress, style }) => {
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, style]}>
+			<Badge variant="like" data={location} iconSize={23} />
 			<Ripple
 				onPress={onPress}
 				style={styles.listItem}
 				rippleColor="white"
-				rippleDuration={285}
+				rippleDuration={300}
 				rippleCentered={false}
 			>
 				<Image source={location.images.banner} style={styles.img} />
