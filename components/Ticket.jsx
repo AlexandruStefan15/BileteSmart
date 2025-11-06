@@ -54,7 +54,7 @@ const Ticket = ({ data, variant = "" }) => {
 						style={styles.qrCode}
 						variant="2"
 						id={data.ticket_codes}
-						ticketInfo={{ room: data.room, row, seat }}
+						ticketInfo={{ room: data.room, row, seat, event_title: data.event_title }}
 					/>
 				</View>
 				<View style={styles.right}>

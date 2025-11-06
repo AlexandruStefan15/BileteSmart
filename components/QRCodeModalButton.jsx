@@ -30,9 +30,11 @@ const QRCodeModalButton = ({ id, style, variant = "", ticketInfo }) => {
 			if (ticketInfo)
 				await Share.open({
 					url: uri,
-					message: `Salut, ti-am trimis codul QR aferent biletului tau 🎟️ \n\nSectorul: ${
-						ticketInfo.room || "-"
-					}\nRandul: ${ticketInfo.row}\nLocul: ${ticketInfo.seat}`,
+					message: `Salut, ti-am trimis codul QR aferent biletului tau 🎟️ \n\nDenumire: ${
+						ticketInfo.event_title
+					}\n\nSectorul: ${ticketInfo.room || "-"}\nRandul: ${ticketInfo.row}\nLocul: ${
+						ticketInfo.seat
+					}`,
 					/* social: Share.Social.WHATSAPP, */
 				});
 			else

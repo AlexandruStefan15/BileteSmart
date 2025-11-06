@@ -180,9 +180,7 @@ export const AccordionItem = React.memo(function AccordionItem({
 								<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
 							</Text>
 						</View>
-
 						<QRCodeModalButton style={{ marginBottom: 3 }} id={order.id_order} />
-
 						<Button
 							variant="2"
 							onPress={() => {
