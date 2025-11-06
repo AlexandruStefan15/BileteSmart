@@ -95,7 +95,7 @@ const Header = ({
 							}}
 							onPress={() => navigation.goBack()}
 						>
-							<FeatherIcon name="arrow-left" size={20} color={arrowColor} />
+							<FeatherIcon name="arrow-left" size={21} color={arrowColor} />
 						</TouchableOpacity>
 					</View>
 				) : (

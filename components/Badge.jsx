@@ -65,7 +65,7 @@ const getStyles = (variant) => {
 				zIndex: 99,
 				right: 10,
 				top: 10,
-				backgroundColor: "#00000099",
+				backgroundColor: "#0000008e",
 				paddingInline: 9,
 				paddingBlock: 8.5,
 				borderRadius: 50,

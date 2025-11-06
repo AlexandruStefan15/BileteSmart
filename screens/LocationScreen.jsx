@@ -32,6 +32,7 @@ import BoldText from "@/components/BoldText";
 import EventCard from "@/components/EventCard";
 import ImageGallery from "@/components/ImageGallery";
 import LocationMap from "@/components/LocationMap";
+import Badge from "@/components/Badge";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
@@ -48,6 +49,12 @@ const LocationScreen = ({ navigation, route }) => {
 					<Image
 						source={currentLocation.images.banner}
 						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
+					/>
+					<Badge
+						style={{ top: 14, right: 14 }}
+						variant="like"
+						data={currentLocation}
+						iconSize={20}
 					/>
 				</View>
 				<View style={styles.content}>
