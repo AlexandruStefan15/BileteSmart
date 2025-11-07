@@ -1,10 +1,4 @@
-import React, {
-	forwardRef,
-	useRef,
-	useEffect,
-	useImperativeHandle,
-	useMemo,
-} from "react";
+import React, { forwardRef, useRef, useEffect, useImperativeHandle, useMemo } from "react";
 import { StyleSheet, View, Dimensions, Text } from "react-native";
 
 //store
@@ -33,8 +27,11 @@ const SeeTheCartBottomSheet = forwardRef(({ isBottomSheetCollapsed }, ref) => {
 
 	useEffect(() => {
 		if (selectedSeats.length > 0 && !isBottomSheetCollapsed.current)
-			bottomSheetRef.current.expand();
+			setTimeout(() => {
+				bottomSheetRef.current.expand();
+			}, 100);
 		if (selectedSeats.length == 0) bottomSheetRef.current.close();
+		console.log(isBottomSheetCollapsed);
 	}, [selectedSeats.length]);
 
 	return (
@@ -44,7 +41,7 @@ const SeeTheCartBottomSheet = forwardRef(({ isBottomSheetCollapsed }, ref) => {
 			backgroundColor={"#2e2e2eff"}
 			backDropColor={"black"}
 			isBottomSheetCollapsed={isBottomSheetCollapsed}
-			closeOnExternalInteraction={true}
+			collapseOnExternalInteraction={true}
 		>
 			<View style={bottomSheetStyles.container}>
 				<View style={bottomSheetStyles.row}>

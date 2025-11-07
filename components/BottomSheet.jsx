@@ -19,6 +19,7 @@ const BottomSheet = forwardRef(
 			backgroundColor,
 			backDropColor,
 			closeOnExternalInteraction,
+			collapseOnExternalInteraction,
 			isBottomSheetCollapsed,
 		},
 		ref
@@ -80,13 +81,14 @@ const BottomSheet = forwardRef(
 		const backDropAnimation = useAnimatedStyle(() => {
 			const opacity = interpolate(
 				topAnimation.value,
-				[height, newActiveHeight],
-				[0, 0.5]
+				[collapsedOffset - 10, newActiveHeight],
+				[0, 0.5],
+				"clamp"
 			);
-			const display = opacity === 0 ? "none" : "flex";
+
 			return {
 				opacity,
-				display,
+				display: opacity === 0 ? "none" : "flex",
 			};
 		});
 
@@ -126,18 +128,17 @@ const BottomSheet = forwardRef(
 
 		return (
 			<>
-				{closeOnExternalInteraction ? (
+				{collapseOnExternalInteraction ? (
 					<TouchableWithoutFeedback
 						onPress={() => {
-							/* close(); */
-							close();
+							collapse();
 						}}
 					>
 						<Animated.View
 							style={[
 								styles.backDrop,
 								backDropAnimation,
-								{ backgroundColor: backDropColor },
+								{ backgroundColor: backDropColor, display: "none" },
 							]}
 						/>
 					</TouchableWithoutFeedback>
