@@ -51,10 +51,10 @@ const LocationScreen = ({ navigation, route }) => {
 						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
 					/>
 					<Badge
-						style={{ top: 14, right: 14 }}
+						style={{ top: 15, right: 15 }}
 						variant="like"
 						data={currentLocation}
-						iconSize={20}
+						iconSize={21}
 					/>
 				</View>
 				<View style={styles.content}>

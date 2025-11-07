@@ -64,8 +64,8 @@ const getStyles = (variant) => {
 				right: 12,
 				top: 12,
 				backgroundColor: "#0000008e",
-				paddingInline: 9,
-				paddingBlock: 8.5,
+				paddingInline: 8,
+				paddingBlock: 7.5,
 				borderRadius: 50,
 			},
 		});
@@ -78,8 +78,8 @@ const getStyles = (variant) => {
 				right: 10,
 				top: 10,
 				backgroundColor: "#000000c1",
-				paddingInline: 8.5,
-				paddingBlock: 8.5,
+				paddingInline: 8,
+				paddingBlock: 8,
 				borderRadius: 60,
 			},
 		});
