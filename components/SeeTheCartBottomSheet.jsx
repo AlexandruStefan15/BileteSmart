@@ -31,7 +31,6 @@ const SeeTheCartBottomSheet = forwardRef(({ isBottomSheetCollapsed }, ref) => {
 				bottomSheetRef.current.expand();
 			}, 100);
 		if (selectedSeats.length == 0) bottomSheetRef.current.close();
-		console.log(isBottomSheetCollapsed);
 	}, [selectedSeats.length]);
 
 	return (
