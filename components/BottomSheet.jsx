@@ -78,7 +78,11 @@ const BottomSheet = forwardRef(
 			};
 		});
 		const backDropAnimation = useAnimatedStyle(() => {
-			const opacity = interpolate(topAnimation.value, [height, newActiveHeight], [0, 0.5]);
+			const opacity = interpolate(
+				topAnimation.value,
+				[height, newActiveHeight],
+				[0, 0.5]
+			);
 			const display = opacity === 0 ? "none" : "flex";
 			return {
 				opacity,
@@ -125,11 +129,16 @@ const BottomSheet = forwardRef(
 				{closeOnExternalInteraction ? (
 					<TouchableWithoutFeedback
 						onPress={() => {
+							/* close(); */
 							close();
 						}}
 					>
 						<Animated.View
-							style={[styles.backDrop, backDropAnimation, { backgroundColor: backDropColor }]}
+							style={[
+								styles.backDrop,
+								backDropAnimation,
+								{ backgroundColor: backDropColor },
+							]}
 						/>
 					</TouchableWithoutFeedback>
 				) : (

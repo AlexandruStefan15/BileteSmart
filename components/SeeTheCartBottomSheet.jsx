@@ -1,4 +1,10 @@
-import React, { forwardRef, useRef, useEffect, useImperativeHandle, useMemo } from "react";
+import React, {
+	forwardRef,
+	useRef,
+	useEffect,
+	useImperativeHandle,
+	useMemo,
+} from "react";
 import { StyleSheet, View, Dimensions, Text } from "react-native";
 
 //store
@@ -38,6 +44,7 @@ const SeeTheCartBottomSheet = forwardRef(({ isBottomSheetCollapsed }, ref) => {
 			backgroundColor={"#2e2e2eff"}
 			backDropColor={"black"}
 			isBottomSheetCollapsed={isBottomSheetCollapsed}
+			closeOnExternalInteraction={true}
 		>
 			<View style={bottomSheetStyles.container}>
 				<View style={bottomSheetStyles.row}>
