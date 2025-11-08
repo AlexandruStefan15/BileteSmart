@@ -10,7 +10,7 @@ import Badge from "./Badge";
 const LocationCard = ({ location, onPress, style }) => {
 	return (
 		<View style={[styles.container, style]}>
-			<Badge variant="like" data={location} iconSize={22.5} />
+			<Badge variant="like" data={location} iconSize={22} />
 			<Ripple
 				onPress={onPress}
 				style={styles.listItem}

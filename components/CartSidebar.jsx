@@ -13,6 +13,7 @@ import { navigationRef } from "@/navigation/navigationRef";
 
 //store
 import { useSelectedSeatsStore } from "@/store";
+import { useCartSidebarStore } from "@/store";
 
 //colors
 import { Colors } from "@/constants/Colors";
@@ -29,25 +30,28 @@ import TicketList from "./TicketList";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
-export default React.memo(function CartSidebar({ sidebarX, children, navigation, ...props }) {
+export default React.memo(function CartSidebar({ children, navigation, ...props }) {
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
+	const { isSidebarOpen, closeSidebar, sidebarX } = useCartSidebarStore();
 
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
 	}));
 
 	useEffect(() => {
-		const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-			if (sidebarX.value === 0) {
-				sidebarX.value = withTiming(-SIDEBAR_WIDTH);
-				props.displayBadge.value = false;
-				return true;
-			}
-			return false;
-		});
+		let sub;
 
-		return () => backHandler.remove();
-	}, [sidebarX]);
+		if (isSidebarOpen) {
+			sub = BackHandler.addEventListener("hardwareBackPress", () => {
+				closeSidebar();
+				return true;
+			});
+		}
+
+		return () => {
+			if (sub) sub.remove();
+		};
+	}, [isSidebarOpen, selectedSeats.length]);
 
 	if (!sidebarX) return null;
 
@@ -57,8 +61,10 @@ export default React.memo(function CartSidebar({ sidebarX, children, navigation,
 				<TouchableOpacity
 					style={styles.closeBtn}
 					onPress={() => {
-						props.displayBadge.value = false;
-						sidebarX.value = withTiming(-SIDEBAR_WIDTH);
+						/* props.displayBadge.value = false; */
+						/* sidebarX.value = withTiming(-SIDEBAR_WIDTH);
+						isSidebarOpen.value = false; */
+						closeSidebar();
 					}}
 				>
 					<FeatherIcon name="arrow-left" size={26} color={"black"} />

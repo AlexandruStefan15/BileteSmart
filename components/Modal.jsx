@@ -4,7 +4,7 @@ import ReactNativeModal from "react-native-modal";
 
 const Modal = ({ isVisible, style, ...props }) => {
 	return (
-		<ReactNativeModal isVisible={isVisible} {...props}>
+		<ReactNativeModal isVisible={isVisible} useNativeDriver={true} {...props}>
 			<View style={[styles.modalContent, style]}>
 				<View style={styles.header}>
 					<Text style={styles.title}>{props.title}</Text>

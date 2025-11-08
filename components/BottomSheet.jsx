@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { StyleSheet, View, Dimensions, TouchableWithoutFeedback } from "react-native";
-import React, { forwardRef, useImperativeHandle, useCallback } from "react";
+import { StyleSheet, View, Dimensions, TouchableWithoutFeedback, BackHandler } from "react-native";
+import React, { forwardRef, useImperativeHandle, useCallback, useRef, useEffect } from "react";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -20,7 +20,6 @@ const BottomSheet = forwardRef(
 			backDropColor,
 			closeOnExternalInteraction,
 			collapseOnExternalInteraction,
-			isBottomSheetCollapsed,
 		},
 		ref
 	) => {
@@ -30,9 +29,20 @@ const BottomSheet = forwardRef(
 		const newActiveHeight = height - activeHeight - 35;
 		const topAnimation = useSharedValue(height);
 		const context = useSharedValue(0);
+		const isCollapsed = useRef(false);
+		const isClosed = useRef(true);
+		const isExpanded = useRef(false);
 
 		const setCollapsed = (value) => {
-			isBottomSheetCollapsed.current = value;
+			isCollapsed.current = value;
+		};
+
+		const setClosed = (value) => {
+			isClosed.current = value;
+		};
+
+		const setExpanded = (value) => {
+			isExpanded.current = value;
 		};
 
 		const expand = useCallback(() => {
@@ -41,7 +51,10 @@ const BottomSheet = forwardRef(
 				damping: 100,
 				stiffness: 400,
 			});
+
+			runOnJS(setExpanded)(true);
 			runOnJS(setCollapsed)(false);
+			runOnJS(setClosed)(false);
 		}, []);
 
 		const collapse = useCallback(() => {
@@ -51,6 +64,8 @@ const BottomSheet = forwardRef(
 				stiffness: 400,
 			});
 			runOnJS(setCollapsed)(true);
+			runOnJS(setClosed)(false);
+			runOnJS(setExpanded)(false);
 		}, []);
 
 		const close = useCallback(() => {
@@ -59,7 +74,9 @@ const BottomSheet = forwardRef(
 				damping: 100,
 				stiffness: 400,
 			});
+			runOnJS(setClosed)(true);
 			runOnJS(setCollapsed)(false);
+			runOnJS(setExpanded)(false);
 		}, []);
 
 		useImperativeHandle(
@@ -68,9 +85,29 @@ const BottomSheet = forwardRef(
 				expand,
 				collapse,
 				close,
+				isCollapsed,
+				isExpanded,
+				isClosed,
 			}),
-			[expand, collapse, close]
+			[expand, collapse, close, isCollapsed, isExpanded, isClosed]
 		);
+
+		/* useEffect(() => {
+			let subscription;
+
+			if (isExpanded.current) {
+				// only listen when expanded
+				subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+					collapse();
+					return true;
+				});
+			}
+
+			// clean up when collapsed or closed
+			return () => {
+				if (subscription) subscription.remove();
+			};
+		}, [isExpanded.current]); */
 
 		const animationStyle = useAnimatedStyle(() => {
 			const top = topAnimation.value;
@@ -110,19 +147,33 @@ const BottomSheet = forwardRef(
 				}
 			})
 			.onEnd(() => {
-				if (topAnimation.value > newActiveHeight + 75) {
-					//collapse
+				if (topAnimation.value > collapsedOffset + 100) {
+					// close
+					topAnimation.value = withSpring(height, {
+						damping: 100,
+						stiffness: 400,
+					});
+					runOnJS(setClosed)(true);
+					runOnJS(setCollapsed)(false);
+					runOnJS(setExpanded)(false);
+				} else if (topAnimation.value > newActiveHeight + 75) {
+					// collapse
 					topAnimation.value = withSpring(collapsedOffset, {
 						damping: 100,
 						stiffness: 400,
 					});
 					runOnJS(setCollapsed)(true);
+					runOnJS(setExpanded)(false);
+					runOnJS(setClosed)(false);
 				} else {
-					//remain open
+					// remain open
 					topAnimation.value = withSpring(newActiveHeight, {
 						damping: 100,
 						stiffness: 400,
 					});
+					runOnJS(setExpanded)(true);
+					runOnJS(setCollapsed)(false);
+					runOnJS(setClosed)(false);
 				}
 			});
 

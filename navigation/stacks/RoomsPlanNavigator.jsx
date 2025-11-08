@@ -24,13 +24,10 @@ import CartSidebar from "@/components/CartSidebar";
 const Stack = createNativeStackNavigator();
 
 export const RoomsPlanNavigator = ({}) => {
-	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
-	const [infoModalShowedOnce, setInfoModalShowedOnce] = useState(false);
-	const seatCount = useSharedValue(0);
-	const displayBadge = useSharedValue(true);
-	const isBottomSheetCollapsed = useRef(false);
+	/* const seatCount = useSharedValue(0); */
+	/* const displayBadge = useSharedValue(true); */
 
-	const showBadge = useDerivedValue(() => {
+	/* const showBadge = useDerivedValue(() => {
 		return seatCount.value > 0 && displayBadge.value;
 	});
 
@@ -40,7 +37,7 @@ export const RoomsPlanNavigator = ({}) => {
 			transform: [{ scale: withTiming(showBadge.value ? 1 : 0.5, { duration: 150 }) }],
 		};
 	});
-
+ */
 	return (
 		<View style={{ flex: 1 }}>
 			<Stack.Navigator>
@@ -48,7 +45,8 @@ export const RoomsPlanNavigator = ({}) => {
 					{(navProps) => (
 						<RoomsPlanScreen
 							{...navProps}
-							/* seatCount={seatCount}
+							/* 
+              seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge} */
 						/>
@@ -59,17 +57,17 @@ export const RoomsPlanNavigator = ({}) => {
 					{(navProps) => (
 						<SeatsPlanNavigator
 							{...navProps}
-							/* seatCount={seatCount}
+							/* 
+              seatCount={seatCount}
 							badgeStyle={badgeStyle}
 							displayBadge={displayBadge}
-							infoModalShowedOnce={infoModalShowedOnce}
-							setInfoModalShowedOnce={setInfoModalShowedOnce} */
+							*/
 						/>
 					)}
 				</Stack.Screen>
 			</Stack.Navigator>
-			<CartSidebar sidebarX={sidebarX} displayBadge={displayBadge} />
-			<SeeTheCartBottomSheet isBottomSheetCollapsed={isBottomSheetCollapsed} />
+			<CartSidebar /* displayBadge={displayBadge} */ />
+			{/* <SeeTheCartBottomSheet /> */}
 		</View>
 	);
 };
