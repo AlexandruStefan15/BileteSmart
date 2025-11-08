@@ -32,7 +32,9 @@ const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
 export default React.memo(function CartSidebar({ children, navigation, ...props }) {
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
-	const { isSidebarOpen, closeSidebar, sidebarX } = useCartSidebarStore();
+	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
+	const closeSidebar = useCartSidebarStore((s) => s.closeSidebar);
+	const isSidebarOpen = useCartSidebarStore((s) => s.isSidebarOpen);
 
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],

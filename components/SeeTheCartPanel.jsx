@@ -14,8 +14,6 @@ import Icon from "./Icon";
 
 const SeeTheCartPanel = () => {
 	/* const openSidebar = useCartSidebarStore((s) => s.openSidebar); */
-	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
-	const isSidebarOpen = useCartSidebarStore((s) => s.isSidebarOpen);
 	const openSidebar = useCartSidebarStore((s) => s.openSidebar);
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 
