@@ -34,13 +34,25 @@ export default React.memo(function CartSidebar({ /* sidebarX, */ children, navig
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
 	const closeSidebar = useCartSidebarStore((s) => s.closeSidebar);
-	const isSidebarOpen = useCartSidebarStore((s) => s.isSidebarOpen);
+	/* const isSidebarOpen = useCartSidebarStore((s) => s.isSidebarOpen); */
 
 	const sidebarStyle = useAnimatedStyle(() => ({
 		transform: [{ translateX: sidebarX.value }],
 	}));
 
 	useEffect(() => {
+		const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+			if (sidebarX.value === 0) {
+				closeSidebar();
+				return true;
+			}
+			return false;
+		});
+
+		return () => sub.remove();
+	}, []);
+
+	/* useEffect(() => {
 		let sub;
 
 		if (isSidebarOpen) {
@@ -53,7 +65,7 @@ export default React.memo(function CartSidebar({ /* sidebarX, */ children, navig
 		return () => {
 			if (sub) sub.remove();
 		};
-	}, [isSidebarOpen, selectedSeats.length]);
+	}, [isSidebarOpen, selectedSeats.length]); */
 
 	if (!sidebarX) return null;
 

@@ -17,12 +17,12 @@ export const useCartSidebarStore = create((set) => ({
 				duration: 400,
 				easing: Easing.out(Easing.cubic),
 				reduceMotion: ReduceMotion.System,
-			},
-			(finished) => {
+			}
+			/* (finished) => {
 				if (finished) {
 					runOnJS(set)({ isSidebarOpen: true });
 				}
-			}
+			} */
 		);
 	},
 
@@ -33,13 +33,13 @@ export const useCartSidebarStore = create((set) => ({
 				duration: 400,
 				easing: Easing.out(Easing.cubic),
 				reduceMotion: ReduceMotion.System,
-			},
-			(finished) => {
+			}
+			/* (finished) => {
 				if (finished) {
 					// safely run JS update when animation ends
 					runOnJS(set)({ isSidebarOpen: false });
 				}
-			}
+			} */
 		);
 	},
 }));
