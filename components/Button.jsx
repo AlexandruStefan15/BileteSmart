@@ -10,6 +10,7 @@ export default function Button({
 	style,
 	styleText = {},
 	iconRight,
+
 	...props
 }) {
 	const styles = getStyles(variant);

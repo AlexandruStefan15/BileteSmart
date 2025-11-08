@@ -16,6 +16,8 @@ const SeeTheCartPanel = () => {
 	/* const openSidebar = useCartSidebarStore((s) => s.openSidebar); */
 	const openSidebar = useCartSidebarStore((s) => s.openSidebar);
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
+	const noSeatsSelected = selectedSeats.length == 0;
+	const styles = getStyles(noSeatsSelected);
 
 	const totalPrice = useMemo(
 		() => selectedSeats.reduce((sum, seat) => sum + parseFloat(seat.price), 0),
@@ -41,7 +43,9 @@ const SeeTheCartPanel = () => {
 					setTimeout(() => (sidebarX.value = withTiming(0)), 200);
 					isSidebarOpen.value = true;
 				}} */
+				disabled={noSeatsSelected}
 				onPress={() => {
+					if (noSeatsSelected) return;
 					setTimeout(() => openSidebar(), 200);
 				}}
 				iconRight={<Icon lib="io" name="cart-outline" size={23} color="white" />}
@@ -52,40 +56,42 @@ const SeeTheCartPanel = () => {
 	);
 };
 
-const styles = StyleSheet.create({
-	container: {
-		paddingInline: 24,
-		paddingBlock: 20,
-		backgroundColor: Colors.tertiary,
-		width: "100%",
-	},
-	row: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		paddingBlock: 10,
-	},
-	row_right: {
-		fontWeight: "bold",
-		fontSize: 18,
-		color: "white",
-	},
-	text: {
-		color: "lightgrey",
-		fontWeight: "400",
-		fontSize: 16.1,
-		lineHeight: 24,
-	},
-	separator: {
-		width: "100%",
-		backgroundColor: "#80808057",
-		height: 1,
-		marginBlock: 3,
-	},
-	button: {
-		marginTop: 21,
-		paddingBlock: 16,
-		borderRadius: 12,
-	},
-});
+const getStyles = (noSeatsSelected) =>
+	StyleSheet.create({
+		container: {
+			paddingInline: 24,
+			paddingBlock: 20,
+			backgroundColor: Colors.tertiary,
+			width: "100%",
+		},
+		row: {
+			flexDirection: "row",
+			justifyContent: "space-between",
+			paddingBlock: 10,
+		},
+		row_right: {
+			fontWeight: "bold",
+			fontSize: 18,
+			color: "white",
+		},
+		text: {
+			color: "lightgrey",
+			fontWeight: "400",
+			fontSize: 16.1,
+			lineHeight: 24,
+		},
+		separator: {
+			width: "100%",
+			backgroundColor: "#80808057",
+			height: 1,
+			marginBlock: 3,
+		},
+		button: {
+			backgroundColor: noSeatsSelected ? "grey" : "#2196f3",
+			marginTop: 21,
+			paddingBlock: 16,
+			borderRadius: 12,
+		},
+	});
 
 export default SeeTheCartPanel;

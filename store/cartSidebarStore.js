@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { withTiming, makeMutable, Easing, ReduceMotion } from "react-native-reanimated";
+import { withTiming, makeMutable, Easing, ReduceMotion, runOnJS } from "react-native-reanimated";
 import { Dimensions } from "react-native";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -11,24 +11,35 @@ export const useCartSidebarStore = create((set) => ({
 	isSidebarOpen: false,
 
 	openSidebar: () => {
-		sidebarX.value = withTiming(0, {
-			duration: 400,
-			easing: Easing.out(Easing.cubic),
-			reduceMotion: ReduceMotion.System,
-		});
-		setTimeout(() => {
-			set({ isSidebarOpen: true });
-		}, 300);
+		sidebarX.value = withTiming(
+			0,
+			{
+				duration: 400,
+				easing: Easing.out(Easing.cubic),
+				reduceMotion: ReduceMotion.System,
+			},
+			(finished) => {
+				if (finished) {
+					runOnJS(set)({ isSidebarOpen: true });
+				}
+			}
+		);
 	},
 
 	closeSidebar: () => {
-		sidebarX.value = withTiming(-SCREEN_WIDTH, {
-			duration: 400,
-			easing: Easing.out(Easing.cubic),
-			reduceMotion: ReduceMotion.System,
-		});
-		setTimeout(() => {
-			set({ isSidebarOpen: false });
-		}, 300);
+		sidebarX.value = withTiming(
+			-SCREEN_WIDTH,
+			{
+				duration: 400,
+				easing: Easing.out(Easing.cubic),
+				reduceMotion: ReduceMotion.System,
+			},
+			(finished) => {
+				if (finished) {
+					// safely run JS update when animation ends
+					runOnJS(set)({ isSidebarOpen: false });
+				}
+			}
+		);
 	},
 }));
