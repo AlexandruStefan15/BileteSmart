@@ -20,7 +20,7 @@ const SeatsPlanScreen = ({ navigation, route, ...props }) => {
 	return (
 		<SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 			<Header
-				variant="2"
+				variant="4"
 				style={{ backgroundColor: Colors.tertiary }}
 				title="Selecteaza locurile"
 				backButtonSize={25.5}

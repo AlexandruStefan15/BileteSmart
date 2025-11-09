@@ -46,7 +46,45 @@ const Header = ({
 		}
 	}, [selectedSeats.length]);
 
-	if (variant == "3")
+	if (variant == 4)
+		return (
+			<Animated.View style={[styles.container, style]}>
+				<View style={styles.left}>
+					<View style={[styles.backButton]}>
+						<TouchableOpacity
+							style={{ marginTop: 2, padding: 15 }}
+							onPress={() => navigation.goBack()}
+						>
+							<FeatherIcon name="arrow-left" size={backButtonSize} color={arrowColor} />
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={styles.middle}>
+					{title && (
+						<Text style={[styles.title, { color: arrowColor }, styleTitle]} numberOfLines={1}>
+							{title}
+						</Text>
+					)}
+				</View>
+				<View style={styles.right}>
+					{showCart && (
+						<TouchableOpacity
+							onPress={() => {
+								openSidebar();
+							}}
+							style={styles.cart}
+						>
+							<View style={{ padding: 5 }}>
+								<IoniconsIcon name="cart-outline" size={26} color={"white"} />
+							</View>
+							<Animated.View style={[styles.badge, badgeStyle]} />
+						</TouchableOpacity>
+					)}
+				</View>
+			</Animated.View>
+		);
+
+	if (variant == 3)
 		return (
 			<Animated.View style={[styles.container, style]}>
 				<View style={[styles.backButton]}>
@@ -157,6 +195,58 @@ const Header = ({
 };
 
 const getStyles = (variant) => {
+	if (variant == "4")
+		return StyleSheet.create({
+			container: {
+				position: "absolute",
+				top: 0,
+				gap: 0,
+				flexDirection: "row",
+				paddingHorizontal: 20,
+				paddingVertical: 1,
+				justifyContent: "space-between",
+				alignItems: "center",
+				zIndex: 10,
+				width: "100%",
+				backgroundColor: "transparent",
+			},
+
+			left: {
+				flexBasis: 55,
+				left: -18,
+			},
+
+			middle: {
+				flexDirection: "row",
+				justifyContent: "center",
+				alignItems: "center",
+			},
+
+			right: {
+				flexBasis: 55,
+			},
+
+			title: {
+				fontSize: 16,
+				fontWeight: "bold",
+			},
+
+			cart: {
+				marginLeft: "auto",
+			},
+
+			badge: {
+				width: 9,
+				height: 9,
+				backgroundColor: "red",
+				borderRadius: 40,
+				position: "absolute",
+				right: 3,
+				top: 6,
+				zIndex: 999,
+			},
+		});
+
 	if (variant == "3")
 		return StyleSheet.create({
 			container: {

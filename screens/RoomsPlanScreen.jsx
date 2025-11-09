@@ -18,7 +18,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<Header
-				variant="2"
+				variant="4"
 				style={{ backgroundColor: Colors.tertiary }}
 				title="Selecteaza sectorul"
 				styleTitle={{}}
