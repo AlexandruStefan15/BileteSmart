@@ -101,7 +101,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 							styleText={styles.actions_button_text}
 							onPress={handleSelectSector}
 						>
-							Selectează sectorul
+							Vezi plan interactiv
 						</Button>
 					) : (
 						<Text style={styles.noAvailableSeatsText}>Nu mai sunt locuri disponibile</Text>

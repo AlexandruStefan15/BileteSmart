@@ -20,6 +20,8 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 			<Header
 				variant="2"
 				style={{ backgroundColor: Colors.tertiary }}
+				title="Selecteaza sectorul"
+				styleTitle={{}}
 				/* showCart={true}
 				seatCount={props.seatCount}
 				badgeStyle={props.badgeStyle}
