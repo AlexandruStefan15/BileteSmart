@@ -26,7 +26,7 @@ const SeatsPlanScreen = ({ navigation, route, ...props }) => {
 				fieldPosition={currentRoom.field_position}
 				style={{ marginTop: 45 }}
 			/>
-			<SeeTheCartPanel />
+			<SeeTheCartPanel sidebarX={props.sidebarX} />
 		</SafeAreaView>
 	);
 };

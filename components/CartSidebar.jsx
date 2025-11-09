@@ -28,12 +28,9 @@ import { images } from "@/assets/images";
 import TicketList from "./TicketList";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SIDEBAR_WIDTH = SCREEN_WIDTH * 1;
 
-export default React.memo(function CartSidebar({ /* sidebarX, */ children, navigation, ...props }) {
+export default React.memo(function CartSidebar({ sidebarX, children, navigation, ...props }) {
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
-	const sidebarX = useCartSidebarStore((s) => s.sidebarX);
-	const closeSidebar = useCartSidebarStore((s) => s.closeSidebar);
 	/* const isSidebarOpen = useCartSidebarStore((s) => s.isSidebarOpen); */
 
 	const sidebarStyle = useAnimatedStyle(() => ({
@@ -41,16 +38,17 @@ export default React.memo(function CartSidebar({ /* sidebarX, */ children, navig
 	}));
 
 	useEffect(() => {
-		const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+		const onBackPress = () => {
 			if (sidebarX.value === 0) {
-				closeSidebar();
+				sidebarX.value = withTiming(-SCREEN_WIDTH);
 				return true;
 			}
 			return false;
-		});
+		};
 
+		const sub = BackHandler.addEventListener("hardwareBackPress", onBackPress);
 		return () => sub.remove();
-	}, []);
+	}, [sidebarX]);
 
 	/* useEffect(() => {
 		let sub;
@@ -78,7 +76,7 @@ export default React.memo(function CartSidebar({ /* sidebarX, */ children, navig
 						/* props.displayBadge.value = false; */
 						/* sidebarX.value = withTiming(-SIDEBAR_WIDTH);
 						isSidebarOpen.value = false; */
-						closeSidebar();
+						sidebarX.value = withTiming(-SCREEN_WIDTH);
 					}}
 				>
 					<FeatherIcon name="arrow-left" size={26} color={"black"} />
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		bottom: 0,
-		width: SIDEBAR_WIDTH,
+		width: SCREEN_WIDTH,
 		height: "100%",
 		backgroundColor: "white",
 		elevation: 10, // for Android

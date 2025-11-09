@@ -8,7 +8,7 @@ const SeatsPlanNavigator = forwardRef(({ ...props }, ref) => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="SeatsPlanScreen" options={{ headerShown: false }}>
-				{(navProps) => <SeatsPlanScreen {...navProps} />}
+				{(navProps) => <SeatsPlanScreen sidebarX={props.sidebarX} {...navProps} />}
 			</Stack.Screen>
 		</Stack.Navigator>
 	);

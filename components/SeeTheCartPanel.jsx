@@ -12,9 +12,7 @@ import { useCartSidebarStore, useSelectedSeatsStore } from "@/store";
 import Button from "./Button";
 import Icon from "./Icon";
 
-const SeeTheCartPanel = () => {
-	/* const openSidebar = useCartSidebarStore((s) => s.openSidebar); */
-	const openSidebar = useCartSidebarStore((s) => s.openSidebar);
+const SeeTheCartPanel = ({ sidebarX }) => {
 	const selectedSeats = useSelectedSeatsStore((s) => s.selectedSeats);
 	const noSeatsSelected = selectedSeats.length == 0;
 	const styles = getStyles(noSeatsSelected);
@@ -46,7 +44,7 @@ const SeeTheCartPanel = () => {
 				disabled={noSeatsSelected}
 				onPress={() => {
 					if (noSeatsSelected) return;
-					setTimeout(() => openSidebar(), 200);
+					setTimeout(() => (sidebarX.value = withTiming(0)), 200);
 				}}
 				iconRight={<Icon lib="io" name="cart-outline" size={23} color="white" />}
 			>

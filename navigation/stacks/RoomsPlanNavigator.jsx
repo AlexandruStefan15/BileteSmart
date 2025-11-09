@@ -21,9 +21,12 @@ import SeatsPlanNavigator from "./SeatsPlanNavigator";
 import SeeTheCartBottomSheet from "@/components/SeeTheCartBottomSheet";
 import CartSidebar from "@/components/CartSidebar";
 
+const { width: SCREEN_WIDTH } = Dimensions.get("window");
+
 const Stack = createNativeStackNavigator();
 
 export const RoomsPlanNavigator = ({}) => {
+	const sidebarX = useSharedValue(-SCREEN_WIDTH);
 	/* const seatCount = useSharedValue(0); */
 	/* const displayBadge = useSharedValue(true); */
 
@@ -57,6 +60,7 @@ export const RoomsPlanNavigator = ({}) => {
 					{(navProps) => (
 						<SeatsPlanNavigator
 							{...navProps}
+							sidebarX={sidebarX}
 							/* 
               seatCount={seatCount}
 							badgeStyle={badgeStyle}
@@ -66,7 +70,7 @@ export const RoomsPlanNavigator = ({}) => {
 					)}
 				</Stack.Screen>
 			</Stack.Navigator>
-			<CartSidebar /* displayBadge={displayBadge} */ />
+			<CartSidebar sidebarX={sidebarX} /* displayBadge={displayBadge} */ />
 			{/* <SeeTheCartBottomSheet /> */}
 		</View>
 	);
