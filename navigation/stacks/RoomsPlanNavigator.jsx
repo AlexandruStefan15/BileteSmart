@@ -8,9 +8,6 @@ import {
 } from "react-native-reanimated";
 import { View, Dimensions } from "react-native";
 
-//store
-import { useCartSidebarStore } from "@/store";
-
 //screens
 import RoomsPlanScreen from "@/screens/RoomsPlanScreen";
 
