@@ -54,7 +54,7 @@ const LocationScreen = ({ navigation, route }) => {
 						style={{ top: 15, right: 15 }}
 						variant="like"
 						data={currentLocation}
-						iconSize={21}
+						iconSize={25}
 					/>
 				</View>
 				<View style={styles.content}>

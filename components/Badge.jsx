@@ -20,7 +20,7 @@ const Badge = ({ variant = "calendar", data, iconSize = 24, style }) => {
 		return (
 			<Pressable style={[styles.badge, style]} onPress={() => toggleLikeLocation(data)}>
 				<Icon
-					style={{ top: 0.75, left: 0.25 }}
+					style={{ top: 1.05, left: 0.23 }}
 					lib="mci"
 					name={isLocationLiked(data.id) ? "heart" : "heart-outline"}
 					size={iconSize}
@@ -98,7 +98,7 @@ const getStyles = (variant) => {
 			alignItems: "center",
 			overflow: "hidden",
 			boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.68)",
-			minWidth: 60,
+			minWidth: 59.5,
 		},
 
 		badge_text: {
