@@ -53,8 +53,12 @@ const RootNavigator = () => {
 						component={CheckoutScreen}
 						options={{ headerShown: false }}
 					/>
-					<Stack.Screen name="Contact" component={ContactScreen} />
-					<Stack.Screen name="Ticketing" component={TicketingScreen} />
+					<Stack.Screen name="Contact" component={ContactScreen} options={{ headerShown: false }} />
+					<Stack.Screen
+						name="Ticketing"
+						component={TicketingScreen}
+						options={{ headerShown: false }}
+					/>
 				</Stack.Navigator>
 				<CustomDrawer />
 			</View>

@@ -251,7 +251,7 @@ const getStyles = (variant) => {
 		return StyleSheet.create({
 			container: {
 				backgroundColor: "white",
-				boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.34)",
+				boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.2)",
 				position: "relative",
 				top: 0,
 				gap: 1,
