@@ -47,7 +47,7 @@ const menuItems = [
 		iconLib: "fa",
 	},
 	{ id: 7, title: "Sterge contul", screen: "DeleteAccountScreen", icon: "trash", iconLib: "fa" },
-	{ id: 8, title: "Deconectare", screen: "Logout", icon: "logout", iconLib: "mi" },
+	{ id: 8, title: "Deconectare", screen: "", icon: "logout", iconLib: "mi" },
 ];
 
 const NavigationMenu = ({ data = menuItems, style, ...props }) => {
@@ -61,7 +61,7 @@ const NavigationMenu = ({ data = menuItems, style, ...props }) => {
 					<TouchableOpacity
 						key={item.id}
 						style={styles.item}
-						onPress={() => navigation.navigate(item.screen)}
+						onPress={() => (item.screen ? navigation.navigate(item.screen) : {})}
 					>
 						<View style={styles.left}>
 							<IconComponent name={item.icon} size={20} color="#000" />
