@@ -55,7 +55,7 @@ const SavedEventsScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
-		backgroundColor: Colors["light"].background,
+		backgroundColor: Colors["light"].background.primary,
 	},
 
 	list: {
