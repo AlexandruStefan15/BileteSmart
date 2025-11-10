@@ -251,10 +251,10 @@ const getStyles = (variant) => {
 		return StyleSheet.create({
 			container: {
 				backgroundColor: "white",
-				boxShadow: "0px 0.5px 5px rgba(0, 0, 0, 0.2)",
+				boxShadow: "0px 0.5px 4px rgba(0, 0, 0, 0.2)",
 				position: "relative",
 				top: 0,
-				gap: 1,
+				gap: 0,
 				flexDirection: "row",
 				paddingHorizontal: 16,
 				paddingVertical: 1,
