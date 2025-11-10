@@ -77,8 +77,8 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				</View>
 			</View>
 
-			{/* Body fills the rest of the screen */}
-			<View style={styles.body}>
+			{/* wrapper fills the rest of the screen */}
+			<View style={styles.wrapper}>
 				{/* Card expands to all remaining vertical space */}
 				<View style={[styles.card, { height: cardH }]} onLayout={onCardLayout}>
 					{/* Pass the *actual* rendered height to the SVG plan */}
@@ -181,13 +181,14 @@ const getStyles = () =>
 			resizeMode: "contain",
 		},
 
-		/* BODY = remainder of the screen */
-		body: {
+		/* wrapper = remainder of the screen */
+		wrapper: {
 			flex: 1,
-			marginHorizontal: 20,
 			marginTop: 5,
-			marginBottom: 25,
-			gap: 14,
+			paddingHorizontal: 20,
+			paddingBottom: 20,
+			gap: 15,
+			justifyContent: "space-between",
 		},
 
 		/* CARD fills the remaining vertical space automatically */
