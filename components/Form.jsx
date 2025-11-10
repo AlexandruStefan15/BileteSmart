@@ -16,6 +16,19 @@ import Input from "./Input";
 //context
 import { FormContext, useFormContext } from "@/context/FormContext";
 
+export const validation = {
+	requiredInput: (text) => (!text ? "Campul este obligatoriu" : ""),
+	phoneNr: (text) => {
+		if (!text.trim()) return "Campul este obligatoriu.";
+		if (text && !/^\d{10,15}$/.test(text)) return "Numarul de telefon nu este valid.";
+	},
+	email: (text) => {
+		if (!text.trim()) return "Campul este obligatoriu.";
+		if (text && !/\S+@\S+\.\S+/.test(text)) return "Emailul nu este valid";
+	},
+	matchEmail: (text, values) => text !== values.email && "Emailurile nu coincid", // values.email NOT values.Email
+};
+
 const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 	const [values, setValues] = useState(initialValues);
 	const [errors, setErrors] = useState({});
@@ -149,16 +162,3 @@ const getStyles = (screenWidth) =>
 			fontSize: 16,
 		},
 	});
-
-export const validation = {
-	requiredInput: (text) => (!text ? "Campul este obligatoriu" : ""),
-	phoneNr: (text) => {
-		if (!text.trim()) return "Campul este obligatoriu.";
-		if (text && !/^\d{10,15}$/.test(text)) return "Numarul de telefon nu este valid.";
-	},
-	email: (text) => {
-		if (!text.trim()) return "Campul este obligatoriu.";
-		if (text && !/\S+@\S+\.\S+/.test(text)) return "Emailul nu este valid";
-	},
-	matchEmail: (text, values) => text !== values.email && "Emailurile nu coincid", // values.email NOT values.Email
-};
