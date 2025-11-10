@@ -18,7 +18,7 @@ import Button from "@/components/Button";
 import roomsWithSeats from "@/data/roomsWithSeats.json";
 import { locations } from "@/data/locations"; // to be fetched
 
-const MIN_CARD = 280; // minimum workable height
+const MIN_CARD = 275; // minimum workable height
 
 const EventDetailsScreen = ({ navigation, route }) => {
 	const resetSeats = useSelectedSeatsStore((s) => s.resetSeats);
