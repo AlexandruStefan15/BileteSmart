@@ -227,7 +227,7 @@ const getStyles = (variant) => {
 			},
 
 			title: {
-				fontSize: 16,
+				fontSize: 15.5,
 				fontWeight: "bold",
 			},
 

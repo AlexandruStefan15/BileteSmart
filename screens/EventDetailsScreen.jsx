@@ -207,7 +207,8 @@ const getStyles = () =>
 			color: "red",
 			fontSize: 16,
 			textAlign: "center",
-			marginTop: 12,
+			marginTop: 8,
+			paddingBlock: 4,
 			marginBottom: 1,
 		},
 	});
