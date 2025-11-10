@@ -10,7 +10,6 @@ export default function Button({
 	style,
 	styleText = {},
 	iconRight,
-
 	...props
 }) {
 	const styles = getStyles(variant);
@@ -25,7 +24,7 @@ export default function Button({
 
 const getStyles = (variant) => {
 	// variant 2
-	if (variant === "2")
+	if (variant == "2")
 		return StyleSheet.create({
 			button: {
 				padding: 10,
@@ -42,7 +41,7 @@ const getStyles = (variant) => {
 		});
 
 	// variant 3
-	if (variant === "3")
+	if (variant == "3")
 		return StyleSheet.create({
 			button: {
 				backgroundColor: "#2196f3",
@@ -53,6 +52,27 @@ const getStyles = (variant) => {
 				flexDirection: "row",
 				justifyContent: "center",
 				gap: 5,
+			},
+			buttonText: {
+				color: "white",
+				fontWeight: "bold",
+				fontSize: 15.5,
+				textTransform: "uppercase",
+				letterSpacing: 0.24,
+			},
+		});
+
+	if (variant == "4")
+		return StyleSheet.create({
+			button: {
+				backgroundColor: "#2196f3",
+				paddingBlock: 16,
+				paddingInline: 20,
+				alignItems: "center",
+				flexDirection: "row",
+				justifyContent: "center",
+				gap: 5,
+				borderRadius: 12,
 			},
 			buttonText: {
 				color: "white",

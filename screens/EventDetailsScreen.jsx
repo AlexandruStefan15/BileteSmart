@@ -64,8 +64,6 @@ const EventDetailsScreen = ({ navigation, route }) => {
 
 	const Body = (
 		<>
-			<Header variant="2" style={{ marginTop: 3 }} backButtonSize={25.5} />
-
 			{/* Banner takes its natural height */}
 			<View style={styles.banner}>
 				<Text style={styles.banner_title}>{event.title}</Text>
@@ -96,11 +94,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				{/* Button sits below the card, auto height */}
 				<View style={styles.actions}>
 					{rooms.find((r) => r.free_seats > 0) ? (
-						<Button
-							style={styles.actions_button}
-							styleText={styles.actions_button_text}
-							onPress={handleSelectSector}
-						>
+						<Button variant="4" onPress={handleSelectSector}>
 							Vezi plan interactiv
 						</Button>
 					) : (
@@ -114,6 +108,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	return (
 		<>
 			<StatusBar barStyle="light-content" backgroundColor="#242424" />
+			<Header variant="2" style={{ marginTop: 3 }} backButtonSize={25.5} />
 			<SafeAreaView style={styles.screen}>
 				{canScroll ? (
 					<ScrollView
@@ -205,18 +200,6 @@ const getStyles = () =>
 
 		actions: {
 			flex: 0,
-		},
-
-		actions_button: {
-			borderRadius: 6,
-			width: "100%",
-		},
-
-		actions_button_text: {
-			fontSize: 16,
-			fontWeight: "700",
-			letterSpacing: 0.3,
-			textTransform: "uppercase",
 		},
 
 		noAvailableSeatsText: {
