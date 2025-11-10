@@ -25,7 +25,7 @@ const SeeTheCartPanel = ({ sidebarX }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.row}>
-				<Text style={[styles.text]}>Numarul biletelor</Text>
+				<Text style={[styles.text]}>Numarul de bilete</Text>
 				<Text style={[styles.text, styles.row_right]}>{selectedSeats.length}</Text>
 			</View>
 			<View style={styles.separator} />
