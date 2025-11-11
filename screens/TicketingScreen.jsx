@@ -2,6 +2,9 @@ import React from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+//data
+import { ticketingData } from "@/data/ticketing";
+
 //components
 import Header from "@/components/Header";
 
@@ -12,7 +15,12 @@ const TicketingScreen = () => {
 			<ScrollView
 				contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
 			>
-				<Text>Ticketing Screen</Text>
+				<View style={[styles.section, storyStyles.section]}>
+					<View style={storyStyles.container}>
+						<Text style={storyStyles.title}>{ticketingData.title}</Text>
+						<Text style={storyStyles.story}>{ticketingData.story}</Text>
+					</View>
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
@@ -21,6 +29,15 @@ const TicketingScreen = () => {
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
+	},
+});
+
+const storyStyles = StyleSheet.create({
+	title: {
+		fontSize: 20,
+		fontWeight: "bold",
+		marginBottom: 30,
+		textAlign: "center",
 	},
 });
 
