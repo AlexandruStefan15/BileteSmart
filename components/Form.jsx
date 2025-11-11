@@ -42,6 +42,7 @@ const Form = ({ initialValues = {}, onSubmit, children, style, ...props }) => {
 
   const handleSubmit = () => {
     const hasErrors = Object.values(errors).some((e) => e != '');
+    const hasInitialErrors = Object.values(initialErrors).some((e) => e != '');
     if (!hasErrors && onSubmit) onSubmit(values);
     else
       Alert.alert('Eroare', 'Va rugam sa revizuiti formularul si sa corectati erorile.');
