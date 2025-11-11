@@ -91,7 +91,7 @@ Form.Input = ({ name, validate, ...props }) => {
   useEffect(() => {
     if (validate) {
       const err = validate(values[name], values);
-      setErrors((prev) => ({ ...prev, [name]: err || '' }));
+      setInitialErrors((prev) => ({ ...prev, [name]: err || '' }));
     }
   }, []);
 
