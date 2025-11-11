@@ -52,7 +52,7 @@ const ChangePasswordScreen = ({ navigation, route }) => {
 						/>
 						<Form.Error name={"parola_noua_confirmata"} />
 					</Form.Field>
-					<Form.SubmitButton style={{ marginTop: 15 }} title="Actualizeaza parola" />
+					<Form.SubmitButton style={{ marginTop: 13 }} title="Actualizeaza parola" />
 				</Form>
 			</ScrollView>
 		</SafeAreaView>
@@ -63,6 +63,10 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		backgroundColor: Colors.light.background.primary,
+	},
+
+	input: {
+		backgroundColor: "white",
 	},
 });
 
