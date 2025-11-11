@@ -12,7 +12,9 @@ const TicketingScreen = () => {
 	return (
 		<SafeAreaView style={styles.screen}>
 			<Header title={"Ticketing"} variant="3" arrowColor="black" backButtonSize={24.5} />
-			<ScrollView contentContainerStyle={{ flexGrow: 1, gap: 55, paddingBlock: 50 }}>
+			<ScrollView
+				contentContainerStyle={{ flexGrow: 1, gap: 55, paddingTop: 50, paddingBottom: 30 }}
+			>
 				<View style={[styles.section, section1Styles.section]}>
 					<View style={section1Styles.container}>
 						<Text style={section1Styles.title}>{ticketingData.title}</Text>
@@ -31,6 +33,21 @@ const TicketingScreen = () => {
 						))}
 					</View>
 				</View>
+				<View style={[styles.section, section3Styles.section]}>
+					<View style={section3Styles.container}>
+						{ticketingData.lists.map((list, i) => (
+							<View key={i} style={section3Styles.list}>
+								<Text style={section3Styles.listTitle}>{list.title}</Text>
+								{list.items.map((item, index) => (
+									<View key={index} style={section3Styles.itemContainer}>
+										<Text style={section3Styles.bullet}>{"\u2022"}</Text>
+										<Text style={section3Styles.text}>{item}</Text>
+									</View>
+								))}
+							</View>
+						))}
+					</View>
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
@@ -40,8 +57,6 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 	},
-
-	section: {},
 });
 
 const section1Styles = StyleSheet.create({
@@ -75,6 +90,38 @@ const section2Styles = StyleSheet.create({
 		width: "100%",
 		aspectRatio: 1 / 1,
 		borderRadius: 8,
+	},
+});
+
+const section3Styles = StyleSheet.create({
+	container: {
+		gap: 35,
+		paddingInline: 24,
+	},
+
+	list: {
+		gap: 5,
+		paddingRight: 10,
+	},
+
+	listTitle: {
+		fontSize: 18,
+		fontWeight: "bold",
+		marginBottom: 15,
+	},
+
+	itemContainer: {
+		flexDirection: "row",
+		marginBottom: 10,
+	},
+	bullet: {
+		fontSize: 20,
+		lineHeight: 22,
+		marginRight: 8,
+	},
+	text: {
+		fontSize: 16,
+		lineHeight: 21,
 	},
 });
 
