@@ -19,13 +19,14 @@ const DeleteAccountScreen = ({ navigation, route }) => {
 					justifyContent: "center",
 					alignItems: "center",
 					paddingInline: 36,
+					gap: 12,
 				}}
 			>
 				<Text style={styles.caption}>
 					Sigur doriți să vă ștergeți contul? Acest lucru va șterge toate datele contului dvs. de pe
 					aplicatie. Pentru a vă șterge contul, introduceți parola mai jos.
 				</Text>
-				<Form initialValues={{ parola: "" }} onSubmit={(v) => console.log(v)}>
+				<Form style={styles.form} initialValues={{ parola: "" }} onSubmit={(v) => console.log(v)}>
 					<Form.Field>
 						<Form.Label>Parola</Form.Label>
 						<Form.Input name="parola" inputStyle={[styles.input]} validate={validation.required} />
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
 	caption: {
 		fontSize: 16,
 		textAlign: "center",
-		lineHeight: 21,
+		lineHeight: 24,
 	},
 
 	input: {
