@@ -168,7 +168,7 @@ const getStyles = (screenWidth) =>
 
 		submitButton: {
 			backgroundColor: "#305a82",
-			paddingVertical: 14,
+			paddingVertical: 15,
 			borderRadius: 8,
 			alignItems: "center",
 		},
