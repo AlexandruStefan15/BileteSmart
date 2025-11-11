@@ -4,11 +4,11 @@ export const ticketingData = {
 		"Pentru toți cei care doresc să gestioneze sistemul de ticketing într-un mod automat și în conformitate cu reglementările în vigoare, oferim un sistem de ticketing modern, complet și inovator, bazat pe web și java, ușor de utilizat, soluția de ultimă oră, care poate fi utilizată prin intermediul browserelor și ușor de folosit datorită unei interfețe grafice intuitive și captivante. Un sistem extrem de flexibil și ieftin, dar în același timp robust și fiabil, precum și complet personalizabil, pentru a satisface nevoile organizatorilor. Soluția de ticketing nu este doar un serviciu, ci o tehnologie web autentică. Prin urmare, managerul unui eveniment poate decide să utilizeze sistemul ca un serviciu oferit de noi – responsabil pentru operațiuni – dedicându-se doar activităților organizaționale; sau poate alege să utilizeze direct aplicația web integrată în propriul portal devenind proprietarul serviciului și realizând propriul său sistem de ticketing.",
 
 	images: [
-		"https://biletesmart.ro/wp-content/uploads/2023/01/image8-321x257.jpg",
-		"https://biletesmart.ro/wp-content/uploads/2023/01/image7-321x257.jpg",
-		"https://biletesmart.ro/wp-content/uploads/2023/01/image6-321x257.jpg",
-		"https://biletesmart.ro/wp-content/uploads/2023/01/image4-321x257.jpg",
-		"https://biletesmart.ro/wp-content/uploads/2023/01/image2-471x543.png",
+		"https://biletesmart.ro/wp-content/uploads/2023/01/image8.jpg",
+		"https://biletesmart.ro/wp-content/uploads/2023/01/image7.jpg",
+		"https://biletesmart.ro/wp-content/uploads/2023/01/image6.jpg",
+		"https://biletesmart.ro/wp-content/uploads/2023/01/image4.jpg",
+		"https://biletesmart.ro/wp-content/uploads/2023/01/image2.png",
 	],
 
 	lists: [
