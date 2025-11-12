@@ -45,7 +45,6 @@ const SCALE = PixelRatio.get();
 const IS_ANDROID = Platform.OS === "android";
 const IS_IOS = Platform.OS === "ios";
 
-// ----------------- Accordion.Item -----------------
 const AccordionItem = ({ id, duration = 300, children }) => {
 	const { requestOpen } = useAccordionContext();
 
@@ -114,7 +113,6 @@ const AccordionItem = ({ id, duration = 300, children }) => {
 	);
 };
 
-// ----------------- Accordion.Header -----------------
 const AccordionHeader = ({ children, style }) => {
 	const { toggle } = useAccordionItemContext();
 
@@ -125,7 +123,6 @@ const AccordionHeader = ({ children, style }) => {
 	);
 };
 
-// ----------------- Accordion.Content -----------------
 // Ghost-measure approach: always render an invisible "ghost" with onLayout
 // so the measured height is reliable for the animated panel.
 const AccordionContent = ({ children, style }) => {
@@ -166,7 +163,6 @@ const AccordionContent = ({ children, style }) => {
 	);
 };
 
-// ----------------- Styles -----------------
 const styles = StyleSheet.create({
 	item: {
 		borderRadius: 8,
