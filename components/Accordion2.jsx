@@ -10,7 +10,7 @@ import Animated, {
 const AccordionContext = createContext();
 const AccordionItemContext = createContext();
 
-export function Accordion({ children, multiple = false }) {
+export function Accordion2({ children, multiple = false }) {
 	const [openItems, setOpenItems] = useState([]);
 
 	const toggleItem = (id) => {
@@ -90,7 +90,7 @@ Accordion.Item = AccordionItem;
 Accordion.Header = AccordionHeader;
 Accordion.Content = AccordionContent;
 
-export default Accordion;
+export default Accordion2;
 
 const styles = StyleSheet.create({
 	item: {
@@ -122,3 +122,29 @@ const styles = StyleSheet.create({
 		width: "100%",
 	},
 });
+
+/*  example usage:
+
+<Accordion>
+  <Accordion.Item id="1">
+    <Accordion.Header>First Item</Accordion.Header>
+    <Accordion.Content>
+      <View style={{ padding: 16 }}>
+        <Text>
+          This is the hidden content of the first item.
+        </Text>
+      </View>
+    </Accordion.Content>
+  </Accordion.Item>
+
+  <Accordion.Item id="2">
+    <Accordion.Header>Second Item</Accordion.Header>
+    <Accordion.Content>
+      <View style={{ padding: 16 }}>
+        <Text>More content inside the second item.</Text>
+      </View>
+    </Accordion.Content>
+  </Accordion.Item>
+</Accordion> 
+
+*/

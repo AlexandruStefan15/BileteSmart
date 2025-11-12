@@ -46,26 +46,16 @@ const AccordionItem = React.memo(({ order, expandedId }) => {
 	const animatedHeight = useSharedValue(0);
 	const isExpanded = useDerivedValue(() => expandedId.value === order.id_order);
 
-	// Animate on change
-	useAnimatedReaction(
-		() => isExpanded.value,
-		(current, prev) => {
-			if (current === prev) return;
-			animatedHeight.value = withTiming(current ? 310 : 0, {
-				duration: 300,
-				easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			});
-		}
+	const derivedHeight = useDerivedValue(
+		() => withTiming(animatedHeight.value * Number(isExpanded.value) /* , 300 */) // duration
 	);
 
 	const animatedStyle = useAnimatedStyle(() => ({
-		height: animatedHeight.value,
+		height: derivedHeight.value,
 	}));
 
 	const toggleExpand = () => {
-		runOnJS(() => {
-			expandedId.value = expandedId.value === order.id_order ? null : order.id_order;
-		})();
+		expandedId.value = expandedId.value === order.id_order ? null : order.id_order;
 	};
 
 	return (
@@ -78,30 +68,35 @@ const AccordionItem = React.memo(({ order, expandedId }) => {
 				</Text>
 			</TouchableOpacity>
 
-			<Animated.View style={[styles.animatedContent, animatedStyle]}>
-				<View style={styles.innerContent}>
+			<Animated.View style={[styles.body, animatedStyle]}>
+				<View
+					style={styles.content}
+					onLayout={(e) => {
+						animatedHeight.value = e.nativeEvent.layout.height;
+					}}
+				>
 					<View style={{ gap: 8, marginBottom: 8 }}>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>ID Comanda:</Text> #{order.id_order}
 						</Text>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>Nume:</Text> {order.last_name}
 						</Text>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>Prenume:</Text> {order.first_name}
 						</Text>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>Telefon:</Text> {order.phone}
 						</Text>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>Data evenimentului:</Text>{" "}
 							{formatDate(order.date.trim().split(/\s+/)[0], "numeric")}
 						</Text>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>Ora evenimentului:</Text>{" "}
 							{order.date.trim().split(/\s+/)[1]}
 						</Text>
-						<Text style={styles.innerContent_text}>
+						<Text style={styles.content_text}>
 							<Text style={{ fontWeight: "600" }}>Total:</Text> {order.total} RON
 						</Text>
 					</View>
@@ -155,7 +150,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 
-	animatedContent: {
+	body: {
 		backgroundColor: "white",
 		borderBottomWidth: 1,
 		borderRightWidth: 1,
@@ -165,12 +160,14 @@ const styles = StyleSheet.create({
 		borderBottomStartRadius: 8,
 	},
 
-	innerContent: {
+	content: {
 		padding: 12,
 		gap: 5,
+		position: "absolute",
+		width: "100%",
 	},
 
-	innerContent_text: {
+	content_text: {
 		fontSize: 14.4,
 	},
 });
