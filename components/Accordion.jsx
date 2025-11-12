@@ -1,19 +1,5 @@
-import React, {
-	createContext,
-	useContext,
-	useCallback,
-	useRef,
-	useMemo,
-	useState,
-} from "react";
-import {
-	View,
-	TouchableOpacity,
-	StyleSheet,
-	PixelRatio,
-	Platform,
-	Text,
-} from "react-native";
+import React, { createContext, useContext, useCallback, useRef, useMemo, useState } from "react";
+import { View, TouchableOpacity, StyleSheet, PixelRatio, Platform, Text } from "react-native";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -27,8 +13,7 @@ const AccordionContext = createContext(null);
 
 const useAccordionContext = () => {
 	const ctx = useContext(AccordionContext);
-	if (!ctx)
-		throw new Error("Accordion compound components must be used within <Accordion>");
+	if (!ctx) throw new Error("Accordion compound components must be used within <Accordion>");
 	return ctx;
 };
 
@@ -52,8 +37,7 @@ const AccordionRoot = ({ children }) => {
 const AccordionItemContext = createContext(null);
 const useAccordionItemContext = () => {
 	const ctx = useContext(AccordionItemContext);
-	if (!ctx)
-		throw new Error("Accordion sub-components must be used inside <Accordion.Item>");
+	if (!ctx) throw new Error("Accordion sub-components must be used inside <Accordion.Item>");
 	return ctx;
 };
 
@@ -136,11 +120,7 @@ const AccordionHeader = ({ children, style }) => {
 
 	return (
 		<TouchableOpacity style={[styles.header, style]} onPress={toggle} activeOpacity={0.8}>
-			{typeof children === "string" ? (
-				<Text style={styles.headerText}>{children}</Text>
-			) : (
-				children
-			)}
+			{typeof children === "string" ? <Text style={styles.headerText}>{children}</Text> : children}
 		</TouchableOpacity>
 	);
 };
@@ -149,8 +129,7 @@ const AccordionHeader = ({ children, style }) => {
 // Ghost-measure approach: always render an invisible "ghost" with onLayout
 // so the measured height is reliable for the animated panel.
 const AccordionContent = ({ children, style }) => {
-	const { animatedContent, contentHeight, pendingOpenRef, animateTo } =
-		useAccordionItemContext();
+	const { animatedContent, contentHeight, pendingOpenRef, animateTo } = useAccordionItemContext();
 	const [measured, setMeasured] = useState(0);
 
 	const handleLayout = (e) => {
@@ -235,7 +214,7 @@ export default Accordion;
     <Accordion.Content>
       <View style={{ padding: 16 }}>
         <Text>
-          This is the hidden contenasd asd asda dasdast of the first item.
+          This is the hidden content of the first item.
         </Text>
       </View>
     </Accordion.Content>
