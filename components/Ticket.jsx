@@ -185,10 +185,15 @@ const getStyles = (variant) => {
 				gap: 1,
 			},
 
+			right_top: {
+				top: -0.5,
+			},
+
 			right_text: {
 				fontSize: 15,
 				fontWeight: "600",
 				color: Colors.secondary,
+				top: 0.5,
 			},
 
 			place: {
