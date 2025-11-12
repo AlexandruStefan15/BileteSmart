@@ -1,91 +1,88 @@
-import React, { createContext, useContext, useState, useRef } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { createContext, useContext, useMemo } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Animated, {
-	useAnimatedStyle,
 	useSharedValue,
 	useDerivedValue,
+	useAnimatedStyle,
 	withTiming,
+	Easing,
 } from "react-native-reanimated";
 
+// context to share expandedId
 const AccordionContext = createContext();
 const AccordionItemContext = createContext();
 
-export function Accordion2({ children, multiple = false }) {
-	const [openItems, setOpenItems] = useState([]);
+export const Accordion2 = ({ children }) => {
+	const expandedId = useSharedValue(null);
 
-	const toggleItem = (id) => {
-		setOpenItems((prev) => {
-			if (multiple) {
-				return prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
-			}
-			return prev.includes(id) ? [] : [id];
-		});
-	};
-
+	const value = useMemo(() => ({ expandedId }), []);
 	return (
-		<AccordionContext.Provider value={{ openItems, toggleItem }}>
-			<View>{children}</View>
+		<AccordionContext.Provider value={value}>
+			<View style={styles.container}>{children}</View>
 		</AccordionContext.Provider>
 	);
-}
+};
 
-function AccordionItem({ id, children }) {
+// ---------- ITEM ----------
+const AccordionItem = ({ id, children }) => {
 	return (
 		<AccordionItemContext.Provider value={{ id }}>
 			<View style={styles.item}>{children}</View>
 		</AccordionItemContext.Provider>
 	);
-}
+};
 
-function AccordionHeader({ children }) {
+// ---------- HEADER ----------
+const AccordionHeader = ({ children }) => {
+	const { expandedId } = useContext(AccordionContext);
 	const { id } = useContext(AccordionItemContext);
-	const { openItems, toggleItem } = useContext(AccordionContext);
-	const isOpen = openItems.includes(id);
+
+	const handleToggle = () => {
+		expandedId.value = expandedId.value === id ? null : id;
+	};
 
 	return (
-		<TouchableOpacity onPress={() => toggleItem(id)} style={styles.header}>
+		<TouchableOpacity onPress={handleToggle} style={styles.header}>
 			<Text style={styles.headerText}>{children}</Text>
-			<Text style={styles.arrow}>{isOpen ? "▲" : "▼"}</Text>
 		</TouchableOpacity>
 	);
-}
+};
 
-function AccordionContent({ children, duration = 300 }) {
+// ---------- CONTENT ----------
+const AccordionContent = ({ children, duration = 300 }) => {
+	const { expandedId } = useContext(AccordionContext);
 	const { id } = useContext(AccordionItemContext);
-	const { openItems } = useContext(AccordionContext);
-	const isExpanded = useSharedValue(openItems.includes(id));
-	const height = useSharedValue(0);
-	const contentRef = useRef(null);
 
-	// sync shared value when context changes
-	React.useEffect(() => {
-		isExpanded.value = openItems.includes(id);
-	}, [openItems]);
+	const contentHeight = useSharedValue(0);
+	const isExpanded = useDerivedValue(() => expandedId.value === id);
 
-	const derivedHeight = useDerivedValue(() =>
-		withTiming(isExpanded.value ? height.value : 0, { duration })
+	const animatedHeight = useDerivedValue(() =>
+		withTiming(contentHeight.value * Number(isExpanded.value), {
+			duration,
+			easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+		})
 	);
 
 	const animatedStyle = useAnimatedStyle(() => ({
-		height: derivedHeight.value,
+		height: animatedHeight.value,
+		overflow: "hidden",
 	}));
 
 	return (
-		<Animated.View style={[styles.animatedContainer, animatedStyle]}>
+		<Animated.View style={[styles.contentWrapper, animatedStyle]}>
 			<View
-				ref={contentRef}
 				onLayout={(e) => {
-					height.value = e.nativeEvent.layout.height;
+					contentHeight.value = e.nativeEvent.layout.height;
 				}}
-				style={styles.hiddenContent}
+				style={styles.absoluteContent}
 			>
 				{children}
 			</View>
 		</Animated.View>
 	);
-}
+};
 
-// Attach subcomponents
+// Attach compound subcomponents
 Accordion.Item = AccordionItem;
 Accordion.Header = AccordionHeader;
 Accordion.Content = AccordionContent;
@@ -93,58 +90,60 @@ Accordion.Content = AccordionContent;
 export default Accordion2;
 
 const styles = StyleSheet.create({
+	container: {
+		width: "100%",
+	},
 	item: {
+		marginVertical: 4,
 		borderWidth: 1,
 		borderColor: "#ccc",
 		borderRadius: 8,
-		marginVertical: 6,
 		overflow: "hidden",
 	},
 	header: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
 		padding: 16,
-		backgroundColor: "#f2f2f2",
+		backgroundColor: "#365771",
 	},
 	headerText: {
 		fontSize: 16,
-		fontWeight: "500",
+		fontWeight: "600",
+		color: "white",
+		textAlign: "center",
+		textTransform: "uppercase",
 	},
-	arrow: {
-		fontSize: 16,
+	contentWrapper: {
+		backgroundColor: "white",
+		borderTopWidth: 1,
+		borderColor: "#ccc",
 	},
-	animatedContainer: {
-		overflow: "hidden",
-	},
-	hiddenContent: {
-		position: "absolute",
+	absoluteContent: {
+		position: "absolute", // crucial for smooth animation
 		width: "100%",
 	},
 });
 
 /*  example usage:
 
-<Accordion>
-  <Accordion.Item id="1">
-    <Accordion.Header>First Item</Accordion.Header>
-    <Accordion.Content>
+<Accordion2>
+  <Accordion2.Item id="1">
+    <Accordion2.Header>First Item</Accordion.Header>
+    <Accordion2.Content>
       <View style={{ padding: 16 }}>
         <Text>
           This is the hidden content of the first item.
         </Text>
       </View>
-    </Accordion.Content>
-  </Accordion.Item>
+    </Accordion2.Content>
+  </Accordion2.Item>
 
   <Accordion.Item id="2">
-    <Accordion.Header>Second Item</Accordion.Header>
-    <Accordion.Content>
+    <Accordion2.Header>Second Item</Accordion.Header>
+    <Accordion2.Content>
       <View style={{ padding: 16 }}>
         <Text>More content inside the second item.</Text>
       </View>
-    </Accordion.Content>
-  </Accordion.Item>
-</Accordion> 
+    </Accordion2.Content>
+  </Accordion2.Item>
+</Accordion2> 
 
 */
