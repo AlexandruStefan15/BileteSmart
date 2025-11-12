@@ -22,7 +22,7 @@ const AccordionRoot = ({ children }) => {
 	const openItemRef = useRef(null);
 
 	const requestOpen = useCallback((id, controls) => {
-		if (openItemRef.current && openItemRef.current.id !== id) {
+		if (openItemRef.current && openItemRef.current.id != id) {
 			openItemRef.current.close?.();
 		}
 		openItemRef.current = { id, close: controls.close };
