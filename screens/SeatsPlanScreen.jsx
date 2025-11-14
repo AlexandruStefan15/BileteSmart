@@ -10,7 +10,7 @@ import { Colors } from "@/constants/Colors";
 import SeeTheCartPanel from "@/components/SeeTheCartPanel";
 
 //compoenents
-import SvgHallPlan from "@/components/SvgHallPlan";
+import InteractivePlan from "@/components/InteractivePlan";
 import Header from "@/components/Header";
 
 const SeatsPlanScreen = ({ navigation, route, ...props }) => {
@@ -25,7 +25,7 @@ const SeatsPlanScreen = ({ navigation, route, ...props }) => {
 				title="Selecteaza locurile"
 				backButtonSize={25.5}
 			/>
-			<SvgHallPlan
+			<InteractivePlan
 				currentRoom={currentRoom}
 				selectSeats={true}
 				fieldPosition={currentRoom.field_position}

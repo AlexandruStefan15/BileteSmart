@@ -9,7 +9,7 @@ import roomsWithSeats from "@/data/roomsWithSeats.json"; // to be fetched by loc
 import { Colors } from "@/constants/Colors";
 
 //compoenents
-import SvgHallPlan from "@/components/SvgHallPlan";
+import InteractivePlan from "@/components/InteractivePlan";
 import Header from "@/components/Header";
 
 export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
@@ -28,7 +28,7 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				displayBadge={props.displayBadge} */
 				backButtonSize={25.5}
 			/>
-			<SvgHallPlan
+			<InteractivePlan
 				rooms={roomsWithSeats[currentLocation.id][eventId].rooms}
 				selectRoom={true}
 				field={currentLocation.fieldSVG}

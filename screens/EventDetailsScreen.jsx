@@ -10,7 +10,7 @@ import { useSelectedSeatsStore } from "@/store";
 import { formatRomanianDate } from "@/utils/helpers";
 
 // components
-import SvgHallPlan from "@/components/SvgHallPlan";
+import InteractivePlan from "@/components/InteractivePlan";
 import Header from "@/components/Header";
 import Button from "@/components/Button";
 
@@ -82,15 +82,14 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				{/* Card expands to all remaining vertical space */}
 				<View style={[styles.card, { height: cardH }]} onLayout={onCardLayout}>
 					{/* Pass the *actual* rendered height to the SVG plan */}
-					<SvgHallPlan
+					<InteractivePlan
+						read_only
 						rooms={rooms}
 						field={location.fieldSVG}
 						width={cardW}
 						height={"100%"}
-						read_only
 					/>
 				</View>
-
 				{/* Button sits below the card, auto height */}
 				<View style={styles.actions}>
 					{rooms.find((r) => r.free_seats > 0) ? (

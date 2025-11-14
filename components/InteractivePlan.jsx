@@ -15,13 +15,13 @@ import { useHandGestures } from "@/hooks/useHandGestures";
 import FieldMarkerSvg from "./FieldMarkerSvg";
 import SvgGroup, { svgGroupIcons } from "./SvgGroup";
 
-const SvgHallPlan = ({
+const InteractivePlan = ({
 	rooms,
-	currentRoom, // only for SeatsPlanScreen
+	currentRoom,
 	field,
 	height,
 	width,
-	read_only,
+	read_only, // only for rooms
 	selectRoom,
 	selectSeats,
 	fieldPosition,
@@ -87,7 +87,7 @@ const SvgHallPlan = ({
 		));
 	}, [rooms, selectedRoomId]);
 
-	if (read_only) {
+	if (read_only && rooms?.length > 0) {
 		return (
 			<View style={[styles.readOnlyWrapper, style]}>
 				<Svg
@@ -185,9 +185,13 @@ const SvgHallPlan = ({
 			</GestureDetector>
 		);
 	}
+
+	return (
+		<Text style={{ color: "red" }}>Error: Not enough data received for the interactive plan</Text>
+	);
 };
 
-export default SvgHallPlan;
+export default InteractivePlan;
 
 const styles = StyleSheet.create({
 	svg_container: {
