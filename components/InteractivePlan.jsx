@@ -187,7 +187,7 @@ const InteractivePlan = ({
 	}
 
 	return (
-		<Text style={{ color: "red" }}>Error: Not enough data received for the interactive plan</Text>
+		<Text style={{ color: "red" }}>Error: Not enough data available for the interactive plan</Text>
 	);
 };
 
