@@ -9,7 +9,7 @@ const LocationMap = ({ coordinates, options, styleContainer, styleMap }) => {
 	};
 
 	if (!coordinates) {
-		return <Text style={{ textAlign: "center", color: "red" }}>Location data not available</Text>;
+		return <Text style={{ color: "red" }}>Location data not available</Text>;
 	}
 
 	return (
