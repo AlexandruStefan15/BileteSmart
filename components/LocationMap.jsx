@@ -1,19 +1,25 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
 const LocationMap = ({ coordinates, options, styleContainer, styleMap }) => {
 	const location = {
-		latitude: coordinates?.latitude || 44.4268,
-		longitude: coordinates?.longitude || 26.1025,
+		latitude: coordinates?.latitude,
+		longitude: coordinates?.longitude,
 	};
+
+	if (!coordinates) {
+		return <Text style={{ textAlign: "center", color: "red" }}>Location data not available</Text>;
+	}
 
 	return (
 		<View style={[styles.container, styleContainer]}>
 			<MapView
 				style={[styles.map, styleMap]}
+				zoomEnabled={true}
+				zoomControlEnabled={true}
 				provider={PROVIDER_GOOGLE}
-				initialRegion={{
+				region={{
 					latitude: location.latitude,
 					longitude: location.longitude,
 					latitudeDelta: 0.01,
