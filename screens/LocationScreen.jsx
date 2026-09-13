@@ -36,7 +36,7 @@ import Badge from "@/components/Badge";
 
 const LocationScreen = ({ navigation, route }) => {
 	const { currentLocation } = route.params;
-	/* const { events, loading, error } = useFetchEventsByLocation(currentLocation.id); */
+
 	const events = eventsByLocation[currentLocation.id]; // to be fetched like above
 	const loading = !events; // Simulating loading state
 	const error = null; // Simulating no error state
@@ -50,12 +50,7 @@ const LocationScreen = ({ navigation, route }) => {
 						source={currentLocation.images.banner}
 						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
 					/>
-					<Badge
-						style={{ top: 15, right: 15 }}
-						variant="like"
-						data={currentLocation}
-						iconSize={25}
-					/>
+					<Badge style={{ top: 15, right: 15 }} variant="like" data={currentLocation} iconSize={25} />
 				</View>
 				<View style={styles.content}>
 					<Title style={styles.mainTitle}>{currentLocation.name}</Title>
