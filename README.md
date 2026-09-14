@@ -1,6 +1,6 @@
 # Event Ticketing Mobile App
 
-This is a react native project where users can discover upcoming events, explore venues, choose their preferred seats through interactive seating plans, and purchase tickets directly from the app.
+This is a react native expo project where users can discover upcoming events, explore venues, choose their preferred seats through interactive seating plans, and purchase tickets directly from the app.
 
 ## Get started
 
