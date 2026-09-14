@@ -1,6 +1,6 @@
-# Event Ticketing Mobile App 👋
+# Event Ticketing Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a react native project where users can discover upcoming events, explore venues, choose their preferred seats through interactive seating plans, and purchase tickets directly from the app.
 
 ## Get started
 
