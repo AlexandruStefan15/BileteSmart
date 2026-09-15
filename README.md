@@ -40,6 +40,7 @@ This is a react native expo project where users can discover upcoming events, ex
     npx expo start --dev-client
    ```
 
+<br>
  
 https://github.com/user-attachments/assets/a26fc9c4-d16c-49ab-8c28-d78c3a42b4c6
 
