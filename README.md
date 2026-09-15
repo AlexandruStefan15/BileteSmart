@@ -16,6 +16,15 @@ This is a react native expo project where users can discover upcoming events, ex
     npx expo start
    ```
 
+
+https://github.com/user-attachments/assets/6384a702-36a8-4624-953f-2faf7cc9db5d
+
+
+
+https://github.com/user-attachments/assets/a0d1935b-6379-463f-b149-c206b76014b3
+
+
+
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
