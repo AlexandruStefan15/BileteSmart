@@ -2,11 +2,9 @@
 
 This is a react native expo project where users can discover upcoming events, explore venues, choose their preferred seats through interactive seating plans, and purchase tickets directly from the app.
 
-![Demo Showcase](https://github.com/user-attachments/assets/a26fc9c4-d16c-49ab-8c28-d78c3a42b4c6)
-
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Event Discovery:** Browse upcoming events, filter by category, and view venue details.
 - **Interactive Seating Plans:** Visual venue layouts allowing users to select specific available seats.
@@ -15,15 +13,13 @@ This is a react native expo project where users can discover upcoming events, ex
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework:** React Native (Expo)
 - **Language:** JavaScript / TypeScript
 - **State/Navigation:** *(e.g., React Navigation, Redux, Zustand, Context API)*
 
 ---
-
-## 🚀 Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v18+)
