@@ -28,8 +28,6 @@ This is a react native expo project where users can discover upcoming events, ex
 
 ## Get started
 
-1. Download Android Studio and start the emulator
-
 1. Install dependencies
 
    ```bash
