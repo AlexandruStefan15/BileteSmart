@@ -16,8 +16,8 @@ This is a react native expo project where users can discover upcoming events, ex
 ## Tech Stack
 
 - **Framework:** React Native (Expo)
-- **Language:** JavaScript / TypeScript
-- **State/Navigation:** *(e.g., React Navigation, Redux, Zustand, Context API)*
+- **Language:** JavaScript 
+- **State/Navigation:** *(React Navigation, Redux, Zustand, Context API)*
 
 ---
 
