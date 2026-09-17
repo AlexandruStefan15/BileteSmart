@@ -29,8 +29,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	const styles = getStyles();
 	const { event, currentLocation } = route.params;
 
-	const location =
-		currentLocation || locations.find((location) => location.id == event.location.id);
+	const location = currentLocation || locations.find((location) => location.id == event.location.id);
 
 	// const rooms = roomsWithSeats[locationId][event.id_event].rooms;
 	const rooms = roomsWithSeats[location.id][event.id_event].rooms;
@@ -38,7 +37,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 	useFocusEffect(
 		React.useCallback(() => {
 			resetSeats();
-		}, [resetSeats])
+		}, [resetSeats]),
 	);
 
 	const onCardLayout = useCallback((e) => {
@@ -82,13 +81,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 				{/* Card expands to all remaining vertical space */}
 				<View style={[styles.card, { height: cardH }]} onLayout={onCardLayout}>
 					{/* Pass the *actual* rendered height to the SVG plan */}
-					<InteractivePlan
-						read_only
-						rooms={rooms}
-						field={location.fieldSVG}
-						width={cardW}
-						height={"100%"}
-					/>
+					<InteractivePlan read_only rooms={rooms} field={location.fieldSVG} width={cardW} height={"100%"} />
 				</View>
 				{/* Button sits below the card, auto height */}
 				<View style={styles.actions}>
@@ -110,10 +103,7 @@ const EventDetailsScreen = ({ navigation, route }) => {
 			<Header variant="2" style={{ marginTop: 3 }} backButtonSize={25.5} />
 			<SafeAreaView style={styles.screen}>
 				{canScroll ? (
-					<ScrollView
-						contentContainerStyle={{ paddingBottom: insets.bottom, flexGrow: 1 }}
-						bounces={false}
-					>
+					<ScrollView contentContainerStyle={{ paddingBottom: insets.bottom, flexGrow: 1 }} bounces={false}>
 						{Body}
 					</ScrollView>
 				) : (
