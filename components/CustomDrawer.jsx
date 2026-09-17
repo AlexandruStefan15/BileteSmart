@@ -1,17 +1,9 @@
 import React, { useEffect } from "react";
 import { TouchableOpacity, Text, StyleSheet, Dimensions, Pressable } from "react-native";
-import Animated, {
-	useSharedValue,
-	useAnimatedStyle,
-	withTiming,
-	runOnJS,
-} from "react-native-reanimated";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from "react-native-reanimated";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { useDrawerStore } from "@/store";
 import { navigationRef } from "@/navigation/navigationRef";
-
-//colors
-import { Colors } from "@/constants";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
