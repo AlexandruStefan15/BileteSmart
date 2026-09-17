@@ -7,7 +7,6 @@ export const useLikedLocationsStore = create(
 		(set, get) => ({
 			likedLocations: [],
 
-			// Toggle like/unlike
 			toggleLikeLocation: (location) => {
 				const exists = get().likedLocations.find((l) => l.id === location.id);
 				const updated = exists
@@ -17,13 +16,11 @@ export const useLikedLocationsStore = create(
 				set({ likedLocations: updated });
 			},
 
-			// Remove a specific location
 			removeLocation: (id_location) =>
 				set((state) => ({
 					likedLocations: state.likedLocations.filter((l) => l.id !== id_location),
 				})),
 
-			// Clear all liked locations
 			clearLikedLocations: () => set({ likedLocations: [] }),
 
 			// Check if a location is liked
@@ -34,9 +31,7 @@ export const useLikedLocationsStore = create(
 			// Sync from backend after login
 			loadFromBackend: async (userEmail) => {
 				try {
-					const res = await fetch(
-						`https://biletesmart.ro/api/user/getLikedLocations?email=${userEmail}`
-					);
+					const res = await fetch(`https://biletesmart.ro/api/user/getLikedLocations?email=${userEmail}`);
 					const data = await res.json();
 					if (Array.isArray(data)) {
 						set({ likedLocations: data });
@@ -63,6 +58,6 @@ export const useLikedLocationsStore = create(
 		{
 			name: "liked-locations-storage", // key in AsyncStorage
 			storage: createJSONStorage(() => AsyncStorage),
-		}
-	)
+		},
+	),
 );

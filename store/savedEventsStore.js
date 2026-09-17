@@ -7,7 +7,6 @@ export const useSavedEventsStore = create(
 		(set, get) => ({
 			savedEvents: [],
 
-			// Toggle save/unsave
 			toggleSaveEvent: (event) => {
 				const exists = get().savedEvents.find((e) => e.id_event === event.id_event);
 				const updated = exists
@@ -17,16 +16,13 @@ export const useSavedEventsStore = create(
 				set({ savedEvents: updated });
 			},
 
-			// Remove a specific event
 			removeEvent: (id_event) =>
 				set((state) => ({
 					savedEvents: state.savedEvents.filter((e) => e.id_event !== id_event),
 				})),
 
-			// Clear all
 			clearSavedEvents: () => set({ savedEvents: [] }),
 
-			//check if an event is saved
 			isEventSaved: (id_event) => {
 				return get().savedEvents.some((e) => e.id_event === id_event);
 			},
@@ -34,9 +30,7 @@ export const useSavedEventsStore = create(
 			// Sync from backend after login
 			loadFromBackend: async (userEmail) => {
 				try {
-					const res = await fetch(
-						`https://biletesmart.ro/api/user/getSavedEvents?email=${userEmail}`
-					);
+					const res = await fetch(`https://biletesmart.ro/api/user/getSavedEvents?email=${userEmail}`);
 					const data = await res.json();
 					if (Array.isArray(data)) {
 						set({ savedEvents: data });
@@ -63,6 +57,6 @@ export const useSavedEventsStore = create(
 		{
 			name: "saved-events-storage", // key in AsyncStorage
 			storage: createJSONStorage(() => AsyncStorage),
-		}
-	)
+		},
+	),
 );

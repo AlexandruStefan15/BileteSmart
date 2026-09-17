@@ -11,35 +11,18 @@ export const useCartSidebarStore = create((set) => ({
 	isSidebarOpen: false,
 
 	openSidebar: () => {
-		sidebarX.value = withTiming(
-			0,
-			{
-				duration: 400,
-				easing: Easing.out(Easing.cubic),
-				reduceMotion: ReduceMotion.System,
-			}
-			/* (finished) => {
-				if (finished) {
-					runOnJS(set)({ isSidebarOpen: true });
-				}
-			} */
-		);
+		sidebarX.value = withTiming(0, {
+			duration: 400,
+			easing: Easing.out(Easing.cubic),
+			reduceMotion: ReduceMotion.System,
+		});
 	},
 
 	closeSidebar: () => {
-		sidebarX.value = withTiming(
-			-SCREEN_WIDTH,
-			{
-				duration: 400,
-				easing: Easing.out(Easing.cubic),
-				reduceMotion: ReduceMotion.System,
-			}
-			/* (finished) => {
-				if (finished) {
-					// safely run JS update when animation ends
-					runOnJS(set)({ isSidebarOpen: false });
-				}
-			} */
-		);
+		sidebarX.value = withTiming(-SCREEN_WIDTH, {
+			duration: 400,
+			easing: Easing.out(Easing.cubic),
+			reduceMotion: ReduceMotion.System,
+		});
 	},
 }));
