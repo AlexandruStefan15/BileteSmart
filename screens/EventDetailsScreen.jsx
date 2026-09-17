@@ -170,7 +170,6 @@ const getStyles = () =>
 			resizeMode: "contain",
 		},
 
-		/* wrapper = remainder of the screen */
 		wrapper: {
 			flex: 1,
 			marginTop: 5,
@@ -180,7 +179,6 @@ const getStyles = () =>
 			justifyContent: "space-between",
 		},
 
-		/* CARD fills the remaining vertical space automatically */
 		card: {
 			flex: 1,
 			backgroundColor: "white",
