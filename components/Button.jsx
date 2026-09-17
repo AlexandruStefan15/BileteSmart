@@ -2,16 +2,8 @@ import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 
 import { Colors } from "@/constants";
-import Icon from "./Icon";
 
-export default function Button({
-	children,
-	variant = "",
-	style,
-	styleText = {},
-	iconRight,
-	...props
-}) {
+export default function Button({ children, variant = "", style, styleText = {}, iconRight, ...props }) {
 	const styles = getStyles(variant);
 
 	return (
@@ -23,7 +15,6 @@ export default function Button({
 }
 
 const getStyles = (variant) => {
-	// variant 2
 	if (variant == "2")
 		return StyleSheet.create({
 			button: {
@@ -40,7 +31,6 @@ const getStyles = (variant) => {
 			},
 		});
 
-	// variant 3
 	if (variant == "3")
 		return StyleSheet.create({
 			button: {

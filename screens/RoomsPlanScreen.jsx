@@ -21,11 +21,6 @@ export default RoomsPlanScreen = ({ navigation, route, ...props }) => {
 				variant="4"
 				style={{ backgroundColor: Colors.tertiary }}
 				title="Selecteaza sectorul"
-				styleTitle={{}}
-				/* showCart={true}
-				seatCount={props.seatCount}
-				badgeStyle={props.badgeStyle}
-				displayBadge={props.displayBadge} */
 				backButtonSize={25.5}
 			/>
 			<InteractivePlan

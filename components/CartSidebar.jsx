@@ -1,13 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import {
-	View,
-	Text,
-	StyleSheet,
-	Dimensions,
-	TouchableOpacity,
-	BackHandler,
-	Image,
-} from "react-native";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler, Image } from "react-native";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { navigationRef } from "@/navigation/navigationRef";
 
@@ -50,21 +42,6 @@ export default React.memo(function CartSidebar({ sidebarX, children, navigation,
 		return () => sub.remove();
 	}, [sidebarX]);
 
-	/* useEffect(() => {
-		let sub;
-
-		if (isSidebarOpen) {
-			sub = BackHandler.addEventListener("hardwareBackPress", () => {
-				closeSidebar();
-				return true;
-			});
-		}
-
-		return () => {
-			if (sub) sub.remove();
-		};
-	}, [isSidebarOpen, selectedSeats.length]); */
-
 	if (!sidebarX) return null;
 
 	return (
@@ -73,9 +50,6 @@ export default React.memo(function CartSidebar({ sidebarX, children, navigation,
 				<TouchableOpacity
 					style={styles.closeBtn}
 					onPress={() => {
-						/* props.displayBadge.value = false; */
-						/* sidebarX.value = withTiming(-SIDEBAR_WIDTH);
-						isSidebarOpen.value = false; */
 						sidebarX.value = withTiming(-SCREEN_WIDTH);
 					}}
 				>
@@ -90,7 +64,6 @@ export default React.memo(function CartSidebar({ sidebarX, children, navigation,
 					}}
 				>
 					<Text style={styles.cartTitle}>Coșul meu ({selectedSeats.length})</Text>
-					{/* <Image source={images.shoppingCart} style={{ width: 24, height: 24 }} /> */}
 				</View>
 			</View>
 			<View style={styles.content}>
@@ -106,7 +79,7 @@ const CartSidebarFooter = React.memo(() => {
 
 	const totalPrice = useMemo(
 		() => selectedSeats.reduce((sum, seat) => sum + parseFloat(seat.price), 0),
-		[selectedSeats]
+		[selectedSeats],
 	);
 
 	if (selectedSeats.length == 0) return null;
@@ -116,10 +89,7 @@ const CartSidebarFooter = React.memo(() => {
 			<View style={{ padding: 12.5, backgroundColor: "#bee1ecd1", marginVertical: 6 }}>
 				<Text style={{ fontWeight: "600", fontSize: 16 }}>Total: {totalPrice} RON</Text>
 			</View>
-			<TouchableOpacity
-				style={styles.checkoutButton}
-				onPress={() => navigationRef.navigate("CheckoutScreen")}
-			>
+			<TouchableOpacity style={styles.checkoutButton} onPress={() => navigationRef.navigate("CheckoutScreen")}>
 				<Text style={styles.checkoutButton_text}>Checkout</Text>
 			</TouchableOpacity>
 		</View>
